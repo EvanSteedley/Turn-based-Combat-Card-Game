@@ -25,9 +25,9 @@ public class Selection : MonoBehaviour
         IFX.gameObject.SetActive(false);
         IFY.gameObject.SetActive(false);
         IFZ.gameObject.SetActive(false);
-        IFY.onEndEdit.AddListener(YSelectionUpdated);
-        IFX.onEndEdit.AddListener(XSelectionUpdated);
-        IFZ.onEndEdit.AddListener(ZSelectionUpdated);
+        //IFY.onEndEdit.AddListener(YSelectionUpdated);
+        //IFX.onEndEdit.AddListener(XSelectionUpdated);
+        //IFZ.onEndEdit.AddListener(ZSelectionUpdated);
     }
 
     // Update is called once per frame
