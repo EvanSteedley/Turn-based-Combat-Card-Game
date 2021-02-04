@@ -15,7 +15,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     Slider SliderHealth;
     [SerializeField]
+    Text HealthValue;
+    [SerializeField]
     Button AttackButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Attack()
@@ -43,6 +46,16 @@ public class Player : MonoBehaviour
     {
         health -= d;
         SliderHealth.value = health;
+        HealthValue.text = health.ToString();
+    }
+
+    public void Buff()
+    {
+        if (t.PlayerTurn)
+        { 
+            damage += 30;
+            t.PlayerTurn = false;
+        }
     }
 
     

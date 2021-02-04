@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     Player p;
     [SerializeField]
     Turns t;
+    [SerializeField]
+    Text HealthValue;
     int health = 100;
     int damage = 10;
     bool dead = false;
@@ -37,6 +39,7 @@ public class Enemy : MonoBehaviour
         }
         health -= d;
         SliderHealth.value = health;
+        HealthValue.text = health.ToString();
     }
 
     public void Attack()
