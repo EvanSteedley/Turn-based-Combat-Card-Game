@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     Text HealthValue;
     int health = 100;
     int damage = 10;
-    bool dead = false;
+    public bool dead = false;
     [SerializeField]
     Slider SliderHealth;
     // Start is called before the first frame update
@@ -26,8 +26,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!t.PlayerTurn && !dead)
-            Attack();
+        //if (!t.PlayerTurn && !dead)
+        //    Attack();
         
     }
 
@@ -36,6 +36,9 @@ public class Enemy : MonoBehaviour
         if (d >= health)
         {
             dead = true;
+            Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
+            rb.AddForce(new Vector3(500f, 400f, 0f));
+            rb.AddTorque(new Vector3(5f, 50f, 35f));
         }
         health -= d;
         SliderHealth.value = health;
@@ -45,6 +48,6 @@ public class Enemy : MonoBehaviour
     public void Attack()
     {
         p.TakeDamage(damage);
-        t.PlayerTurn = true;
+        //t.PlayerTurn = true;
     }
 }
