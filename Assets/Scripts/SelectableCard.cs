@@ -45,9 +45,16 @@ public class SelectableCard : MonoBehaviour
             //Debug.Log(otherObject.name);
             otherObject.selected = false;
             otherObject.ren.material.color = otherObject.defaultColor;
+            s.Selected.transform.position = s.Selected.transform.position + new Vector3(0.0f, -0.5f, 0.0f);
         }
         s.somethingSelected = true;
-        s.Selected = this.gameObject;
+        //s.Selected.transform.position = this.transform.position + new Vector3(0.0f, -0.5f, 0.0f);
+        if (s.Selected != this.gameObject)
+        {
+            s.Selected = this.gameObject;
+            s.Selected.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+        }
+        else { s.Selected = this.gameObject; }
         ren.material.color = Color.blue;
     }
 }
