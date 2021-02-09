@@ -2400,6 +2400,7 @@ GameObject:
   - component: {fileID: 1674657016}
   - component: {fileID: 1674657015}
   - component: {fileID: 1674657014}
+  - component: {fileID: 1674657020}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -2455,7 +2456,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aad3bf68534df044da9a83e2499803c3, type: 2}
+  - {fileID: 2100000, guid: 90f4d5614d8302942867671f8ccbc154, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2499,6 +2500,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 31.567, y: 0, z: 180}
+--- !u!114 &1674657020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674657013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09107c0c065a8914ab5c1ce56566e6fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 
+  id: 0
+  mana: 0
+  damage: 0
+  TestValue: 5
 --- !u!1 &1798657041
 GameObject:
   m_ObjectHideFlags: 0
