@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour
             rb.AddTorque(new Vector3(5f, 50f, 35f));
         }
         health -= d;
+        if (health<0) { health = 0; }
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
