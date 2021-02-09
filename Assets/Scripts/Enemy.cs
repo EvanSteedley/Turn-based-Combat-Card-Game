@@ -57,7 +57,10 @@ public class Enemy : MonoBehaviour
             rb.AddForce(new Vector3(500f, 400f, 0f));
             rb.AddTorque(new Vector3(5f, 50f, 35f));
         }
+
+        if (defense < d)
         health -= (d-defense);
+        defense = 0;
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
