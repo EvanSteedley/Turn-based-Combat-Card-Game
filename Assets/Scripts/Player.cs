@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     //Reference to the object with the Turns class, which controls when turns are ready.
     [SerializeField]
     Turns t;
+    [SerializeField]
+    SelectionCard card;
 
     //UI Elements
     [SerializeField]
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     Text ManaValue;
     public bool dead = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +44,7 @@ public class Player : MonoBehaviour
         mana = startingMana;
         //This will need to be changed if there are multiple enemies.
         e = FindObjectOfType<Enemy>();
+        card = FindObjectOfType<SelectionCard>();
         SliderHealth.value = health;
     }
 
@@ -60,7 +64,9 @@ public class Player : MonoBehaviour
     }
     public IEnumerator Attack()
     {
+        
         int manaCost = 1;
+        card.
         if (t.PlayerTurn && !dead && mana >= manaCost)
         {
             //This "disables" the buttons, so the 'animation' can play.  If the buttons weren't disabled,
@@ -81,6 +87,7 @@ public class Player : MonoBehaviour
             //Instead, this will call the EnemyDelay() method, and then wait for it to finish!
             yield return StartCoroutine(t.EnemyDelay());
             this.transform.Translate(new Vector3(-1f, 0f, 0f));
+
 
             e.TakeDamage(damage);
 
