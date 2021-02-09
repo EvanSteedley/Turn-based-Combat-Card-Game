@@ -57,10 +57,14 @@ public class Enemy : MonoBehaviour
             rb.AddForce(new Vector3(500f, 400f, 0f));
             rb.AddTorque(new Vector3(5f, 50f, 35f));
         }
-
         if (defense < d)
-        health -= (d-defense);
+			health -= (d-defense);
         defense = 0;
+        health -= d;
+        if (health<0) 
+		{ 
+			health = 0; 
+		}
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
@@ -104,8 +108,8 @@ public class Enemy : MonoBehaviour
     {
         
             damage += 20;
-        }
     }
+}
 
 
 
