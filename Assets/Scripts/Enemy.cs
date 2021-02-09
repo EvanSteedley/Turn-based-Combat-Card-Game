@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
 
         if (num == (int)states.Buff)
         {
-            
+            Buff();
         }
 
     }
