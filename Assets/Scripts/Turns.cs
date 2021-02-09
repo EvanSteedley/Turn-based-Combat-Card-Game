@@ -59,7 +59,7 @@ public class Turns : MonoBehaviour
                 yield return StartCoroutine(EnemyDelay());
                 //Invoke("e.Attack", delayBetweenTurns);
                 //System.Threading.Thread.Sleep((int)(delayBetweenTurns * 1000));
-                e.Attack();
+                e.EnemyBehaviour();
                 e.transform.Translate(new Vector3(1f, 0f, 0f));
                 //e.transform.position.Set(e.transform.position.x - 1f, e.transform.position.y, e.transform.position.z);
             }
