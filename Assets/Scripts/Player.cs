@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
     {
         
         int manaCost = 1;
-        card.
+        
         if (t.PlayerTurn && !dead && mana >= manaCost)
         {
             //This "disables" the buttons, so the 'animation' can play.  If the buttons weren't disabled,
