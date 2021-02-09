@@ -79,8 +79,8 @@ public class Player : MonoBehaviour
             mana -= manaCost;
             //Updates the UI mana value
             ManaValue.text = mana.ToString();
-
             //This is the "animation."   This is not a good way to do animation.
+
             //Unity has built-in Animator components, but they take time to set up.
             this.transform.Translate(new Vector3(1f, 0f, 0f));
             //This is a "return" for an IEnumerator, however it doesn't actually end the method like a normal return.
