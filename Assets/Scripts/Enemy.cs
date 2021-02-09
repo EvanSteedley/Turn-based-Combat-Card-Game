@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Enemy : MonoBehaviour
 {
     //Reference to the Player - will probably only need one of these.
@@ -15,6 +16,12 @@ public class Enemy : MonoBehaviour
     //How much damage the Enemy will do on its turn
     int damage = 10;
     public bool dead = false;
+    int defense = 0;
+    enum states { 
+    
+        Fight, Defend, Buff
+    
+    }
 
     //UI elements.  Will need to be re-done if multiple Enemies.
     [SerializeField]
@@ -41,7 +48,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int d)
     {
-        if (d >= health)
+        if (d - defense >= health)     
+             
         {
             dead = true;
             //Ragdoll effect!
@@ -49,7 +57,7 @@ public class Enemy : MonoBehaviour
             rb.AddForce(new Vector3(500f, 400f, 0f));
             rb.AddTorque(new Vector3(5f, 50f, 35f));
         }
-        health -= d;
+        health -= (d-defense);
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
@@ -60,4 +68,46 @@ public class Enemy : MonoBehaviour
         //This is controlled by the Turns class now.
             //t.PlayerTurn = true;
     }
-}
+
+  
+    public void EnemyBehaviour() {
+
+
+        System.Random random = new System.Random();
+        int num = random.Next(System.Enum.GetNames(typeof(states)).Length);
+        if (num == (int)states.Fight) {
+           Attack();
+        }
+
+        if (num == (int)states.Defend)
+        {
+            Defend(1);
+        }
+
+        if (num == (int)states.Buff)
+        {
+            
+        }
+
+    }
+
+    public void Defend(int d)
+    {
+        defense += 20;
+        
+    }
+
+    public void Buff()
+    {
+        
+            damage += 20;
+        }
+    }
+
+
+
+
+
+
+
+
