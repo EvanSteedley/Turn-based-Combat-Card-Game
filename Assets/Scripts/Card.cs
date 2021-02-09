@@ -15,13 +15,14 @@ public class Card : MonoBehaviour
     public int damage = 0;
 
 
-    public Card(string n, int i, int m, int d)
-    {
-        cardName = n;
-        id = i;
-        mana = m;
-        damage = d;
-    }
+    //public Card(string n, int i, int m, int d)
+    //{
+    //    cardName = n;
+    //    id = i;
+    //    mana = m;
+    //    damage = d;
+    //}
+
     // Start is called before the first frame update
     void Start()
     {
