@@ -13,8 +13,35 @@ public class Card : MonoBehaviour
     public int mana = 0;
     [SerializeField]
     public int damage = 0;
+    [SerializeField]
+    public int defense = 0;
+    [SerializeField]
+    public enum cardType {Earth,Wind,Fire,Water}
+    public cardType cardElement;
+    [SerializeField]
+    public string description; 
 
-    // Start is called before the first frame update
+    public Card(){
+
+    }
+
+
+   
+    public Card(string CardName, int Id, int Mana, int Damage, int Defense,cardType CardElement,string Description)
+    {
+        cardName = CardName;
+        id = Id;
+        mana = Mana;
+        damage = Damage;
+        defense = Defense;
+        cardElement = CardElement;
+        description = Description;
+
+
+   
+    }
+
+    //  Start is called before the first frame update
     void Start()
     {
         
