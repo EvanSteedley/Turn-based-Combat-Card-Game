@@ -1,0 +1,26 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+//class that contains the list of cards within the game
+public class CardManager : MonoBehaviour
+{
+    public Card card;
+    public Card[] deck; 
+    // Start is called before the first frame update
+    void Start()
+    {
+        deck = new Card[20];
+        for (int i = 0; i <= 5; i++)
+        {
+            Card temp = new Card();
+            temp.value
+        }
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
