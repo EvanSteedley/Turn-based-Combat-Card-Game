@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     Button EndTurnButton;
     [SerializeField]
     Text ManaValue;
+    [SerializeField]
+    Text DamageValue;
     public bool dead = false;
     
 
@@ -152,6 +154,7 @@ public class Player : MonoBehaviour
             if (enemiesAlive > 0)
                 EndTurnButton.interactable = true;
             damage += 30;
+            DamageValue.text = damage.ToString();
         }
     }
 
