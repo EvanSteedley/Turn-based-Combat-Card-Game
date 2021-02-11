@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
     Turns t;
     [SerializeField]
     SelectionCard card;
+    [SerializeField]
+    Text PlayerDefenseValue;
+   
+
 
     //UI Elements
     [SerializeField]
@@ -35,6 +39,10 @@ public class Player : MonoBehaviour
     Button EndTurnButton;
     [SerializeField]
     Text ManaValue;
+    [SerializeField]
+    Text DamageValue;
+
+    Animator anim;
     public bool dead = false;
     
 
@@ -46,6 +54,7 @@ public class Player : MonoBehaviour
         e = FindObjectOfType<Enemy>();
         card = FindObjectOfType<SelectionCard>();
         SliderHealth.value = health;
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -82,14 +91,16 @@ public class Player : MonoBehaviour
             //This is the "animation."   This is not a good way to do animation.
 
             //Unity has built-in Animator components, but they take time to set up.
-            this.transform.Translate(new Vector3(1f, 0f, 0f));
+            anim.SetTrigger("PlayerAttack");
+            //this.transform.Translate(new Vector3(1f, 0f, 0f));
             //This is a "return" for an IEnumerator, however it doesn't actually end the method like a normal return.
             //Instead, this will call the EnemyDelay() method, and then wait for it to finish!
             yield return StartCoroutine(t.EnemyDelay());
-            this.transform.Translate(new Vector3(-1f, 0f, 0f));
+            //this.transform.Translate(new Vector3(-1f, 0f, 0f));
 
 
             e.TakeDamage(damage);
+            anim.SetTrigger("PlayerAttack");
 
             //If there are still enemies alive, it's still the Player's Turn, and the Player has enough mana, then turn the buttons back on.
             int enemiesAlive = t.EnemiesAlive();
@@ -152,6 +163,7 @@ public class Player : MonoBehaviour
             if (enemiesAlive > 0)
                 EndTurnButton.interactable = true;
             damage += 30;
+            DamageValue.text = damage.ToString();
         }
     }
 
