@@ -8,7 +8,7 @@ using System.IO;
 
 public class HandleTextFile
 {
-    [MenuItem("Tools/Write file")]
+//[MenuItem("Tools/Write file")]
     static void ReadString()
     {
         string path = "Assets/Resources/test.txt";

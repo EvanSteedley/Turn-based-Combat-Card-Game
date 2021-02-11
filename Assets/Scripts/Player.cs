@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
     Turns t;
     [SerializeField]
     SelectionCard card;
+    [SerializeField]
+    Text PlayerDefenseValue;
+   
+
 
     //UI Elements
     [SerializeField]
