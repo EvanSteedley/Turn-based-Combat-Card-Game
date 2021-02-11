@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour
         if (defense < d)
 			health -= (d-defense);
         defense = 0;
+        EnemyDefenseValue.text = defense.ToString();
         if (health<0) 
 		{ 
 			health = 0; 
