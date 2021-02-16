@@ -16,7 +16,7 @@ public class Card : MonoBehaviour
     [SerializeField]
     public int defense = 0;
     [SerializeField]
-    public enum cardType {Earth,Wind,Fire,Water}
+    public enum cardType {Earth,Wind,Fire,Water,Null}
     public cardType cardElement;
     [SerializeField]
     public string description; 

@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
     void Start()
 
     {
+        //Card(name, id, mana, damage, defense, element, desciption)
         cardList.Add(new Card("WolfBeak", 0, 1, 2, 3, Card.cardType.Fire,"Card will double the attack on a fire character, and increase damage by 20% if attacked by Fire character"));
         cardList.Add(new Card("RuffRuff", 1, 2, 3, 4, Card.cardType.Fire,"Card will increase health by 20% each time drawn"));
         cardList.Add(new Card("Dragon's Death", 2, 3, 4,5, Card.cardType.Water,"Card boosts attack by 35%"));
