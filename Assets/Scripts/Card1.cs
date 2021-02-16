@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +26,7 @@ public class Card1 : Card
         cardName = "Card1";
         id = 1;
         mana = 4;
-        damage = 25;
+        damage = 25;    
     }
 
     // Update is called once per frame
