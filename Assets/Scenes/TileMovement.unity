@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TilePrefab: {fileID: 4621499135454811025, guid: 07aeadf80226be248866e14c183ed9b1,
     type: 3}
+  WallPrefab: {fileID: 1796986062429330985, guid: 7a73a4d8d870c5946ad4be9c3e1396b8,
+    type: 3}
   tileWidth: 10
   tileLength: 10
   tileOffset: 1.1
@@ -340,10 +342,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685830382}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 4.9, y: 10.71, z: 5.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}

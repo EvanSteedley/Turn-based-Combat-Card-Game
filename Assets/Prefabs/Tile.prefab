@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7003111229421836722}
   - component: {fileID: 2966190784501221990}
   - component: {fileID: 3186456998888111875}
+  - component: {fileID: 6315051277553186202}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f467fa989dba4734688a85731b3d3e68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +110,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa6c2508f6406c4a99e30fbfd7af041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6315051277553186202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4621499135454811025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07d921fe2836ff458206002cd593d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  s: {fileID: 0}
