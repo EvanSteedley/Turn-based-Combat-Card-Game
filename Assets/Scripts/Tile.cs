@@ -28,6 +28,6 @@ public class Tile : MonoBehaviour
         Player p = o.GetComponent<Player>();
         //if (e == null)
         //    p.TakeDamage(5);
-        //Card.action(o);
+        //Card.Action(o);
     }
 }
