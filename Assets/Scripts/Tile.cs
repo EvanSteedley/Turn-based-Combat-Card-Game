@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     private Card card;
+    public int x, y;
     // Start is called before the first frame update
     void Start()
     {

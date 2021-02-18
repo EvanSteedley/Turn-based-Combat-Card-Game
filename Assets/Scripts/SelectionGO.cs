@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Selection : MonoBehaviour
+public class SelectionGO : MonoBehaviour
 {
     public GameObject selected;
     public bool somethingSelected = false;

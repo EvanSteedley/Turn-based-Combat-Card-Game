@@ -8,12 +8,13 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField] GameObject WallPrefab;
     [SerializeField] Light PointLight;
     [SerializeField] Camera MainCam;
+    [SerializeField] Player player;
 
-    [SerializeField] int tileWidth = 10;
-    [SerializeField] int tileLength = 10;
-    [SerializeField] float tileOffset = 1.1f;
+    [SerializeField] public int tileWidth = 10;
+    [SerializeField] public int tileLength = 10;
+    [SerializeField] public float tileOffset = 1.1f;
 
-    Tile[,] Tiles;
+    public Tile[,] Tiles;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,9 @@ public class TileMapGenerator : MonoBehaviour
         PointLight.transform.position = new Vector3(tileWidth / 2, 5, tileLength / 2);
         PointLight.range = (tileWidth + tileLength) * 360 / 20;
         MainCam.transform.position = new Vector3(tileWidth / 2, (tileLength + tileWidth) / 2 + 2f, tileLength / 2);
+        Transform middlepos = Tiles[tileWidth-1, tileLength/2].transform;
+        player.transform.position = new Vector3(middlepos.position.x, player.transform.localScale.y, middlepos.transform.position.z);
+        player.GetComponentInParent<Movement>().originalTile = Tiles[tileWidth - 1, tileLength / 2];
     }
 
     // Update is called once per frame
@@ -40,7 +44,15 @@ public class TileMapGenerator : MonoBehaviour
             {
                 GameObject tempTile = Instantiate(TilePrefab, this.transform) as GameObject;
                 tempTile.transform.position = new Vector3(x * tileOffset, 0, y * tileOffset);
-                if(x == 0)
+                Tile t = tempTile.GetComponent<Tile>() as Tile;
+                Tiles[x, y] = t;
+                //tempTile.transform.parent = this.transform;
+                tempTile.name = x.ToString() + ", " + y.ToString();
+                t.x = x;
+                t.y = y;
+
+
+                if (x == 0)
                 {
                     GameObject tempWall = Instantiate(WallPrefab, this.transform) as GameObject;
                     tempWall.transform.position = new Vector3(-1 * tileOffset, WallPrefab.transform.localScale.y / 2, y * tileOffset);
@@ -60,10 +72,6 @@ public class TileMapGenerator : MonoBehaviour
                     GameObject tempWall = Instantiate(WallPrefab, this.transform) as GameObject;
                     tempWall.transform.position = new Vector3(x * tileOffset, WallPrefab.transform.localScale.y / 2, (y + 1) * tileOffset);
                 }
-                Tile t = tempTile.GetComponent<Tile>() as Tile;
-                Tiles[x, y] = t;
-                //tempTile.transform.parent = this.transform;
-                tempTile.name = x.ToString() + ", " + y.ToString(); 
             }
         }
     }
