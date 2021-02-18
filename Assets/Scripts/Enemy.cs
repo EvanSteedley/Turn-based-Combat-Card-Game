@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour
     Player p;
     [SerializeField]
     Turns t;
+    [SerializeField]
+    Text EnemyAttackValue;
+    [SerializeField]
+    Text EnemyDefenseValue;
     //Enemy's health; if <= 0, they die.
     int health = 100;
     //How much damage the Enemy will do on its turn
@@ -60,6 +64,7 @@ public class Enemy : MonoBehaviour
         if (defense < d)
 			health -= (d-defense);
         defense = 0;
+        EnemyDefenseValue.text = defense.ToString();
         if (health<0) 
 		{ 
 			health = 0; 
@@ -100,6 +105,7 @@ public class Enemy : MonoBehaviour
     public void Defend(int d)
     {
         defense += 20;
+        EnemyDefenseValue.text = defense.ToString();
         
     }
 
@@ -107,6 +113,7 @@ public class Enemy : MonoBehaviour
     {
         
             damage += 20;
+        EnemyAttackValue.text = damage.ToString();
     }
 }
 

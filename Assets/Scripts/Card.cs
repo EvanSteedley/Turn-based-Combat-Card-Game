@@ -16,7 +16,7 @@ public class Card : MonoBehaviour
     [SerializeField]
     public int defense = 0;
     [SerializeField]
-    public enum cardType {Earth,Wind,Fire,Water}
+    public enum cardType {Earth,Wind,Fire,Water,Null}
     public cardType cardElement;
     [SerializeField]
     public string description; 
@@ -57,5 +57,10 @@ public class Card : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Action(GameObject GO)
+    {
+        //The actual "thing" the card does, should be done here.  OR at least started here. 
     }
 }
