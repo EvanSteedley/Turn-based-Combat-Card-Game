@@ -58,4 +58,9 @@ public class Card : MonoBehaviour
     {
         
     }
+
+    public void Action(GameObject GO)
+    {
+        //The actual "thing" the card does, should be done here.  OR at least started here. 
+    }
 }
