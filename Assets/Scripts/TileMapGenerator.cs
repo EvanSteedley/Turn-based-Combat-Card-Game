@@ -17,7 +17,7 @@ public class TileMapGenerator : MonoBehaviour
     public Tile[,] Tiles;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Tiles = new Tile[tileWidth, tileLength];
         CreateTileGrid();

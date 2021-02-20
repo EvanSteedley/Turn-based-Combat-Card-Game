@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class SelectionCard : MonoBehaviour
+public class CardSelection : MonoBehaviour
 {
     public GameObject selected;
     public bool somethingSelected = false;
+
+
 
     public GameObject Selected
     {
@@ -25,6 +27,15 @@ public class SelectionCard : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void PlayCard()
+    {
+        if(Selected != null)
+        {
+            Card c = Selected.GetComponent<Card>();
+            c.Action();
+        }
     }
 
 }
