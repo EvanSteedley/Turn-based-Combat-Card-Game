@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     Turns t;
     [SerializeField]
-    SelectionCard card;
+    CardSelection card;
     [SerializeField]
     Text PlayerDefenseValue;
    
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         mana = startingMana;
         //This will need to be changed if there are multiple enemies.
         e = FindObjectOfType<Enemy>();
-        card = FindObjectOfType<SelectionCard>();
+        card = FindObjectOfType<CardSelection>();
         SliderHealth.value = health;
         anim = GetComponentInChildren<Animator>();
     }

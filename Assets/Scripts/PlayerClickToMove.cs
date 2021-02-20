@@ -75,6 +75,11 @@ public class PlayerClickToMove : MonoBehaviour
         }
     }
 
+    public void MoveToTile() 
+    {
+        //StartCoroutine(CalculateMove());
+    }
+
     public void EndTurn()
     {
         movesLeft = movesDefault;
