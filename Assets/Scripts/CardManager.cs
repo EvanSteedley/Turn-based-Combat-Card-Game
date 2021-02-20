@@ -5,8 +5,8 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     public Card card;
-    public Card[] deck;
-    public int index = 0;
+    //public Card[] deck;
+    // public int index = 0;
     public static List<Card> cardList = new List<Card>();
 
     // Start is called before the first frame update
@@ -21,7 +21,12 @@ public class CardManager : MonoBehaviour
         //cardList.Add(new Card("Breaking Wind", 4, 5, 6, 7, Card.cardType.Wind,"Card doubles the damange of an Earth enemy, increases health by 15%"));
 
 
+
     }
+    /*public List<Card> getCardList()
+     {
+         return cardList;
+     }*/
 
 }
 
