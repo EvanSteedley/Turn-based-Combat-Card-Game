@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class SelectableGO : MonoBehaviour
 {
-    Renderer ren;
-    Color defaultColor;
-    [SerializeField]
-    SelectionGO s;
-    bool selected;
+    public Renderer ren;
+    public Color defaultColor;
+    
+    public SelectionGO s;
+    public bool selected;
     // Start is called before the first frame update
     void Start()
     {
         s = FindObjectOfType<SelectionGO>();
-        ren = gameObject.GetComponent("Renderer") as Renderer;
+        ren = GetComponent<Renderer>();
         defaultColor = ren.material.color;
+        enabled = false;
     }
 
     // Update is called once per frame
@@ -26,27 +27,49 @@ public class SelectableGO : MonoBehaviour
     public void OnMouseOver()
     {
         // Debug.Log(ren.material.color);
-        if (!selected)
-            ren.material.color = Color.cyan;
+        //if (!selected)
+        //    ren.material.color = Color.cyan;
     }
     private void OnMouseExit()
     {
-        if (!selected)
-            ren.material.color = defaultColor;
+        //if (!selected)
+        //    ren.material.color = defaultColor;
     }
 
     private void OnMouseDown()
     {
-        selected = true;
+        //selected = true;
         //Sets other selected object to unselected
-        if (s.somethingSelected && s.selected != this.gameObject)
+        bool alreadyInSelections = false;
+        foreach (GameObject g in s.Selections)
         {
-            SelectableGO otherObject = s.Selected.GetComponentInChildren<SelectableGO>();
-            otherObject.selected = false;
-            otherObject.ren.material.color = otherObject.defaultColor;
+            if (g == this.gameObject)
+            {
+                s.RemoveSelection(this.gameObject);
+                alreadyInSelections = true;
+                break;
+            }
         }
-        s.somethingSelected = true;
-        s.Selected = this.gameObject;
-        ren.material.color = Color.blue;
+        if (!alreadyInSelections)
+        {
+            //SelectableGO otherObject = s.Selected.GetComponentInChildren<SelectableGO>();
+            //otherObject.selected = false;
+            //otherObject.ren.material.color = otherObject.defaultColor;
+            bool added = s.AddSelection(this.gameObject);
+            if(added)
+            {
+                ren.material.color = Color.blue;
+                selected = true;
+            }
+        }
+        else
+        {
+            s.RemoveSelection(this.gameObject);
+            ren.material.color = defaultColor;
+            selected = false;
+        }
+        //s.somethingSelected = true;
+        //s.Selected = this.gameObject;
+        //ren.material.color = Color.blue;
     }
 }
