@@ -17,14 +17,14 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField] public float tileOffset = 1.1f;
 
     public Tile[,] Tiles;
-    public Tile[,] Obstacles;
+    public List<Tile> Obstacles;
     public int numberOfObstacles;
 
     // Start is called before the first frame update
     void Awake()
     {
         Tiles = new Tile[tileWidth, tileLength];
-        Obstacles = new Tile[tileWidth, tileLength];
+        Obstacles = new List<Tile>();
         CreateTileGrid();
         PointLight.transform.position = new Vector3(tileWidth / 2, 5, tileLength / 2);
         PointLight.range = (tileWidth + tileLength) * 360 / 20;
@@ -95,7 +95,7 @@ public class TileMapGenerator : MonoBehaviour
                 Tiles[x, y].occupied = true;
                 GameObject obs = Instantiate(ObstaclePrefab, transform);
                 obs.transform.position = Tiles[x, y].transform.position + new Vector3(0f, obs.transform.localScale.y, 0f);
-                Obstacles[x, y] = Tiles[x, y];
+                Obstacles.Add(Tiles[x, y]);
             }
             else
                 i--;
