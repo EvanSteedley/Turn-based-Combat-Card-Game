@@ -101,6 +101,7 @@ public class CardSelectable : MonoBehaviour
 
     public void Deselect()
     {
+        player.PlayCardButton.interactable = false;
         selected = false;
         s.somethingSelected = false;
         s.Selected = null;
