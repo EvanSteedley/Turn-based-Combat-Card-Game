@@ -1,14 +1,20 @@
 fileFormatVersion: 2
-guid: 6b0bbd6b31ef7204e921420d251561f2
+guid: 8d5d3a183dab1ba4db2690868cbb4267
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -887982601649841707
+    second: metarig|metarigAction
+  - first:
+      74: -5003131165045108139
+    second: metarig|PoseLib
   externalObjects: {}
   materials:
-    materialImportMode: 1
-    materialName: 1
-    materialSearch: 0
-    materialLocation: 0
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
