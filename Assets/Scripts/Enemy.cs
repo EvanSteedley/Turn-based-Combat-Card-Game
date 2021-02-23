@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int d)
     {
-        if (d - defense >= health)     
+        if (d - defense >= health && !dead)     
              
         {
             dead = true;
