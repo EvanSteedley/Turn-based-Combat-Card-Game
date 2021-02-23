@@ -24,16 +24,16 @@ public class GenerateDeck : MonoBehaviour
     {
         for (int i = 0; i < 5; i++) //fills deck with all 50 cards
         {
-            Instantiate(card1, new Vector3(i+0, 0, 0), Quaternion.identity);
-            Instantiate(card2, new Vector3(i+1, 0, 0), Quaternion.identity);
-            Instantiate(card3, new Vector3(i + 2, 0, 0), Quaternion.identity);
-            Instantiate(card4, new Vector3(i + 3, 0, 0), Quaternion.identity);
-            Instantiate(card5, new Vector3(i + 4, 0, 0), Quaternion.identity);
-            Instantiate(card6, new Vector3(i + 5, 0, 0), Quaternion.identity);
-            Instantiate(card7, new Vector3(i + 6, 0, 0), Quaternion.identity);
-            Instantiate(card8, new Vector3(i + 7, 0, 0), Quaternion.identity);
-            Instantiate(card9, new Vector3(i + 8, 0, 0), Quaternion.identity);
-            Instantiate(card10, new Vector3(i + 9, 0, 0), Quaternion.identity);
+            Instantiate(card1, new Vector3(0, 0, -5), Quaternion.identity);
+            Instantiate(card2, new Vector3(0, 0, -5), Quaternion.identity);
+            Instantiate(card3, new Vector3(0, 0, -5), Quaternion.identity);
+            Instantiate(card4, new Vector3(0, 0, -5), Quaternion.identity);
+            Instantiate(card5, new Vector3(0, 0, -5), Quaternion.identity);
+            Instantiate(card6, new Vector3(0, 0, -5), Quaternion.identity);
+            Instantiate(card7, new Vector3(0, 0, -5), Quaternion.identity);
+            Instantiate(card8, new Vector3(0, 0, -5), Quaternion.identity);
+            Instantiate(card9, new Vector3(0, 0, -5), Quaternion.identity);
+            Instantiate(card10, new Vector3(0, 0, -5), Quaternion.identity);
         }
     }
 
