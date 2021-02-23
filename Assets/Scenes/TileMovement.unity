@@ -156,12 +156,15 @@ MonoBehaviour:
     type: 3}
   WallPrefab: {fileID: 1796986062429330985, guid: 7a73a4d8d870c5946ad4be9c3e1396b8,
     type: 3}
+  ObstaclePrefab: {fileID: 1390137102056294004, guid: d5e1197066c1060448cd06046f5880b2,
+    type: 3}
   PointLight: {fileID: 2091223234}
   MainCam: {fileID: 685830384}
   player: {fileID: 481181163}
   tileWidth: 9
   tileLength: 9
   tileOffset: 1.1
+  numberOfObstacles: 0
 --- !u!4 &14502850
 Transform:
   m_ObjectHideFlags: 0
@@ -307,9 +310,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f10b4498829ce340970d69a38446fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalTile: {fileID: 0}
+  currentTile: {fileID: 0}
   destinationTile: {fileID: 0}
-  originalPos: {x: 0, y: 0, z: 0}
+  currentPos: {x: 0, y: 0, z: 0}
   destinationPos: {x: 0, y: 0, z: 0}
 --- !u!1 &520915556
 GameObject:

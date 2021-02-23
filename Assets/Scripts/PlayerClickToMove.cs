@@ -31,7 +31,7 @@ public class PlayerClickToMove : MonoBehaviour
     public void PaintReachableTiles() 
     {
         if(current == null)
-            current = this.GetComponentInParent<Movement>().originalTile;
+            current = this.GetComponentInParent<Movement>().currentTile;
         foreach (Tile t in TMG.Tiles)
         {
             if (t != TS.Selected && (Mathf.Abs(current.x - t.x) + Mathf.Abs(current.y - t.y)) <= movesLeft)
@@ -60,17 +60,32 @@ public class PlayerClickToMove : MonoBehaviour
             Destroy(GO);
 
             Debug.Log(angle);
-            if (angle >= 225 && angle <= 315)
+            if (angle >= 225 && angle <= 315 && !TMG.Tiles[current.x - 1, current.y].occupied)
+            {
                 PlayerMovement.MoveUp();
-            else if (angle >= 135 && angle < 225)
+                movesLeft--;
+                current = PlayerMovement.destinationTile;
+            }
+            else if (angle >= 135 && angle < 225 && !TMG.Tiles[current.x, current.y - 1].occupied)
+            {
                 PlayerMovement.MoveLeft();
-            else if (angle >= 45 && angle < 135)
+                movesLeft--;
+                current = PlayerMovement.destinationTile;
+            }
+            else if (angle >= 45 && angle < 135 && !TMG.Tiles[current.x + 1, current.y].occupied)
+            {
                 PlayerMovement.MoveDown();
-            else
+                movesLeft--;
+                current = PlayerMovement.destinationTile;
+            }
+            else if (!TMG.Tiles[current.x, current.y + 1].occupied)
+            {
                 PlayerMovement.MoveRight();
-
-            movesLeft--;
-            current = PlayerMovement.destinationTile;
+                movesLeft--;
+                current = PlayerMovement.destinationTile;
+            }
+            
+            
             PaintReachableTiles();
         }
     }

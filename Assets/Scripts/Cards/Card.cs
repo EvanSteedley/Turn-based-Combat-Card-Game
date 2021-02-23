@@ -43,8 +43,11 @@ public class Card : MonoBehaviour
     //  Start is called before the first frame update
     void Start()
     {
-        Targeter = this.gameObject.AddComponent<SelectionGO>();
+        Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
+
+        //Important line!  If true: a target can only be selected once.  If false, the same target can be selected multiple times.
+        Targeter.exclusive = false;
     }
 
     /*public GameObject Selected
@@ -81,7 +84,11 @@ public class Card : MonoBehaviour
             SelectableGO SGO = GO.GetComponent<SelectableGO>();
             if(SGO != null)
             {
+                SGO.enabled = true;
+                if (SGO.ren == null)
+                    SGO.ren = SGO.GetComponent<Renderer>();
                 SGO.ren.material.color = Color.cyan;
+                SGO.SGO = Targeter;
             }
         }
     }
@@ -94,8 +101,16 @@ public class Card : MonoBehaviour
             SelectableGO SGO = GO.GetComponent<SelectableGO>();
             if (SGO != null)
             {
+                //SGO.ren.material.color = SGO.defaultColor;
+                if (SGO.ren == null)
+                    SGO.ren = SGO.GetComponent<Renderer>();
                 SGO.ren.material.color = SGO.defaultColor;
+                SGO.enabled = false;
             }
         }
+    }
+    virtual public void ClearSelections()
+    {
+        Targeter.Selections = new List<GameObject>();
     }
 }

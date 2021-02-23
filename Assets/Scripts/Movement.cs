@@ -5,8 +5,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     bool isMoving = false;
-    public Tile originalTile, destinationTile;
-    public Vector3 originalPos, destinationPos;
+    public Tile currentTile, destinationTile;
+    public Vector3 currentPos, destinationPos;
     float timeToMove = 0.15f;
     Vector3 offset = new Vector3(0, 0, 0);
     TileMapGenerator tmg;
@@ -45,53 +45,53 @@ public class Movement : MonoBehaviour
         isMoving = true;
 
         float elapsedTime = 0f;
-        originalPos = transform.position;
+        currentPos = transform.position;
         //destinationPos = originalPos + direction;
         destinationPos = direction;
 
         while (elapsedTime < timeToMove)
         {
-            transform.position = Vector3.Lerp(originalPos, destinationPos, (elapsedTime / timeToMove));
+            transform.position = Vector3.Lerp(currentPos, destinationPos, (elapsedTime / timeToMove));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         
 
         transform.position = destinationPos;
-        originalTile = destinationTile;
+        currentTile = destinationTile;
         isMoving = false;
     }
 
     public void MoveUp()
     {
-        if(!isMoving && originalTile.x > 0)
+        if(!isMoving && currentTile.x > 0)
         {
             //StartCoroutine(Move(Vector3.up));
-            destinationTile = tmg.Tiles[originalTile.x - 1, originalTile.y];
+            destinationTile = tmg.Tiles[currentTile.x - 1, currentTile.y];
             StartCoroutine(Move(destinationTile.transform.position + offset));
         }
     }
     public void MoveRight()
     {
-        if (!isMoving && originalTile.y < tmg.tileLength-1)
+        if (!isMoving && currentTile.y < tmg.tileLength-1)
         {
-            destinationTile = tmg.Tiles[originalTile.x, originalTile.y + 1];
+            destinationTile = tmg.Tiles[currentTile.x, currentTile.y + 1];
             StartCoroutine(Move(destinationTile.transform.position + offset));
         }
     }
     public void MoveLeft()
     {
-        if (!isMoving && originalTile.y > 0)
+        if (!isMoving && currentTile.y > 0)
         {
-            destinationTile = tmg.Tiles[originalTile.x, originalTile.y - 1];
+            destinationTile = tmg.Tiles[currentTile.x, currentTile.y - 1];
             StartCoroutine(Move(destinationTile.transform.position + offset));
         }
     }
     public void MoveDown()
     {
-        if (!isMoving && originalTile.x < tmg.tileWidth-1)
+        if (!isMoving && currentTile.x < tmg.tileWidth-1)
         {
-            destinationTile = tmg.Tiles[originalTile.x + 1, originalTile.y];
+            destinationTile = tmg.Tiles[currentTile.x + 1, currentTile.y];
             StartCoroutine(Move(destinationTile.transform.position + offset));
         }
     }
