@@ -155,12 +155,12 @@ public class Player : MonoBehaviour
           
             string assetName = string.Format("Card1");
 
-            if(Deck[i]==null)
+            
 
 
-                GameObject asset = (GameObject)Instantiate(assetName, typeof GameObject);
+             //   GameObject asset = (GameObject)Instantiate(assetName, typeof GameObject);
 
-            Deck.Add(asset);
+                // Deck.Add(asset);
         }
     }
         //This method and its IEnumerator Buff() method are similar to the Attack's.
