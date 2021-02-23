@@ -54,7 +54,7 @@ public class CardSelectable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject() || EventSystem.current.currentSelectedGameObject == this.gameObject)
         {
 
             selected = true;
