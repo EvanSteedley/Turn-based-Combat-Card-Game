@@ -9,7 +9,12 @@ ModelImporter:
   - first:
       74: -5003131165045108139
     second: metarig|PoseLib
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 7cd39959379258940bb522209b106e29, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
