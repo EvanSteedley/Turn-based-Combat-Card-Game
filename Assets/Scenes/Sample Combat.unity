@@ -1003,7 +1003,6 @@ MonoBehaviour:
   mana: 0
   damage: 0
   defense: 0
-  cardElement: 0
   description: 
   numberOfTargets: 1
   Targeter: {fileID: 0}
@@ -3953,7 +3952,6 @@ MonoBehaviour:
   mana: 0
   damage: 0
   defense: 0
-  cardElement: 4
   description: 
   numberOfTargets: 3
   Targeter: {fileID: 0}
