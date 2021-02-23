@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    //This list will contain all of the Card classes.
+    public List<GameObject> Deck = new List<GameObject>();
+    //This list will contain all of the cards that the player is currently able to use.
+    public List<GameObject> Hand = new List<GameObject>();
+    //This list will contain all of the "dead" cards that the player cannot currently access due to be recently used.
+    public List<GameObject> GraveYard = new List<GameObject>();
     //The player's health; if 0, the player is dead and loses the fight.
     int health = 100;
     //The Player's "actual" mana stat; determines how much mana is restored at the beginning of each turn
@@ -13,6 +19,8 @@ public class Player : MonoBehaviour
     public int mana;
     //Currently, just how much the "Attack" card does.  Later, may be a multiplier for the damage dealt by each card?
     int damage = 20;
+    public int x; 
+    public int deckSize = 1;
     //A reference to the enemy.  Needs to be updated if fighting multiple enemies - Or maybe set to the "Selection"?
     [SerializeField]
     Enemy e;
@@ -23,6 +31,8 @@ public class Player : MonoBehaviour
     CardSelection card;
     [SerializeField]
     Text PlayerDefenseValue;
+    
+   
    
 
 
@@ -44,25 +54,27 @@ public class Player : MonoBehaviour
 
     Animator anim;
     public bool dead = false;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        mana = startingMana;
-        //This will need to be changed if there are multiple enemies.
-        e = FindObjectOfType<Enemy>();
-        card = FindObjectOfType<CardSelection>();
-        SliderHealth.value = health;
-        anim = GetComponentInChildren<Animator>();
-    }
+            Fill();
 
+            mana = startingMana;
+            //This will need to be changed if there are multiple enemies.
+            e = FindObjectOfType<Enemy>();
+            card = FindObjectOfType<CardSelection>();
+            SliderHealth.value = health;
+            anim = GetComponentInChildren<Animator>();
+        }
+    
     // Update is called once per frame
     void Update()
     {
         //Try to do as little coding here as necessary!!
     }
-    public void AttackButtonPress()
+        public void AttackButtonPress()
     {
         //"StartCoroutine" is necessary when you need a function to wait a certain amount of time before finishing.
         //You can think of it as starting a thread, and then waiting for that thread to finish before executing the following lines.
@@ -71,7 +83,7 @@ public class Player : MonoBehaviour
         //This is because the IEnumerator/Coroutine methods must be started by StartCoroutine().
         StartCoroutine(Attack());
     }
-    public IEnumerator Attack()
+        public IEnumerator Attack()
     {
         
         int manaCost = 1;
@@ -136,8 +148,23 @@ public class Player : MonoBehaviour
         HealthValue.text = health.ToString();
     }
 
-    //This method and its IEnumerator Buff() method are similar to the Attack's.
-    public void BuffButtonPressed()
+    public void Fill()
+    {
+        for (int i = 1; i <= deckSize; i++)
+        {
+          
+            string assetName = string.Format("Card1");
+
+            if(Deck[i]==null)
+
+
+                GameObject asset = (GameObject)Instantiate(assetName, typeof GameObject);
+
+            Deck.Add(asset);
+        }
+    }
+        //This method and its IEnumerator Buff() method are similar to the Attack's.
+        public void BuffButtonPressed()
     {
         StartCoroutine(Buff());
     }

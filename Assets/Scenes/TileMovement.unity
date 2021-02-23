@@ -2005,5 +2005,20 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7154561899742934571, guid: df06e5d5054f84c4babb939dac61c224,
+        type: 3}
+      propertyPath: Deck.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154561899742934571, guid: df06e5d5054f84c4babb939dac61c224,
+        type: 3}
+      propertyPath: Deck.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154561899742934571, guid: df06e5d5054f84c4babb939dac61c224,
+        type: 3}
+      propertyPath: Deck.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df06e5d5054f84c4babb939dac61c224, type: 3}

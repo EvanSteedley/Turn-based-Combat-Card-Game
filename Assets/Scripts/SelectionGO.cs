@@ -16,7 +16,7 @@ public class SelectionGO : MonoBehaviour
     //    get { return this.selected; }
     //    set { this.selected = value; }
     //}
-
+    //Add the GameObject to list. 
     public bool AddSelection(GameObject o)
     {
         if (Selections.Count >= numberOfSelections)
@@ -24,7 +24,7 @@ public class SelectionGO : MonoBehaviour
         Selections.Add(o);
         return true;
     }
-
+    //Remove the GameObject if it is in the list. 
     public bool RemoveSelection(GameObject o)
     {
         bool inSelections = false;

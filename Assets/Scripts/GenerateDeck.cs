@@ -8,24 +8,18 @@ using UnityEditor;
 
 public class GenerateDeck : MonoBehaviour
 {
-    private CardManager cardManager;
-    private Card card;
-    private StreamWriter fileName = new StreamWriter( "ShawtyWassup.txt");
+    
+    public Card card;
+    
 
     // CardManager cardManager = new CardManager();
 
-    IEnumerator Start()
+    void Start()
+
     {
-        cardManager = GetComponent<CardManager>();
-        yield return new WaitForEndOfFrame();
-       
-        foreach (Card s in CardManager.cardList)
-        {
-          
-            fileName.WriteLine(s);
-            
-        }
-        fileName.Close();
+        print("booger");
+
+
     }
 
 
