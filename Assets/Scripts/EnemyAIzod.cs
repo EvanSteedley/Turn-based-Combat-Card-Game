@@ -24,6 +24,9 @@ public class EnemyAIzod : MonoBehaviour
     Player player;
     Enemy e1;
 
+    public int movesLeft = 2;
+    int movesDefault = 2;
+
 
     // Start is called before the first frame update
     void Start()
@@ -101,7 +104,7 @@ public class EnemyAIzod : MonoBehaviour
                     shortestdistsq = (((x3 - xint) * (x3 - xint)) + ((y3 - yint) * (y3 - yint)));
                 }
 
-                if (shortestdistsq <= obstacleMinDist * obstacleMinDist) obstacleFlag = true;
+                if (shortestdistsq <= obstacleMinDist * obstacleMinDist) ; //obstacleFlag = true;
             }
 
             if (obstacleFlag)
@@ -119,23 +122,35 @@ public class EnemyAIzod : MonoBehaviour
         // ----------------------------------------------------------
         // CASE 1: if 0<=theta<45 or 315<theta<360: move RIGHT
         if ((theta >= 0 && theta < 0.25 * 3.1415) || (theta > 1.75 * 3.1415 && theta < 2 * 3.1415))
+        {
             // MOVE RIGHT
             movement.MoveRight();
+            movesLeft--;
+        }
 
         // CASE 2: if 45<=theta<135: move UP
         else if (theta >= 0.25 * 3.1415 && theta < 0.75 * 3.1415)
+        {
             // MOVE UP
             movement.MoveUp();
+            movesLeft--;
+        }
 
         // CASE 3: if 135<=theta<225: move LEFT
         else if (theta >= 0.75 * 3.1415 && theta < 1.25 * 3.1415)
+        {
             // MOVE LEFT
             movement.MoveLeft();
+            movesLeft--;
+        }
 
         // CASE 4: if 225<=theta<315: move LEFT
         else if (theta >= 1.25 * 3.1415 && theta < 1.75 * 3.1415)
+        {
             // MOVE DOWN
             movement.MoveDown();
+            movesLeft--;
+        }
 
     }
 
@@ -171,9 +186,15 @@ public class EnemyAIzod : MonoBehaviour
     // if stdDev < 5: then attack
 
 
-
+    public void StartTurn()
+    {
+        movesLeft = movesDefault;
+    }
 
 }
+
+
+
 
 
 

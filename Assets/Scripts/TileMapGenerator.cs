@@ -15,6 +15,7 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField] Light PointLight;
     [SerializeField] Camera MainCam;
     [SerializeField] Player player;
+    [SerializeField] Enemy enemy;
 
     [SerializeField] public int tileWidth = 10;
     [SerializeField] public int tileLength = 10;
@@ -50,6 +51,12 @@ public class TileMapGenerator : MonoBehaviour
         //Sets the Player's currentTile to that tile & sets occupied to true
         player.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth - 1, tileLength / 2];
         player.GetComponentInParent<Movement>().currentTile.occupied = true;
+
+        //Sets the Enemy's currentTile to the Center of the Tile grid, similar to the Player above
+        Transform centerPos = Tiles[tileWidth / 2, tileLength / 2].transform;
+        enemy.transform.position = new Vector3(centerPos.position.x, enemy.transform.localScale.y / 2, centerPos.transform.position.z);
+        enemy.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth / 2, tileLength / 2];
+        enemy.GetComponentInParent<Movement>().currentTile.occupied = true;
 
         //Adjust number of obstacles based on amount of tiles
         numberOfObstacles = ((tileWidth + tileLength) / 10) + 1;
