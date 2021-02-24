@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
     {
         //If damage is greater than Player's health, then they're dead.  RIP.
         //Add defense value later; if (d >= health + defense)
-        if (d >= health)
+        if (d >= health && !dead)
         {
             t.CamZoomOut();
             dead = true;

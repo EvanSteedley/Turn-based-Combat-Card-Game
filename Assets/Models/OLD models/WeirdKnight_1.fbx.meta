@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -887982601649841707
-    second: Attack
+    second: 1
   - first:
       74: -6239216113759591374
     second: attack
@@ -29,13 +29,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'metarig|metarigAction' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'shoulder.L' has translation
-      animation that will be discarded.\n\t'upper_arm.L.001' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'shoulder.R'
-      has translation animation that will be discarded.\n\t'thigh.L' has translation
-      animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -49,7 +43,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Attack
+      name: 1
       takeName: metarig|metarigAction
       internalID: 0
       firstFrame: 0
@@ -227,7 +221,8 @@ ModelImporter:
     - name: forearm.L.003
       parentName: forearm.L.001
       position: {x: 0.000000003860332, y: 0.0017683641, z: -0.0000000017997809}
-      rotation: {x: 0.0000003296882, y: 0.0000000047293724, z: -0.00000006827759, w: 1}
+      rotation: {x: 0.0000003296882, y: 0.0000000047293724, z: -0.00000006827759,
+        w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: hand.L
       parentName: forearm.L.003
@@ -297,7 +292,8 @@ ModelImporter:
     - name: upper_arm.R.001
       parentName: upper_arm.R
       position: {x: -5.587935e-10, y: 0.001561563, z: 0.0000000013411044}
-      rotation: {x: 0.00000036548585, y: -0.000000053216354, z: -0.00000011388328, w: 1}
+      rotation: {x: 0.00000036548585, y: -0.000000053216354, z: -0.00000011388328,
+        w: 1}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: forearm.R
       parentName: upper_arm.R.001
@@ -312,12 +308,14 @@ ModelImporter:
     - name: forearm.R.001
       parentName: forearm.R.002
       position: {x: 3.9348377e-10, y: 0.0016516891, z: -2.2351741e-10}
-      rotation: {x: 0.0000003570312, y: -0.0000000043000905, z: 0.00000004004687, w: 1}
+      rotation: {x: 0.0000003570312, y: -0.0000000043000905, z: 0.00000004004687,
+        w: 1}
       scale: {x: 1, y: 1.0000001, z: 1.0000001}
     - name: forearm.R.003
       parentName: forearm.R.001
       position: {x: 8.725328e-10, y: 0.0016516891, z: 4.0978193e-10}
-      rotation: {x: 0.00000003889727, y: -0.00000034641562, z: -0.00000035931586, w: 1}
+      rotation: {x: 0.00000003889727, y: -0.00000034641562, z: -0.00000035931586,
+        w: 1}
       scale: {x: 0.99999994, y: 1.0000001, z: 1}
     - name: hand.R
       parentName: forearm.R.003
