@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     Text EnemyAttackValue;
     [SerializeField]
     Text EnemyDefenseValue;
+    public Animator anim;
     //Enemy's health; if <= 0, they die.
     int health = 100;
     //How much damage the Enemy will do on its turn
@@ -38,6 +39,7 @@ public class Enemy : MonoBehaviour
     {
         p = FindObjectOfType<Player>();
         //SliderHealth.value = health;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
