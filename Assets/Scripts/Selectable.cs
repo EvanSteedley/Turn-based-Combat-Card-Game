@@ -47,11 +47,11 @@ public class Selectable : MonoBehaviour
             otherObject.ren.material.color = otherObject.defaultColor;
         }
         s.somethingSelected = true;
-        s.IFX.gameObject.SetActive(true);
-        s.IFY.gameObject.SetActive(true);
-        s.IFZ.gameObject.SetActive(true);
+        //s.IFX.gameObject.SetActive(true);
+        //s.IFY.gameObject.SetActive(true);
+        //s.IFZ.gameObject.SetActive(true);
         s.Selected = this.gameObject;
-        s.SelectionName.text = this.gameObject.name;
+        //s.SelectionName.text = this.gameObject.name;
         ren.material.color = Color.blue;
     }
 }
