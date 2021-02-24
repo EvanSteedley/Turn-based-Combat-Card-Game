@@ -51,14 +51,14 @@ public class TileSelectable : MonoBehaviour
                 TileSelectable otherObject = s.Selected.GetComponentInChildren<TileSelectable>();
                 otherObject.selected = false;
                 otherObject.ren.material.color = defaultColor;
-                //Repaints all the tiles after de-selection; just in case there was a pathfinding error
-                PCTM.PaintReachableTiles();
             }
             //Then, select this tile, enable the Move button, and supply that Tile to the PlayerClickToMove script
             //as the destination for path-finding.
             s.MoveButton.interactable = true;
             s.somethingSelected = true;
             s.Selected = this.gameObject.GetComponent<Tile>();
+            //Repaints all the tiles; just in case there was a pathfinding error
+            PCTM.PaintReachableTiles();
             PCTM.finalDestination = s.Selected;
             ren.material.color = Color.blue;
         }
