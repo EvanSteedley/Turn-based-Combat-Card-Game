@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         p = FindObjectOfType<Player>();
-        SliderHealth.value = health;
+        //SliderHealth.value = health;
     }
 
     // Update is called once per frame
