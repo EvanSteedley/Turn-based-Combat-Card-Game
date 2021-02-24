@@ -23,14 +23,20 @@ public class CardSelectable : MonoBehaviour
         defaultColor = ren.material.color;
         card = GetComponent<Card>();
         player = FindObjectOfType<Player>();
+
+        //Stores original position of the current card 
         original = new GameObject();
         original.transform.localPosition = this.transform.position;
         original.transform.localRotation = this.transform.rotation;
         original.transform.parent = this.gameObject.transform.parent;
+
+        //Stores the position Centered on the screen
         centered = new GameObject();
         centered.transform.parent = this.gameObject.transform.parent;
         centered.transform.localPosition = new Vector3(1f, 2.2f, -3.2f);
         centered.transform.localRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+        //The x-value of this Euler Angle was determined by manually moving the card in-scene
+        //It was also the only angle that needed changing; the others are the same as the original.
         centered.transform.eulerAngles = new Vector3(-64f, original.transform.eulerAngles.y, original.transform.eulerAngles.z);
     }
 
@@ -42,36 +48,43 @@ public class CardSelectable : MonoBehaviour
 
     public void OnMouseOver()
     {
-        // Debug.Log(ren.material.color);
+        //Checks if the mouse isn't on a GUI element, and if the card isn't already selected.
         if (!selected && !EventSystem.current.IsPointerOverGameObject())
             ren.material.color = Color.cyan;
+        //If the mouse IS on a GUI element, then set the color back to default.
+        if (EventSystem.current.IsPointerOverGameObject())
+            ren.material.color = defaultColor;
     }
     private void OnMouseExit()
     {
+        //When the mouse moves off of the object; if it's not selected, then the color is set back to normal.
         if (!selected)
             ren.material.color = defaultColor;
     }
 
+
+    //Called when the object is clicked.
     private void OnMouseDown()
     {
+        //If the mouse is not over the GUI            OR      The GUI object the mouse is on is part of a canvas on the card:
         if (!EventSystem.current.IsPointerOverGameObject() || EventSystem.current.currentSelectedGameObject == this.gameObject)
         {
-
-            selected = true;
-            //Sets other selected object to unselected
-
+            //If there is already a selection & it's NOT this card:
             if (s.selected != null && s.selected != this.gameObject)
             {
+                //Deselect the other card
                 CardSelectable otherObject = s.Selected.GetComponentInChildren<CardSelectable>();
-                //Debug.Log(otherObject.name);
                 otherObject.Deselect();
 
+                //Select this card
                 Select();
             }
+            //If there is a selection and it IS this card:
             else if (s.selected != null && s.selected == this.gameObject)
             {
                 Deselect();
             }
+            //If NO selection at all:
             else
             {
                 Select();
@@ -81,21 +94,35 @@ public class CardSelectable : MonoBehaviour
 
     public void Select()
     {
-        s.somethingSelected = true;
-        selected = true;
-        s.Selected = this.gameObject;
-        ren.material.color = Color.blue;
-        //transform.position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
-        transform.position = centered.transform.position;
-        transform.rotation = centered.transform.rotation;
-        bool canUse = player.ManaCheckUI();
-        card.Targeter.Selecting = true;
-        if (canUse)
-            card.HighlightTargets();
-        if(!card.Targeter.exclusive)
+        //If this script is enabled:
+        if (enabled)
         {
-            player.SelectButton.gameObject.SetActive(true);
-            player.DeselectButton.gameObject.SetActive(true);
+            ren.material.color = defaultColor;
+            s.somethingSelected = true;
+            selected = true;
+            //Set the stored Selection to this card
+            s.Selected = this.gameObject;
+            //ren.material.color = Color.blue;
+            //transform.position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+
+            //Center this card on the screen
+            transform.position = centered.transform.position;
+            transform.rotation = centered.transform.rotation;
+
+            //Update the PlayCard button's Mana Cost (Yellow in the top-left corner of the button)
+            bool canUse = player.ManaCheckUI();
+            //Selects targets by default, if non-exclusive.
+            card.Targeter.Selecting = true;
+
+            //If the Player has enough Mana to use this card, highlight its possible targets.
+            if (canUse)
+                card.HighlightTargets();
+            //If non-exclusive, enable the Select and Deselect buttons.
+            if (!card.Targeter.exclusive)
+            {
+                player.SelectButton.gameObject.SetActive(true);
+                player.DeselectButton.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -103,14 +130,25 @@ public class CardSelectable : MonoBehaviour
     {
         player.PlayCardButton.interactable = false;
         selected = false;
+        //Since this effects the CardSelection's variable, Deselect() should always be called
+        //BEFORE the Select() method on another card.  Otherwise, there may be Null reference exceptions.
         s.somethingSelected = false;
         s.Selected = null;
+
+        //Reset the color of this card
         ren.material.color = defaultColor;
         //transform.position = transform.position + new Vector3(0.0f, -1.0f, 0.0f);
+
+        //Reset the position to its original position
         transform.position = original.transform.position;
         transform.rotation = original.transform.rotation;
+
+        //Un-highlight all the card's targets
         card.RemoveHighlightTargets();
+        //Empty the card's list of targets; might cause Null errors if not
         card.ClearSelections();
+
+        //If non-exclusive, disable the Select/Deselect buttons again
         if (!card.Targeter.exclusive)
         {
             player.SelectButton.gameObject.SetActive(false);

@@ -16,6 +16,7 @@ public class SelectableGO : MonoBehaviour
     {
         SGO = FindObjectOfType<SelectionGO>();
         ren = GetComponent<Renderer>();
+        //Stores the default color before the object is highlighted/selected.
         defaultColor = ren.material.color;
         enabled = false;
     }
@@ -28,111 +29,71 @@ public class SelectableGO : MonoBehaviour
 
     public void OnMouseOver()
     {
-        // Debug.Log(ren.material.color);
         //if (!selected)
-        //    ren.material.color = Color.cyan;
+        //  ren.material.color = Color.cyan;
     }
     private void OnMouseExit()
     {
         //if (!selected)
-        //    ren.material.color = defaultColor;
+        //  ren.material.color = defaultColor;
     }
 
     private void OnMouseDown()
     {
-        timesSelected = CalcTimesSelected();
-        //selected = true;
-        //Sets other selected object to unselected
+        //If there is a card selected & this script is enabled & the mouse is not over a GUI object
+        //Then the clicked object is selectable
         if (SGO != null && enabled && !EventSystem.current.IsPointerOverGameObject())
         {
             bool alreadyInSelections = false;
+            //If exclusive, then the object can only be selected once!
             if (SGO.exclusive)
             {
                 foreach (GameObject g in SGO.Selections)
                 {
                     if (g == this.gameObject)
                     {
-                        SGO.RemoveSelection(this.gameObject);
+                        //SGO.RemoveSelection(this.gameObject);
+
+                        //If g == this, then it is already selected.
                         alreadyInSelections = true;
                         break;
                     }
                 }
             }
+            //If the object is not already selected (or if the selection is non-exclusive; alreadyInSelections defaults to false for this case)
             if (!alreadyInSelections)
             {
-                //SelectableGO otherObject = s.Selected.GetComponentInChildren<SelectableGO>();
-                //otherObject.selected = false;
-                //otherObject.ren.material.color = otherObject.defaultColor;
                 if (!SGO.exclusive)
                 {
+                    //If non-exclusive; then whether the object is selected is based on the Selecting variable
+                    //SGO.Selecting is changed based on the buttons Select and Deselect being clicked in the UI.
                     if(SGO.Selecting)
                     {
-                        bool added = SGO.AddSelection(this.gameObject);
-                        if (added)
-                        {
-                            ren.material.color = Color.blue;
-                            selected = true;
-                        }
-                        timesSelected = CalcTimesSelected();
+                        Select();
                     }
                     else
                     {
-                        SGO.RemoveSelection(this.gameObject);
-                        timesSelected = CalcTimesSelected();
-                        ren.material.color = defaultColor;
-                        selected = false;
+                        Deselect();
                     }
 
                 }
+                //If not in selections, and exclusive, then the object is selected.
                 else
                 {
-                    bool added = SGO.AddSelection(this.gameObject);
-                    if (added)
-                    {
-                        ren.material.color = Color.blue;
-                        selected = true;
-                    }
-                    timesSelected = CalcTimesSelected();
+                    Select();
                 }
             }
+            //If the object IS already selected, then it must be exclusive:
+            //And if it's exclusive and already selected, then clicking again will deselect the object.
             else
             {
-                if (!SGO.exclusive)
-                {
-                    if (SGO.Selecting)
-                    {
-                        bool added = SGO.AddSelection(this.gameObject);
-                        if (added)
-                        {
-                            ren.material.color = Color.blue;
-                            selected = true;
-                        }
-                        timesSelected = CalcTimesSelected();
-                    }
-                    else
-                    {
-                        SGO.RemoveSelection(this.gameObject);
-                        timesSelected = CalcTimesSelected();
-                        ren.material.color = defaultColor;
-                        selected = false;
-                    }
-
-                }
-                else
-                {
-                    SGO.RemoveSelection(this.gameObject);
-                    timesSelected = CalcTimesSelected();
-                    ren.material.color = defaultColor;
-                    selected = false;
-                }
+                    Deselect();
             }
         }
-        //s.somethingSelected = true;
-        //s.Selected = this.gameObject;
-        //ren.material.color = Color.blue;
         UpdateSelectionColor();
     }
 
+    //Counts how many times the current object has been selected in the current Card's selections
     public int CalcTimesSelected()
     {
         int count = 0;
@@ -144,8 +105,10 @@ public class SelectableGO : MonoBehaviour
         return count;
     }
 
+    //Updates the Color of the object based on how many times it's been selected
     public void UpdateSelectionColor()
     {
+        timesSelected = CalcTimesSelected();
         //Should replace this with some UI method later!
         if (timesSelected == 0)
             ren.material.color = defaultColor;
@@ -153,5 +116,25 @@ public class SelectableGO : MonoBehaviour
         {
             ren.material.color = Color.cyan * new Color(0, 0, timesSelected);
         }
+    }
+
+
+    //If the list of Selections is not already full, add the object to the list.
+    public void Select()
+    {
+        bool added = SGO.AddSelection(this.gameObject);
+        if (added)
+        {
+            ren.material.color = Color.blue;
+            selected = true;
+        }
+    }
+
+    //Remove the object from the list of Selections.
+    public void Deselect() 
+    {
+        SGO.RemoveSelection(this.gameObject);
+        ren.material.color = defaultColor;
+        selected = false;
     }
 }

@@ -50,6 +50,8 @@ public class SelectionGO : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         Selections = new List<GameObject>();
+
+        //Done in the CardSelectable class now:
         //player.SelectButton = GameObject.Find("Select").GetComponent<Button>();
         //player.DeselectButton = GameObject.Find("Deselect").GetComponent<Button>();
         //player.SelectButton.enabled = false;
@@ -61,6 +63,7 @@ public class SelectionGO : MonoBehaviour
     {
 
     }
+
 
     public void SelectClicked()
     {
