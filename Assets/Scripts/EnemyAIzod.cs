@@ -149,10 +149,10 @@ public class EnemyAIzod : MonoBehaviour
                     "Shortest dist squared = " + shortestdistsq +
                     "\nObstacleMinDist squared = " + obstacleMinDist * obstacleMinDist +
                     "\n(x3, y3) = " + x3 + ", " + y3 +
-                    "\n(x1, y1) = " + x1 + ", " + y1 +
-                    "\n(x2, y2) = " + x2 + ", " + y2 +
-                    "\ntheta = " + theta +
-                    "\nm1 = " + m1 +
+                    "\n(x1, y1) = " +x1 + ", " + y1 +
+                    "\n(x2, y2) = " +x2 + ", " + y2 +
+                    "\ntheta = " +theta +
+                    "\nm1 = " +m1 +
                     "\nm2 = " + m2
                     );
 

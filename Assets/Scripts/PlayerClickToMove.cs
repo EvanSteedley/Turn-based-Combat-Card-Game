@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerClickToMove : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class PlayerClickToMove : MonoBehaviour
     TileMapGenerator TMG; //Holds the Grid of Tiles
     TileSelection TS; //Holds the currently-selected tile
     Movement PlayerMovement; //Controls the actual movement of the Player
+    public TurnsTile t;
+
+    [SerializeField]
+    public Button EndTurnButton;
+    [SerializeField]
+    public Button ClickToMoveButton;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +29,7 @@ public class PlayerClickToMove : MonoBehaviour
         TS = FindObjectOfType<TileSelection>();
         PlayerMovement = GetComponentInParent<Movement>();
         PaintReachableTiles();
-        
+        t = FindObjectOfType<TurnsTile>();
     }
 
     // Update is called once per frame
@@ -63,11 +70,12 @@ public class PlayerClickToMove : MonoBehaviour
 
     //Simple iterational "Pathfinding" method
     //Basically, draws a straight line to the destination, and tries to move in that direction along the Cardinals
-    public void CalculateMove()
+    public IEnumerator CalculateMove()
     {
         //If the Player is not already on the tile they want to move to, and has enough moves left to move 1 tile:
         if (current != finalDestination && movesLeft > 0)
         {
+            ClickToMoveButton.interactable = false;
             //Create a new empty GameObject and set it to the position of the player's current tile
             GameObject GO = new GameObject();
             GO.transform.position = current.transform.position;
@@ -113,9 +121,16 @@ public class PlayerClickToMove : MonoBehaviour
                 movesLeft--;
                 current = PlayerMovement.destinationTile;
             }
-            
+
             //Finally, re-paint all the tiles the player can now reach.
             PaintReachableTiles();
+            float elapsedTime = 0f;
+            while (elapsedTime < PlayerMovement.timeToMove)
+            {
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            ClickToMoveButton.interactable = true;
         }
     }
 
@@ -126,9 +141,26 @@ public class PlayerClickToMove : MonoBehaviour
 
     //Called when the End Turn button is pressed; for now it just resets the amount of moves left and re-paints the tiles.
     //Later, it will also move the Enemy, and refresh the player's Hand of cards.
-    public void EndTurn()
+    public void StartTurn()
     {
         movesLeft = movesDefault;
         PaintReachableTiles();
+    }
+
+    public void EndTurnButtonPressed()
+    {
+        if (t.PlayerTurn) // && !GetComponent<Player>().dead)
+        {
+            //This is disabled here, but then re-enabled (if need be) in the TurnsTile class' EndPlayerTurn() Coroutine.
+            EndTurnButton.interactable = false;
+            StartCoroutine(t.EndPlayerTurn());
+        }
+    }
+
+    public void ClickToMoveButtonPressed()
+    {
+
+        StartCoroutine(CalculateMove());
+
     }
 }

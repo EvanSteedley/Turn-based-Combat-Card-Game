@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     bool isMoving = false;
     public Tile currentTile, destinationTile;
     public Vector3 currentPos, destinationPos;
-    float timeToMove = 0.15f;
+    public float timeToMove = 0.15f;
     Vector3 offset = new Vector3(0, 0, 0);
 
     TileMapGenerator tmg;
@@ -62,7 +62,9 @@ public class Movement : MonoBehaviour
         
 
         transform.position = destinationPos;
+        currentTile.occupied = false;
         currentTile = destinationTile;
+        currentTile.occupied = true;
         isMoving = false;
     }
 
