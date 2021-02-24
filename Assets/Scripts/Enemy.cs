@@ -8,38 +8,40 @@ public class Enemy : MonoBehaviour
 {
     //Reference to the Player - will probably only need one of these.
     [SerializeField]
-    Player p;
+    public Player p;
     [SerializeField]
-    Turns t;
+    public Turns t;
     [SerializeField]
-    Text EnemyAttackValue;
+    public Text EnemyAttackValue;
     [SerializeField]
-    Text EnemyDefenseValue;
+    public Text EnemyDefenseValue;
     public Animator anim;
     //Enemy's health; if <= 0, they die.
-    int health = 100;
+    public int health = 100;
     //How much damage the Enemy will do on its turn
-    int damage = 10;
+    public int damage = 10;
     public bool dead = false;
-    int defense = 0;
+    public int defense = 0;
     enum states { 
     
         Fight, Defend, Buff
     
     }
 
-    //UI elements.  Will need to be re-done if multiple Enemies.
+
     [SerializeField]
-    Slider SliderHealth;
-    [SerializeField]
-    Text HealthValue;
+    public Text HealthValue;
 
     // Start is called before the first frame update
     void Start()
     {
         p = FindObjectOfType<Player>();
+        t = FindObjectOfType<Turns>();
         //SliderHealth.value = health;
         anim = GetComponent<Animator>();
+        EnemyDefenseValue.text = defense.ToString();
+        HealthValue.text = health.ToString();
+        EnemyAttackValue.text = damage.ToString();
     }
 
     // Update is called once per frame
@@ -52,7 +54,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void TakeDamage(int d)
+    virtual public void TakeDamage(int d)
     {
         if (d - defense >= health && !dead)     
              
@@ -71,11 +73,11 @@ public class Enemy : MonoBehaviour
 		{ 
 			health = 0; 
 		}
-        SliderHealth.value = health;
+        //SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
 
-    public void Attack()
+    virtual public void Attack()
     {
         p.TakeDamage(damage);
         //This is controlled by the Turns class now.
@@ -83,7 +85,7 @@ public class Enemy : MonoBehaviour
     }
 
   
-    public void EnemyBehaviour() {
+    virtual public void EnemyBehaviour() {
 
 
         System.Random random = new System.Random();
@@ -104,14 +106,14 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void Defend(int d)
+    virtual public void Defend(int d)
     {
         defense += 20;
         EnemyDefenseValue.text = defense.ToString();
         
     }
 
-    public void Buff()
+    virtual public void Buff()
     {
         
             damage += 20;
