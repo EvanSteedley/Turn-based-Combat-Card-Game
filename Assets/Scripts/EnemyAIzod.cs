@@ -147,13 +147,13 @@ public class EnemyAIzod : MonoBehaviour
 
                 Debug.Log(
                     "Shortest dist squared = " + shortestdistsq +
-                    "\nObstacleMinDist squared = " + obstacleMinDist*obstacleMinDist +
+                    "\nObstacleMinDist squared = " + obstacleMinDist * obstacleMinDist +
                     "\n(x3, y3) = " + x3 + ", " + y3 +
-                    "\n(x1, y1) = ", + x1 + ", " + y1 +
-                    "\n(x2, y2) = ", + x2 + ", " + y2 +
-                    "\ntheta = ", + theta +
-                    "\nm1 = ", + m1 +
-                    "\nm2 = ", m2
+                    "\n(x1, y1) = " + x1 + ", " + y1 +
+                    "\n(x2, y2) = " + x2 + ", " + y2 +
+                    "\ntheta = " + theta +
+                    "\nm1 = " + m1 +
+                    "\nm2 = " + m2
                     );
 
             }
@@ -189,34 +189,34 @@ public class EnemyAIzod : MonoBehaviour
         // Determining the tile direction where the enemy moves next
         // ----------------------------------------------------------
         // CASE 1: if 0<=theta<45 or 315<theta<360: move RIGHT
-        if ((theta >= 0.0f && theta < 0.25f*3.1415f) || (theta > 1.75f*3.1415f && theta < 2f*3.1415f))
+        if ((theta >= 0.0f && theta < 0.25f * 3.1415f) || (theta > 1.75f * 3.1415f && theta < 2f * 3.1415f))
         {
             // MOVE RIGHT
-            movement.MoveRight();
+            movement.MoveDown();
             movesLeft--;
         }
 
         // CASE 2: if 45<=theta<135: move UP
-        else if (theta >= 0.25f*3.1415f && theta < 0.75f*3.1415f)
+        else if (theta >= 0.25f * 3.1415f && theta < 0.75f * 3.1415f)
         {
             // MOVE UP
-            movement.MoveUp();
+            movement.MoveRight();
             movesLeft--;
         }
 
         // CASE 3: if 135<=theta<225: move LEFT
-        else if (theta >= 0.75f*3.1415f && theta < 1.25f*3.1415f)
+        else if (theta >= 0.75f * 3.1415f && theta < 1.25f * 3.1415f)
         {
             // MOVE LEFT
-            movement.MoveLeft();
+            movement.MoveUp();
             movesLeft--;
         }
 
         // CASE 4: if 225<=theta<315: move LEFT
-        else if (theta >= 1.25f*3.1415f && theta < 1.75f*3.1415f)
+        else if (theta >= 1.25f * 3.1415f && theta < 1.75f * 3.1415f)
         {
             // MOVE DOWN
-            movement.MoveDown();
+            movement.MoveLeft();
             movesLeft--;
         }
 
