@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    //Tutorial followed for the Move method, and these first 5 variables:
+    // https://www.youtube.com/watch?v=AiZ4z4qKy44
     bool isMoving = false;
     public Tile currentTile, destinationTile;
     public Vector3 currentPos, destinationPos;
     float timeToMove = 0.15f;
     Vector3 offset = new Vector3(0, 0, 0);
+
     TileMapGenerator tmg;
     //Vector3 up = Vector3.zero,
     //    right = new Vector3(0, 90, 0),
@@ -38,6 +41,7 @@ public class Movement : MonoBehaviour
         
     }
 
+
     private IEnumerator Move(Vector3 direction)
     {
         //transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
@@ -62,17 +66,21 @@ public class Movement : MonoBehaviour
         isMoving = false;
     }
 
+    //Actual Movement directions, adapted from the tutorial to work without User Input & with a 2D array of Tiles:
     public void MoveUp()
     {
+        //If not already moving & moving up won't go off the grid;
         if(!isMoving && currentTile.x > 0)
         {
-            //StartCoroutine(Move(Vector3.up));
+            //Set destinationTile to the next tile above the current one
             destinationTile = tmg.Tiles[currentTile.x - 1, currentTile.y];
+            //Start the Move method Coroutine to move to that tile
             StartCoroutine(Move(destinationTile.transform.position + offset));
         }
     }
     public void MoveRight()
     {
+        //If not already moving & moving Right won't go off the grid;
         if (!isMoving && currentTile.y < tmg.tileLength-1)
         {
             destinationTile = tmg.Tiles[currentTile.x, currentTile.y + 1];
@@ -81,6 +89,7 @@ public class Movement : MonoBehaviour
     }
     public void MoveLeft()
     {
+        //If not already moving & moving Left won't go off the grid;
         if (!isMoving && currentTile.y > 0)
         {
             destinationTile = tmg.Tiles[currentTile.x, currentTile.y - 1];
@@ -89,6 +98,7 @@ public class Movement : MonoBehaviour
     }
     public void MoveDown()
     {
+        //If not already moving & moving Down won't go off the grid;
         if (!isMoving && currentTile.x < tmg.tileWidth-1)
         {
             destinationTile = tmg.Tiles[currentTile.x + 1, currentTile.y];

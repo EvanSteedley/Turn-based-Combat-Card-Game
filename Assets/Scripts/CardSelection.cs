@@ -29,6 +29,7 @@ public class CardSelection : MonoBehaviour
 
     }
 
+    //If there is a card selected, then Play that card!
     public void PlayCard()
     {
         if(Selected != null)
