@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    //Tutorial followed for the Move method, and these first 5 variables:
+    // https://www.youtube.com/watch?v=AiZ4z4qKy44
     bool isMoving = false;
-    public Tile originalTile, destinationTile;
-    public Vector3 originalPos, destinationPos;
-    float timeToMove = 0.15f;
+    public Tile currentTile, destinationTile;
+    public Vector3 currentPos, destinationPos;
+    public float timeToMove = 0.15f;
     Vector3 offset = new Vector3(0, 0, 0);
+
     TileMapGenerator tmg;
     //Vector3 up = Vector3.zero,
     //    right = new Vector3(0, 90, 0),
@@ -38,6 +41,7 @@ public class Movement : MonoBehaviour
         
     }
 
+
     private IEnumerator Move(Vector3 direction)
     {
         //transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
@@ -45,53 +49,61 @@ public class Movement : MonoBehaviour
         isMoving = true;
 
         float elapsedTime = 0f;
-        originalPos = transform.position;
+        currentPos = transform.position;
         //destinationPos = originalPos + direction;
         destinationPos = direction;
 
         while (elapsedTime < timeToMove)
         {
-            transform.position = Vector3.Lerp(originalPos, destinationPos, (elapsedTime / timeToMove));
+            transform.position = Vector3.Lerp(currentPos, destinationPos, (elapsedTime / timeToMove));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         
 
         transform.position = destinationPos;
-        originalTile = destinationTile;
+        currentTile.occupied = false;
+        currentTile = destinationTile;
+        currentTile.occupied = true;
         isMoving = false;
     }
 
+    //Actual Movement directions, adapted from the tutorial to work without User Input & with a 2D array of Tiles:
     public void MoveUp()
     {
-        if(!isMoving && originalTile.x > 0)
+        //If not already moving & moving up won't go off the grid;
+        if(!isMoving && currentTile.x > 0)
         {
-            //StartCoroutine(Move(Vector3.up));
-            destinationTile = tmg.Tiles[originalTile.x - 1, originalTile.y];
+            //Set destinationTile to the next tile above the current one
+            destinationTile = tmg.Tiles[currentTile.x - 1, currentTile.y];
+            //Start the Move method Coroutine to move to that tile
             StartCoroutine(Move(destinationTile.transform.position + offset));
         }
     }
     public void MoveRight()
     {
-        if (!isMoving && originalTile.y < tmg.tileLength-1)
+        //If not already moving & moving Right won't go off the grid;
+        if (!isMoving && currentTile.y < tmg.tileLength-1)
         {
-            destinationTile = tmg.Tiles[originalTile.x, originalTile.y + 1];
+            destinationTile = tmg.Tiles[currentTile.x, currentTile.y + 1];
             StartCoroutine(Move(destinationTile.transform.position + offset));
         }
     }
     public void MoveLeft()
     {
-        if (!isMoving && originalTile.y > 0)
+        //If not already moving & moving Left won't go off the grid;
+        if (!isMoving && currentTile.y > 0)
         {
-            destinationTile = tmg.Tiles[originalTile.x, originalTile.y - 1];
+            destinationTile = tmg.Tiles[currentTile.x, currentTile.y - 1];
             StartCoroutine(Move(destinationTile.transform.position + offset));
         }
     }
     public void MoveDown()
     {
-        if (!isMoving && originalTile.x < tmg.tileWidth-1)
+        //If not already moving & moving Down won't go off the grid;
+        if (!isMoving && currentTile.x < tmg.tileWidth-1)
         {
-            destinationTile = tmg.Tiles[originalTile.x + 1, originalTile.y];
+            destinationTile = tmg.Tiles[currentTile.x + 1, currentTile.y];
             StartCoroutine(Move(destinationTile.transform.position + offset));
         }
     }

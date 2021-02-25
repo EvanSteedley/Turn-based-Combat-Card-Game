@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class CardAttack3 : Card
 {
-    public Enemy targetType;
+    public List<Enemy> Targets;
+    
     
     // Start is called before the first frame update
     void Start()
     {
+        mana = 3;
         numberOfTargets = 3;
-        Targeter = this.gameObject.AddComponent<SelectionGO>();
+        Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
+        Targeter.exclusive = false;
     }
 
     // Update is called once per frame
@@ -28,6 +31,8 @@ public class CardAttack3 : Card
             if (e != null)
                 e.TakeDamage(20);
         }
+        RemoveHighlightTargets();
+        ClearSelections();
         Destroy(this.gameObject);
     }
 
@@ -43,7 +48,7 @@ public class CardAttack3 : Card
                 if (SGO.ren == null)
                     SGO.ren = SGO.GetComponent<Renderer>();
                 SGO.ren.material.color = Color.cyan;
-                SGO.s = Targeter;
+                SGO.SGO = Targeter;
             }
         }
     }
@@ -56,8 +61,15 @@ public class CardAttack3 : Card
             SelectableGO SGO = GO.GetComponent<SelectableGO>();
             if (SGO != null)
             {
+                if (SGO.ren == null)
+                    SGO.ren = SGO.GetComponent<Renderer>();
                 SGO.ren.material.color = SGO.defaultColor;
+                SGO.enabled = false;
             }
         }
+    }
+    override public void ClearSelections()
+    {
+        Targeter.Selections = new List<GameObject>();
     }
 }

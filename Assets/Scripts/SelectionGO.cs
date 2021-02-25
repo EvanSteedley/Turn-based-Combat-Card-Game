@@ -9,7 +9,10 @@ public class SelectionGO : MonoBehaviour
     public List<GameObject> Selections;
     public bool somethingSelected = false;
     public int numberOfSelections = 1;
+    public bool exclusive = true;
 
+    public Player player;
+    public bool Selecting = true;
 
     //public GameObject Selected
     //{
@@ -45,13 +48,31 @@ public class SelectionGO : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<Player>();
         Selections = new List<GameObject>();
+
+        //Done in the CardSelectable class now:
+        //player.SelectButton = GameObject.Find("Select").GetComponent<Button>();
+        //player.DeselectButton = GameObject.Find("Deselect").GetComponent<Button>();
+        //player.SelectButton.enabled = false;
+        //player.DeselectButton.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+
+    public void SelectClicked()
+    {
+        Selecting = true;
+    }
+
+    public void DeselectClicked()
+    {
+        Selecting = false;
     }
 
 }

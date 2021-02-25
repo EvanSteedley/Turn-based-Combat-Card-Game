@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    //This list will contain all of the Card classes.
-    public List<GameObject> Deck = new List<GameObject>();
-    //This list will contain all of the cards that the player is currently able to use.
-    public List<GameObject> Hand = new List<GameObject>();
-    //This list will contain all of the "dead" cards that the player cannot currently access due to be recently used.
-    public List<GameObject> GraveYard = new List<GameObject>();
     //The player's health; if 0, the player is dead and loses the fight.
     int health = 100;
     //The Player's "actual" mana stat; determines how much mana is restored at the beginning of each turn
@@ -19,8 +13,6 @@ public class Player : MonoBehaviour
     public int mana;
     //Currently, just how much the "Attack" card does.  Later, may be a multiplier for the damage dealt by each card?
     int damage = 20;
-    public int x; 
-    public int deckSize = 1;
     //A reference to the enemy.  Needs to be updated if fighting multiple enemies - Or maybe set to the "Selection"?
     [SerializeField]
     Enemy e;
@@ -29,10 +21,11 @@ public class Player : MonoBehaviour
     Turns t;
     [SerializeField]
     CardSelection card;
-    [SerializeField]
-    Text PlayerDefenseValue;
-    
-   
+    List<GameObject> Hand;
+    GameObject HandResetPrefab;
+    GameObject CurrentHand;
+    CardSelection CS;
+
    
 
 
@@ -42,86 +35,271 @@ public class Player : MonoBehaviour
     [SerializeField]
     Text HealthValue;
     [SerializeField]
+    Text PlayerDefenseValue;
+    [SerializeField]
+    Text DamageValue;
+    [SerializeField]
+    Text ManaValue;
+    [SerializeField]
     Button AttackButton;
     [SerializeField]
     Button BuffButton;
     [SerializeField]
     Button EndTurnButton;
     [SerializeField]
-    Text ManaValue;
-    [SerializeField]
-    Text DamageValue;
+    public Button PlayCardButton;
+    public Button SelectButton;
+    public Button DeselectButton;
+
+
 
     Animator anim;
     public bool dead = false;
-
+    
 
     // Start is called before the first frame update
     void Start()
     {
-            Fill();
+        //Finds the Select/Deselect buttons, stores a reference to them, and then sets them inactive;
+        //They will be enabled if a Card that is non-exclusive is selected.
+        SelectButton = GameObject.Find("Select").GetComponent<Button>();
+        DeselectButton = GameObject.Find("Deselect").GetComponent<Button>();
+        SelectButton.gameObject.SetActive(false);
+        DeselectButton.gameObject.SetActive(false);
 
-            mana = startingMana;
-            //This will need to be changed if there are multiple enemies.
-            e = FindObjectOfType<Enemy>();
-            card = FindObjectOfType<CardSelection>();
-            SliderHealth.value = health;
-            anim = GetComponentInChildren<Animator>();
-        }
-    
+        mana = startingMana;
+        //This will need to be changed if there are multiple enemies.
+        //e = FindObjectOfType<Enemy>();
+        card = FindObjectOfType<CardSelection>();
+        SliderHealth.value = health;
+        anim = GetComponentInChildren<Animator>();
+
+        Hand = new List<GameObject>();
+
+        //Temporary way of filling the hand
+        //Should NOT be used later.
+        //Card[] c = FindObjectsOfType<Card>();
+
+        //Finds the first object named "Hand"
+        CurrentHand = GameObject.Find("Hand");
+
+        //foreach (Card card in c)
+        //{
+        //    card.gameObject.transform.parent = CurrentHand.transform;
+        //}
+
+        //Sets the "prefab" to a COPY of CurrentHand, then sets it inactive:
+        //Inactive means they are invisible and cannot be interacted with
+        HandResetPrefab = Instantiate(CurrentHand);
+        HandResetPrefab.SetActive(false);
+        //Destroy(CurrentHand);
+        //CurrentHand = Instantiate(HandResetPrefab);
+        //CurrentHand.SetActive(true);
+        CS = GetComponent<CardSelection>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         //Try to do as little coding here as necessary!!
     }
-        public void AttackButtonPress()
+
+
+    //No longer used; replaced by cards!
+
+    //public void AttackButtonPress()
+    //{
+    //    //"StartCoroutine" is necessary when you need a function to wait a certain amount of time before finishing.
+    //    //You can think of it as starting a thread, and then waiting for that thread to finish before executing the following lines.
+    //    //The "wait" methods only work inside of the Coroutine methods, which can be identified by the return type of "IEnumerator."
+    //    //The "AttackButtonPress" method is necessary because UnityEvents (EX: the Button's OnClick event) cannot trigger IEnumerator methods.
+    //    //This is because the IEnumerator/Coroutine methods must be started by StartCoroutine().
+    //    StartCoroutine(Attack());
+    //}
+    //public IEnumerator Attack()
+    //{
+        
+    //    int manaCost = 1;
+        
+    //    if (t.PlayerTurn && !dead && mana >= manaCost)
+    //    {
+    //        //This "disables" the buttons, so the 'animation' can play.  If the buttons weren't disabled,
+    //        //then the Player could spam the button, and glitch out the animation.
+    //        AttackButton.interactable = false;
+    //        BuffButton.interactable = false;
+    //        EndTurnButton.interactable = false;
+
+    //        //"Using" mana.
+    //        mana -= manaCost;
+    //        //Updates the UI mana value
+    //        ManaValue.text = mana.ToString();
+    //        //This is the "animation."   This is not a good way to do animation.
+
+    //        //Unity has built-in Animator components, but they take time to set up.
+    //        anim.SetTrigger("PlayerAttack");
+    //        //this.transform.Translate(new Vector3(1f, 0f, 0f));
+    //        //This is a "return" for an IEnumerator, however it doesn't actually end the method like a normal return.
+    //        //Instead, this will call the EnemyDelay() method, and then wait for it to finish!
+    //        yield return StartCoroutine(t.EnemyDelay());
+    //        //this.transform.Translate(new Vector3(-1f, 0f, 0f));
+
+
+    //        e.TakeDamage(damage);
+    //        anim.SetTrigger("PlayerAttack");
+
+    //        //If there are still enemies alive, it's still the Player's Turn, and the Player has enough mana, then turn the buttons back on.
+    //        int enemiesAlive = t.EnemiesAlive();
+    //        if (mana >= 1 && t.PlayerTurn && enemiesAlive > 0)
+    //            AttackButton.interactable = true;
+    //        if(mana >= 2 && t.PlayerTurn && enemiesAlive > 0)
+    //            BuffButton.interactable = true;
+    //        if(enemiesAlive > 0)
+    //            EndTurnButton.interactable = true;
+
+    //        //If all enemies are dead, Zoom the camera out.
+    //        if (enemiesAlive == 0)
+    //            t.CamZoomOut();
+    //    }
+    //    //This is an empty return for an IEnumerator method.  It does not wait for anything.
+    //    yield return null;
+
+    //}
+
+    //Called whenever the Player takes damage from any source
+    public void TakeDamage(int d)
+    {
+        //If damage is greater than Player's health, then they're dead.  RIP.
+        //Add defense value later; if (d >= health + defense)
+        if (d >= health && !dead)
+        {
+            t.CamZoomOut();
+            dead = true;
+            //This is how the Player "Ragdolls" when they die.
+            Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
+            rb.AddForce(new Vector3(-500f, 400f, 0f));
+            rb.AddTorque(new Vector3(5f, 50f, 35f));
+        }
+        //health -= (d - defense);
+        health -= d;
+        SliderHealth.value = health;
+        HealthValue.text = health.ToString();
+    }
+
+    //No longer used
+
+    ////This method and its IEnumerator Buff() method are similar to the Attack's.
+    //public void BuffButtonPressed()
+    //{
+    //    StartCoroutine(Buff());
+    //}
+
+    //public IEnumerator Buff()
+    //{
+    //    int manaCost = 2;
+    //    if (t.PlayerTurn && !dead && mana >= manaCost)
+    //    {
+    //        AttackButton.interactable = false;
+    //        BuffButton.interactable = false;
+    //        EndTurnButton.interactable = false;
+    //        mana -= manaCost;
+    //        ManaValue.text = mana.ToString();
+    //        this.transform.Translate(new Vector3(1f, 0f, 0f));
+    //        yield return StartCoroutine(t.EnemyDelay());
+    //        this.transform.Translate(new Vector3(-1f, 0f, 0f));
+    //        int enemiesAlive = t.EnemiesAlive();
+    //        if(mana >= 1 && t.PlayerTurn && enemiesAlive > 0)
+    //            AttackButton.interactable = true;
+    //        if(mana >= 2 && t.PlayerTurn && enemiesAlive > 0)
+    //            BuffButton.interactable = true;
+    //        if (enemiesAlive > 0)
+    //            EndTurnButton.interactable = true;
+    //        damage += 30;
+    //        DamageValue.text = damage.ToString();
+    //    }
+    //}
+
+    public void EndTurnButtonPressed()
+    {
+        if (t.PlayerTurn && !dead)
+        {
+            //This is disabled here, but then re-enabled (if need be) in the Turns class' EndPlayerTurn() Coroutine.
+            EndTurnButton.interactable = false;
+
+            //PlayCard will be re-enabled once a card is selected, if the Player has enough Mana; (ManaCheckUI)
+            PlayCardButton.interactable = false;
+            if (CS.somethingSelected)
+                CS.Selected.GetComponent<CardSelectable>().Deselect();
+            StartCoroutine(t.EndPlayerTurn());
+        }
+    }
+
+    public void StartTurn() 
+    {
+        //Reset mana to the base stat & update the GUI
+        mana = startingMana;
+        ManaValue.text = mana.ToString();
+        ResetHand();
+
+        //Re-enable buttons if the cost can be afforded.
+        //if (mana >= 1)
+        //    AttackButton.interactable = true;
+        //if (mana >= 2)
+        //    BuffButton.interactable = true;
+        EndTurnButton.interactable = true;
+        //PlayCardButton.interactable = true;
+
+    }
+
+
+    public void PlayCardButtonPressed()
     {
         //"StartCoroutine" is necessary when you need a function to wait a certain amount of time before finishing.
         //You can think of it as starting a thread, and then waiting for that thread to finish before executing the following lines.
         //The "wait" methods only work inside of the Coroutine methods, which can be identified by the return type of "IEnumerator."
-        //The "AttackButtonPress" method is necessary because UnityEvents (EX: the Button's OnClick event) cannot trigger IEnumerator methods.
+        //The "PlayCardButtonPress" method is necessary because UnityEvents (EX: the Button's OnClick event) cannot trigger IEnumerator methods.
         //This is because the IEnumerator/Coroutine methods must be started by StartCoroutine().
-        StartCoroutine(Attack());
+        StartCoroutine(AttackCard());
     }
-        public IEnumerator Attack()
+    public IEnumerator AttackCard()
     {
-        
-        int manaCost = 1;
-        
+        Card cardUsed = CS.selected.GetComponent<Card>();
+        int manaCost = cardUsed.mana;
         if (t.PlayerTurn && !dead && mana >= manaCost)
         {
             //This "disables" the buttons, so the 'animation' can play.  If the buttons weren't disabled,
             //then the Player could spam the button, and glitch out the animation.
-            AttackButton.interactable = false;
-            BuffButton.interactable = false;
             EndTurnButton.interactable = false;
+            PlayCardButton.interactable = false;
 
             //"Using" mana.
             mana -= manaCost;
             //Updates the UI mana value
             ManaValue.text = mana.ToString();
-            //This is the "animation."   This is not a good way to do animation.
 
-            //Unity has built-in Animator components, but they take time to set up.
+            //Triggers the Attack animation to play; this is the transition from both states
             anim.SetTrigger("PlayerAttack");
             //this.transform.Translate(new Vector3(1f, 0f, 0f));
+
+            //Uses the Card's actual action
+            cardUsed.Action();
+            //Deselects the Card after it's used; can cause Null reference errors otherwise.
+            CS.Selected.GetComponent<CardSelectable>().Deselect();
+
             //This is a "return" for an IEnumerator, however it doesn't actually end the method like a normal return.
             //Instead, this will call the EnemyDelay() method, and then wait for it to finish!
             yield return StartCoroutine(t.EnemyDelay());
             //this.transform.Translate(new Vector3(-1f, 0f, 0f));
 
-
-            e.TakeDamage(damage);
+            //Triggers the Attack animation again; this is the transition from both states
             anim.SetTrigger("PlayerAttack");
 
-            //If there are still enemies alive, it's still the Player's Turn, and the Player has enough mana, then turn the buttons back on.
+            //If there are still enemies alive and it's still the Player's Turn, then turn the buttons back on.
             int enemiesAlive = t.EnemiesAlive();
-            if (mana >= 1 && t.PlayerTurn && enemiesAlive > 0)
-                AttackButton.interactable = true;
-            if(mana >= 2 && t.PlayerTurn && enemiesAlive > 0)
-                BuffButton.interactable = true;
-            if(enemiesAlive > 0)
+            if (enemiesAlive > 0)
+            {
                 EndTurnButton.interactable = true;
+                //PlayCardButton.interactable = true;
+            }
 
             //If all enemies are dead, Zoom the camera out.
             if (enemiesAlive == 0)
@@ -132,94 +310,48 @@ public class Player : MonoBehaviour
 
     }
 
-    public void TakeDamage(int d)
+    //Called at the beginning of each turn
+    public void ResetHand()
     {
-        if (d >= health)
+        //Destroys (rids from memory) the current Hand, and Instantiates (populates memory & calls Start() functions) on the Prefab.
+        Destroy(CurrentHand);
+        CurrentHand = Instantiate(HandResetPrefab);
+        //Sets the Hand active; without this, the Hand will still be invisible and un-interactable.
+        CurrentHand.SetActive(true);
+    }
+
+    public bool ManaCheckUI()
+    {
+        Card cardUsed = GetComponent<CardSelection>().selected.GetComponent<Card>();
+        int manaCost = cardUsed.mana;
+        //Update the Mana Cost number on the PlayCard button
+        PlayCardButton.transform.GetChild(1).GetComponentInChildren<Text>().text = manaCost.ToString();
+        //PlayCardButton.GetComponentInChildren<Image>().GetComponentInChildren<Text>().text = manaCost.ToString();
+
+        //If the Player can't afford it, disable the button
+        if (mana < manaCost)
         {
-            t.CamZoomOut();
-            dead = true;
-            //This is how the Player "Ragdolls" when they die.
-            Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
-            rb.AddForce(new Vector3(-500f, 400f, 0f));
-            rb.AddTorque(new Vector3(5f, 50f, 35f));
+            PlayCardButton.interactable = false;
+            return false;
         }
-        health -= d;
-        SliderHealth.value = health;
-        HealthValue.text = health.ToString();
-    }
-
-    public void Fill()
-    {
-        for (int i = 1; i <= deckSize; i++)
+        //If the Player CAN afford it, enable the button
+        else
         {
-          
-            string assetName = string.Format("Card1");
-
-            
-
-
-             //   GameObject asset = (GameObject)Instantiate(assetName, typeof GameObject);
-
-                // Deck.Add(asset);
-        }
-    }
-        //This method and its IEnumerator Buff() method are similar to the Attack's.
-        public void BuffButtonPressed()
-    {
-        StartCoroutine(Buff());
-    }
-
-    public IEnumerator Buff()
-    {
-        int manaCost = 2;
-        if (t.PlayerTurn && !dead && mana >= manaCost)
-        {
-            AttackButton.interactable = false;
-            BuffButton.interactable = false;
-            EndTurnButton.interactable = false;
-            mana -= manaCost;
-            ManaValue.text = mana.ToString();
-            this.transform.Translate(new Vector3(1f, 0f, 0f));
-            yield return StartCoroutine(t.EnemyDelay());
-            this.transform.Translate(new Vector3(-1f, 0f, 0f));
-            int enemiesAlive = t.EnemiesAlive();
-            if(mana >= 1 && t.PlayerTurn && enemiesAlive > 0)
-                AttackButton.interactable = true;
-            if(mana >= 2 && t.PlayerTurn && enemiesAlive > 0)
-                BuffButton.interactable = true;
-            if (enemiesAlive > 0)
-                EndTurnButton.interactable = true;
-            damage += 30;
-            DamageValue.text = damage.ToString();
+            PlayCardButton.interactable = true;
+            return true;
         }
     }
 
-    public void EndTurnButtonPressed()
+
+    public void SelectButtonPressed()
     {
-        if (t.PlayerTurn && !dead)
-        {
-            //These are disabled here, but then re-enabled (if need be) in the Turns class' EndPlayerTurn() Coroutine.
-            EndTurnButton.interactable = false;
-            AttackButton.interactable = false;
-            BuffButton.interactable = false;
-            StartCoroutine(t.EndPlayerTurn());
-        }
+        CS.Selected.GetComponent<SelectionGO>().SelectClicked();
     }
 
-    public void StartTurn() 
+    public void DeselectButtonPressed()
     {
-        //Reset mana to the base stat & update the GUI
-        mana = startingMana;
-        ManaValue.text = mana.ToString();
-
-        //Re-enable buttons if the cost can be afforded.
-        if(mana >= 1)
-            AttackButton.interactable = true;
-        if(mana >= 2)
-            BuffButton.interactable = true;
-        EndTurnButton.interactable = true;
-
+        CS.Selected.GetComponent<SelectionGO>().DeselectClicked();
     }
 
-    
+
 }
