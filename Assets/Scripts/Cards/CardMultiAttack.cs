@@ -2,27 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardHeavyHand : Card
+public class CardMultiAttack : Card
 {
     public List<Enemy> Targets;
-
-
+    
+    
     // Start is called before the first frame update
     void Start()
     {
-        id = 6;
-        damage = 50;
-        mana = 2;
-        numberOfTargets = 1;
+        id = 2;
+        damage = 20;
+        mana = 3;
+        numberOfTargets = 3;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
-        Targeter.exclusive = true;
+        Targeter.exclusive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     override public void Action()

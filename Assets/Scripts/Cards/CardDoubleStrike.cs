@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardDoubleHit : Card
+public class CardDoubleStrike : Card
 {
     public List<Enemy> Targets;
 
@@ -10,7 +10,9 @@ public class CardDoubleHit : Card
     // Start is called before the first frame update
     void Start()
     {
-        mana = 2;
+        id = 10;
+        damage = 30;
+        mana = 4;
         numberOfTargets = 2;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
@@ -29,7 +31,7 @@ public class CardDoubleHit : Card
         {
             Enemy e = GO.GetComponent<Enemy>();
             if (e != null)
-                e.TakeDamage(30);
+                e.TakeDamage(damage);
         }
         RemoveHighlightTargets();
         ClearSelections();
