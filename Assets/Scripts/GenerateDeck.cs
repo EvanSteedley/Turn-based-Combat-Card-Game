@@ -10,6 +10,7 @@ public class GenerateDeck : MonoBehaviour
 {
 
 
+    public List<GameObject> Deck;
     public Card card;
 
 
@@ -44,8 +45,15 @@ public class GenerateDeck : MonoBehaviour
             Instantiate(card10, new Vector3(0, 0, -5), Quaternion.identity);
         }
 
-
-
+        void Fill()
+        {
+            GameObject c1 = Instantiate(Deck[0]);
+            GameObject c2 = Instantiate(Deck[1]);
+            GameObject c3 = Instantiate(Deck[2]);
+            GameObject c4 = Instantiate(Deck[3]);
+            GameObject c5 = Instantiate(Deck[4]);
+            GameObject c6 = Instantiate(Deck[5]);
+        }
 
 
         // public void GetDeck() { }

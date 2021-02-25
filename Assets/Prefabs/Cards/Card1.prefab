@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5933354187787966420}
   - component: {fileID: 8481251696486212382}
   - component: {fileID: 4211518091218800485}
-  - component: {fileID: 3493146130921625264}
   - component: {fileID: 2507563642999768450}
+  - component: {fileID: 8291284258319470759}
   m_Layer: 0
-  m_Name: Card2
+  m_Name: Card1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7976870046634001099}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
-  m_LocalPosition: {x: 0.057686567, y: 1.0587683, z: 7.7318935}
+  m_LocalPosition: {x: 152, y: 18, z: 260}
   m_LocalScale: {x: 20, y: 200, z: 299.99997}
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,27 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.020028453, y: 0.019999996, z: 0.019999994}
   m_Center: {x: -0.000014226418, y: 0, z: 0}
---- !u!114 &3493146130921625264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7976870046634001099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75faa913b932af34a95939bf753b6245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: 
-  id: 0
-  mana: 0
-  damage: 0
-  defense: 0
-  description: 
-  numberOfTargets: 1
-  Targeter: {fileID: 0}
-  targetType: {fileID: 0}
 --- !u!114 &2507563642999768450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,3 +114,24 @@ MonoBehaviour:
   s: {fileID: 0}
   selected: 0
   card: {fileID: 0}
+--- !u!114 &8291284258319470759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976870046634001099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09107c0c065a8914ab5c1ce56566e6fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 
+  id: 0
+  mana: 0
+  damage: 0
+  defense: 0
+  description: 
+  numberOfTargets: 1
+  Targeter: {fileID: 0}
+  targetType: {fileID: 0}
