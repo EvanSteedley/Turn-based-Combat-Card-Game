@@ -4151,7 +4151,7 @@ PrefabInstance:
     - target: {fileID: 3383020702869181935, guid: 2916b68f5b43dc541b34c63054fcd62b,
         type: 3}
       propertyPath: m_Name
-      value: CardAttack3
+      value: CardMultiAttack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2916b68f5b43dc541b34c63054fcd62b, type: 3}
@@ -4295,7 +4295,7 @@ PrefabInstance:
     - target: {fileID: 6805844535874794075, guid: 6bb712162cec5a24e8301b1a635bdd50,
         type: 3}
       propertyPath: m_Name
-      value: CardDoubleHit
+      value: CardDoubleStrike
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bb712162cec5a24e8301b1a635bdd50, type: 3}

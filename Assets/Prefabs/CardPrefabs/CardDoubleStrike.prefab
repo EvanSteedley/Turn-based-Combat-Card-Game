@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 6805844535874794077}
   - component: {fileID: 7481367252711802508}
   m_Layer: 0
-  m_Name: CardDoubleHit
+  m_Name: CardDoubleStrike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
