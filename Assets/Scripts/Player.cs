@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     //The player's health; if 0, the player is dead and loses the fight.
     int health = 100;
+    int maxHealth = 100;
     //The Player's "actual" mana stat; determines how much mana is restored at the beginning of each turn
     public int startingMana = 5;
     //The Player's mana, for casting cards on the current turn.
@@ -181,6 +182,14 @@ public class Player : MonoBehaviour
         }
         //health -= (d - defense);
         health -= d;
+        SliderHealth.value = health;
+        HealthValue.text = health.ToString();
+    }
+
+    public void Heal(int d)
+    {
+        health -= d;
+        if (health > maxHealth) { health = maxHealth; }
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
