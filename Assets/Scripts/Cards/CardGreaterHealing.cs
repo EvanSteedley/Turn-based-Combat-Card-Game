@@ -11,7 +11,7 @@ public class CardGreaterHealing : Card
     void Start()
     {
         id = 6;
-        damage = -25;
+        value = -25;
         mana = 3;
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
@@ -28,7 +28,7 @@ public class CardGreaterHealing : Card
     override public void Action()
     {
         Player p = FindObjectsOfType<Player>()[0];
-        p.Heal(damage);
+        p.Heal(value);
         Destroy(this.gameObject);
     }
 

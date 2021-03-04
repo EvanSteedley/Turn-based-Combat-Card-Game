@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardWindsOfRestoration : Card
+public class CardEnergyBurst : Card
 {
     public List<Player> Targets;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        id = 8;
-        value = -55;
+        id = 4;
         mana = 5;
+        value = 2; //will icrease max mana by 2
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
@@ -28,7 +27,7 @@ public class CardWindsOfRestoration : Card
     override public void Action()
     {
         Player p = FindObjectsOfType<Player>()[0];
-        p.Heal(value);
+        p.BuffMana(value);
         Destroy(this.gameObject);
     }
 
