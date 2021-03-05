@@ -42,8 +42,12 @@ public class PlayerClickToMove : MonoBehaviour
     public void PaintReachableTiles() 
     {
         //Sometimes current is not assigned yet; the order of Start() methods is a little finicky.
-        if(current == null)
+        if (current == null || TS == null || TMG == null)
+        {
             current = this.GetComponentInParent<Movement>().currentTile;
+            TS = GetComponent<TileSelection>();
+            TMG = FindObjectOfType<TileMapGenerator>();
+        }
 
 
         foreach (Tile t in TMG.Tiles)

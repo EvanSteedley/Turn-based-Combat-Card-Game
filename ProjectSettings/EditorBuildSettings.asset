@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Sample Combat.unity
+    guid: 36bbda2735279884cb78fb4bd290d233
+  - enabled: 1
+    path: Assets/Scenes/TileMovement.unity
+    guid: 91c821d1a22669d46b7aa8a422e20303
   m_configObjects: {}
