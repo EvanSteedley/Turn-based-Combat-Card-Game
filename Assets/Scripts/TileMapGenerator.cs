@@ -33,6 +33,8 @@ public class TileMapGenerator : MonoBehaviour
         Tiles = new Tile[tileWidth, tileLength];
         Obstacles = new List<Tile>();
 
+        player = FindObjectOfType<Player>();
+
         CreateTileGrid();
 
         //Set the Light's position to 5 units above the center of the tiles
