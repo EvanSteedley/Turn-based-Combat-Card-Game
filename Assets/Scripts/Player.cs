@@ -1,24 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     //The player's health; if 0, the player is dead and loses the fight.
     int health = 100;
+    int maxHealth = 100;
     //The Player's "actual" mana stat; determines how much mana is restored at the beginning of each turn
     public int startingMana = 5;
     //The Player's mana, for casting cards on the current turn.
     public int mana;
     //Currently, just how much the "Attack" card does.  Later, may be a multiplier for the damage dealt by each card?
     int damage = 20;
-    //A reference to the enemy.  Needs to be updated if fighting multiple enemies - Or maybe set to the "Selection"?
-    [SerializeField]
-    Enemy e;
     //Reference to the object with the Turns class, which controls when turns are ready.
     [SerializeField]
-    Turns t;
+    public Turns t;
     [SerializeField]
     CardSelection card;
     List<GameObject> Hand;
@@ -41,21 +40,35 @@ public class Player : MonoBehaviour
     [SerializeField]
     Text ManaValue;
     [SerializeField]
-    Button AttackButton;
-    [SerializeField]
-    Button BuffButton;
-    [SerializeField]
     Button EndTurnButton;
     [SerializeField]
     public Button PlayCardButton;
     public Button SelectButton;
     public Button DeselectButton;
 
+    //UI Groups
+    public GameObject CombatUI;
+    public GameObject TileMoveUI;
+
 
 
     Animator anim;
     public bool dead = false;
     
+
+    //Creates global instance of the Player; easy way to carry over values into loaded scenes (?)
+    //Could try to do a Singleton instead.
+    public static Player Instance
+    {
+        get;
+        set;
+    }
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +79,8 @@ public class Player : MonoBehaviour
         DeselectButton = GameObject.Find("Deselect").GetComponent<Button>();
         SelectButton.gameObject.SetActive(false);
         DeselectButton.gameObject.SetActive(false);
+
+        t = FindObjectOfType<Turns>();
 
         mana = startingMana;
         //This will need to be changed if there are multiple enemies.
@@ -181,6 +196,14 @@ public class Player : MonoBehaviour
         }
         //health -= (d - defense);
         health -= d;
+        SliderHealth.value = health;
+        HealthValue.text = health.ToString();
+    }
+
+    public void Heal(int d)
+    {
+        health -= d;
+        if (health > maxHealth) { health = maxHealth; }
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
@@ -353,5 +376,13 @@ public class Player : MonoBehaviour
         CS.Selected.GetComponent<SelectionGO>().DeselectClicked();
     }
 
+    public void LoadTileScene()
+    {
+        SceneManager.LoadScene("TileMovement");
+    }
 
+    public void LoadCombatScene()
+    {
+        SceneManager.LoadScene("Sample Combat");
+    }
 }

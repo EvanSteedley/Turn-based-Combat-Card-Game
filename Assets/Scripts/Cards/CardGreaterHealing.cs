@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardHealingSong : Card
+public class CardGreaterHealing : Card
 {
     public List<Player> Targets;
 
@@ -10,9 +10,9 @@ public class CardHealingSong : Card
     // Start is called before the first frame update
     void Start()
     {
-        id = 3;
-        damage = -15;
-        mana = 2;
+        id = 6;
+        damage = -25;
+        mana = 3;
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
