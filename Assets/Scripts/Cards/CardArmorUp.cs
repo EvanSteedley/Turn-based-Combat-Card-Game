@@ -42,7 +42,7 @@ public class CardArmorUp : Card
 
     override public void Action()
     {
-        Player p = FindObjectsOfType<Player>()[0];
+        Player p = FindObjectOfType<Player>();
         p.BuffDefense(value);
         Destroy(this.gameObject);
     }
