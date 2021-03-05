@@ -34,19 +34,19 @@ public class SceneElementController : MonoBehaviour
         {
             player.CombatUI.SetActive(true);
             player.TileMoveUI.SetActive(false);
-            Debug.Log("Combat scene loaded");
             player.GetComponent<PlayerClickToMove>().enabled = false;
             player.GetComponent<Movement>().enabled = false;
             player.t = FindObjectOfType<Turns>();
+            Debug.Log("Combat scene loaded");
         }
         else if (scene.name.Equals("TileMovement"))
         {
             player.CombatUI.SetActive(false);
             player.TileMoveUI.SetActive(true);
-            Debug.Log("Tile scene loaded");
             player.GetComponent<PlayerClickToMove>().enabled = true;
             player.GetComponent<Movement>().enabled = true;
             player.GetComponent<PlayerClickToMove>().t = FindObjectOfType<TurnsTile>();
+            Debug.Log("Tile scene loaded");
         }
     }
 }

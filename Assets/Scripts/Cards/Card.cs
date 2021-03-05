@@ -8,8 +8,8 @@ public class Card : MonoBehaviour
     public string cardName = "";
     public int id = 0;
     public int mana = 0;
-    public int damage = 0;
-    public int defense = 0;
+    public int value = 0;
+    //public int defense = 0;
     //public enum cardType {Earth,Wind,Fire,Water,Null}
     //public cardType cardElement;
     public string description;
@@ -26,12 +26,12 @@ public class Card : MonoBehaviour
 
 
    
-    //public Card(string CardName, int Id, int Mana, int Damage, int Defense,cardType CardElement,string Description)
+    //public Card(string CardName, int Id, int Mana, int value, int Defense,cardType CardElement,string Description)
     //{
     //    cardName = CardName;
     //    id = Id;
     //    mana = Mana;
-    //    damage = Damage;
+    //    value = value;
     //    defense = Defense;
     //    cardElement = CardElement;
     //    description = Description;
@@ -66,13 +66,13 @@ public class Card : MonoBehaviour
     {
         //The actual "thing" the card does, should be done here.  OR at least started here. (If lasting multiple turns)
 
-        //Example:  Every target takes 20 damage.
+        //Example:  Every target takes 20 value.
         //foreach (GameObject GO in Targeter.Selections)
         //{
         //    //Do the thing
         //    Enemy e = GO.GetComponent<Enemy>();
         //    if (e != null)
-        //        e.TakeDamage(20);
+        //        e.Takevalue(20);
         //}
         RemoveHighlightTargets();
     }

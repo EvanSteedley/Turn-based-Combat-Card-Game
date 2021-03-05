@@ -11,7 +11,7 @@ public class CardHeavyHand : Card
     void Start()
     {
         id = 6;
-        damage = 50;
+        value = 50;
         mana = 2;
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
@@ -31,7 +31,7 @@ public class CardHeavyHand : Card
         {
             Enemy e = GO.GetComponent<Enemy>();
             if (e != null)
-                e.TakeDamage(damage);
+                e.TakeDamage(value);
         }
         RemoveHighlightTargets();
         ClearSelections();

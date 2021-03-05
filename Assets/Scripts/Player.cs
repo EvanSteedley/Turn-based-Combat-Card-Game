@@ -10,11 +10,15 @@ public class Player : MonoBehaviour
     int health = 100;
     int maxHealth = 100;
     //The Player's "actual" mana stat; determines how much mana is restored at the beginning of each turn
-    public int startingMana = 5;
+    public int maxMana = 5;
     //The Player's mana, for casting cards on the current turn.
-    public int mana;
+    public int mana = 5;
+    //Editable defense stat so that cards can add to defense
+    public int defense = 0;
     //Currently, just how much the "Attack" card does.  Later, may be a multiplier for the damage dealt by each card?
     int damage = 20;
+    //hand size
+    int handSize = 0;
     //Reference to the object with the Turns class, which controls when turns are ready.
     [SerializeField]
     public Turns t;
@@ -82,7 +86,7 @@ public class Player : MonoBehaviour
 
         t = FindObjectOfType<Turns>();
 
-        mana = startingMana;
+        mana = maxMana;
         //This will need to be changed if there are multiple enemies.
         //e = FindObjectOfType<Enemy>();
         card = FindObjectOfType<CardSelection>();
@@ -120,65 +124,7 @@ public class Player : MonoBehaviour
     }
 
 
-    //No longer used; replaced by cards!
-
-    //public void AttackButtonPress()
-    //{
-    //    //"StartCoroutine" is necessary when you need a function to wait a certain amount of time before finishing.
-    //    //You can think of it as starting a thread, and then waiting for that thread to finish before executing the following lines.
-    //    //The "wait" methods only work inside of the Coroutine methods, which can be identified by the return type of "IEnumerator."
-    //    //The "AttackButtonPress" method is necessary because UnityEvents (EX: the Button's OnClick event) cannot trigger IEnumerator methods.
-    //    //This is because the IEnumerator/Coroutine methods must be started by StartCoroutine().
-    //    StartCoroutine(Attack());
-    //}
-    //public IEnumerator Attack()
-    //{
-        
-    //    int manaCost = 1;
-        
-    //    if (t.PlayerTurn && !dead && mana >= manaCost)
-    //    {
-    //        //This "disables" the buttons, so the 'animation' can play.  If the buttons weren't disabled,
-    //        //then the Player could spam the button, and glitch out the animation.
-    //        AttackButton.interactable = false;
-    //        BuffButton.interactable = false;
-    //        EndTurnButton.interactable = false;
-
-    //        //"Using" mana.
-    //        mana -= manaCost;
-    //        //Updates the UI mana value
-    //        ManaValue.text = mana.ToString();
-    //        //This is the "animation."   This is not a good way to do animation.
-
-    //        //Unity has built-in Animator components, but they take time to set up.
-    //        anim.SetTrigger("PlayerAttack");
-    //        //this.transform.Translate(new Vector3(1f, 0f, 0f));
-    //        //This is a "return" for an IEnumerator, however it doesn't actually end the method like a normal return.
-    //        //Instead, this will call the EnemyDelay() method, and then wait for it to finish!
-    //        yield return StartCoroutine(t.EnemyDelay());
-    //        //this.transform.Translate(new Vector3(-1f, 0f, 0f));
-
-
-    //        e.TakeDamage(damage);
-    //        anim.SetTrigger("PlayerAttack");
-
-    //        //If there are still enemies alive, it's still the Player's Turn, and the Player has enough mana, then turn the buttons back on.
-    //        int enemiesAlive = t.EnemiesAlive();
-    //        if (mana >= 1 && t.PlayerTurn && enemiesAlive > 0)
-    //            AttackButton.interactable = true;
-    //        if(mana >= 2 && t.PlayerTurn && enemiesAlive > 0)
-    //            BuffButton.interactable = true;
-    //        if(enemiesAlive > 0)
-    //            EndTurnButton.interactable = true;
-
-    //        //If all enemies are dead, Zoom the camera out.
-    //        if (enemiesAlive == 0)
-    //            t.CamZoomOut();
-    //    }
-    //    //This is an empty return for an IEnumerator method.  It does not wait for anything.
-    //    yield return null;
-
-    //}
+    
 
     //Called whenever the Player takes damage from any source
     public void TakeDamage(int d)
@@ -194,7 +140,7 @@ public class Player : MonoBehaviour
             rb.AddForce(new Vector3(-500f, 400f, 0f));
             rb.AddTorque(new Vector3(5f, 50f, 35f));
         }
-        //health -= (d - defense);
+        d -= defense;
         health -= d;
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
@@ -208,38 +154,26 @@ public class Player : MonoBehaviour
         HealthValue.text = health.ToString();
     }
 
-    //No longer used
+    public void BuffDefense(int d)
+    {
+        defense += d;
+        PlayerDefenseValue.text = defense.ToString();
+    }
 
-    ////This method and its IEnumerator Buff() method are similar to the Attack's.
-    //public void BuffButtonPressed()
-    //{
-    //    StartCoroutine(Buff());
-    //}
+    public void BuffHealth(int d)
+    {
+        maxHealth += d;
+        health += d;
+        SliderHealth.value = health;
+        HealthValue.text = health.ToString();
+    }
 
-    //public IEnumerator Buff()
-    //{
-    //    int manaCost = 2;
-    //    if (t.PlayerTurn && !dead && mana >= manaCost)
-    //    {
-    //        AttackButton.interactable = false;
-    //        BuffButton.interactable = false;
-    //        EndTurnButton.interactable = false;
-    //        mana -= manaCost;
-    //        ManaValue.text = mana.ToString();
-    //        this.transform.Translate(new Vector3(1f, 0f, 0f));
-    //        yield return StartCoroutine(t.EnemyDelay());
-    //        this.transform.Translate(new Vector3(-1f, 0f, 0f));
-    //        int enemiesAlive = t.EnemiesAlive();
-    //        if(mana >= 1 && t.PlayerTurn && enemiesAlive > 0)
-    //            AttackButton.interactable = true;
-    //        if(mana >= 2 && t.PlayerTurn && enemiesAlive > 0)
-    //            BuffButton.interactable = true;
-    //        if (enemiesAlive > 0)
-    //            EndTurnButton.interactable = true;
-    //        damage += 30;
-    //        DamageValue.text = damage.ToString();
-    //    }
-    //}
+    public void BuffMana(int d)
+    {
+        maxMana += d;
+        ManaValue.text = mana.ToString();
+    }
+
 
     public void EndTurnButtonPressed()
     {
@@ -259,9 +193,10 @@ public class Player : MonoBehaviour
     public void StartTurn() 
     {
         //Reset mana to the base stat & update the GUI
-        mana = startingMana;
+        mana = maxMana;
         ManaValue.text = mana.ToString();
         ResetHand();
+        //UpdateHand();
 
         //Re-enable buttons if the cost can be afforded.
         //if (mana >= 1)
@@ -333,6 +268,15 @@ public class Player : MonoBehaviour
 
     }
 
+    public void UpdateHand() //center = 1, 2.2, -3.2, size of card = abour 4.3 size, will cover an area of 6
+    {
+        handSize = Hand.Count;
+        for (int i=0; i<handSize; i++)
+        {
+            Hand[0].transform.localPosition = new Vector3(0f, 0f, 5f);
+        }
+    }
+
     //Called at the beginning of each turn
     public void ResetHand()
     {
@@ -376,6 +320,98 @@ public class Player : MonoBehaviour
         CS.Selected.GetComponent<SelectionGO>().DeselectClicked();
     }
 
+    //No longer used
+
+    ////This method and its IEnumerator Buff() method are similar to the Attack's.
+    //public void BuffButtonPressed()
+    //{
+    //    StartCoroutine(Buff());
+    //}
+
+    //public IEnumerator Buff()
+    //{
+    //    int manaCost = 2;
+    //    if (t.PlayerTurn && !dead && mana >= manaCost)
+    //    {
+    //        AttackButton.interactable = false;
+    //        BuffButton.interactable = false;
+    //        EndTurnButton.interactable = false;
+    //        mana -= manaCost;
+    //        ManaValue.text = mana.ToString();
+    //        this.transform.Translate(new Vector3(1f, 0f, 0f));
+    //        yield return StartCoroutine(t.EnemyDelay());
+    //        this.transform.Translate(new Vector3(-1f, 0f, 0f));
+    //        int enemiesAlive = t.EnemiesAlive();
+    //        if(mana >= 1 && t.PlayerTurn && enemiesAlive > 0)
+    //            AttackButton.interactable = true;
+    //        if(mana >= 2 && t.PlayerTurn && enemiesAlive > 0)
+    //            BuffButton.interactable = true;
+    //        if (enemiesAlive > 0)
+    //            EndTurnButton.interactable = true;
+    //        damage += 30;
+    //        DamageValue.text = damage.ToString();
+    //    }
+    //}
+
+    //No longer used; replaced by cards!
+
+    //public void AttackButtonPress()
+    //{
+    //    //"StartCoroutine" is necessary when you need a function to wait a certain amount of time before finishing.
+    //    //You can think of it as starting a thread, and then waiting for that thread to finish before executing the following lines.
+    //    //The "wait" methods only work inside of the Coroutine methods, which can be identified by the return type of "IEnumerator."
+    //    //The "AttackButtonPress" method is necessary because UnityEvents (EX: the Button's OnClick event) cannot trigger IEnumerator methods.
+    //    //This is because the IEnumerator/Coroutine methods must be started by StartCoroutine().
+    //    StartCoroutine(Attack());
+    //}
+    //public IEnumerator Attack()
+    //{
+
+    //    int manaCost = 1;
+
+    //    if (t.PlayerTurn && !dead && mana >= manaCost)
+    //    {
+    //        //This "disables" the buttons, so the 'animation' can play.  If the buttons weren't disabled,
+    //        //then the Player could spam the button, and glitch out the animation.
+    //        AttackButton.interactable = false;
+    //        BuffButton.interactable = false;
+    //        EndTurnButton.interactable = false;
+
+    //        //"Using" mana.
+    //        mana -= manaCost;
+    //        //Updates the UI mana value
+    //        ManaValue.text = mana.ToString();
+    //        //This is the "animation."   This is not a good way to do animation.
+
+    //        //Unity has built-in Animator components, but they take time to set up.
+    //        anim.SetTrigger("PlayerAttack");
+    //        //this.transform.Translate(new Vector3(1f, 0f, 0f));
+    //        //This is a "return" for an IEnumerator, however it doesn't actually end the method like a normal return.
+    //        //Instead, this will call the EnemyDelay() method, and then wait for it to finish!
+    //        yield return StartCoroutine(t.EnemyDelay());
+    //        //this.transform.Translate(new Vector3(-1f, 0f, 0f));
+
+
+    //        e.TakeDamage(damage);
+    //        anim.SetTrigger("PlayerAttack");
+
+    //        //If there are still enemies alive, it's still the Player's Turn, and the Player has enough mana, then turn the buttons back on.
+    //        int enemiesAlive = t.EnemiesAlive();
+    //        if (mana >= 1 && t.PlayerTurn && enemiesAlive > 0)
+    //            AttackButton.interactable = true;
+    //        if(mana >= 2 && t.PlayerTurn && enemiesAlive > 0)
+    //            BuffButton.interactable = true;
+    //        if(enemiesAlive > 0)
+    //            EndTurnButton.interactable = true;
+
+    //        //If all enemies are dead, Zoom the camera out.
+    //        if (enemiesAlive == 0)
+    //            t.CamZoomOut();
+    //    }
+    //    //This is an empty return for an IEnumerator method.  It does not wait for anything.
+    //    yield return null;
+
+    //}
     public void LoadTileScene()
     {
         SceneManager.LoadScene("TileMovement");

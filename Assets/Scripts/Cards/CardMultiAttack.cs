@@ -11,7 +11,7 @@ public class CardMultiAttack : Card
     void Start()
     {
         id = 2;
-        damage = 20;
+        value = 20;
         mana = 3;
         numberOfTargets = 3;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
@@ -31,7 +31,7 @@ public class CardMultiAttack : Card
         {
             Enemy e = GO.GetComponent<Enemy>();
             if (e != null)
-                e.TakeDamage(damage);
+                e.TakeDamage(value);
         }
         RemoveHighlightTargets();
         ClearSelections();
