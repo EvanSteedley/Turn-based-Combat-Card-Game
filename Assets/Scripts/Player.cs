@@ -195,8 +195,8 @@ public class Player : MonoBehaviour
         //Reset mana to the base stat & update the GUI
         mana = maxMana;
         ManaValue.text = mana.ToString();
-        ResetHand();
-        //UpdateHand();
+        //ResetHand();
+        UpdateHand();
 
         //Re-enable buttons if the cost can be afforded.
         //if (mana >= 1)
@@ -270,10 +270,13 @@ public class Player : MonoBehaviour
 
     public void UpdateHand() //center = 1, 2.2, -3.2, size of card = abour 4.3 size, will cover an area of 6
     {
-        handSize = Hand.Count;
+        handSize = Hand.Count; // currently 0 for some reason?
+        Debug.Log("In update hand");
+        Debug.Log(handSize);
         for (int i=0; i<handSize; i++)
         {
             Hand[0].transform.localPosition = new Vector3(0f, 0f, 5f);
+            Debug.Log("In for loop at" + i);
         }
     }
 
