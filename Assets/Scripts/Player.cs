@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public int defense = 0;
     //Currently, just how much the "Attack" card does.  Later, may be a multiplier for the damage dealt by each card?
     int damage = 20;
+    //hand size
+    int handSize = 0;
     //A reference to the enemy.  Needs to be updated if fighting multiple enemies - Or maybe set to the "Selection"?
     [SerializeField]
     Enemy e;
@@ -179,6 +181,7 @@ public class Player : MonoBehaviour
         mana = maxMana;
         ManaValue.text = mana.ToString();
         ResetHand();
+        //UpdateHand();
 
         //Re-enable buttons if the cost can be afforded.
         //if (mana >= 1)
@@ -248,6 +251,15 @@ public class Player : MonoBehaviour
         //This is an empty return for an IEnumerator method.  It does not wait for anything.
         yield return null;
 
+    }
+
+    public void UpdateHand() //center = 1, 2.2, -3.2, size of card = abour 4.3 size, will cover an area of 6
+    {
+        handSize = Hand.Count;
+        for (int i=0; i<handSize; i++)
+        {
+            Hand[0].transform.localPosition = new Vector3(0f, 0f, 5f);
+        }
     }
 
     //Called at the beginning of each turn
