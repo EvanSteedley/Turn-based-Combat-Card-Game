@@ -15,12 +15,13 @@ public class Turns : MonoBehaviour
     [SerializeField]
     float delayBetweenTurns = .5f;
     //For changing the camera location when one side loses.
-    GameObject cam;
+    Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        cam = this.gameObject;
+        p = FindObjectOfType<Player>();
+        cam = FindObjectOfType<Camera>();
         //All enemies in the scene are added to the list of active enemies.
         Enemy[] enemiesList = FindObjectsOfType<Enemy>();
         foreach (Enemy e in enemiesList)
