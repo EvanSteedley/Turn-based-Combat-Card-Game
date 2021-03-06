@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,19 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     public void PlayGame()
     {
-        SceneManager.LoadScene("Sample Combat");
+        StartCoroutine(GetMyRoutine());
+        
         
     }
 
+    private IEnumerator GetMyRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("Sample Combat");
+    }
+
     // Update is called once per frame
-   public void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }
