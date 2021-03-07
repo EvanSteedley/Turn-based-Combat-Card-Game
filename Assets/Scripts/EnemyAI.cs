@@ -175,10 +175,6 @@ public class EnemyAI : MonoBehaviour
             // Loop over children nodes
             for (int j = 0; j < 4; j++)
             {
-                //if (j == 0) neighborNode = leftNode;
-                //if (j == 0) neighborNode = rightNode;
-                //if (j == 0) neighborNode = upNode;
-                //if (j == 0) neighborNode = downNode;
 
                 if (j == 0) neighborNode = leftNode;
                 if (j == 1) neighborNode = rightNode;
@@ -191,7 +187,7 @@ public class EnemyAI : MonoBehaviour
                 if (neighborNode.x <= xRightBound && neighborNode.x >= xLeftBound && neighborNode.y <= yTopBound && neighborNode.y >= yBottomBound)
                 {
                     // Exclude child node if it is in closedList (i.e. already traversed)
-                    if (closedList.Any(t => t.x != neighborNode.x && t.y != neighborNode.y))
+                    if (closedList.Any(t => t.x != neighborNode.x || t.y != neighborNode.y))
                     {
                         // If child node is already in openList, 
                         // compare child G value with G values of openList members
