@@ -226,7 +226,7 @@ public class EnemyAI : MonoBehaviour
                 EnemyMovement.MoveLeft();
             else if (((pathy - y2) == 1))
                 EnemyMovement.MoveUp();
-            else if ((pathy - y2) == 1)
+            else if ((pathy - y2) == - 1)
                 EnemyMovement.MoveDown();
             x2 = EnemyMovement.currentTile.x; //since we already have the component assigned
             y2 = EnemyMovement.currentTile.y;
