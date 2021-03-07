@@ -92,8 +92,8 @@ public class EnemyAI : MonoBehaviour
         endNode.G = 0;
         endNode.H = 0;
 
-        int xStart = player.GetComponentInParent<Movement>().currentTile.x;
-        int yStart = player.GetComponentInParent<Movement>().currentTile.y;
+        int xStart = PlayerMovement.currentTile.x;
+        int yStart = PlayerMovement.currentTile.y;
         int xEnd = endNode.X;
         int yEnd = endNode.Y;
 
@@ -213,8 +213,8 @@ public class EnemyAI : MonoBehaviour
 
         int pathx;
         int pathy;
-        int x2 = GetComponentInParent<Movement>().currentTile.x; //x coordinates of the enemy's current position
-        int y2 = GetComponentInParent<Movement>().currentTile.y; //y coordinates of the enemy's current position 
+        int x2 = EnemyMovement.currentTile.x; //x coordinates of the enemy's current position
+        int y2 = EnemyMovement.currentTile.y; //y coordinates of the enemy's current position 
 
         for (int i = 0; i < path.Count; i++)
         {
