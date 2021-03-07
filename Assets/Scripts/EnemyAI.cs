@@ -13,7 +13,8 @@ public class EnemyAI : MonoBehaviour
     Player player;
     [SerializeField]
     Turns t;
-    Movement EnemyMovement, PlayerMovement; 
+    Movement EnemyMovement;
+    Movement PlayerMovement;
 
 
     // Start is called before the first frame update
@@ -94,16 +95,18 @@ public class EnemyAI : MonoBehaviour
 
         int xStart = PlayerMovement.currentTile.x;
         int yStart = PlayerMovement.currentTile.y;
-        int xEnd =  EnemyMovement.currentTile.x;
-        int yEnd =  EnemyMovement.currentTile.y;
+        Debug.Log("xStart: " + xStart + "\nyStart: " + yStart);
+        int xEnd = EnemyMovement.currentTile.x;
+        int yEnd = EnemyMovement.currentTile.y;
 
-        
+
+
 
         Tile currentNode;
         Tile neighborNode;
 
         //while (openList.Any()) //???
-        while (openList.Any())
+        while (openList.Count > 0)
         {
             // Loop over all openlist elements to identify node with min F as currentNode
             currentNode = openList[0];
@@ -122,9 +125,15 @@ public class EnemyAI : MonoBehaviour
             // all the way to startNode; append parent nodes to list "path"
             if (currentNode.x == xEnd && currentNode.y == yEnd)
             {
-                while (currentNode.x != xStart && currentNode.y != yStart)
+                Debug.Log("CurrentNode X:" + currentNode.x); 
+                Debug.Log("CurrentNode Y:" + currentNode.y);
+                Debug.Log("OpenList count: " + openList.Count());
+                while (currentNode.x != xStart && currentNode.y != yStart && currentNode != null)
                 {
+                    Debug.Log("CurrentNode: " + currentNode);
                     path.Add(currentNode);  //appending to path - the nodes are Tiles - the enemy will travel this path
+                    if (currentNode.Parent == null)
+                        break;
                     currentNode = currentNode.Parent;
                 }
             }
@@ -215,9 +224,9 @@ public class EnemyAI : MonoBehaviour
         int pathy;
         int x2 = EnemyMovement.currentTile.x; //x coordinates of the enemy's current position
         int y2 = EnemyMovement.currentTile.y; //y coordinates of the enemy's current position 
-
         for (int i = 0; i < path.Count; i++)
         {
+            Debug.Log("Iteration: " + i);
             pathx = path[i].x;
             pathy = path[i].y;
             if ((pathx - x2) == 1)

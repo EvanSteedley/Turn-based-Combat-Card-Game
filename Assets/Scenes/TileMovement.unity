@@ -891,13 +891,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 820851280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7d6b3d095089045854c1ed8f688e49, type: 3}
+  m_Script: {fileID: 11500000, guid: cdb98e5ea815df64d8d4af95f95b3776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   t: {fileID: 0}
-  EnemyDefenseValue: {fileID: 0}
-  dead: 0
-  movesLeft: 2
 --- !u!114 &820851282 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7941235704298702883, guid: 429188f3ef7a09640bdd9d52d8c155b3,

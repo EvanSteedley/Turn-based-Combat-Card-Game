@@ -33,7 +33,6 @@ public class Tile : MonoBehaviour
         //Card.Action(o);
     }
 
-  
     public int F { get; set; }
     public int G { get; set; }
     public int H { get; set; }
