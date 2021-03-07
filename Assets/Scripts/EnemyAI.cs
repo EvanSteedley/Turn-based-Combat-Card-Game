@@ -94,8 +94,8 @@ public class EnemyAI : MonoBehaviour
 
         int xStart = PlayerMovement.currentTile.x;
         int yStart = PlayerMovement.currentTile.y;
-        int xEnd = endNode.x;
-        int yEnd = endNode.y;
+        int xEnd =  EnemyMovement.currentTile.x;
+        int yEnd =  EnemyMovement.currentTile.y;
 
         
 
