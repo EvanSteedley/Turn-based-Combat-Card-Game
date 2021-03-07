@@ -218,7 +218,7 @@ public class EnemyAI : MonoBehaviour
 
                             for (int k = 0; k < openList.Count; k++)
                             {
-                                if ((neighborNode.G > openList[k].G) && openList[k] != 0)) childFlag = false;
+                                if ((neighborNode.G > openList[k].G) && openList[k].G != 0) childFlag = false;
                             }
                         }
 
