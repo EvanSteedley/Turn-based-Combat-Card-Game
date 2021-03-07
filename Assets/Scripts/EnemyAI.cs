@@ -10,10 +10,10 @@ public class EnemyAI : MonoBehaviour
 {
     //Reference to the Player - will probably only need one of these.
     [SerializeField]
-    Player p;
+    Player player;
     [SerializeField]
     Turns t;
-    Movement movement; 
+    Movement EnemyMovement; 
 
 
     // Start is called before the first frame update
@@ -70,6 +70,9 @@ public class EnemyAI : MonoBehaviour
         var closedList = new List<Tile>();
 
         var path = new List<Tile>(); //append to this every list time for the movement
+        EnemyMovement = this.GetComponent<Movement>();
+        Tile startNode = EnemyMovement.currentTile;
+        Tile endNode = player.GetComponent<movement>().currentTile;
 
         openList.Add(startNode);
 
@@ -88,8 +91,8 @@ public class EnemyAI : MonoBehaviour
         endNode.G = 0;
         endNode.H = 0;
 
-        int xStart = player.GetComponentInParent<Movement>().currentTile.transform.position.x;
-        int yStart = player.GetComponentInParent<Movement>().currentTile.transform.position.z;
+        int xStart = player.GetComponentInParent<Movement>().currentTile.x;
+        int yStart = player.GetComponentInParent<Movement>().currentTile.y;
         int xEnd = endNode.X;
         int yEnd = endNode.Y;
 
@@ -209,23 +212,23 @@ public class EnemyAI : MonoBehaviour
 
         int pathx;
         int pathy;
-        x2 = GetComponentInParent<Movement>().currentTile.transform.position.x; //x coordinates of the enemy's current position
-        y2 = GetComponentInParent<Movement>().currentTile.transform.position.z; //y coordinates of the enemy's current position 
+        int x2 = GetComponentInParent<Movement>().currentTile.transform.position.x; //x coordinates of the enemy's current position
+        int y2 = GetComponentInParent<Movement>().currentTile.transform.position.z; //y coordinates of the enemy's current position 
 
         for (int i = 0; i < path.Count; i++)
         {
             pathx = path[i].x;
             pathy = path[i].y;
             if ((pathx - x2) == 1)
-                movement.MoveRight();
+                EnemyMovement.MoveRight();
             else if ((pathx - x2) == -1)
-                movement.MoveLeft();
+                EnemyMovement.MoveLeft();
             else if (((pathy - y2) == 1))
-                movement.MoveUp();
+                EnemyMovement.MoveUp();
             else if ((pathy - y2) == 1)
-                movement.MoveDown();
-            x2 = GetComponentInParent<Movement>().currentTile.transform.position.x;
-            y2 = GetComponentInParent<Movement>().currentTile.transform.position.z;
+                EnemyMovement.MoveDown();
+            x2 = GetComponentInParent<Movement>().currentTile.x;
+            y2 = GetComponentInParent<Movement>().currentTile.y;
         }
 
     }
