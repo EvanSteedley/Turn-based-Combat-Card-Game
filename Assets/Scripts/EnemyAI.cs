@@ -83,8 +83,8 @@ public class EnemyAI : MonoBehaviour
 
         int xRightBound = TMG.tileWidth;
         int xLeftBound = 0;
-        int yTopBound = 0;
-        int yBottomBound = TMG.tileLength;
+        int yTopBound = TMG.tileLength;
+        int yBottomBound = 0;
 
         startNode.F = 0;
         startNode.G = 0;
@@ -125,7 +125,7 @@ public class EnemyAI : MonoBehaviour
             // all the way to startNode; append parent nodes to list "path"
             if (currentNode.x == xEnd && currentNode.y == yEnd)
             {
-                Debug.Log("CurrentNode X:" + currentNode.x); 
+                Debug.Log("CurrentNode X:" + currentNode.x);
                 Debug.Log("CurrentNode Y:" + currentNode.y);
                 Debug.Log("OpenList count: " + openList.Count());
                 while (currentNode.x != xStart && currentNode.y != yStart && currentNode != null)
@@ -159,18 +159,32 @@ public class EnemyAI : MonoBehaviour
             //downNode.Y = currentNode.Y - 1;
             //downNode.Parent = currentNode;
 
+            Tile leftNode = null;
+            Tile rightNode = null;
+            Tile downNode = null;
+            Tile upNode = null;
 
-            Tile leftNode = tileGrid[currentNode.x - 1, currentNode.y];
-            leftNode.Parent = currentNode;
+            if (currentNode.x > 0)
+            {
+                leftNode = tileGrid[currentNode.x - 1, currentNode.y];
+                leftNode.Parent = currentNode;
+            }
+            if (currentNode.x < TMG.tileWidth - 1)
+            {
+                rightNode = tileGrid[currentNode.x + 1, currentNode.y];
+                rightNode.Parent = currentNode;
+            }
 
-            Tile rightNode = tileGrid[currentNode.x + 1, currentNode.y];
-            rightNode.Parent = currentNode;
-
-            Tile upNode = tileGrid[currentNode.x, currentNode.y + 1];
-            upNode.Parent = currentNode;
-
-            Tile downNode = tileGrid[currentNode.x, currentNode.y - 1];
-            downNode.Parent = currentNode;
+            if (currentNode.y < TMG.tileLength - 1)
+            {
+                upNode = tileGrid[currentNode.x, currentNode.y + 1];
+                upNode.Parent = currentNode;
+            }
+            if (currentNode.y > 0)
+            {
+                downNode = tileGrid[currentNode.x, currentNode.y - 1];
+                downNode.Parent = currentNode;
+            }
 
             // Loop over children nodes
             for (int j = 0; j < 4; j++)
@@ -180,6 +194,10 @@ public class EnemyAI : MonoBehaviour
                 if (j == 1) neighborNode = rightNode;
                 if (j == 2) neighborNode = upNode;
                 else neighborNode = downNode;
+
+                //If neighborNode is null, it was out of bounds - need to break out of the loop.
+                if (neighborNode == null)
+                    break;
 
                 bool childFlag = true;
 
@@ -206,10 +224,10 @@ public class EnemyAI : MonoBehaviour
 
                         // If child node has not been traversed before,
                         // append to openList
-                        else
-                        {
+                        //else
+                        //{
                             if (childFlag == true) openList.Add(neighborNode);
-                        }
+                        //}
 
                     }
                 }
