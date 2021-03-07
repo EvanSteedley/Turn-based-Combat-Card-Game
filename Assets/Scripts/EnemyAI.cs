@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
 {
     //Reference to the Player - will probably only need one of these.
     [SerializeField]
-    Player p;
+    Player player;
     [SerializeField]
     Turns t;
     Movement EnemyMovement;
@@ -72,9 +72,9 @@ public class EnemyAI : MonoBehaviour
 
         var path = new List<Tile>(); //append to this every list time for the movement
         EnemyMovement = this.GetComponent<Movement>();
-        Tile startNode = EnemyMovement.currentTile;
         PlayerMovement = player.GetComponent<Movement>();
-        Tile endNode = PlayerMovement.currentTile;
+        Tile startNode = EnemyMovement.currentTile;
+        Tile endNode =  PlayerMovement.currentTile;
 
         openList.Add(startNode);
 
@@ -230,14 +230,14 @@ public class EnemyAI : MonoBehaviour
             pathx = path[i].x;
             pathy = path[i].y;
             if ((pathx - x2) == 1)
-                movement.MoveRight();
+                EnemyMovement.MoveRight();
             else if ((pathx - x2) == -1)
-                movement.MoveLeft();
+                EnemyMovement.MoveLeft();
             else if (((pathy - y2) == 1))
                 EnemyMovement.MoveUp();
-            else if ((pathy - y2) == -1)
+            else if ((pathy - y2) == - 1)
                 EnemyMovement.MoveDown();
-            x2 = EnemyMovement.currentTile.x;
+            x2 = EnemyMovement.currentTile.x; //since we already have the component assigned
             y2 = EnemyMovement.currentTile.y;
         }
 
