@@ -1,53 +1,24 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-u
 
 
 public class EnemyAI : MonoBehaviour
 {
-	{
     //Reference to the Player - will probably only need one of these.
     [SerializeField]
-    Enemy e;
-    [SerializeField] 
     Player p;
     [SerializeField]
     Turns t;
-    [SerializeField]
-    Text EnemyAttackValue;
-    [SerializeField]
-    Text EnemyDefenseValue;
-    //Enemy's health; if <= 0, they die.
-    int health = 100;
-    //How much damage the Enemy will do on its turn
-    int damage = 10;
-    public bool dead = false;
-    int defense = 0;
-    Player p = FindObjectOfType<Player>();
-    Enemy e = FindObjectOfType<Enemy>();
 
-
-    enum states
-    {
-
-        Fight, Defend, Buff
-
-    }
-
-    //UI elements.  Will need to be re-done if multiple Enemies.
-    [SerializeField]
-    Slider SliderHealth;
-    [SerializeField]
-    Text HealthValue;
 
     // Start is called before the first frame update
     void Start()
     {
         p = FindObjectOfType<Player>();
-        SliderHealth.value = health;
     }
 
     // Update is called once per frame
@@ -60,58 +31,6 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    public void TakeDamage(int d)
-    {
-        if (d - defense >= health)
-
-        {
-            dead = true;
-            //Ragdoll effect!
-            Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
-            rb.AddForce(new Vector3(500f, 400f, 0f));
-            rb.AddTorque(new Vector3(5f, 50f, 35f));
-        }
-        if (defense < d)
-            health -= (d - defense);
-        defense = 0;
-        if (health < 0)
-        {
-            health = 0;
-        }
-        SliderHealth.value = health;
-        HealthValue.text = health.ToString();
-    }
-
-    public void Attack()
-    {
-        p.TakeDamage(damage);
-        //This is controlled by the Turns class now.
-        //t.PlayerTurn = true;
-       
-
-    }
-
-
-
-    public void EnemyBehaviour()
-    {
-
-        System.Random random = new System.Random();
-        int num = random.Next(System.Enum.GetNames(typeof(states)).Length);
-        if (num == (int)states.Fight)
-        {
-            Attack();
-        }
-
-        if (num == (int)states.Defend)
-        {
-            Defend(1);
-        }
-
-        if (num == (int)states.Buff)
-        {
-            Buff();
-        }
 
         // ---------------------------------------------
         // ATTACK WHEN PLAYER AND ENEMY ARE CLOSE ENOUGH
@@ -138,39 +57,28 @@ public class EnemyAI : MonoBehaviour
         // 3. Find standard deviation of (x,y,z) positions from (xAvg,yAvg,zAvg): 
         // stdDev = sqrt(sum( (x-xAvg)^2 + (y-yAvg)^2 + (z-zAvg)^2 ))
         // if stdDev < 5: then attack
-    }
-
-    public void Defend(int d)
-    {
-        defense += 20;
-        EnemyDefenseValue.text = defense.ToString();
-
-    }
-
-    public void Buff()
-    {
-
-        damage += 20;
-        EnemyAttackValue.text = damage.ToString();
-    }
+   
 
 
     public void AStar(Tile startNode, Tile endNode)
     {
         //x and y values in the grid as x and y 
         //Tile tile1 tile1.x and tile1.y gives the location in the Tile Grid
-       
-        var openList = new List<Tile>;
-        var closedList = new List<Tile>;
 
-        var path = new List<Tile>;
+        var openList = new List<Tile>();
+        var closedList = new List<Tile>();
+
+        var path = new List<Tile>();
 
         openList.Add(startNode);
 
-        int xRightBound = ;
-        int xLeftBound = ;
-        int yTopBound = ;
-        int yBottomBound = ;
+        TileMapGenerator TMG = FindObjectOfType<TileMapGenerator>();
+        Tile[,] tileGrid = TMG.Tiles;
+
+        int xRightBound = TMG.tileWidth;
+        int xLeftBound = 0;
+        int yTopBound = 0;
+        int yBottomBound = TMG.tileLength;
 
         startNode.F = 0;
         startNode.G = 0;
@@ -186,12 +94,13 @@ public class EnemyAI : MonoBehaviour
 
         Tile currentNode;
         Tile neighborNode;
-        
+
+        //while (openList.Any()) //???
         while (openList.Any())
         {
             // Loop over all openlist elements to identify node with min F as currentNode
             currentNode = openList[0];
-            for(int i = 0; i < openList.Count; i++)
+            for (int i = 0; i < openList.Count; i++)
             {
                 if (openList[i].F < currentNode.F) currentNode = openList[i];
             }
@@ -206,41 +115,59 @@ public class EnemyAI : MonoBehaviour
             // all the way to startNode; append parent nodes to list "path"
             if (currentNode.X == xEnd && currentNode.Y == yEnd)
             {
-                while(currentNode.X != xStart && currentNode.Y != yStart)
+                while (currentNode.X != xStart && currentNode.Y != yStart)
                 {
                     path.Add(currentNode);
-                    currentNode = currentNode.Parent
+                    currentNode = currentNode.Parent;
                 }
             }
 
             // Generate children nodes: left, right, up, down
-            Tile leftNode;
-            leftNode.X = currentNode.X - 1;
-            leftNode.Y = currentNode.Y;
+            //Tile leftNode;
+            //leftNode.X = currentNode.X - 1;
+            //leftNode.Y = currentNode.Y;
+            //leftNode.Parent = currentNode;
+
+            //Tile rightNode;
+            //rightNode.X = currentNode.X + 1;
+            //rightNode.Y = currentNode.Y;
+            //rightNode.Parent = currentNode;
+
+            //Tile upNode;
+            //upNode.X = currentNode.X;
+            //upNode.Y = currentNode.Y + 1;
+            //upNode.Parent = currentNode;
+
+            //Tile downNode;
+            //downNode.X = currentNode.X;
+            //downNode.Y = currentNode.Y - 1;
+            //downNode.Parent = currentNode;
+
+
+            Tile leftNode = tileGrid[currentNode.X - 1, currentNode.Y];
             leftNode.Parent = currentNode;
 
-            Tile rightNode;
-            rightNode.X = currentNode.X + 1;
-            rightNode.Y = currentNode.Y;
+            Tile rightNode = tileGrid[currentNode.X + 1, currentNode.Y];
             rightNode.Parent = currentNode;
 
-            Tile upNode;
-            upNode.X = currentNode.X;
-            upNode.Y = currentNode.Y + 1;
+            Tile upNode = tileGrid[currentNode.X, currentNode.Y + 1];
             upNode.Parent = currentNode;
 
-            Tile downNode;
-            downNode.X = currentNode.X;
-            downNode.Y = currentNode.Y - 1;
+            Tile downNode = tileGrid[currentNode.X, currentNode.Y - 1];
             downNode.Parent = currentNode;
 
             // Loop over children nodes
             for (int j = 0; j < 4; j++)
             {
+                //if (j == 0) neighborNode = leftNode;
+                //if (j == 0) neighborNode = rightNode;
+                //if (j == 0) neighborNode = upNode;
+                //if (j == 0) neighborNode = downNode;
+
                 if (j == 0) neighborNode = leftNode;
-                if (j == 0) neighborNode = rightNode;
-                if (j == 0) neighborNode = upNode;
-                if (j == 0) neighborNode = downNode;
+                if (j == 1) neighborNode = rightNode;
+                if (j == 2) neighborNode = upNode;
+                else neighborNode = downNode;
 
                 bool childFlag = true;
 
@@ -255,8 +182,8 @@ public class EnemyAI : MonoBehaviour
                         // If child G value is smaller, append again into openList
                         if (openList.Any(t => t.X == neighborNode.X && t.Y == neighborNode.Y))
                         {
-                            neighborNode.G = currentNode.G + Abs((currentNode.X - neighborNode.X)) + Abs((currentNode.Y - neighborNode.Y));
-                            neighborNode.H = Abs((neighborNode.X - xEnd)) + Abs((neighborNode.Y - yEnd));
+                            neighborNode.G = currentNode.G + Mathf.Abs((currentNode.X - neighborNode.X)) + Mathf.Abs((currentNode.Y - neighborNode.Y));
+                            neighborNode.H = Mathf.Abs((neighborNode.X - xEnd)) + Mathf.Abs((neighborNode.Y - yEnd));
                             neighborNode.F = neighborNode.G + neighborNode.H;
 
                             for (int k = 0; k < openList.Count; k++)
@@ -273,15 +200,13 @@ public class EnemyAI : MonoBehaviour
                         }
 
                     }
-                    }
                 }
             }
-
-
         }
 
 
     }
+
 
 }
 
