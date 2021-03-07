@@ -13,13 +13,14 @@ public class EnemyAI : MonoBehaviour
     Player p;
     [SerializeField]
     Turns t;
-    Movement movement; 
+    Movement EnemyMovement;
+    Movement PlayerMovement;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        p = FindObjectOfType<Player>();
+        player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -70,6 +71,10 @@ public class EnemyAI : MonoBehaviour
         var closedList = new List<Tile>();
 
         var path = new List<Tile>(); //append to this every list time for the movement
+        EnemyMovement = this.GetComponent<Movement>();
+        Tile startNode = EnemyMovement.currentTile;
+        PlayerMovement = player.GetComponent<Movement>();
+        Tile endNode = PlayerMovement.currentTile;
 
         openList.Add(startNode);
 
@@ -88,18 +93,20 @@ public class EnemyAI : MonoBehaviour
         endNode.G = 0;
         endNode.H = 0;
 
-        int xStart = player.GetComponentInParent<Movement>().currentTile.transform.position.x;
-        int yStart = player.GetComponentInParent<Movement>().currentTile.transform.position.z;
-        int xEnd = endNode.X;
-        int yEnd = endNode.Y;
+        int xStart = PlayerMovement.currentTile.x;
+        int yStart = PlayerMovement.currentTile.y;
+        Debug.Log("xStart: " + xStart + "\nyStart: " + yStart);
+        int xEnd = EnemyMovement.currentTile.x;
+        int yEnd = EnemyMovement.currentTile.y;
 
-        
+
+
 
         Tile currentNode;
         Tile neighborNode;
 
         //while (openList.Any()) //???
-        while (openList.Any())
+        while (openList.Count > 0)
         {
             // Loop over all openlist elements to identify node with min F as currentNode
             currentNode = openList[0];
@@ -116,11 +123,17 @@ public class EnemyAI : MonoBehaviour
 
             // If endNode is reached, construct path by tracing parent nodes backwards
             // all the way to startNode; append parent nodes to list "path"
-            if (currentNode.X == xEnd && currentNode.Y == yEnd)
+            if (currentNode.x == xEnd && currentNode.y == yEnd)
             {
-                while (currentNode.X != xStart && currentNode.Y != yStart)
+                Debug.Log("CurrentNode X:" + currentNode.x); 
+                Debug.Log("CurrentNode Y:" + currentNode.y);
+                Debug.Log("OpenList count: " + openList.Count());
+                while (currentNode.x != xStart && currentNode.y != yStart && currentNode != null)
                 {
+                    Debug.Log("CurrentNode: " + currentNode);
                     path.Add(currentNode);  //appending to path - the nodes are Tiles - the enemy will travel this path
+                    if (currentNode.Parent == null)
+                        break;
                     currentNode = currentNode.Parent;
                 }
             }
@@ -147,16 +160,16 @@ public class EnemyAI : MonoBehaviour
             //downNode.Parent = currentNode;
 
 
-            Tile leftNode = tileGrid[currentNode.X - 1, currentNode.Y];
+            Tile leftNode = tileGrid[currentNode.x - 1, currentNode.y];
             leftNode.Parent = currentNode;
 
-            Tile rightNode = tileGrid[currentNode.X + 1, currentNode.Y];
+            Tile rightNode = tileGrid[currentNode.x + 1, currentNode.y];
             rightNode.Parent = currentNode;
 
-            Tile upNode = tileGrid[currentNode.X, currentNode.Y + 1];
+            Tile upNode = tileGrid[currentNode.x, currentNode.y + 1];
             upNode.Parent = currentNode;
 
-            Tile downNode = tileGrid[currentNode.X, currentNode.Y - 1];
+            Tile downNode = tileGrid[currentNode.x, currentNode.y - 1];
             downNode.Parent = currentNode;
 
             // Loop over children nodes
@@ -175,18 +188,18 @@ public class EnemyAI : MonoBehaviour
                 bool childFlag = true;
 
                 // Exclude child node if it lies out of maze bounds - this is the array index out of bounds checking
-                if (neighborNode.X <= xRightBound && neighborNode.X >= xLeftBound && neighborNode.Y <= yTopBound && neighborNode.Y >= yBottomBound)
+                if (neighborNode.x <= xRightBound && neighborNode.x >= xLeftBound && neighborNode.y <= yTopBound && neighborNode.y >= yBottomBound)
                 {
                     // Exclude child node if it is in closedList (i.e. already traversed)
-                    if (closedList.Any(t => t.X != neighborNode.X && t.Y != neighborNode.Y))
+                    if (closedList.Any(t => t.x != neighborNode.x && t.y != neighborNode.y))
                     {
                         // If child node is already in openList, 
                         // compare child G value with G values of openList members
                         // If child G value is smaller, append again into openList
-                        if (openList.Any(t => t.X == neighborNode.X && t.Y == neighborNode.Y))
+                        if (openList.Any(t => t.x == neighborNode.x && t.y == neighborNode.y))
                         {
-                            neighborNode.G = currentNode.G + Mathf.Abs((currentNode.X - neighborNode.X)) + Mathf.Abs((currentNode.Y - neighborNode.Y));
-                            neighborNode.H = Mathf.Abs((neighborNode.X - xEnd)) + Mathf.Abs((neighborNode.Y - yEnd));
+                            neighborNode.G = currentNode.G + Mathf.Abs((currentNode.x - neighborNode.x)) + Mathf.Abs((currentNode.y - neighborNode.y));
+                            neighborNode.H = Mathf.Abs((neighborNode.x - xEnd)) + Mathf.Abs((neighborNode.y - yEnd));
                             neighborNode.F = neighborNode.G + neighborNode.H;
 
                             for (int k = 0; k < openList.Count; k++)
@@ -209,11 +222,11 @@ public class EnemyAI : MonoBehaviour
 
         int pathx;
         int pathy;
-        x2 = GetComponentInParent<Movement>().currentTile.transform.position.x; //x coordinates of the enemy's current position
-        y2 = GetComponentInParent<Movement>().currentTile.transform.position.z; //y coordinates of the enemy's current position 
-
+        int x2 = EnemyMovement.currentTile.x; //x coordinates of the enemy's current position
+        int y2 = EnemyMovement.currentTile.y; //y coordinates of the enemy's current position 
         for (int i = 0; i < path.Count; i++)
         {
+            Debug.Log("Iteration: " + i);
             pathx = path[i].x;
             pathy = path[i].y;
             if ((pathx - x2) == 1)
@@ -221,11 +234,11 @@ public class EnemyAI : MonoBehaviour
             else if ((pathx - x2) == -1)
                 movement.MoveLeft();
             else if (((pathy - y2) == 1))
-                movement.MoveUp();
-            else if ((pathy - y2) == 1)
-                movement.MoveDown();
-            x2 = GetComponentInParent<Movement>().currentTile.transform.position.x;
-            y2 = GetComponentInParent<Movement>().currentTile.transform.position.z;
+                EnemyMovement.MoveUp();
+            else if ((pathy - y2) == -1)
+                EnemyMovement.MoveDown();
+            x2 = EnemyMovement.currentTile.x;
+            y2 = EnemyMovement.currentTile.y;
         }
 
     }
