@@ -93,11 +93,11 @@ public class EnemyAI : MonoBehaviour
         endNode.G = 0;
         endNode.H = 0;
 
-        int xStart = PlayerMovement.currentTile.x;
-        int yStart = PlayerMovement.currentTile.y;
+        int xEnd = PlayerMovement.currentTile.x;
+        int yEnd = PlayerMovement.currentTile.y;
+        int xStart = EnemyMovement.currentTile.x;
+        int yStart = EnemyMovement.currentTile.y;
         Debug.Log("xStart: " + xStart + "\nyStart: " + yStart);
-        int xEnd = EnemyMovement.currentTile.x;
-        int yEnd = EnemyMovement.currentTile.y;
 
 
 
@@ -128,7 +128,7 @@ public class EnemyAI : MonoBehaviour
                 Debug.Log("CurrentNode X:" + currentNode.x); 
                 Debug.Log("CurrentNode Y:" + currentNode.y);
                 Debug.Log("OpenList count: " + openList.Count());
-                while (currentNode.x != xStart && currentNode.y != yStart && currentNode != null)
+                while ((currentNode.x != xStart || currentNode.y != yStart) && currentNode != null)
                 {
                     Debug.Log("CurrentNode: " + currentNode);
                     path.Add(currentNode);  //appending to path - the nodes are Tiles - the enemy will travel this path
@@ -200,7 +200,7 @@ public class EnemyAI : MonoBehaviour
 
                             for (int k = 0; k < openList.Count; k++)
                             {
-                                if (neighborNode.G > openList[k].G) childFlag = false;
+                                if ((neighborNode.G > openList[k].G) && openList[k] != 0)) childFlag = false;
                             }
                         }
 
