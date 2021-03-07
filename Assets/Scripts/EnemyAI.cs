@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     Player p;
     [SerializeField]
     Turns t;
+    Movement movement; 
 
 
     // Start is called before the first frame update
@@ -60,7 +61,7 @@ public class EnemyAI : MonoBehaviour
    
 
 
-    public void AStar(Tile startNode, Tile endNode)
+    public void AStar()
     {
         //x and y values in the grid as x and y 
         //Tile tile1 tile1.x and tile1.y gives the location in the Tile Grid
@@ -68,7 +69,7 @@ public class EnemyAI : MonoBehaviour
         var openList = new List<Tile>();
         var closedList = new List<Tile>();
 
-        var path = new List<Tile>();
+        var path = new List<Tile>(); //append to this every list time for the movement
 
         openList.Add(startNode);
 
@@ -87,10 +88,12 @@ public class EnemyAI : MonoBehaviour
         endNode.G = 0;
         endNode.H = 0;
 
-        int xStart = startNode.X;
-        int yStart = startNode.Y;
+        int xStart = player.GetComponentInParent<Movement>().currentTile.transform.position.x;
+        int yStart = player.GetComponentInParent<Movement>().currentTile.transform.position.z;
         int xEnd = endNode.X;
         int yEnd = endNode.Y;
+
+        
 
         Tile currentNode;
         Tile neighborNode;
@@ -117,7 +120,7 @@ public class EnemyAI : MonoBehaviour
             {
                 while (currentNode.X != xStart && currentNode.Y != yStart)
                 {
-                    path.Add(currentNode);
+                    path.Add(currentNode);  //appending to path - the nodes are Tiles - the enemy will travel this path
                     currentNode = currentNode.Parent;
                 }
             }
@@ -171,7 +174,7 @@ public class EnemyAI : MonoBehaviour
 
                 bool childFlag = true;
 
-                // Exclude child node if it lies out of maze bounds
+                // Exclude child node if it lies out of maze bounds - this is the array index out of bounds checking
                 if (neighborNode.X <= xRightBound && neighborNode.X >= xLeftBound && neighborNode.Y <= yTopBound && neighborNode.Y >= yBottomBound)
                 {
                     // Exclude child node if it is in closedList (i.e. already traversed)
@@ -204,6 +207,26 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
+        int pathx;
+        int pathy;
+        x2 = GetComponentInParent<Movement>().currentTile.transform.position.x; //x coordinates of the enemy's current position
+        y2 = GetComponentInParent<Movement>().currentTile.transform.position.z; //y coordinates of the enemy's current position 
+
+        for (int i = 0; i < path.Count; i++)
+        {
+            pathx = path[i].x;
+            pathy = path[i].y;
+            if ((pathx - x2) == 1)
+                movement.MoveRight();
+            else if ((pathx - x2) == -1)
+                movement.MoveLeft();
+            else if (((pathy - y2) == 1))
+                movement.MoveUp();
+            else if ((pathy - y2) == 1)
+                movement.MoveDown();
+            x2 = GetComponentInParent<Movement>().currentTile.transform.position.x;
+            y2 = GetComponentInParent<Movement>().currentTile.transform.position.z;
+        }
 
     }
 
