@@ -159,6 +159,12 @@ MonoBehaviour:
     type: 3}
   ObstaclePrefab: {fileID: 1390137102056294004, guid: d5e1197066c1060448cd06046f5880b2,
     type: 3}
+  ShopTileFloater: {fileID: 7664507334126936804, guid: 95bd11e5f4ae6b24c9131087bfe1c054,
+    type: 3}
+  TreasureTileFloater: {fileID: 5123614369699988851, guid: 06eb867f913e2164583bfd5125c76e73,
+    type: 3}
+  CombatTileFloater: {fileID: 9020392356970148045, guid: 87e1c6776eb086c4b8d5cbe43f81a2e9,
+    type: 3}
   PointLight: {fileID: 2091223234}
   MainCam: {fileID: 685830384}
   player: {fileID: 0}
@@ -869,13 +875,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685830382}
-  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 4.9, y: 10.71, z: 5.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &820851280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7941235704298702910, guid: 429188f3ef7a09640bdd9d52d8c155b3,
@@ -2152,7 +2158,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.178
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2

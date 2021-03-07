@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TileMovement.unity
     guid: 91c821d1a22669d46b7aa8a422e20303
+  - enabled: 1
+    path: Assets/Scenes/Treasure.unity
+    guid: 630f7fe38849df148b690c57089b601f
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 514c90601bcf64f498ad8aa6419d772a
+  - enabled: 1
+    path: Assets/Scenes/Combat.unity
+    guid: 1adaf7823ad788f44b65cbcc5609664c
   m_configObjects: {}

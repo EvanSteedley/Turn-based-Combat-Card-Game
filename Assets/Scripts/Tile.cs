@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tile : MonoBehaviour
 {
     private Card card;
-    public bool occupied;
+    public bool occupied = false;
+    public bool walkable = true;
     public int x, y;
+    public string SceneToLoad;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,21 @@ public class Tile : MonoBehaviour
         //if (e == null)
         //    p.TakeDamage(5);
         //Card.Action(o);
+        if(p != null)
+        {
+            if(SceneToLoad != "")
+            {
+                SceneManager.LoadScene(SceneToLoad);
+            }
+        }
+        else if (e != null)
+        {
+            if (card != null)
+            {
+                card.Targeter.AddSelection(e.gameObject);
+                card.Action();
+            }
+        }
     }
 
     public int F { get; set; }

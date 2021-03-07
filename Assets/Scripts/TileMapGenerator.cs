@@ -11,6 +11,9 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField] GameObject TilePrefab;
     [SerializeField] GameObject WallPrefab;
     [SerializeField] GameObject ObstaclePrefab;
+    [SerializeField] GameObject ShopTileFloater;
+    [SerializeField] GameObject TreasureTileFloater;
+    [SerializeField] GameObject CombatTileFloater;
 
     [SerializeField] Light PointLight;
     [SerializeField] Camera MainCam;
@@ -47,12 +50,13 @@ public class TileMapGenerator : MonoBehaviour
         MainCam.transform.position = new Vector3(tileWidth / 2, (tileLength + tileWidth) / 2 + 2f, tileLength / 2);
 
         //Finds the position of the tile in the middle of the bottom row
-        Transform middlepos = Tiles[tileWidth-1, tileLength/2].transform;
+        Transform middlepos = Tiles[tileWidth / 2, 0].transform;
         //Moves the Player on top of that tile
         player.transform.position = new Vector3(middlepos.position.x, player.transform.localScale.y, middlepos.transform.position.z);
         //Sets the Player's currentTile to that tile & sets occupied to true
-        player.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth - 1, tileLength / 2];
+        player.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth / 2, 0];
         player.GetComponentInParent<Movement>().currentTile.occupied = true;
+        player.transform.rotation = Quaternion.Euler(0, 180, 0);
 
         //Sets the Enemy's currentTile to the Center of the Tile grid, similar to the Player above
         Transform centerPos = Tiles[tileWidth / 2, tileLength / 2].transform;
@@ -60,9 +64,44 @@ public class TileMapGenerator : MonoBehaviour
         enemy.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth / 2, tileLength / 2];
         enemy.GetComponentInParent<Movement>().currentTile.occupied = true;
 
+        Tile middleLeft = Tiles[0, tileLength / 2];
+        Tile middleTop = Tiles[tileWidth / 2, tileLength - 1];
+        Tile middleRight = Tiles[tileWidth - 1, tileLength / 2];
+        middleLeft.occupied = true;
+        middleRight.occupied = true;
+        middleTop.occupied = true;
+        middleLeft.SceneToLoad = "Combat";
+        middleLeft.GetComponent<TileSelectable>().defaultColor = Color.red;
+        Instantiate(CombatTileFloater, middleLeft.transform);
+        middleTop.SceneToLoad = "Shop";
+        middleTop.GetComponent<TileSelectable>().defaultColor = Color.green;
+        Instantiate(ShopTileFloater, middleTop.transform);
+        middleRight.SceneToLoad = "Treasure";
+        middleRight.GetComponent<TileSelectable>().defaultColor = Color.yellow;
+        Instantiate(TreasureTileFloater, middleRight.transform);
+
+        Light TLCorner = Instantiate(PointLight);
+        TLCorner.transform.position = Tiles[0, tileLength - 1].transform.position + new Vector3(0, 0, 3);
+        TLCorner.intensity = 0.3f;
+        Light TRCorner = Instantiate(PointLight);
+        TRCorner.transform.position = Tiles[tileWidth - 1, tileLength - 1].transform.position + new Vector3(0, 0, 3);
+        TRCorner.intensity = 0.3f;
+        Light BLCorner = Instantiate(PointLight);
+        BLCorner.transform.position = Tiles[0, 0].transform.position + new Vector3(0, 0, 3);
+        BLCorner.intensity = 0.3f;
+        Light BRCorner = Instantiate(PointLight);
+        BRCorner.transform.position = Tiles[tileWidth - 1, 0].transform.position + new Vector3(0, 0, 3);
+        BRCorner.intensity = 0.3f;
+
+
         //Adjust number of obstacles based on amount of tiles
         numberOfObstacles = ((tileWidth + tileLength) / 10) + 1;
         PlaceObstacles(numberOfObstacles);
+    }
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -138,6 +177,7 @@ public class TileMapGenerator : MonoBehaviour
             {
                 //Occupies that tile, instantiates the Obstacle prefab, and places it on top of the tile.
                 Tiles[x, y].occupied = true;
+                Tiles[x, y].walkable = false;
                 GameObject obs = Instantiate(ObstaclePrefab, transform);
                 //Here, the y-value is just y instead of y/2.  For some reason, Cylinder's center (0, 0, 0) is calculated differently.
                 obs.transform.position = Tiles[x, y].transform.position + new Vector3(0f, obs.transform.localScale.y, 0f);
