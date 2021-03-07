@@ -13,13 +13,13 @@ public class EnemyAI : MonoBehaviour
     Player player;
     [SerializeField]
     Turns t;
-    Movement EnemyMovement; 
+    Movement EnemyMovement, PlayerMovement; 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        p = FindObjectOfType<Player>();
+        player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -71,8 +71,9 @@ public class EnemyAI : MonoBehaviour
 
         var path = new List<Tile>(); //append to this every list time for the movement
         EnemyMovement = this.GetComponent<Movement>();
+        PlayerMovement = player.GetComponent<Movement>();
         Tile startNode = EnemyMovement.currentTile;
-        Tile endNode = player.GetComponent<movement>().currentTile;
+        Tile endNode =  PlayerMovement.currentTile;
 
         openList.Add(startNode);
 
@@ -212,8 +213,8 @@ public class EnemyAI : MonoBehaviour
 
         int pathx;
         int pathy;
-        int x2 = GetComponentInParent<Movement>().currentTile.transform.position.x; //x coordinates of the enemy's current position
-        int y2 = GetComponentInParent<Movement>().currentTile.transform.position.z; //y coordinates of the enemy's current position 
+        int x2 = GetComponentInParent<Movement>().currentTile.x; //x coordinates of the enemy's current position
+        int y2 = GetComponentInParent<Movement>().currentTile.y; //y coordinates of the enemy's current position 
 
         for (int i = 0; i < path.Count; i++)
         {
@@ -227,8 +228,8 @@ public class EnemyAI : MonoBehaviour
                 EnemyMovement.MoveUp();
             else if ((pathy - y2) == 1)
                 EnemyMovement.MoveDown();
-            x2 = GetComponentInParent<Movement>().currentTile.x;
-            y2 = GetComponentInParent<Movement>().currentTile.y;
+            x2 = EnemyMovement.currentTile.x; //since we already have the component assigned
+            y2 = EnemyMovement.currentTile.y;
         }
 
     }
