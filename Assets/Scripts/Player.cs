@@ -83,7 +83,6 @@ public class Player : MonoBehaviour
         DeselectButton = GameObject.Find("Deselect").GetComponent<Button>();
         SelectButton.gameObject.SetActive(false);
         DeselectButton.gameObject.SetActive(false);
-
         t = FindObjectOfType<Turns>();
 
         mana = maxMana;
@@ -148,7 +147,7 @@ public class Player : MonoBehaviour
 
     public void Heal(int d)
     {
-        health -= d;
+        health += d;
         if (health > maxHealth) { health = maxHealth; }
         SliderHealth.value = health;
         HealthValue.text = health.ToString();

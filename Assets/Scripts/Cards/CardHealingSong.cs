@@ -11,7 +11,7 @@ public class CardHealingSong : Card
     void Start()
     {
         id = 3;
-        value = -15;
+        value = 15;
         mana = 2;
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();

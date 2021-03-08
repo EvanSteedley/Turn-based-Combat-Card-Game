@@ -11,7 +11,7 @@ public class CardWindsOfRestoration : Card
     void Start()
     {
         id = 8;
-        value = -55;
+        value = 55;
         mana = 5;
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
