@@ -97,8 +97,8 @@ public class PlayerClickToMove : MonoBehaviour
 
             //The actual angles are "off" here, because the Tile Grid is rotated for some reason - may need to debug, but it works for now.
 
-            //If the angle is between 225 and 315 (moving UP), and the tile above the current tile exists and is not occupied:
-            if (angle >= 225 && angle <= 315 && !TMG.Tiles[current.x - 1, current.y].occupied)
+            //If the angle is between 225 and 315 (moving UP), and the tile above the current tile exists and is walkable:
+            if (angle >= 225 && angle <= 315 && TMG.Tiles[current.x - 1, current.y].walkable)
             {
                 //Calls the MoveUp() method in the Movement class
                 PlayerMovement.MoveUp();
@@ -107,19 +107,19 @@ public class PlayerClickToMove : MonoBehaviour
                 //Sets the current Tile to the Destination tile.
                 current = PlayerMovement.destinationTile;
             }
-            else if (angle >= 135 && angle < 225 && !TMG.Tiles[current.x, current.y - 1].occupied)
+            else if (angle >= 135 && angle < 225 && TMG.Tiles[current.x, current.y - 1].walkable)
             {
                 PlayerMovement.MoveLeft();
                 movesLeft--;
                 current = PlayerMovement.destinationTile;
             }
-            else if (angle >= 45 && angle < 135 && !TMG.Tiles[current.x + 1, current.y].occupied)
+            else if (angle >= 45 && angle < 135 && TMG.Tiles[current.x + 1, current.y].walkable)
             {
                 PlayerMovement.MoveDown();
                 movesLeft--;
                 current = PlayerMovement.destinationTile;
             }
-            else if (!TMG.Tiles[current.x, current.y + 1].occupied)
+            else if (TMG.Tiles[current.x, current.y + 1].walkable)
             {
                 PlayerMovement.MoveRight();
                 movesLeft--;
