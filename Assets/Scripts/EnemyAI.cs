@@ -103,7 +103,8 @@ public class EnemyAI : MonoBehaviour
         Tile currentNode;
         Tile neighborNode;
 
-        while (openList.Count > 0)
+        bool pathCompleted = false;
+        while (openList.Count > 0 && pathCompleted == false)
         {
             // Loop over all openlist elements to identify node with min F as currentNode
             currentNode = openList[0];
@@ -127,6 +128,9 @@ public class EnemyAI : MonoBehaviour
                 Debug.Log("CurrentNode X:" + currentNode.x);
                 Debug.Log("CurrentNode Y:" + currentNode.y);
                 Debug.Log("OpenList count: " + openList.Count());
+
+                pathCompleted = true;
+
                 while ((currentNode.x != xStart || currentNode.y != yStart) && currentNode != null)
                 {
                     Debug.Log("CurrentNode: " + currentNode);
