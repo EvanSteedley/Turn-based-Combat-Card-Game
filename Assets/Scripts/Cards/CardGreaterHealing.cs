@@ -11,7 +11,7 @@ public class CardGreaterHealing : Card
     void Start()
     {
         id = 6;
-        value = -25;
+        value = 25;
         mana = 3;
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
