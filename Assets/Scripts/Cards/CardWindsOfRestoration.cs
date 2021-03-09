@@ -11,7 +11,7 @@ public class CardWindsOfRestoration : Card
     void Start()
     {
         id = 8;
-        damage = -55;
+        value = 55;
         mana = 5;
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
@@ -28,7 +28,7 @@ public class CardWindsOfRestoration : Card
     override public void Action()
     {
         Player p = FindObjectsOfType<Player>()[0];
-        p.Heal(damage);
+        p.Heal(value);
         Destroy(this.gameObject);
     }
 

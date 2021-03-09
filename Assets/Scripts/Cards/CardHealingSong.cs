@@ -11,7 +11,7 @@ public class CardHealingSong : Card
     void Start()
     {
         id = 3;
-        damage = -15;
+        value = 15;
         mana = 2;
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
@@ -28,7 +28,7 @@ public class CardHealingSong : Card
     override public void Action()
     {
         Player p = FindObjectsOfType<Player>()[0];
-        p.Heal(damage);
+        p.Heal(value);
         Destroy(this.gameObject);
     }
 
