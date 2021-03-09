@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1173504356060570763}
   - component: {fileID: 2875201379374345006}
   - component: {fileID: 619171633356772}
-  - component: {fileID: 1712395368993407842}
   m_Layer: 0
   m_Name: Deck Temp
   m_TagString: Untagged
@@ -82,25 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1712395368993407842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946345940473183793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffa7d28e7d81cbb4a86e58ccadcf2e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  card1: {fileID: 2540327488691914163, guid: 36665fbbb070a1b4f9f24d6dc5431218, type: 3}
-  card2: {fileID: 3383020702869181935, guid: 2916b68f5b43dc541b34c63054fcd62b, type: 3}
-  card3: {fileID: 2551795413098064991, guid: 43dbc55c529533749a8aa409dda6f670, type: 3}
-  card4: {fileID: 3558905475237560236, guid: 0c70305ca2e97df42b4850bd45f0cf30, type: 3}
-  card5: {fileID: 7981744939388852830, guid: be499348ba9053846b2505e23edf756e, type: 3}
-  card6: {fileID: 2251936837461568767, guid: 8521770a979de56499ae7577399f47e0, type: 3}
-  card7: {fileID: 6654245605547658355, guid: 6a6ac92416500814f80e53f653bf137f, type: 3}
-  card8: {fileID: 9020101498243993988, guid: 9d27e078dfe4805478457d6a7aa963f8, type: 3}
-  card9: {fileID: 199996855201586042, guid: 83bc6fdfb9e1a6849be49312a8fc0ba1, type: 3}
-  card10: {fileID: 6805844535874794075, guid: 6bb712162cec5a24e8301b1a635bdd50, type: 3}
