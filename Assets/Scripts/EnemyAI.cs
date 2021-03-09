@@ -221,7 +221,7 @@ public class EnemyAI : MonoBehaviour
                 neighborNode.F = neighborNode.G + neighborNode.H;
                 Debug.Log("F, G, H:  " + neighborNode.F + ", " + neighborNode.G + ", " + neighborNode.H);
 
-                 if (neighborNode == Obstacle)
+                 if (neighborNode.walkable == false)
                 {
                     neighborNode.G = 100000;
                     neighborNode.H = 100000;
