@@ -8,7 +8,16 @@ using UnityEditor;
 
 public class GenerateDeck : MonoBehaviour
 {
-    public GameObject card1;
+
+
+    public List<GameObject> Deck;
+    public Card card;
+
+
+    // CardManager cardManager = new CardManager();
+
+
+    GameObject card1;
     public GameObject card2;
     public GameObject card3;
     public GameObject card4;
@@ -35,17 +44,24 @@ public class GenerateDeck : MonoBehaviour
             Instantiate(card9, new Vector3(0, 0, -5), Quaternion.identity);
             Instantiate(card10, new Vector3(0, 0, -5), Quaternion.identity);
         }
+
+        void Fill()
+        {
+            GameObject c1 = Instantiate(Deck[0]);
+            GameObject c2 = Instantiate(Deck[1]);
+            GameObject c3 = Instantiate(Deck[2]);
+            GameObject c4 = Instantiate(Deck[3]);
+            GameObject c5 = Instantiate(Deck[4]);
+            GameObject c6 = Instantiate(Deck[5]);
+        }
+
+
+        // public void GetDeck() { }
+
+
+        //  private  List<Card> cardList = cardManager.getCardList();
+
     }
-
-
-
-
-
-    // public void GetDeck() { }
-
-
-    //  private  List<Card> cardList = cardManager.getCardList();
-
 }
  /*   // Start is called before the first frame update
     void Start(string cardList)

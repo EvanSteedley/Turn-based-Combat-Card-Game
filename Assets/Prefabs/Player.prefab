@@ -109,9 +109,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18278351ce13b2d44a7228b68808b49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Deck: []
+  Hand: []
+  GraveYard: []
+  startingMana: 5
+  mana: 0
+  deckSize: 40
   e: {fileID: 0}
   t: {fileID: 0}
+  card: {fileID: 0}
+  PlayerDefenseValue: {fileID: 0}
   SliderHealth: {fileID: 0}
-  NewButton: {fileID: 0}
+  HealthValue: {fileID: 0}
   AttackButton: {fileID: 0}
-  Cube: {fileID: 0}
+  BuffButton: {fileID: 0}
+  EndTurnButton: {fileID: 0}
+  ManaValue: {fileID: 0}
+  DamageValue: {fileID: 0}
+  dead: 0

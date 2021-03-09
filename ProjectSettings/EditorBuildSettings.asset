@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Sample Combat.unity
     guid: 36bbda2735279884cb78fb4bd290d233
   - enabled: 1
-    path: Assets/Scenes/TileMovement.unity
-    guid: 91c821d1a22669d46b7aa8a422e20303
+    path: Assets/Scenes/GameMenu .unity
+    guid: 4dd711c1beb0247d39df897b75b90fab
+  - enabled: 1
+    path: Assets/Scenes/Selecting Objects & GUI.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/AITesting.unity
+    guid: 6a587a9085d44dd42a570bf27dcb90f6
   - enabled: 1
     path: Assets/Scenes/Treasure.unity
     guid: 630f7fe38849df148b690c57089b601f
@@ -20,4 +26,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combat.unity
     guid: 1adaf7823ad788f44b65cbcc5609664c
+  - enabled: 1
+    path: Assets/Scenes/Treasure.unity
+    guid: 630f7fe38849df148b690c57089b601f
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 514c90601bcf64f498ad8aa6419d772a
+  - enabled: 1
+    path: Assets/Scenes/Combat.unity
+    guid: 1adaf7823ad788f44b65cbcc5609664c
+  - enabled: 1
+    path: Assets/Scenes/TileMovement.unity
+    guid: 2e0bdd2bee42ed849a252b889bfbfd54
   m_configObjects: {}
