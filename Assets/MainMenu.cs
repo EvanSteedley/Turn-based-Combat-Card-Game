@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator GetMyRoutine()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(.05f);
         SceneManager.LoadScene("Sample Combat");
     }
 

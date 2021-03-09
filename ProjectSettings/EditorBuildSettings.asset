@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Selecting Objects & GUI.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
-    path: Assets/Scenes/TileMovement.unity
-    guid: 91c821d1a22669d46b7aa8a422e20303
-  - enabled: 0
     path: Assets/Scenes/AITesting.unity
     guid: 6a587a9085d44dd42a570bf27dcb90f6
   - enabled: 1
@@ -38,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combat.unity
     guid: 1adaf7823ad788f44b65cbcc5609664c
+  - enabled: 1
+    path: Assets/Scenes/TileMovement.unity
+    guid: 2e0bdd2bee42ed849a252b889bfbfd54
   m_configObjects: {}
