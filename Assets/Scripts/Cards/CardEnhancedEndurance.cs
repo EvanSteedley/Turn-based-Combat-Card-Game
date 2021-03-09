@@ -12,6 +12,10 @@ public class CardEnhancedEndurance : Card
         id = 7;
         mana = 5;
         value = 25; //will icrease max hp 25
+        numberOfTargets = 1;
+        Targeter = this.gameObject.GetComponent<SelectionGO>();
+        Targeter.numberOfSelections = numberOfTargets;
+        Targeter.exclusive = true;
     }
 
     // Update is called once per frame
