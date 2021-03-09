@@ -216,12 +216,18 @@ public class EnemyAI : MonoBehaviour
                 bool childFlag = true;
 
                 // Calculate G, H, F values of neighborNode
-                //neighborNode.G = currentNode.G + Math.Abs((currentNode.x - neighborNode.x)) + Math.Abs((currentNode.y - neighborNode.y));
                 neighborNode.G = currentNode.G + 1; //It'll only ever be 1 greater since it's already just a neighbor
-                //neighborNode.H = Math.Abs((neighborNode.x - xEnd)) + Math.Abs((neighborNode.y - yEnd));
                 neighborNode.H = (int)Mathf.Round(Mathf.Pow(Mathf.Abs(neighborNode.x - endNode.x), 2) + Mathf.Pow(Mathf.Abs(neighborNode.y - endNode.y), 2));
                 neighborNode.F = neighborNode.G + neighborNode.H;
                 Debug.Log("F, G, H:  " + neighborNode.F + ", " + neighborNode.G + ", " + neighborNode.H);
+
+                 if (neighborNode == Obstacle)
+                {
+                    neighborNode.G = 100000;
+                    neighborNode.H = 100000;
+                    neighborNode.F = 100000;
+                }
+                
 
                 // If child node is already in openList, 
                 // compare child G value with G values of openList members
