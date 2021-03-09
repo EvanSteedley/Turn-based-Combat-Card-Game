@@ -968,10 +968,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.8322501
-  m_Height: 7.621462
+  m_Radius: 0.6048838
+  m_Height: 5.2310257
   m_Direction: 1
-  m_Center: {x: -0.045778513, y: 3.6681614, z: -0.17888999}
+  m_Center: {x: -0.41981006, y: 0, z: -0.42427337}
 --- !u!114 &4587989864640080991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,8 +984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18278351ce13b2d44a7228b68808b49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMana: 5
+  maxMana: 5
   mana: 0
+  defense: 0
   t: {fileID: 0}
   card: {fileID: 7928514003565684778}
   SliderHealth: {fileID: 2258966626094921459}
@@ -4473,7 +4474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6157043227765320168}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.8, y: 3.78, z: -1}
+  m_LocalPosition: {x: -3.1824203, y: 1.8420508, z: -1.5773851}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 5477535766278670833}

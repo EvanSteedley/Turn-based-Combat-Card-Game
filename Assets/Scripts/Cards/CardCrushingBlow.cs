@@ -11,7 +11,7 @@ public class CardCrushingBlow : Card
     void Start()
     {
         id = 9;
-        damage = 55;
+        value = 55;
         mana = 5;
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
@@ -31,7 +31,7 @@ public class CardCrushingBlow : Card
         {
             Enemy e = GO.GetComponent<Enemy>();
             if (e != null)
-                e.TakeDamage(damage);
+                e.TakeDamage(value);
         }
         RemoveHighlightTargets();
         ClearSelections();

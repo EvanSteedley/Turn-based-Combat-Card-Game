@@ -11,7 +11,7 @@ public class CardDoubleStrike : Card
     void Start()
     {
         id = 10;
-        damage = 30;
+        value = 30;
         mana = 4;
         numberOfTargets = 2;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
@@ -31,7 +31,7 @@ public class CardDoubleStrike : Card
         {
             Enemy e = GO.GetComponent<Enemy>();
             if (e != null)
-                e.TakeDamage(damage);
+                e.TakeDamage(value);
         }
         RemoveHighlightTargets();
         ClearSelections();

@@ -65,6 +65,7 @@ public class Movement : MonoBehaviour
         currentTile.occupied = false;
         currentTile = destinationTile;
         currentTile.occupied = true;
+        currentTile.TileWalkedOn(this.gameObject);
         isMoving = false;
     }
 
