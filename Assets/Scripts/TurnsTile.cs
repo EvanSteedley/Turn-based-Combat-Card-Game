@@ -64,12 +64,9 @@ public class TurnsTile : MonoBehaviour
                 //e.transform.Translate(new Vector3(1f, 0f, 0f));
                 //e.transform.position.Set(e.transform.position.x - 1f, e.transform.position.y, e.transform.position.z);
                 EnemyAI EAI = e.GetComponent<EnemyAI>();
-                EAI.AStar();
-                //for (int i = EAI.movesLeft; i > 0 ; i--)
-                //{
-                //    EAI.EnemyMovement();
-                //    yield return new WaitForSeconds(.2f);
-                //}
+                EAI.ResetMoves();
+                StartCoroutine(EAI.AStar());
+                yield return new WaitForSeconds(EAI.GetComponent<Movement>().timeToMove * EAI.movesDefault + 0.05f);
             }
         }
         //If there are enemies still alive and the player isn't dead, the Player can take their turn.
