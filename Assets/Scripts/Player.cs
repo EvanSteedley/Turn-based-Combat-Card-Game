@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public Turns t;
     [SerializeField]
     CardSelection card;
-    List<GameObject> Hand;
+    Hand currentHand;
     GameObject HandResetPrefab;
     GameObject CurrentHand;
     CardSelection CS;
