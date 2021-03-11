@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class PlayerClickToMove : MonoBehaviour
 {
     [SerializeField]
-    int movesLeft = 3; //How many tiles the player can CURRENTLY move on this turn. (Decremented each time the player moves)
+    public int movesLeft = 3; //How many tiles the player can CURRENTLY move on this turn. (Decremented each time the player moves)
     [SerializeField]
-    int movesDefault = 3; //How many tiles the player can move EACH turn.
+    public int movesDefault = 3; //How many tiles the player can move EACH turn.
     public Tile current; //Current tile the player is standing on.
     public Tile finalDestination; //The tile the player has selected, and is trying to move towards.
     TileMapGenerator TMG; //Holds the Grid of Tiles
