@@ -95,7 +95,7 @@ public class TileMapGenerator : MonoBehaviour
 
 
         //Adjust number of obstacles based on amount of tiles
-        numberOfObstacles = ((tileWidth + tileLength) / 10) + 1;
+        numberOfObstacles = ((tileWidth + tileLength) / 3) + 1;
         PlaceObstacles(numberOfObstacles);
     }
 
@@ -178,6 +178,7 @@ public class TileMapGenerator : MonoBehaviour
                 //Occupies that tile, instantiates the Obstacle prefab, and places it on top of the tile.
                 Tiles[x, y].occupied = true;
                 Tiles[x, y].walkable = false;
+                Tiles[x, y].GetComponent<TileSelectable>().enabled = false;
                 GameObject obs = Instantiate(ObstaclePrefab, transform);
                 //Here, the y-value is just y instead of y/2.  For some reason, Cylinder's center (0, 0, 0) is calculated differently.
                 obs.transform.position = Tiles[x, y].transform.position + new Vector3(0f, obs.transform.localScale.y, 0f);
