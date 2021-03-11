@@ -43,9 +43,12 @@ public class SceneElementController : MonoBehaviour
         {
             player.CombatUI.SetActive(false);
             player.TileMoveUI.SetActive(true);
-            player.GetComponent<PlayerClickToMove>().enabled = true;
+            PlayerClickToMove PCTM = player.GetComponent<PlayerClickToMove>();
+            PCTM.enabled = true;
             player.GetComponent<Movement>().enabled = true;
-            player.GetComponent<PlayerClickToMove>().t = FindObjectOfType<TurnsTile>();
+            PCTM.t = FindObjectOfType<TurnsTile>();
+            PCTM.movesLeft = PCTM.movesDefault;
+            PCTM.EndTurnButton.interactable = true;
             Debug.Log("Tile scene loaded");
         }
     }
