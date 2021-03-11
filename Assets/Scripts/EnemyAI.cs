@@ -111,6 +111,7 @@ public class EnemyAI : MonoBehaviour
         bool pathCompleted = false;
         while (openList.Count > 0 && pathCompleted == false)
         {
+            yield return null;
             // Loop over all openlist elements to identify node with min F as currentNode
             currentNode = openList[0];
             for (int i = 0; i < openList.Count; i++)
