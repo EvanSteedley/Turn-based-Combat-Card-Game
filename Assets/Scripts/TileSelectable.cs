@@ -58,9 +58,11 @@ public class TileSelectable : MonoBehaviour
             s.somethingSelected = true;
             s.Selected = this.gameObject.GetComponent<Tile>();
             //Repaints all the tiles; just in case there was a pathfinding error
-            PCTM.PaintReachableTiles();
+            //PCTM.PaintReachableTiles();
+            PCTM.UnpaintTiles();
             PCTM.finalDestination = s.Selected;
             ren.material.color = Color.blue;
+            StartCoroutine(PCTM.AStar());
         }
     }
 }

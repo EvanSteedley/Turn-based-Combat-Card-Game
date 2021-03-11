@@ -297,7 +297,7 @@ PrefabInstance:
     - target: {fileID: 4561814023670486255, guid: 31ac8f9a23f3bc94aaf1b1861e264d69,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4561814023670486255, guid: 31ac8f9a23f3bc94aaf1b1861e264d69,
         type: 3}
@@ -480,7 +480,7 @@ PrefabInstance:
     - target: {fileID: 4561814023670486255, guid: 31ac8f9a23f3bc94aaf1b1861e264d69,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4561814023670486255, guid: 31ac8f9a23f3bc94aaf1b1861e264d69,
         type: 3}
@@ -1061,6 +1061,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deck Temp
       objectReference: {fileID: 0}
+    - target: {fileID: 1946345940473183793, guid: 5be46ff2e0dca3140985b7300899bded,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1712395368993407842, guid: 5be46ff2e0dca3140985b7300899bded, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5be46ff2e0dca3140985b7300899bded, type: 3}
@@ -1082,6 +1087,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424dfb7767b9964caafbee3a2199a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card1: {fileID: 0}
+  card2: {fileID: 0}
+  card3: {fileID: 0}
+  card4: {fileID: 0}
+  card5: {fileID: 0}
+  card6: {fileID: 0}
+  card7: {fileID: 0}
+  card8: {fileID: 0}
+  card9: {fileID: 0}
+  card10: {fileID: 0}
 --- !u!1 &680060876
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,7 +3606,7 @@ PrefabInstance:
     - target: {fileID: 97736602754180639, guid: a896d06dcb63bb1419524c0f3ddb552a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 97736602754180639, guid: a896d06dcb63bb1419524c0f3ddb552a,
         type: 3}
@@ -4607,7 +4622,7 @@ PrefabInstance:
     - target: {fileID: 448133455552726716, guid: 63c1e169844c2a94281f6a7135e1b4be,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 448133455552726716, guid: 63c1e169844c2a94281f6a7135e1b4be,
         type: 3}
@@ -4812,6 +4827,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CardEnhancedEndurance
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654245605547658355, guid: 6a6ac92416500814f80e53f653bf137f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a6ac92416500814f80e53f653bf137f, type: 3}
