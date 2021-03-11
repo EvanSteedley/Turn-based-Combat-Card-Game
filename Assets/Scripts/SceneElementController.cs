@@ -30,7 +30,7 @@ public class SceneElementController : MonoBehaviour
 
     public void SceneLogic(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name.Equals("Sample Combat"))
+        if (scene.name.Equals("Sample Combat") || scene.name.Equals("Combat"))
         {
             player.CombatUI.SetActive(true);
             player.TileMoveUI.SetActive(false);

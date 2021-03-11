@@ -97,6 +97,7 @@ public class TileMapGenerator : MonoBehaviour
         //Adjust number of obstacles based on amount of tiles
         numberOfObstacles = ((tileWidth + tileLength) / 3) + 1;
         PlaceObstacles(numberOfObstacles);
+        player.GetComponent<PlayerClickToMove>().UnpaintTiles();
     }
 
     void Start()
