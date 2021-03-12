@@ -45,7 +45,7 @@ public class TileSelectable : MonoBehaviour
             selected = true;
             
             //If something is selected, and it is NOT this object;
-            if (s.somethingSelected && s.selected != this.gameObject)
+            if (s.somethingSelected && s.selected != this.gameObject && s.selected != null)
             {
                 //Deselect the other tile.
                 TileSelectable otherObject = s.Selected.GetComponentInChildren<TileSelectable>();

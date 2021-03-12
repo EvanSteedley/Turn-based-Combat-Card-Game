@@ -421,6 +421,6 @@ public class Player : MonoBehaviour
 
     public void LoadCombatScene()
     {
-        SceneManager.LoadScene("Sample Combat");
+        SceneManager.LoadScene("Combat");
     }
 }

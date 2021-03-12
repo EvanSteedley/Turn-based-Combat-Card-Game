@@ -30,7 +30,7 @@ public class SceneElementController : MonoBehaviour
 
     public void SceneLogic(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name.Equals("Sample Combat"))
+        if (scene.name.Equals("Sample Combat") || scene.name.Equals("Combat"))
         {
             player.CombatUI.SetActive(true);
             player.TileMoveUI.SetActive(false);
@@ -43,9 +43,12 @@ public class SceneElementController : MonoBehaviour
         {
             player.CombatUI.SetActive(false);
             player.TileMoveUI.SetActive(true);
-            player.GetComponent<PlayerClickToMove>().enabled = true;
+            PlayerClickToMove PCTM = player.GetComponent<PlayerClickToMove>();
+            PCTM.enabled = true;
             player.GetComponent<Movement>().enabled = true;
-            player.GetComponent<PlayerClickToMove>().t = FindObjectOfType<TurnsTile>();
+            PCTM.t = FindObjectOfType<TurnsTile>();
+            PCTM.movesLeft = PCTM.movesDefault;
+            PCTM.EndTurnButton.interactable = true;
             Debug.Log("Tile scene loaded");
         }
     }
