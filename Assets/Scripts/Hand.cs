@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     Player p = FindObjectsOfType<Player>()[0];
-    Card[] CurrentHand;
+    List<Card> CurrentHand;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +19,8 @@ public class Hand : MonoBehaviour
         
     }
 
-    public Card[] Draw(Card c)
+    public void Draw(List<Card> l, Card c)
     {
-        CurrentHand[(CurrentHand.Length + 1)] = c;
-        return CurrentHand;
+        l.Add(c);
     }
 }
