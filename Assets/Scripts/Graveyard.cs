@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Graveyard : MonoBehaviour
 {
+    public List<Card> Discarded;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class Graveyard : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Discard(Card c)
+    {
+        Discarded.Add(c);
     }
 }
