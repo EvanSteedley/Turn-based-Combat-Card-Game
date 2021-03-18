@@ -24,9 +24,6 @@ public class Player : MonoBehaviour
     public Turns t;
     [SerializeField]
     CardSelection card;
-    Hand handObj;
-    List<Card> HandList;
-    Card[] DeckList;
     GameObject HandResetPrefab;
     GameObject CurrentHand;
     CardSelection CS;
@@ -93,8 +90,6 @@ public class Player : MonoBehaviour
         card = FindObjectOfType<CardSelection>();
         SliderHealth.value = health;
         anim = GetComponentInChildren<Animator>();
-
-        DeckList = FindObjectsOfType<Card>();
 
         //Temporary way of filling the hand
         //Should NOT be used later.
@@ -273,11 +268,7 @@ public class Player : MonoBehaviour
     public void UpdateHand() //center = 1, 2.2, -3.2, size of card = abour 4.3 size, will cover an area of 6
     {
 
-        //handObj.Draw(HandList, DeckList[2]);
-        HandResetPrefab = Instantiate(HandResetPrefab);
-        HandResetPrefab.transform.parent = CurrentHand.transform;
-        CurrentHand.SetActive(true);
-        Debug.Log("UpdateHand");
+       // CurrentHand.draw(FindObjectOfType<CardSelection>());
         
     }
 
