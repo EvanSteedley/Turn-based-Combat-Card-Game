@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    Player p = FindObjectsOfType<Player>()[0];
-    Card[] CurrentHand;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player p = FindObjectsOfType<Player>()[0];
+
     }
 
     // Update is called once per frame
@@ -19,9 +19,8 @@ public class Hand : MonoBehaviour
         
     }
 
-    public Card[] Draw(Card c)
+    public void Draw(GameObject c)
     {
-        CurrentHand[(CurrentHand.Length + 1)] = c;
-        return CurrentHand;
+       // c.Transform.setParent();// (this.Transform.parent, false);
     }
 }
