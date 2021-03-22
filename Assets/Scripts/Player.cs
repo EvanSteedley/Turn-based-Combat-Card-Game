@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     CardSelection card;
     GameObject HandResetPrefab;
     GameObject CurrentHand;
+    Hand PlayerHand;
     CardSelection CS;
 
    
@@ -268,7 +269,7 @@ public class Player : MonoBehaviour
     public void UpdateHand() //center = 1, 2.2, -3.2, size of card = abour 4.3 size, will cover an area of 6
     {
 
-       // CurrentHand.draw(FindObjectOfType<CardSelection>());
+       PlayerHand.Draw(GameObject.Find("Card1"));
         
     }
 
