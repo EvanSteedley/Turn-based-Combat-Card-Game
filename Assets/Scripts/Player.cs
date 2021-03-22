@@ -24,7 +24,9 @@ public class Player : MonoBehaviour
     public Turns t;
     [SerializeField]
     CardSelection card;
-    List<GameObject> Hand;
+    Hand inHand;
+    Card[] CardList;
+    Card[] DeckList;
     GameObject HandResetPrefab;
     GameObject CurrentHand;
     CardSelection CS;
@@ -92,7 +94,7 @@ public class Player : MonoBehaviour
         SliderHealth.value = health;
         anim = GetComponentInChildren<Animator>();
 
-        Hand = new List<GameObject>();
+        DeckList = FindObjectsOfType<Card>();
 
         //Temporary way of filling the hand
         //Should NOT be used later.
@@ -145,31 +147,31 @@ public class Player : MonoBehaviour
         HealthValue.text = health.ToString();
     }
 
-    public void Heal(int d)
+    public void Heal(int v)
     {
-        health += d;
+        health += v;
         if (health > maxHealth) { health = maxHealth; }
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
 
-    public void BuffDefense(int d)
+    public void BuffDefense(int v)
     {
-        defense += d;
+        defense += v;
         PlayerDefenseValue.text = defense.ToString();
     }
 
-    public void BuffHealth(int d)
+    public void BuffHealth(int v)
     {
-        maxHealth += d;
-        health += d;
+        maxHealth += v;
+        health += v;
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
 
-    public void BuffMana(int d)
+    public void BuffMana(int v)
     {
-        maxMana += d;
+        maxMana += v;
         ManaValue.text = mana.ToString();
     }
 
@@ -194,8 +196,8 @@ public class Player : MonoBehaviour
         //Reset mana to the base stat & update the GUI
         mana = maxMana;
         ManaValue.text = mana.ToString();
-        //ResetHand();
-        UpdateHand();
+        ResetHand();
+        //UpdateHand();
 
         //Re-enable buttons if the cost can be afforded.
         //if (mana >= 1)
@@ -269,14 +271,7 @@ public class Player : MonoBehaviour
 
     public void UpdateHand() //center = 1, 2.2, -3.2, size of card = abour 4.3 size, will cover an area of 6
     {
-        handSize = Hand.Count; // currently 0 for some reason?
-        Debug.Log("In update hand");
-        Debug.Log(handSize);
-        for (int i=0; i<handSize; i++)
-        {
-            Hand[0].transform.localPosition = new Vector3(0f, 0f, 5f);
-            Debug.Log("In for loop at" + i);
-        }
+        CardList = inHand.Draw(DeckList[2]);
     }
 
     //Called at the beginning of each turn

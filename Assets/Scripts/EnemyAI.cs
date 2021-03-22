@@ -91,12 +91,7 @@ public class EnemyAI : MonoBehaviour
         int yTopBound = TMG.tileLength;
         int yBottomBound = 0;
 
-        //startNode.F = 0;
-        //startNode.G = 0;
-        //startNode.H = 0;
-        //endNode.F = 0;
-        //endNode.G = 0;
-        //endNode.H = 0;
+       
         startNode.Parent = null;
         int xEnd = PlayerMovement.currentTile.x;
         int yEnd = PlayerMovement.currentTile.y;
