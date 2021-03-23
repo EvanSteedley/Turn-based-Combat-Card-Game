@@ -31,20 +31,7 @@ public class Turns : MonoBehaviour
             enemies.Add(e);
         }
 
-
-        StartCoroutine(Loop());
         //Loop();
-    }
-
-    public IEnumerator Loop()
-    {
-        bool truth = true;
-        while(truth)
-        {
-            yield return null;
-            Debug.Log("Still in the While loop.");
-        }
-        yield return null;
     }
 
     // Update is called once per frame
@@ -88,7 +75,7 @@ public class Turns : MonoBehaviour
         if (count > 0 && !p.dead)
         {
             PlayerTurn = true;
-            p.StartTurn();
+            StartCoroutine(p.StartTurn());
         }
 
         else 

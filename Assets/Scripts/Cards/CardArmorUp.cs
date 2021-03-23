@@ -17,6 +17,7 @@ public class CardArmorUp : Card
     //}
 
     public List<Player> Targets;
+    public Player p;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class CardArmorUp : Card
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        p = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -42,10 +44,22 @@ public class CardArmorUp : Card
 
     override public void Action()
     {
-        Player p = FindObjectOfType<Player>();
+        p = FindObjectOfType<Player>();
         p.BuffDefense(value);
         Destroy(this.gameObject);
     }
+
+    override public void HighlightTargets()
+    {
+
+    }
+
+    //This method is the opposite of the one above it.
+    override public void RemoveHighlightTargets()
+    {
+
+    }
+
 
     override public void ClearSelections()
     {
