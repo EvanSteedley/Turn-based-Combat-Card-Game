@@ -11,12 +11,15 @@ public class CardGreaterHealing : Card
     void Start()
     {
         id = 6;
-        value = 25;
+        value = 35;
         mana = 3;
+        name = "Greater Healing";
+        description = "Heals for 35 Health.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        SetInfo();
     }
 
     // Update is called once per frame

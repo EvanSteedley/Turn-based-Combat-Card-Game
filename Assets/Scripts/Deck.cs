@@ -41,17 +41,17 @@ public class Deck : MonoBehaviour
         Cards = new List<Card>();
 
         //ArmorUp card
-        Cards.Add(AllCards.AllCards[1]);
+        Cards.Add(AllCards.AllCards[0]);
         //HeavyHand card
-        Cards.Add(AllCards.AllCards[8]);
+        Cards.Add(AllCards.AllCards[7]);
         //DoubleStrike card
-        Cards.Add(AllCards.AllCards[3]);
-        //Multi-Attack card
-        Cards.Add(AllCards.AllCards[9]);
-        //CrushingBlow card
         Cards.Add(AllCards.AllCards[2]);
+        //Multi-Attack card
+        Cards.Add(AllCards.AllCards[8]);
+        //CrushingBlow card
+        Cards.Add(AllCards.AllCards[1]);
         //Fireball card
-        Cards.Add(AllCards.AllCards[10]);
+        Cards.Add(AllCards.AllCards[9]);
     }
 
     public int AddCard(Card c)

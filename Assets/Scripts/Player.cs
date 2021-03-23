@@ -332,4 +332,9 @@ public class Player : MonoBehaviour
     {
         SceneManager.LoadScene("Combat");
     }
+
+    public void LoadShopScene()
+    {
+        SceneManager.LoadScene("Shop");
+    }
 }

@@ -12,11 +12,14 @@ public class CardCrushingBlow : Card
     {
         id = 9;
         value = 55;
-        mana = 5;
+        mana = 4;
+        name = "Crushing Blow";
+        description = "Deal 55 damage to one target.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        SetInfo();
     }
 
     // Update is called once per frame
