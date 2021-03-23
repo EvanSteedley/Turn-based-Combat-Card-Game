@@ -83,7 +83,6 @@ public class Hand : MonoBehaviour
     {
         for (int i = 0; i < CurrentHand.Count; i++)
         {
-            Debug.Log("Moving card " + i);
             //Displaces the X position by 2 for each card
             InstantiatedCards[i].gameObject.transform.localPosition = new Vector3(2 + i * 2f, 0, 0);
             CardSelectable CS = InstantiatedCards[i].GetComponent<CardSelectable>();

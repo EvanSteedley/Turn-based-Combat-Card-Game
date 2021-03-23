@@ -10,12 +10,15 @@ public class CardEnergyBurst : Card
     void Start()
     {
         id = 4;
-        mana = 5;
+        mana = 4;
         value = 2; //will icrease max mana by 2
+        name = "Energy Burst";
+        description = "Increases Max Mana by 2.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        SetInfo();
     }
 
     // Update is called once per frame
