@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Graveyard : MonoBehaviour
 {
-    public List<Card> Discarded;
+    public List<Card> DiscardedCards = new List<Card>();
+    public Deck Deck;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Deck = FindObjectOfType<Deck>();
+       //DontDestroyOnLoad(this);
     }
 
     // Update is called once per frame
@@ -18,8 +20,17 @@ public class Graveyard : MonoBehaviour
         
     }
 
+    public void ReturnCardsToDeck()
+    {
+        foreach (Card c in DiscardedCards)
+        {
+            Deck.AddCard(c);
+        }
+        DiscardedCards = new List<Card>();
+    }
+
     public void Discard(Card c)
     {
-        Discarded.Add(c);
+        DiscardedCards.Add(c);
     }
 }
