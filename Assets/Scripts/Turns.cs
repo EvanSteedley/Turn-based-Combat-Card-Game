@@ -21,6 +21,8 @@ public class Turns : MonoBehaviour
     void Start()
     {
         p = FindObjectOfType<Player>();
+        p.transform.position = new Vector3(-8.45f, 2.01f, -0.13f);
+        p.transform.rotation = Quaternion.Euler(0, -90, 0);
         cam = FindObjectOfType<Camera>();
         //All enemies in the scene are added to the list of active enemies.
         Enemy[] enemiesList = FindObjectsOfType<Enemy>();
@@ -28,6 +30,8 @@ public class Turns : MonoBehaviour
         {
             enemies.Add(e);
         }
+
+        //Loop();
     }
 
     // Update is called once per frame
@@ -71,7 +75,7 @@ public class Turns : MonoBehaviour
         if (count > 0 && !p.dead)
         {
             PlayerTurn = true;
-            p.StartTurn();
+            StartCoroutine(p.StartTurn());
         }
 
         else 

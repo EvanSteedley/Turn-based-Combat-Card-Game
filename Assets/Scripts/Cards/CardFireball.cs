@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardTestParticle : Card
+public class CardFireball : Card
 {
     public List<Enemy> Targets;
     public GameObject FireballPrefab;
@@ -15,10 +15,13 @@ public class CardTestParticle : Card
         id = 6;
         value = 50;
         mana = 2;
+        name = "Fireball";
+        description = "Shoot a 50 damage Fireball at one target.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        SetInfo();
     }
 
     // Update is called once per frame

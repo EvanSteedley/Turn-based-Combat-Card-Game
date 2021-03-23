@@ -45,7 +45,7 @@ public class TileSelectable : MonoBehaviour
             selected = true;
             
             //If something is selected, and it is NOT this object;
-            if (s.somethingSelected && s.selected != this.gameObject)
+            if (s.somethingSelected && s.selected != this.gameObject && s.selected != null)
             {
                 //Deselect the other tile.
                 TileSelectable otherObject = s.Selected.GetComponentInChildren<TileSelectable>();
@@ -58,9 +58,11 @@ public class TileSelectable : MonoBehaviour
             s.somethingSelected = true;
             s.Selected = this.gameObject.GetComponent<Tile>();
             //Repaints all the tiles; just in case there was a pathfinding error
-            PCTM.PaintReachableTiles();
+            //PCTM.PaintReachableTiles();
+            PCTM.UnpaintTiles();
             PCTM.finalDestination = s.Selected;
             ren.material.color = Color.blue;
+            StartCoroutine(PCTM.AStar());
         }
     }
 }

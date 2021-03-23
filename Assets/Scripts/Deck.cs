@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    //prefabs
-    public GameObject card1;
-    public GameObject card2;
-    public GameObject card3;
-    public GameObject card4;
-    public GameObject card5;
-    public GameObject card6;
-    public GameObject card7;
-    public GameObject card8;
-    public GameObject card9;
-    public GameObject card10;
+    public List<Card> Cards = new List<Card>();
+    public ListOfAllCards AllCards;
+    public int initialDeckSize = 5;
+    public Hand PlayerHand;
+    public Graveyard Graveyard;
 
     // Start is called before the first frame update
     void Start()
     {
-        GenerateDeck();
+        AllCards = FindObjectOfType<ListOfAllCards>();
+        PlayerHand = FindObjectOfType<Hand>();
+        Graveyard = FindObjectOfType<Graveyard>();
+        //GenerateDeckRandomly();
+        GenerateKnightDeck();
+        //DontDestroyOnLoad(this);
     }
 
     // Update is called once per frame
@@ -28,20 +27,81 @@ public class Deck : MonoBehaviour
         
     }
 
-    void GenerateDeck()
+    public void GenerateDeckRandomly()
     {
-        for (int i = 0; i < 5; i++) //fills deck with all 50 cards
+        Cards = new List<Card>();
+        for(int i = 0; i < initialDeckSize; i++)
         {
-            Instantiate(card1, new Vector3(0, 0, -5), Quaternion.identity);
-            Instantiate(card2, new Vector3(0, 0, -5), Quaternion.identity);
-            Instantiate(card3, new Vector3(0, 0, -5), Quaternion.identity);
-            Instantiate(card4, new Vector3(0, 0, -5), Quaternion.identity);
-            Instantiate(card5, new Vector3(0, 0, -5), Quaternion.identity);
-            Instantiate(card6, new Vector3(0, 0, -5), Quaternion.identity);
-            Instantiate(card7, new Vector3(0, 0, -5), Quaternion.identity);
-            Instantiate(card8, new Vector3(0, 0, -5), Quaternion.identity);
-            Instantiate(card9, new Vector3(0, 0, -5), Quaternion.identity);
-            Instantiate(card10, new Vector3(0, 0, -5), Quaternion.identity);
+            Cards.Add(AllCards.DrawRandom());
+        }
+    }
+
+    public void GenerateKnightDeck()
+    {
+        Cards = new List<Card>();
+
+        //ArmorUp card
+        Cards.Add(AllCards.AllCards[0]);
+        //HeavyHand card
+        Cards.Add(AllCards.AllCards[7]);
+        //DoubleStrike card
+        Cards.Add(AllCards.AllCards[2]);
+        //Multi-Attack card
+        Cards.Add(AllCards.AllCards[8]);
+        //CrushingBlow card
+        Cards.Add(AllCards.AllCards[1]);
+        //Fireball card
+        Cards.Add(AllCards.AllCards[9]);
+    }
+
+    public int AddCard(Card c)
+    {
+        Cards.Add(c);
+        return Cards.Count;
+    }
+
+    public bool RemoveCard(Card c)
+    {
+        if (Cards.Contains(c))
+        {
+            Cards.Remove(c);
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public Card DrawCard()
+    {
+        if (Cards.Count > 0)
+        {
+            Card drawn = Cards[0];
+            Cards.Remove(drawn);
+            return drawn;
+        }
+        else
+        {
+            ShuffleDeck();
+            if (Cards.Count <= 0)
+                return null;
+            Card drawn = Cards[0];
+            Cards.Remove(drawn);
+            return drawn;
+            
+        }
+    }
+
+    public void ShuffleDeck()
+    {
+        if (Graveyard == null)
+            Graveyard = FindObjectOfType<Graveyard>();
+        Graveyard.ReturnCardsToDeck();
+        for (int i = 0; i < Cards.Count; i++)
+        {
+            Card temp = Cards[i];
+            int r = Random.Range(0, Cards.Count);
+            Cards[i] = Cards[r];
+            Cards[r] = temp;
         }
     }
 

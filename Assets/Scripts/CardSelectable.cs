@@ -13,8 +13,12 @@ public class CardSelectable : MonoBehaviour
     public bool selected;
     public Card card;
     public Player player;
-    public GameObject original;
-    public GameObject centered;
+    //public GameObject original;
+    public Vector3 originalP;
+    public Vector3 originalR;
+    //public GameObject centered;
+    public Vector3 centeredP;
+    public Vector3 centeredR;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,19 +29,23 @@ public class CardSelectable : MonoBehaviour
         player = FindObjectOfType<Player>();
 
         //Stores original position of the current card 
-        original = new GameObject();
-        original.transform.localPosition = this.transform.position;
-        original.transform.localRotation = this.transform.rotation;
-        original.transform.parent = this.gameObject.transform.parent;
+        //original = new GameObject();
+        //original.transform.localPosition = this.transform.position;
+        //original.transform.localRotation = this.transform.rotation;
+        //original.transform.parent = this.gameObject.transform.parent;
+        originalP = this.transform.localPosition;
+        originalR = this.transform.eulerAngles;
 
         //Stores the position Centered on the screen
-        centered = new GameObject();
-        centered.transform.parent = this.gameObject.transform.parent;
-        centered.transform.localPosition = new Vector3(1f, 2.2f, -3.2f);
-        centered.transform.localRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+        //centered = new GameObject();
+        //centered.transform.parent = this.gameObject.transform.parent;
+        //centered.transform.localPosition = new Vector3(7f, 2f, 0f);
+        //centered.transform.localRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+        centeredP = new Vector3(7f, 2f, 0f);
+        centeredR = new Vector3(-64f, 0f, -90f);
         //The x-value of this Euler Angle was determined by manually moving the card in-scene
         //It was also the only angle that needed changing; the others are the same as the original.
-        centered.transform.eulerAngles = new Vector3(-64f, original.transform.eulerAngles.y, original.transform.eulerAngles.z);
+        //centered.transform.eulerAngles = new Vector3(-64f, original.transform.eulerAngles.y, original.transform.eulerAngles.z);
     }
 
     // Update is called once per frame
@@ -106,8 +114,10 @@ public class CardSelectable : MonoBehaviour
             //transform.position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
 
             //Center this card on the screen
-            transform.position = centered.transform.position;
-            transform.rotation = centered.transform.rotation;
+            //transform.position = centered.transform.position;
+            //transform.rotation = centered.transform.rotation;
+            transform.localPosition = centeredP;
+            transform.eulerAngles = centeredR;
 
             //Update the PlayCard button's Mana Cost (Yellow in the top-left corner of the button)
             bool canUse = player.ManaCheckUI();
@@ -140,8 +150,10 @@ public class CardSelectable : MonoBehaviour
         //transform.position = transform.position + new Vector3(0.0f, -1.0f, 0.0f);
 
         //Reset the position to its original position
-        transform.position = original.transform.position;
-        transform.rotation = original.transform.rotation;
+        //transform.position = original.transform.position;
+        //transform.rotation = original.transform.rotation;
+        transform.localPosition = originalP;
+        transform.eulerAngles = originalR;
 
         //Un-highlight all the card's targets
         card.RemoveHighlightTargets();

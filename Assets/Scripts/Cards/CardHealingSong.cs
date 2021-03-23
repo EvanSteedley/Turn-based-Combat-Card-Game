@@ -12,11 +12,14 @@ public class CardHealingSong : Card
     {
         id = 3;
         value = 15;
-        mana = 2;
+        mana = 1;
+        name = "Healing Song";
+        description = "Heals for 15 Health.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        SetInfo();
     }
 
     // Update is called once per frame

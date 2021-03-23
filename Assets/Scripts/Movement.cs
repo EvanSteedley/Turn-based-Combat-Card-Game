@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneManager.sceneLoaded += OnSceneLoad;
         tmg = FindObjectOfType<TileMapGenerator>();
         //currentDirection = up;
         //nextPos = Vector3.forward;
@@ -106,6 +108,14 @@ public class Movement : MonoBehaviour
         {
             destinationTile = tmg.Tiles[currentTile.x + 1, currentTile.y];
             StartCoroutine(Move(destinationTile.transform.position + offset));
+        }
+    }
+
+    public void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name.Equals("TileMovement"))
+        {
+            tmg = FindObjectOfType<TileMapGenerator>();
         }
     }
 
