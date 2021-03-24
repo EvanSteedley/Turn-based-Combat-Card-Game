@@ -10,6 +10,8 @@ public class Shop : MonoBehaviour
     public List<Card> InstantiatedCards;
     public int shopSize = 6;
     public Vector3[] positions;
+    public int cardCost = 250;
+    public int destroyCost = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,6 @@ public class Shop : MonoBehaviour
         for(int i = 0; i < shopSize; i++)
         {
             CardsToBuy.Add(ListOfAllCards.DrawRandom());
-            Debug.Log("Card Generated: " + CardsToBuy[i].name);
             Card added = Instantiate(CardsToBuy[i]);
             InstantiatedCards.Add(added);
             added.transform.position = positions[i];
@@ -49,7 +50,7 @@ public class Shop : MonoBehaviour
 
     public void BuyCard(int i)
     {
-        if(i >= 0 && i < CardsToBuy.Count)
+        if(i >= 0 && i < CardsToBuy.Count && FindObjectOfType<Player>().gold >= cardCost)
         {
             Deck.AddCard(CardsToBuy[i]);
             Card ToDestroy = InstantiatedCards[i];
@@ -59,13 +60,17 @@ public class Shop : MonoBehaviour
 
     public void RemoveCard(Card c)
     {
-        for (int i = 0; i < Deck.Cards.Count; i++)
+        //for (int i = 0; i < Deck.CurrentDeck.Count; i++)
+        //{
+        //    if (c.GetType() == Deck.CurrentDeck[i].GetType())
+        //    {
+        //        Deck.CurrentDeck.RemoveAt(i);
+        //        break;
+        //    }
+        //}
+        if(FindObjectOfType<Player>().gold >= destroyCost)
         {
-            if (c.GetType() == Deck.Cards[i].GetType())
-            {
-                Deck.Cards.RemoveAt(i);
-                break;
-            }
+            Deck.RemoveCard(c);
         }
     }
 }
