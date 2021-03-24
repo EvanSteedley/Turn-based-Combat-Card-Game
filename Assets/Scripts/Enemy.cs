@@ -127,30 +127,6 @@ public class Enemy : MonoBehaviour
         EnemyAttackValue.text = damage.ToString();
     }
 
-
-    class Poison : StatusEffects
-    {
-        public override void Action(object sender, EventArgs e)
-        {
-
-            Enemy e2 = this.transform.parent.GetComponent<Enemy>();
-            Player p = this.transform.parent.GetComponent<Player>();
-
-            if (p != null)
-            {
-                p.TakeDamage(20);
-
-            }
-
-            else if (e2 != null)
-            {
-                e2.TakeDamage(20);
-
-            }
-
-        }
-    }
-
     
 }
 
