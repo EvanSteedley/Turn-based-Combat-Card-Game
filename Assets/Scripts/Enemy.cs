@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     public int defense = 0;
     enum states { 
     
-        Fight, Defend, Buff, Poison, BuffDefense
+        Fight, Defend, Buff, Poison, LowerPlayerDefense
     
     }
 
@@ -121,10 +121,11 @@ public class Enemy : MonoBehaviour
         {
             p.gameObject.AddComponent<Poison>();
         }
-        if (num == (int)states.BuffDefense)
+        if (num == (int)states.LowerPlayerDefense)
         {
-            BuffDefense();
+            p.gameObject.AddComponent<Defense>();
         }
+
 
 
     }
