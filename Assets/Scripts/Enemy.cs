@@ -78,6 +78,12 @@ public class Enemy : MonoBehaviour
         HealthValue.text = health.ToString();
     }
 
+    public void BuffDefense(int v)
+    {
+        defense += v;
+        EnemyDefenseValue.text = defense.ToString();
+    }
+
     virtual public void Attack()
     {
         p.TakeDamage(damage);
