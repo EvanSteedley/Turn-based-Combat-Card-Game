@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     public int defense = 0;
     enum states { 
     
-        Fight, Defend, Buff, Poison 
+        Fight, Defend, Buff, Poison, BuffDefense
     
     }
 
@@ -84,6 +84,12 @@ public class Enemy : MonoBehaviour
         EnemyDefenseValue.text = defense.ToString();
     }
 
+    public void BuffHealth(int v)
+    {
+    
+      //leave this BuffHealth method empty for now for the Enemy - come back to this later
+    }
+
     virtual public void Attack()
     {
         p.TakeDamage(damage);
@@ -114,6 +120,10 @@ public class Enemy : MonoBehaviour
         if(num == (int)states.Poison)
         {
             p.gameObject.AddComponent<Poison>();
+        }
+        if (num == (int)states.BuffDefense)
+        {
+            BuffDefense();
         }
 
 
