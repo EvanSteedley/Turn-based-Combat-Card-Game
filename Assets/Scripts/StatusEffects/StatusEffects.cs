@@ -16,6 +16,7 @@ using UnityEngine.SceneManagement;
 
     void Start()
     {
+        t = FindObjectOfType<Turns>();
         t.TurnEnded += Action;
     }
 

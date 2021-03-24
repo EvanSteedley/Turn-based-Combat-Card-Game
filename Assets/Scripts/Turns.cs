@@ -67,10 +67,10 @@ public class Turns : MonoBehaviour
                 e.transform.Translate(new Vector3(-1f, 0f, 0f));
                 e.anim.SetTrigger("EnemyAttack");
                 //e.transform.position.Set(e.transform.position.x + 1f, e.transform.position.y, e.transform.position.z);
+                e.EnemyBehaviour();
                 yield return StartCoroutine(EnemyDelay());
                 //Invoke("e.Attack", delayBetweenTurns);
                 //System.Threading.Thread.Sleep((int)(delayBetweenTurns * 1000));
-                e.EnemyBehaviour();
                 e.anim.SetTrigger("EnemyAttack");
                 e.transform.Translate(new Vector3(1f, 0f, 0f));
                 //e.transform.position.Set(e.transform.position.x - 1f, e.transform.position.y, e.transform.position.z);

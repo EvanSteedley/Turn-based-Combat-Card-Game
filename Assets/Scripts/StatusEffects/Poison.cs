@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
 
 
 class Poison : StatusEffects
 {
-
+    Turns t;
     void Start()
     {
-       
+        t = FindObjectOfType<Turns>();
+        t.TurnEnded += Action;
     }
 
     // Update is called once per frame
@@ -21,22 +21,29 @@ class Poison : StatusEffects
     {
 
     }
+
     public override void Action(object sender, EventArgs e)
     {
-
-        Enemy e2 = this.transform.parent.GetComponent<Enemy>();
-        Player p = this.transform.parent.GetComponent<Player>();
-
-        if (p != null)
+        Enemy e2 = this.transform.GetComponent<Enemy>();
+        Player p = this.transform.GetComponent<Player>();
+        if (turnsLeft > 0)
         {
-            p.TakeDamage(20);
+            if (p != null)
+            {
+                p.TakeDamage(20);
+                turnsLeft--;
+            }
 
+            else if (e2 != null)
+            {
+                e2.TakeDamage(20);
+                turnsLeft--;
+            }
         }
-
-        else if (e2 != null)
+        else
         {
-            e2.TakeDamage(20);
-
+            t.TurnEnded -= Action;
+            Destroy(this);
         }
 
     }
