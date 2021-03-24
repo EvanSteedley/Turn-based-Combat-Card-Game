@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Graveyard : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class Graveyard : MonoBehaviour
     void Start()
     {
         Deck = FindObjectOfType<Deck>();
-       //DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
+        SceneManager.sceneLoaded += ResetGraveyard;
     }
 
     // Update is called once per frame
@@ -32,5 +34,10 @@ public class Graveyard : MonoBehaviour
     public void Discard(Card c)
     {
         DiscardedCards.Add(c);
+    }
+
+    public void ResetGraveyard(Scene s, LoadSceneMode m)
+    {
+        DiscardedCards = new List<Card>();
     }
 }
