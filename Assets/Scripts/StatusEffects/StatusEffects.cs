@@ -12,9 +12,11 @@ using UnityEngine.SceneManagement;
     [SerializeField]
     Turns t;
 
+    
+
     void Start()
     {
-       
+        t.TurnEnded += Action;
     }
 
     // Update is called once per frame
@@ -25,7 +27,8 @@ using UnityEngine.SceneManagement;
 
 
     public int turnsLeft = 2;
-    virtual public void Action()
+    virtual public void Action (object sender, EventArgs e)
+
     {
 
         if (turnsLeft > 0)

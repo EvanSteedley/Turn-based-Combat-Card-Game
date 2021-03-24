@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 
 public class Enemy : MonoBehaviour
@@ -24,7 +25,7 @@ public class Enemy : MonoBehaviour
     public int defense = 0;
     enum states { 
     
-        Fight, Defend, Buff
+        Fight, Defend, Buff, Poison 
     
     }
 
@@ -104,6 +105,12 @@ public class Enemy : MonoBehaviour
             Buff();
         }
 
+        if(num == (int)states.Poison)
+        {
+            p.gameObject.AddComponent<Poison>();
+        }
+
+
     }
 
     virtual public void Defend(int d)
@@ -119,6 +126,32 @@ public class Enemy : MonoBehaviour
             damage += 20;
         EnemyAttackValue.text = damage.ToString();
     }
+
+
+    class Poison : StatusEffects
+    {
+        public override void Action(object sender, EventArgs e)
+        {
+
+            Enemy e2 = this.transform.parent.GetComponent<Enemy>();
+            Player p = this.transform.parent.GetComponent<Player>();
+
+            if (p != null)
+            {
+                p.TakeDamage(20);
+
+            }
+
+            else if (e2 != null)
+            {
+                e2.TakeDamage(20);
+
+            }
+
+        }
+    }
+
+    
 }
 
 
