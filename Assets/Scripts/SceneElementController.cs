@@ -53,6 +53,13 @@ public class SceneElementController : MonoBehaviour
             PCTM.EndTurnButton.interactable = true;
             Debug.Log("Tile scene loaded");
         }
+        else if (scene.name.Equals("Shop"))
+        {
+            player.CombatUI.SetActive(false);
+            player.TileMoveUI.SetActive(false);
+            player.GetComponent<PlayerClickToMove>().enabled = false;
+            player.GetComponent<Movement>().enabled = false;
+        }
     }
 
     public void LoadTileMovementScene()

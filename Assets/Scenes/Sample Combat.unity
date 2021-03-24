@@ -1251,9 +1251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424dfb7767b9964caafbee3a2199a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cards: []
+  CurrentDeck: []
+  FullDeck: []
   AllCards: {fileID: 0}
-  initialDeckSize: 5
+  initialDeckSize: 24
   PlayerHand: {fileID: 0}
   Graveyard: {fileID: 0}
 --- !u!4 &594647274 stripped

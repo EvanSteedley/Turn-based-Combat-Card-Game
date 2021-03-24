@@ -8,7 +8,7 @@ public class Deck : MonoBehaviour
     public List<Card> CurrentDeck = new List<Card>();
     public List<Card> FullDeck = new List<Card>();
     public ListOfAllCards AllCards;
-    public int initialDeckSize = 7;
+    public int initialDeckSize = 24;
     public Hand PlayerHand;
     public Graveyard Graveyard;
 
@@ -18,8 +18,8 @@ public class Deck : MonoBehaviour
         AllCards = FindObjectOfType<ListOfAllCards>();
         PlayerHand = FindObjectOfType<Hand>();
         Graveyard = FindObjectOfType<Graveyard>();
-        //GenerateDeckRandomly();
-        GenerateKnightDeck();
+        GenerateDeckRandomly();
+        //GenerateKnightDeck();
         //DontDestroyOnLoad(this);
         SceneManager.sceneLoaded += ResetDeck;
     }
