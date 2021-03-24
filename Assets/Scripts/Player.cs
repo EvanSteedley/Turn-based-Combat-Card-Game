@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     int damage = 20;
     //hand size
     int handSize = 0;
+    //Player's gold
+    public int gold = 0;
     //Reference to the object with the Turns class, which controls when turns are ready.
     [SerializeField]
     public Turns t;
@@ -114,7 +116,7 @@ public class Player : MonoBehaviour
 
         Hand = FindObjectOfType<Hand>();
         CS = GetComponent<CardSelection>();
-        StartCoroutine(StartTurn());
+        //StartCoroutine(StartTurn());
     }
 
     // Update is called once per frame

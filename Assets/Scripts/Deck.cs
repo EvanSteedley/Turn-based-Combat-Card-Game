@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Deck : MonoBehaviour
 {
-    public List<Card> Cards = new List<Card>();
+    public List<Card> CurrentDeck = new List<Card>();
+    public List<Card> FullDeck = new List<Card>();
     public ListOfAllCards AllCards;
-    public int initialDeckSize = 5;
+    public int initialDeckSize = 7;
     public Hand PlayerHand;
     public Graveyard Graveyard;
 
@@ -19,6 +21,7 @@ public class Deck : MonoBehaviour
         //GenerateDeckRandomly();
         GenerateKnightDeck();
         //DontDestroyOnLoad(this);
+        SceneManager.sceneLoaded += ResetDeck;
     }
 
     // Update is called once per frame
@@ -29,42 +32,52 @@ public class Deck : MonoBehaviour
 
     public void GenerateDeckRandomly()
     {
-        Cards = new List<Card>();
+        CurrentDeck = new List<Card>();
         for(int i = 0; i < initialDeckSize; i++)
         {
-            Cards.Add(AllCards.DrawRandom());
+            Card added = AllCards.DrawRandom();
+            CurrentDeck.Add(added);
+            FullDeck.Add(added);
         }
     }
 
     public void GenerateKnightDeck()
     {
-        Cards = new List<Card>();
+        CurrentDeck = new List<Card>();
 
         //ArmorUp card
-        Cards.Add(AllCards.AllCards[0]);
+        CurrentDeck.Add(AllCards.DrawByIndex(0));
+        FullDeck.Add(AllCards.DrawByIndex(0));
         //HeavyHand card
-        Cards.Add(AllCards.AllCards[7]);
+        CurrentDeck.Add(AllCards.DrawByIndex(7));
+        FullDeck.Add(AllCards.DrawByIndex(7));
         //DoubleStrike card
-        Cards.Add(AllCards.AllCards[2]);
+        CurrentDeck.Add(AllCards.DrawByIndex(2));
+        FullDeck.Add(AllCards.DrawByIndex(2));
         //Multi-Attack card
-        Cards.Add(AllCards.AllCards[8]);
+        CurrentDeck.Add(AllCards.DrawByIndex(8));
+        FullDeck.Add(AllCards.DrawByIndex(8));
         //CrushingBlow card
-        Cards.Add(AllCards.AllCards[1]);
+        CurrentDeck.Add(AllCards.DrawByIndex(1));
+        FullDeck.Add(AllCards.DrawByIndex(1));
         //Fireball card
-        Cards.Add(AllCards.AllCards[9]);
+        CurrentDeck.Add(AllCards.DrawByIndex(9));
+        FullDeck.Add(AllCards.DrawByIndex(9));
     }
 
     public int AddCard(Card c)
     {
-        Cards.Add(c);
-        return Cards.Count;
+        CurrentDeck.Add(c);
+        FullDeck.Add(c);
+        return CurrentDeck.Count;
     }
 
     public bool RemoveCard(Card c)
     {
-        if (Cards.Contains(c))
+        if (CurrentDeck.Contains(c))
         {
-            Cards.Remove(c);
+            CurrentDeck.Remove(c);
+            FullDeck.Remove(c);
             return true;
         }
         else
@@ -73,19 +86,19 @@ public class Deck : MonoBehaviour
 
     public Card DrawCard()
     {
-        if (Cards.Count > 0)
+        if (CurrentDeck.Count > 0)
         {
-            Card drawn = Cards[0];
-            Cards.Remove(drawn);
+            Card drawn = CurrentDeck[0];
+            CurrentDeck.Remove(drawn);
             return drawn;
         }
         else
         {
             ShuffleDeck();
-            if (Cards.Count <= 0)
+            if (CurrentDeck.Count <= 0)
                 return null;
-            Card drawn = Cards[0];
-            Cards.Remove(drawn);
+            Card drawn = CurrentDeck[0];
+            CurrentDeck.Remove(drawn);
             return drawn;
             
         }
@@ -96,13 +109,18 @@ public class Deck : MonoBehaviour
         if (Graveyard == null)
             Graveyard = FindObjectOfType<Graveyard>();
         Graveyard.ReturnCardsToDeck();
-        for (int i = 0; i < Cards.Count; i++)
+        for (int i = 0; i < CurrentDeck.Count; i++)
         {
-            Card temp = Cards[i];
-            int r = Random.Range(0, Cards.Count);
-            Cards[i] = Cards[r];
-            Cards[r] = temp;
+            Card temp = CurrentDeck[i];
+            int r = Random.Range(0, CurrentDeck.Count);
+            CurrentDeck[i] = CurrentDeck[r];
+            CurrentDeck[r] = temp;
         }
+    }
+
+    public void ResetDeck(Scene s, LoadSceneMode m)
+    {
+        CurrentDeck = FullDeck;
     }
 
 }

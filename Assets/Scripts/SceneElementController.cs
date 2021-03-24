@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -37,6 +38,7 @@ public class SceneElementController : MonoBehaviour
             player.GetComponent<PlayerClickToMove>().enabled = false;
             player.GetComponent<Movement>().enabled = false;
             player.t = FindObjectOfType<Turns>();
+            player.t.TurnEnded += DebugTurnEnded;
             Debug.Log("Combat scene loaded");
         }
         else if (scene.name.Equals("TileMovement"))
@@ -51,5 +53,31 @@ public class SceneElementController : MonoBehaviour
             PCTM.EndTurnButton.interactable = true;
             Debug.Log("Tile scene loaded");
         }
+    }
+
+    public void LoadTileMovementScene()
+    {
+        SceneManager.LoadScene("TileMovement");
+    }
+    public void LoadCombatScene()
+    {
+        SceneManager.LoadScene("Combat");
+    }
+
+    public void LoadShopScene()
+    {
+        SceneManager.LoadScene("Shop");
+    }
+
+    public void LoadTreasureScene()
+    {
+        SceneManager.LoadScene("Treasure");
+    }
+
+    //Test for EventHandlers;  Receives the sender and its eventArguments as parameters (Can be avoided/changed/added to following this guide:)
+    // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-publish-events-that-conform-to-net-framework-guidelines
+    public void DebugTurnEnded(object sender, EventArgs e)
+    {
+        Debug.Log("TurnEnded triggered in SEC");
     }
 }
