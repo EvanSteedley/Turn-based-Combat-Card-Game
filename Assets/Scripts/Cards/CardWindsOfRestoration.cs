@@ -12,11 +12,14 @@ public class CardWindsOfRestoration : Card
     {
         id = 8;
         value = 55;
-        mana = 5;
+        mana = 4;
+        name = "Winds of Restoration";
+        description = "Heals for 55 Health.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        SetInfo();
     }
 
     // Update is called once per frame
