@@ -360,7 +360,7 @@ public class PlayerClickToMove : MonoBehaviour
         }
     }
 
-    public IEnumerator MoveToTile() 
+    public IEnumerator MoveToTile()
     {
         ClickToMoveButton.interactable = false;
         EndTurnButton.interactable = false;
@@ -404,7 +404,10 @@ public class PlayerClickToMove : MonoBehaviour
             y2 = PlayerMovement.currentTile.y;
         }
         path = new List<Tile>();
-        UnpaintTiles();
+        if (PlayerMovement.currentTile.SceneToLoad == "")
+        {
+            UnpaintTiles();
+        }
         ClickToMoveButton.interactable = true;
         EndTurnButton.interactable = true;
     }

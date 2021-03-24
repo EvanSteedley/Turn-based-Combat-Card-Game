@@ -26,7 +26,7 @@ public class Graveyard : MonoBehaviour
     {
         foreach (Card c in DiscardedCards)
         {
-            Deck.AddCard(c);
+            Deck.CurrentDeck.Add(c);
         }
         DiscardedCards = new List<Card>();
     }

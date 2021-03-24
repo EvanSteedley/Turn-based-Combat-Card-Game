@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     public int damage = 10;
     public bool dead = false;
     public int defense = 0;
+    //Amount of gold to drop when killed
+    public int goldValue = 100;
     enum states { 
     
         Fight, Defend, Buff, Poison, LowerPlayerDefense
@@ -61,6 +63,7 @@ public class Enemy : MonoBehaviour
              
         {
             dead = true;
+            p.gold += goldValue;
             //Ragdoll effect!
             Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
             rb.AddForce(new Vector3(500f, 400f, 0f));

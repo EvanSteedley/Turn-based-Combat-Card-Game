@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
     //UI Groups
     public GameObject CombatUI;
     public GameObject TileMoveUI;
+    public GameObject StatsUI;
 
 
 
@@ -160,7 +161,9 @@ public class Player : MonoBehaviour
 
     public void BuffDefense(int v)
     {
+        Debug.Log("Defense += " + v);
         defense += v;
+        Debug.Log("Total defense: " + defense);
         PlayerDefenseValue.text = defense.ToString();
     }
 
