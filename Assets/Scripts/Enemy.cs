@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 
 public class Enemy : MonoBehaviour
@@ -24,7 +25,7 @@ public class Enemy : MonoBehaviour
     public int defense = 0;
     enum states { 
     
-        Fight, Defend, Buff
+        Fight, Defend, Buff, Poison 
     
     }
 
@@ -101,8 +102,14 @@ public class Enemy : MonoBehaviour
 
         if (num == (int)states.Buff)
         {
-            Buff();
+           Buff();
         }
+
+        if(num == (int)states.Poison)
+        {
+            p.gameObject.AddComponent<Poison>();
+        }
+
 
     }
 
@@ -119,6 +126,8 @@ public class Enemy : MonoBehaviour
             damage += 20;
         EnemyAttackValue.text = damage.ToString();
     }
+
+    
 }
 
 
