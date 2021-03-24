@@ -47,7 +47,8 @@ public class CardArmorUp : Card
 
     override public void Action()
     {
-        p = FindObjectOfType<Player>();
+        //p = FindObjectOfType<Player>();
+        Debug.Log("Armor up.  Defense += " + value);
         p.BuffDefense(value);
         Destroy(this.gameObject);
     }

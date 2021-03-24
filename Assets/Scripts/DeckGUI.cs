@@ -10,11 +10,20 @@ public class DeckGUI : MonoBehaviour
     public List<Card> InstantiatedCards = new List<Card>();
     public List<Button> Buttons = new List<Button>();
     public Button DestroyButton;
+    public Player player;
+    public Shop shop;
 
     // Start is called before the first frame update
     void Awake()
     {
         Deck = FindObjectOfType<Deck>();
+        shop = FindObjectOfType<Shop>();
+        player = FindObjectOfType<Player>();
+    }
+
+    private void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -57,15 +66,20 @@ public class DeckGUI : MonoBehaviour
             InstantiatedCards[i].gameObject.transform.parent = null;
         }
         sumy /= InstantiatedCards.Count;
-        center /= 21;
+        center /= (InstantiatedCards.Count / 6);
         RectTransform RT = CardHolder.GetComponent<RectTransform>();
         RT.sizeDelta = new Vector2(RT.rect.width, (InstantiatedCards.Count / 6) * 600);
         RT.anchoredPosition = new Vector2(0, center);
+        RT.anchoredPosition = new Vector2(0, 0);
         for(int i = 0; i < InstantiatedCards.Count; i++)
         {
             InstantiatedCards[i].gameObject.transform.parent = CardHolder.transform;
             Button destroy = Instantiate(DestroyButton, this.transform);
             Buttons.Add(destroy);
+            if(player.gold < shop.destroyCost)
+            {
+                destroy.interactable = false;
+            }
             int index = i;
             destroy.onClick.AddListener(() =>
             {
@@ -82,7 +96,7 @@ public class DeckGUI : MonoBehaviour
         if(i >= 0 && i < InstantiatedCards.Count)
         {
             Card removed = InstantiatedCards[i];
-            Deck.RemoveCard(removed);
+            shop.RemoveCard(i);
             InstantiatedCards.Remove(removed);
             Destroy(removed.gameObject);
             int c = Buttons.Count;
@@ -117,15 +131,20 @@ public class DeckGUI : MonoBehaviour
             InstantiatedCards[i].gameObject.transform.parent = null;
         }
         sumy /= InstantiatedCards.Count;
-        center /= 21;
+        center /= (InstantiatedCards.Count / 6);
         RectTransform RT = CardHolder.GetComponent<RectTransform>();
         RT.sizeDelta = new Vector2(RT.rect.width, (InstantiatedCards.Count / 6) * 600);
         RT.anchoredPosition = new Vector2(0, center);
+        RT.anchoredPosition = new Vector2(0, 0);
         for (int i = 0; i < InstantiatedCards.Count; i++)
         {
             InstantiatedCards[i].gameObject.transform.parent = CardHolder.transform;
             Button destroy = Instantiate(DestroyButton, this.transform);
             Buttons.Add(destroy);
+            if (player.gold < shop.destroyCost)
+            {
+                destroy.interactable = false;
+            }
             int index = i;
             destroy.onClick.AddListener(() =>
             {
@@ -134,6 +153,24 @@ public class DeckGUI : MonoBehaviour
             //destroy.GetComponent<RectTransform>().anchoredPosition = new Vector2(InstantiatedCards[i].transform.localPosition.x, InstantiatedCards[i].transform.localPosition.y - 300);
             destroy.transform.SetParent(InstantiatedCards[i].transform);
             destroy.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, -0.02f);
+        }
+    }
+
+    public void DepopulateLists()
+    {
+        int c = Buttons.Count;
+        for (int k = 0; k < c; k++)
+        {
+            Button r = Buttons[0];
+            Buttons.RemoveAt(0);
+            Destroy(r.gameObject);
+        }
+        int b = InstantiatedCards.Count;
+        for (int k = 0; k < c; k++)
+        {
+            Card r = InstantiatedCards[0];
+            InstantiatedCards.RemoveAt(0);
+            Destroy(r.gameObject);
         }
     }
 }
