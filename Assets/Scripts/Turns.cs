@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Turns : MonoBehaviour
@@ -17,6 +18,9 @@ public class Turns : MonoBehaviour
     //For changing the camera location when one side loses.
     Camera cam;
 
+    //EventHandler to notify when the Player and Enemy's Turns have both ended
+    public event EventHandler TurnEnded;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +34,7 @@ public class Turns : MonoBehaviour
         {
             enemies.Add(e);
         }
+        StartCoroutine(p.StartTurn());
 
         //Loop();
     }
@@ -71,6 +76,16 @@ public class Turns : MonoBehaviour
                 //e.transform.position.Set(e.transform.position.x - 1f, e.transform.position.y, e.transform.position.z);
             }
         }
+
+        //Raise TurnEnded Event
+        //If at least 1 subscriber
+        if(TurnEnded != null)
+        {
+            //EventArguments by default need a Sender (this) and an EventArgs object
+            TurnEnded(this, new EventArgs());
+        }
+
+
         //If there are enemies still alive and the player isn't dead, the Player can take their turn.
         if (count > 0 && !p.dead)
         {
@@ -121,3 +136,5 @@ public class Turns : MonoBehaviour
     }
 
 }
+
+

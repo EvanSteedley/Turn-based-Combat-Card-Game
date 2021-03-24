@@ -13,10 +13,13 @@ public class CardMultiAttack : Card
         id = 2;
         value = 20;
         mana = 3;
+        name = "Multi Attack";
+        description = "Deal 20 damage to 3 targets.";
         numberOfTargets = 3;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = false;
+        SetInfo();
     }
 
     // Update is called once per frame
