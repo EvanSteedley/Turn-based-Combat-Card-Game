@@ -11,6 +11,8 @@ public class Hand : MonoBehaviour
     public Graveyard Graveyard;
     public Player p;
     public int HandSize;
+    int Center;
+    Vector3 CenterPos;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class Hand : MonoBehaviour
         Graveyard = FindObjectOfType<Graveyard>();
         DontDestroyOnLoad(this.transform.parent);
         SceneManager.sceneLoaded += ResetHand;
+
     }
 
     // Update is called once per frame
@@ -89,8 +92,17 @@ public class Hand : MonoBehaviour
     {
         for (int i = 0; i < CurrentHand.Count; i++)
         {
+            Center = CurrentHand.Count / 2;
+            CenterPos = InstantiatedCards[Center].gameObject.transform.localPosition;
+            Debug.Log("Moving card " + i);
             //Displaces the X position by 2 for each card
             InstantiatedCards[i].gameObject.transform.localPosition = new Vector3(2 + i * 2f, 0, 0);
+           /* if (i < Center) {
+                CenterPos.x -=(i*2f);
+                InstantiatedCards[i].gameObject.transform.localPosition = CenterPos; }
+            else if (i>Center) {
+                CenterPos.x += (i*2f);
+                InstantiatedCards[i].gameObject.transform.localPosition = CenterPos; }*/
             CardSelectable CS = InstantiatedCards[i].GetComponent<CardSelectable>();
             if(CS.originalP != null)
                 CS.originalP = new Vector3(2 + i * 2f, 0, 0);
