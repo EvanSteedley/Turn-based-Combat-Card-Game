@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 class Poison : StatusEffects
 {
     Turns t;
+    int damagePerTurn = 10;
     void Start()
     {
         t = FindObjectOfType<Turns>();
@@ -30,13 +31,13 @@ class Poison : StatusEffects
         {
             if (p != null)
             {
-                p.TakeDamage(20);
+                p.TakeDamage(damagePerTurn);
                 turnsLeft--;
             }
 
             else if (e2 != null)
             {
-                e2.TakeDamage(20);
+                e2.TakeDamage(damagePerTurn);
                 turnsLeft--;
             }
         }

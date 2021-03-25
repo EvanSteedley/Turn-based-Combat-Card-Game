@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
@@ -8,15 +9,19 @@ public class Shop : MonoBehaviour
     public Deck Deck;
     public List<Card> CardsToBuy;
     public List<Card> InstantiatedCards;
+    public List<Button> BuyButtons = new List<Button>();
     public int shopSize = 6;
     public Vector3[] positions;
     public int cardCost = 250;
     public int destroyCost = 100;
+    public Player player;
+    public Text playerGold;
     // Start is called before the first frame update
     void Start()
     {
         ListOfAllCards = FindObjectOfType<ListOfAllCards>();
         Deck = FindObjectOfType<Deck>();
+        player = FindObjectOfType<Player>();
         positions = new Vector3[shopSize];
         positions[0] = new Vector3(-36f, 5.5f, 7.2f);
         positions[1] = new Vector3(-33.25f, 5.5f, 7.2f);
@@ -25,6 +30,18 @@ public class Shop : MonoBehaviour
         positions[4] = new Vector3(-33.25f, 1.6f, 7.2f);
         positions[5] = new Vector3(-30.55f, 1.6f, 7.2f);
         StartCoroutine(PopulateShop());
+        playerGold.text = player.gold.ToString();
+        foreach (Button b in BuyButtons)
+        {
+            if(player.gold >= cardCost)
+            {
+                b.interactable = true;
+            }
+            else
+            {
+                b.interactable = false;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -50,15 +67,29 @@ public class Shop : MonoBehaviour
 
     public void BuyCard(int i)
     {
-        if(i >= 0 && i < CardsToBuy.Count && FindObjectOfType<Player>().gold >= cardCost)
+        if(i >= 0 && i < CardsToBuy.Count && player.gold >= cardCost)
         {
+            Debug.Log("Card bought");
+            player.gold -= cardCost;
+            playerGold.text = player.gold.ToString();
             Deck.AddCard(CardsToBuy[i]);
             Card ToDestroy = InstantiatedCards[i];
             Destroy(ToDestroy.gameObject);
+            foreach (Button b in BuyButtons)
+            {
+                if (player.gold >= cardCost)
+                {
+                    b.interactable = true;
+                }
+                else
+                {
+                    b.interactable = false;
+                }
+            }
         }
     }
 
-    public void RemoveCard(Card c)
+    public void RemoveCard(int i)
     {
         //for (int i = 0; i < Deck.CurrentDeck.Count; i++)
         //{
@@ -68,9 +99,22 @@ public class Shop : MonoBehaviour
         //        break;
         //    }
         //}
-        if(FindObjectOfType<Player>().gold >= destroyCost)
+        if(player.gold >= destroyCost)
         {
-            Deck.RemoveCard(c);
+            player.gold -= destroyCost;
+            playerGold.text = player.gold.ToString();
+            Deck.RemoveCardByIndex(i);
+            foreach (Button b in BuyButtons)
+            {
+                if (player.gold >= cardCost)
+                {
+                    b.interactable = true;
+                }
+                else
+                {
+                    b.interactable = false;
+                }
+            }
         }
     }
 }
