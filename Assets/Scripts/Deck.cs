@@ -8,7 +8,7 @@ public class Deck : MonoBehaviour
     public List<Card> CurrentDeck = new List<Card>();
     public List<Card> FullDeck = new List<Card>();
     public ListOfAllCards AllCards;
-    public int initialDeckSize = 7;
+    public int initialDeckSize = 24;
     public Hand PlayerHand;
     public Graveyard Graveyard;
 
@@ -18,8 +18,8 @@ public class Deck : MonoBehaviour
         AllCards = FindObjectOfType<ListOfAllCards>();
         PlayerHand = FindObjectOfType<Hand>();
         Graveyard = FindObjectOfType<Graveyard>();
-        //GenerateDeckRandomly();
-        GenerateKnightDeck();
+        GenerateDeckRandomly();
+        //GenerateKnightDeck();
         //DontDestroyOnLoad(this);
         SceneManager.sceneLoaded += ResetDeck;
     }
@@ -84,6 +84,25 @@ public class Deck : MonoBehaviour
             return false;
     }
 
+    public bool RemoveCardByIndex(int i)
+    {
+        if(i >= 0 && i < FullDeck.Count)
+        {
+            Card removed = FullDeck[i];
+            FullDeck.RemoveAt(i);
+            for(int k = 0; k < CurrentDeck.Count; k++)
+            {
+                if(CurrentDeck[k].name.Equals(removed.name))
+                {
+                    CurrentDeck.RemoveAt(k);
+                    return true;
+                }
+            }
+            Debug.Log("Card missing from Deck - in Hand?");
+        }
+        return false;
+    }
+
     public Card DrawCard()
     {
         if (CurrentDeck.Count > 0)
@@ -120,7 +139,11 @@ public class Deck : MonoBehaviour
 
     public void ResetDeck(Scene s, LoadSceneMode m)
     {
-        CurrentDeck = FullDeck;
+        CurrentDeck = new List<Card>();
+        foreach (Card c in FullDeck)
+        {
+            CurrentDeck.Add(c);
+        }
     }
 
 }
