@@ -32,13 +32,22 @@ class Defense : StatusEffects
         {
             if (p != null)
             {
-                p.BuffDefense(-5);
+                if (p.defense - 5 > 0)
+                    p.BuffDefense(-5);
+                else
+                {
+                    p.BuffDefense(p.defense * -1);
+                }
                 turnsLeft--;
             }
 
             else if (e2 != null)
             {
-                e2.BuffDefense(-5);
+                if (p.defense - 5 > 0)
+                    e2.BuffDefense(-5);
+                else
+                    e2.BuffDefense(e2.defense * -1);
+                
                 turnsLeft--;
             }
         }

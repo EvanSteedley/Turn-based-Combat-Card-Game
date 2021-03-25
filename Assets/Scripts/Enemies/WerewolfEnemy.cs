@@ -10,6 +10,7 @@ public class WerewolfEnemy : Enemy
         health = 150;
         damage = 35;
         defense = 0;
+        goldValue = 200;
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
         //SliderHealth.value = health;
