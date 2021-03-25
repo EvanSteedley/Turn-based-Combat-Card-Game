@@ -22,14 +22,14 @@ public class PlayerSelection : MonoBehaviour
         //nextbutton disabled when on last car. 
         nextButton.interactable = _index != transform.childCount - 1;
         //loop goes through all the child objects 
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             //Only activating the player gameOject that we need
             transform.GetChild(i).gameObject.SetActive(i == _index);
         }
-        
-    }
 
+
+    }
 
     public void ChangePlayer(int _change)
     {
@@ -37,5 +37,10 @@ public class PlayerSelection : MonoBehaviour
         currPlayer += _change;
         SelectPlayer(currPlayer);
         
+    }
+    public void PlayerSelected()
+    {
+        yield return new WaitForSeconds(.05f);
+        SceneManager.LoadScene("TileMovement");
     }
 }
