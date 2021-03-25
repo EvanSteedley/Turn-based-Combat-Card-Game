@@ -38,9 +38,5 @@ public class PlayerSelection : MonoBehaviour
         SelectPlayer(currPlayer);
         
     }
-    public void PlayerSelected()
-    {
-        yield return new WaitForSeconds(.05f);
-        SceneManager.LoadScene("TileMovement");
-    }
+
 }
