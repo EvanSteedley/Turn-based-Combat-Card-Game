@@ -43,7 +43,7 @@ public class LerpTowardsTargets : MonoBehaviour
         StartCoroutine(WaitForParticleDespawn(particles.main.startLifetime.constant));
         particles.Stop();
         spawnedOnReachParticles.Play();
-        Debug.Log(spawnedOnReachParticles.main.startLifetime.constant);
+        //Debug.Log(spawnedOnReachParticles.main.startLifetime.constant);
         Destroy(spawned, spawnedOnReachParticles.main.startLifetime.constant);
         Destroy(this.gameObject, spawnedOnReachParticles.main.startLifetime.constant);
     }

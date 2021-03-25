@@ -29,11 +29,14 @@ public class CardArmorUp : Card
         id = 1;
         mana = 3;
         value = 5;
+        name = "Armor Up";
+        description = "Increases your defense by 5.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
         p = FindObjectOfType<Player>();
+        SetInfo();
     }
 
     // Update is called once per frame
@@ -44,7 +47,8 @@ public class CardArmorUp : Card
 
     override public void Action()
     {
-        p = FindObjectOfType<Player>();
+        //p = FindObjectOfType<Player>();
+        Debug.Log("Armor up.  Defense += " + value);
         p.BuffDefense(value);
         Destroy(this.gameObject);
     }

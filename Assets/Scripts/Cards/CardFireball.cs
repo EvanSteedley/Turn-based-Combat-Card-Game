@@ -15,10 +15,13 @@ public class CardFireball : Card
         id = 6;
         value = 50;
         mana = 2;
+        name = "Fireball";
+        description = "Shoot a 50 damage Fireball at one target.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        SetInfo();
     }
 
     // Update is called once per frame

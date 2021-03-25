@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     int damage = 20;
     //hand size
     int handSize = 0;
+    //Player's gold
+    public int gold = 0;
     //Reference to the object with the Turns class, which controls when turns are ready.
     [SerializeField]
     public Turns t;
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
     //UI Groups
     public GameObject CombatUI;
     public GameObject TileMoveUI;
+    public GameObject StatsUI;
 
 
 
@@ -114,7 +117,7 @@ public class Player : MonoBehaviour
 
         Hand = FindObjectOfType<Hand>();
         CS = GetComponent<CardSelection>();
-        StartCoroutine(StartTurn());
+        //StartCoroutine(StartTurn());
     }
 
     // Update is called once per frame
@@ -158,7 +161,9 @@ public class Player : MonoBehaviour
 
     public void BuffDefense(int v)
     {
+        Debug.Log("Defense += " + v);
         defense += v;
+        Debug.Log("Total defense: " + defense);
         PlayerDefenseValue.text = defense.ToString();
     }
 
@@ -331,5 +336,10 @@ public class Player : MonoBehaviour
     public void LoadCombatScene()
     {
         SceneManager.LoadScene("Combat");
+    }
+
+    public void LoadShopScene()
+    {
+        SceneManager.LoadScene("Shop");
     }
 }

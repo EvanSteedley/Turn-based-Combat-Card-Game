@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,15 +35,18 @@ public class SceneElementController : MonoBehaviour
         {
             player.CombatUI.SetActive(true);
             player.TileMoveUI.SetActive(false);
+            player.StatsUI.SetActive(true);
             player.GetComponent<PlayerClickToMove>().enabled = false;
             player.GetComponent<Movement>().enabled = false;
             player.t = FindObjectOfType<Turns>();
+            player.t.TurnEnded += DebugTurnEnded;
             Debug.Log("Combat scene loaded");
         }
         else if (scene.name.Equals("TileMovement"))
         {
             player.CombatUI.SetActive(false);
             player.TileMoveUI.SetActive(true);
+            player.StatsUI.SetActive(true);
             PlayerClickToMove PCTM = player.GetComponent<PlayerClickToMove>();
             PCTM.enabled = true;
             player.GetComponent<Movement>().enabled = true;
@@ -51,5 +55,39 @@ public class SceneElementController : MonoBehaviour
             PCTM.EndTurnButton.interactable = true;
             Debug.Log("Tile scene loaded");
         }
+        else if (scene.name.Equals("Shop"))
+        {
+            player.CombatUI.SetActive(false);
+            player.TileMoveUI.SetActive(false);
+            player.StatsUI.SetActive(false);
+            player.GetComponent<PlayerClickToMove>().enabled = false;
+            player.GetComponent<Movement>().enabled = false;
+        }
+    }
+
+    public void LoadTileMovementScene()
+    {
+        SceneManager.LoadScene("TileMovement");
+    }
+    public void LoadCombatScene()
+    {
+        SceneManager.LoadScene("Combat");
+    }
+
+    public void LoadShopScene()
+    {
+        SceneManager.LoadScene("Shop");
+    }
+
+    public void LoadTreasureScene()
+    {
+        SceneManager.LoadScene("Treasure");
+    }
+
+    //Test for EventHandlers;  Receives the sender and its eventArguments as parameters (Can be avoided/changed/added to following this guide:)
+    // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-publish-events-that-conform-to-net-framework-guidelines
+    public void DebugTurnEnded(object sender, EventArgs e)
+    {
+        Debug.Log("TurnEnded triggered in SEC");
     }
 }

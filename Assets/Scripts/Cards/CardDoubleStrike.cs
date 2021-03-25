@@ -12,11 +12,14 @@ public class CardDoubleStrike : Card
     {
         id = 10;
         value = 30;
-        mana = 4;
+        mana = 3;
+        name = "Double Strike";
+        description = "Deal 30 damage to 2 targets.";
         numberOfTargets = 2;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        SetInfo();
     }
 
     // Update is called once per frame

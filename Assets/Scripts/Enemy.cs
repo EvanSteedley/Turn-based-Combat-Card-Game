@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 
 public class Enemy : MonoBehaviour
@@ -22,9 +23,11 @@ public class Enemy : MonoBehaviour
     public int damage = 10;
     public bool dead = false;
     public int defense = 0;
+    //Amount of gold to drop when killed
+    public int goldValue = 100;
     enum states { 
     
-        Fight, Defend, Buff
+        Fight, Defend, Buff, Poison, LowerPlayerDefense
     
     }
 
@@ -60,6 +63,7 @@ public class Enemy : MonoBehaviour
              
         {
             dead = true;
+            p.gold += goldValue;
             //Ragdoll effect!
             Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
             rb.AddForce(new Vector3(500f, 400f, 0f));
@@ -75,6 +79,18 @@ public class Enemy : MonoBehaviour
 		}
         //SliderHealth.value = health;
         HealthValue.text = health.ToString();
+    }
+
+    public void BuffDefense(int v)
+    {
+        defense += v;
+        EnemyDefenseValue.text = defense.ToString();
+    }
+
+    public void BuffHealth(int v)
+    {
+    
+      //leave this BuffHealth method empty for now for the Enemy - come back to this later
     }
 
     virtual public void Attack()
@@ -101,8 +117,19 @@ public class Enemy : MonoBehaviour
 
         if (num == (int)states.Buff)
         {
-            Buff();
+           Buff();
         }
+
+        if(num == (int)states.Poison)
+        {
+            p.gameObject.AddComponent<Poison>();
+        }
+        if (num == (int)states.LowerPlayerDefense)
+        {
+            p.gameObject.AddComponent<Defense>();
+        }
+
+
 
     }
 
@@ -119,6 +146,8 @@ public class Enemy : MonoBehaviour
             damage += 20;
         EnemyAttackValue.text = damage.ToString();
     }
+
+    
 }
 
 

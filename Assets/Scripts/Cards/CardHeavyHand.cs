@@ -13,10 +13,13 @@ public class CardHeavyHand : Card
         id = 6;
         value = 50;
         mana = 2;
+        name = "Heavy Hand";
+        description = "Deal 50 damage to 1 target.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
+        SetInfo();
     }
 
     // Update is called once per frame

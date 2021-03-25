@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Hand : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class Hand : MonoBehaviour
         centeredP = new Vector3(7.5f, 0f, 0f);
        // centeredR = new Vector3(-26.189f, -4.315f, -107.471f);
         // Debug.Log("Center pos=" + InstantiatedCards[CurrentHand.Count].gameObject.transform.localPosition);
+        SceneManager.sceneLoaded += ResetHand;
     }
 
     // Update is called once per frame
@@ -75,16 +77,20 @@ public class Hand : MonoBehaviour
 
     public void CardPlayed(Card c)
     {
-        for(int i = 0; i < CurrentHand.Count; i++)
-        {
-            if(CurrentHand[i].GetType() == c.GetType())
-            {
-                Graveyard.Discard(CurrentHand[i]);
-                CurrentHand.RemoveAt(i);
-                InstantiatedCards.RemoveAt(i);
-                break;
-            }
-        }
+        //for(int i = 0; i < CurrentHand.Count; i++)
+        //{
+        //    if(CurrentHand[i].GetType() == c.GetType())
+        //    {
+        //        Graveyard.Discard(CurrentHand[i]);
+        //        CurrentHand.RemoveAt(i);
+        //        InstantiatedCards.RemoveAt(i);
+        //        break;
+        //    }
+        //}
+        int i = InstantiatedCards.IndexOf(c);
+        Graveyard.Discard(CurrentHand[i]);
+        CurrentHand.RemoveAt(i);
+        InstantiatedCards.RemoveAt(i);
         UpdateCardPositions();
     }
 
@@ -118,5 +124,15 @@ public class Hand : MonoBehaviour
             if(CS.originalP != null)
                 CS.originalP = new Vector3(2 + i * 2f, 0, 0);
         }
+    }
+
+    public void ResetHand(Scene s, LoadSceneMode m)
+    {
+        CurrentHand = new List<Card>();
+        foreach (Card c in InstantiatedCards)
+        {
+            Destroy(c.gameObject);
+        }
+        InstantiatedCards = new List<Card>();
     }
 }

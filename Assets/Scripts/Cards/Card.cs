@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class Card : MonoBehaviour
     //public cardType cardElement;
     public string description;
 
+    //UI Info
+    public Text Name;
+    public Text Description;
+    public Text ManaCost;
+
     public int numberOfTargets = 1;
     public SelectionGO Targeter;
     public GameObject targetType;
@@ -25,7 +31,7 @@ public class Card : MonoBehaviour
     //}
 
 
-   
+
     //public Card(string CardName, int Id, int Mana, int value, int Defense,cardType CardElement,string Description)
     //{
     //    cardName = CardName;
@@ -37,7 +43,7 @@ public class Card : MonoBehaviour
     //    description = Description;
 
 
-   
+
     //}
 
     //  Start is called before the first frame update
@@ -48,6 +54,14 @@ public class Card : MonoBehaviour
 
         //Important line!  If true: a target can only be selected once.  If false, the same target can be selected multiple times.
         Targeter.exclusive = false;
+        SetInfo();
+    }
+
+    public virtual void SetInfo()
+    {
+        Name.text = name;
+        Description.text = description;
+        ManaCost.text = mana.ToString();
     }
 
     /*public GameObject Selected
