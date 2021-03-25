@@ -10,8 +10,12 @@ public class Hand : MonoBehaviour
     public Graveyard Graveyard;
     public Player p;
     public int HandSize;
-    int Center;
-    Vector3 CenterPos;
+    public int CardCount;
+    public float cardShift;
+    public Vector3 centeredP;
+    public Vector3 centeredR;
+    public Vector3 currentP;
+    public Vector3 currentR;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +24,9 @@ public class Hand : MonoBehaviour
         Deck = FindObjectOfType<Deck>();
         Graveyard = FindObjectOfType<Graveyard>();
         DontDestroyOnLoad(this.transform.parent);
-       // Debug.Log("Center pos=" + InstantiatedCards[CurrentHand.Count].gameObject.transform.localPosition);
+        centeredP = new Vector3(7.5f, 0f, 0f);
+       // centeredR = new Vector3(-26.189f, -4.315f, -107.471f);
+        // Debug.Log("Center pos=" + InstantiatedCards[CurrentHand.Count].gameObject.transform.localPosition);
     }
 
     // Update is called once per frame
@@ -84,19 +90,30 @@ public class Hand : MonoBehaviour
 
     public void UpdateCardPositions()
     {
+        CardCount = CurrentHand.Count;
+        cardShift = 10f/2.5f;
+
         for (int i = 0; i < CurrentHand.Count; i++)
         {
-            Center = CurrentHand.Count / 2;
-            CenterPos = InstantiatedCards[Center].gameObject.transform.localPosition;
+            currentP = centeredP;
+            //currentR = centeredR;
             Debug.Log("Moving card " + i);
             //Displaces the X position by 2 for each card
             InstantiatedCards[i].gameObject.transform.localPosition = new Vector3(2 + i * 2f, 0, 0);
-           /* if (i < Center) {
-                CenterPos.x -=(i*2f);
-                InstantiatedCards[i].gameObject.transform.localPosition = CenterPos; }
-            else if (i>Center) {
-                CenterPos.x += (i*2f);
-                InstantiatedCards[i].gameObject.transform.localPosition = CenterPos; }*/
+           /*if (i%2 == 0 ) {
+                currentP.x -=(i*cardShift*0.5f);
+                //currentR.z -= (10f);
+               // currentR.x -= (15f);
+                InstantiatedCards[i].gameObject.transform.localPosition = currentP;
+                //InstantiatedCards[i].gameObject.transform.eulerAngles = currentR;
+            }
+            else{
+                currentP.x += (i*cardShift*0.5f);
+               // currentR.z -= (10f);
+               // currentR.x += (15f);
+                //InstantiatedCards[i].gameObject.transform.localPosition = currentP;
+                //InstantiatedCards[i].gameObject.transform.eulerAngles = currentR;
+            }*/
             CardSelectable CS = InstantiatedCards[i].GetComponent<CardSelectable>();
             if(CS.originalP != null)
                 CS.originalP = new Vector3(2 + i * 2f, 0, 0);
