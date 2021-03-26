@@ -1,0 +1,7 @@
+Priest animations 
+1 - 113 idle
+120 - 262 power up
+270 - 350 block
+360 - 522 2 hand casting
+536 - 672 one hand casting 
+680 - 1142 power cast

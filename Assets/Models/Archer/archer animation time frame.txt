@@ -1,0 +1,7 @@
+Archer
+1 - 306 idle
+315 - 457 power up
+465 - 536 walk forward
+542 - 625 block
+630 - 930 arrow shot
+940 - 1227 casting

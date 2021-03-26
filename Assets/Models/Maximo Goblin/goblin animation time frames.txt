@@ -1,0 +1,7 @@
+Goblin animation frames
+1 - 113
+117 - 151 sprint animation
+160 - 302 power up
+310 - 390 block
+395 - 553 cast 1
+557 - 719 cast 2
