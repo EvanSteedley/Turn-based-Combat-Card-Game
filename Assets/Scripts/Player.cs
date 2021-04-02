@@ -238,6 +238,8 @@ public class Player : MonoBehaviour
             EndTurnButton.interactable = false;
             PlayCardButton.interactable = false;
 
+            //trigger the Event to tell the Enemies what card has been played by the player
+
             //"Using" mana.
             mana -= manaCost;
             //Updates the UI mana value
