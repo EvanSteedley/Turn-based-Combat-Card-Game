@@ -11,12 +11,16 @@ public class Turns : MonoBehaviour
     Player p;
     //List of enemies in the current fight.
     [SerializeField]
+    public List<Enemy> AllEnemies = new List<Enemy>();
+    [SerializeField]
     public List<Enemy> enemies = new List<Enemy>();
     //This controls how long the "animations" will last.
     [SerializeField]
     float delayBetweenTurns = .5f;
     //For changing the camera location when one side loses.
     Camera cam;
+    //Distance between enemies to spawn
+    public float offsetBetweenEnemies = 4f;
 
     //EventHandler to notify when the Player and Enemy's Turns have both ended
     public event EventHandler TurnEnded;
@@ -27,13 +31,17 @@ public class Turns : MonoBehaviour
         p = FindObjectOfType<Player>();
         p.transform.position = new Vector3(-8.45f, 2.01f, -0.13f);
         p.transform.rotation = Quaternion.Euler(0, -90, 0);
+        //New values after moving camera/player
+        p.transform.position = new Vector3(-0.25f, 2.01f, -3.13f);
+        p.transform.rotation = Quaternion.Euler(0, 180, 0);
         cam = FindObjectOfType<Camera>();
         //All enemies in the scene are added to the list of active enemies.
-        Enemy[] enemiesList = FindObjectsOfType<Enemy>();
-        foreach (Enemy e in enemiesList)
-        {
-            enemies.Add(e);
-        }
+        //Enemy[] enemiesList = FindObjectsOfType<Enemy>();
+        //foreach (Enemy e in enemiesList)
+        //{
+        //    enemies.Add(e);
+        //}
+        SpawnEnemies(5);
         StartCoroutine(p.StartTurn());
 
         //Loop();
@@ -43,6 +51,27 @@ public class Turns : MonoBehaviour
     void Update()
     {
 
+    }
+
+    /// <summary>
+    /// Spawns new Enemies randomly
+    /// </summary>
+    /// <param name="n">Number of enemies to spawn</param>
+    public void SpawnEnemies(int n)
+    {
+        int currentIteration = 0;
+        for (int i = 0; i < n; i++)
+        {
+            Enemy EnemyInstance = Instantiate(AllEnemies[UnityEngine.Random.Range(0, AllEnemies.Count)], this.transform);
+            enemies.Add(EnemyInstance);
+            //EnemyInstance.transform.position += new Vector3(((i % 2) == 0) && i != 0 ? ((i - 1) * -3) : (i * 3), 0f, 0f);
+
+            // ? operator is neat!
+            // using ? after a conditional (if i % 2 == 0) checks the condition; if it passes, the value before the : is used,
+            //otherwise, it uses the value after the : .  It can be done in-line, like so!
+            EnemyInstance.transform.position += new Vector3((i % 2 == 0 ? currentIteration * offsetBetweenEnemies : ++currentIteration * -offsetBetweenEnemies), 0, 0);
+            EnemyInstance.transform.LookAt(p.transform);
+        }
     }
 
     public IEnumerator EndPlayerTurn()
@@ -64,7 +93,10 @@ public class Turns : MonoBehaviour
                 count++;
                 //StartCoroutine(EnemyDelay());
                 //StartCoroutine(EnemyDelay());
-                e.transform.Translate(new Vector3(-1f, 0f, 0f));
+                Vector3 original = new Vector3(e.transform.position.x, e.transform.position.y, e.transform.position.z);
+                //e.transform.Translate(e.gameObject.transform.forward * -1);
+                Debug.Log(e.gameObject.name);
+                StartCoroutine(LerpToPlayer(e.gameObject, p.transform.position, .15f));
                 e.anim.SetTrigger("EnemyAttack");
                 //e.transform.position.Set(e.transform.position.x + 1f, e.transform.position.y, e.transform.position.z);
                 e.EnemyBehaviour();
@@ -72,7 +104,7 @@ public class Turns : MonoBehaviour
                 //Invoke("e.Attack", delayBetweenTurns);
                 //System.Threading.Thread.Sleep((int)(delayBetweenTurns * 1000));
                 e.anim.SetTrigger("EnemyAttack");
-                e.transform.Translate(new Vector3(1f, 0f, 0f));
+                //e.transform.Translate(e.gameObject.transform.forward);
                 //e.transform.position.Set(e.transform.position.x - 1f, e.transform.position.y, e.transform.position.z);
             }
         }
@@ -98,6 +130,34 @@ public class Turns : MonoBehaviour
             
         }
 
+        yield return null;
+    }
+
+    public IEnumerator LerpToPlayer(GameObject toMove, Vector3 playerP, float timeToMove)
+    {
+        Vector3 originalPos = new Vector3(toMove.transform.position.x, toMove.transform.position.y, toMove.transform.position.z);
+        float elapsedTime = 0f;
+        while (elapsedTime < timeToMove)
+        {
+            toMove.transform.position = Vector3.Lerp(originalPos, playerP, (elapsedTime / timeToMove) * 0.5f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        //toMove.transform.position = playerP;
+        StartCoroutine(LerpBack(toMove, originalPos, 0.5f));
+        yield return null;
+    }
+    public IEnumerator LerpBack(GameObject toMove, Vector3 startP, float timeToMove)
+    {
+        Vector3 originalPos = new Vector3(toMove.transform.position.x, toMove.transform.position.y, toMove.transform.position.z);
+        float elapsedTime = 0f;
+        while (elapsedTime < timeToMove)
+        {
+            toMove.transform.position = Vector3.Lerp(originalPos, startP, (elapsedTime / timeToMove));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        toMove.transform.position = startP;
         yield return null;
     }
 
