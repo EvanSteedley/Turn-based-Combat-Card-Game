@@ -103,7 +103,7 @@ public class Hand : MonoBehaviour
         {
             currentP = centeredP;
             //currentR = centeredR;
-            Debug.Log("Moving card " + i);
+            //Debug.Log("Moving card " + i);
             //Displaces the X position by 2 for each card
             InstantiatedCards[i].gameObject.transform.localPosition = new Vector3(2 + i * 2f, 0, 0);
            /*if (i%2 == 0 ) {

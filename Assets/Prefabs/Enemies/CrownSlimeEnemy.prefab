@@ -155,7 +155,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &3748403380590349909
+--- !u!1 &2633745499674343002
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,13 +163,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4561814023670486255}
-  - component: {fileID: 639803866728717130}
-  - component: {fileID: 3388392969061642112}
-  - component: {fileID: 4090509614468249517}
-  - component: {fileID: 4090509614468249553}
-  - component: {fileID: 4090509614468249515}
-  - component: {fileID: 4090509614468249516}
+  - component: {fileID: 193907602178251822}
+  - component: {fileID: 1213279977159042640}
+  - component: {fileID: 482628807899819203}
   m_Layer: 0
   m_Name: CrownSlimeEnemy
   m_TagString: Untagged
@@ -177,36 +173,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4561814023670486255
+--- !u!4 &193907602178251822
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3748403380590349909}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_GameObject: {fileID: 2633745499674343002}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4811380115278759659}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4561814023670486255}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!33 &639803866728717130
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+--- !u!33 &1213279977159042640
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3748403380590349909}
+  m_GameObject: {fileID: 2633745499674343002}
   m_Mesh: {fileID: 4711208715938537054, guid: d0cca956f044df34d9ed8ef9421f760a, type: 3}
---- !u!23 &3388392969061642112
+--- !u!23 &482628807899819203
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3748403380590349909}
+  m_GameObject: {fileID: 2633745499674343002}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -241,6 +237,41 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3748403380590349909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4561814023670486255}
+  - component: {fileID: 4090509614468249517}
+  - component: {fileID: 4090509614468249553}
+  - component: {fileID: 4090509614468249515}
+  - component: {fileID: 4090509614468249516}
+  m_Layer: 0
+  m_Name: CrownSlimeEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4561814023670486255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748403380590349909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.157, z: -0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_Children:
+  - {fileID: 193907602178251822}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &4090509614468249517
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -311,6 +342,7 @@ MonoBehaviour:
   damage: 10
   dead: 0
   defense: 0
+  goldValue: 100
   HealthValue: {fileID: 8928551381277451195}
 --- !u!1 &5439478023721834151
 GameObject:
@@ -569,12 +601,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8617809429117240391}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.01}
   m_LocalScale: {x: 0.0001, y: 0.0001, z: 0.0001}
   m_Children:
   - {fileID: 5631483451756923814}
-  m_Father: {fileID: 4561814023670486255}
+  m_Father: {fileID: 193907602178251822}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
