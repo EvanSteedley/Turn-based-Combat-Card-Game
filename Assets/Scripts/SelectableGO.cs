@@ -15,7 +15,7 @@ public class SelectableGO : MonoBehaviour
     void Start()
     {
         SGO = FindObjectOfType<SelectionGO>();
-        ren = GetComponent<Renderer>();
+        ren = GetComponentInChildren<Renderer>();
         //Stores the default color before the object is highlighted/selected.
         defaultColor = ren.material.color;
         enabled = false;

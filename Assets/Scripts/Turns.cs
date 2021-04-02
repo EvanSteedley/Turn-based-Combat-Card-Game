@@ -70,6 +70,7 @@ public class Turns : MonoBehaviour
             // using ? after a conditional (if i % 2 == 0) checks the condition; if it passes, the value before the : is used,
             //otherwise, it uses the value after the : .  It can be done in-line, like so!
             EnemyInstance.transform.position += new Vector3((i % 2 == 0 ? currentIteration * offsetBetweenEnemies : ++currentIteration * -offsetBetweenEnemies), 0, 0);
+            EnemyInstance.transform.LookAt(p.transform);
         }
     }
 
@@ -92,7 +93,10 @@ public class Turns : MonoBehaviour
                 count++;
                 //StartCoroutine(EnemyDelay());
                 //StartCoroutine(EnemyDelay());
-                e.transform.Translate(new Vector3(-1f, 0f, 0f));
+                Vector3 original = new Vector3(e.transform.position.x, e.transform.position.y, e.transform.position.z);
+                //e.transform.Translate(e.gameObject.transform.forward * -1);
+                Debug.Log(e.gameObject.name);
+                StartCoroutine(LerpToPlayer(e.gameObject, p.transform.position, .15f));
                 e.anim.SetTrigger("EnemyAttack");
                 //e.transform.position.Set(e.transform.position.x + 1f, e.transform.position.y, e.transform.position.z);
                 e.EnemyBehaviour();
@@ -100,7 +104,7 @@ public class Turns : MonoBehaviour
                 //Invoke("e.Attack", delayBetweenTurns);
                 //System.Threading.Thread.Sleep((int)(delayBetweenTurns * 1000));
                 e.anim.SetTrigger("EnemyAttack");
-                e.transform.Translate(new Vector3(1f, 0f, 0f));
+                //e.transform.Translate(e.gameObject.transform.forward);
                 //e.transform.position.Set(e.transform.position.x - 1f, e.transform.position.y, e.transform.position.z);
             }
         }
@@ -126,6 +130,34 @@ public class Turns : MonoBehaviour
             
         }
 
+        yield return null;
+    }
+
+    public IEnumerator LerpToPlayer(GameObject toMove, Vector3 playerP, float timeToMove)
+    {
+        Vector3 originalPos = new Vector3(toMove.transform.position.x, toMove.transform.position.y, toMove.transform.position.z);
+        float elapsedTime = 0f;
+        while (elapsedTime < timeToMove)
+        {
+            toMove.transform.position = Vector3.Lerp(originalPos, playerP, (elapsedTime / timeToMove) * 0.5f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        //toMove.transform.position = playerP;
+        StartCoroutine(LerpBack(toMove, originalPos, 0.5f));
+        yield return null;
+    }
+    public IEnumerator LerpBack(GameObject toMove, Vector3 startP, float timeToMove)
+    {
+        Vector3 originalPos = new Vector3(toMove.transform.position.x, toMove.transform.position.y, toMove.transform.position.z);
+        float elapsedTime = 0f;
+        while (elapsedTime < timeToMove)
+        {
+            toMove.transform.position = Vector3.Lerp(originalPos, startP, (elapsedTime / timeToMove));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        toMove.transform.position = startP;
         yield return null;
     }
 
