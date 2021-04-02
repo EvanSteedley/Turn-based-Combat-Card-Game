@@ -32,7 +32,7 @@ class Defense : StatusEffects
         {
             if (p != null)
             {
-                if (p.defense - 5 > 0)
+                if (p.defense - 5 >= 0)
                     p.BuffDefense(-5);
                 else
                 {
@@ -43,7 +43,7 @@ class Defense : StatusEffects
 
             else if (e2 != null)
             {
-                if (p.defense - 5 > 0)
+                if (e2.defense - 5 >= 0)
                     e2.BuffDefense(-5);
                 else
                     e2.BuffDefense(e2.defense * -1);
