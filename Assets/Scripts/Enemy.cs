@@ -66,8 +66,9 @@ public class Enemy : MonoBehaviour
             p.gold += goldValue;
             //Ragdoll effect!
             Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
-            rb.AddForce(new Vector3(500f, 400f, 0f));
+            rb.AddForce(new Vector3(0f, 400f, 500f));
             rb.AddTorque(new Vector3(5f, 50f, 35f));
+            Destroy(this.gameObject, 3f);
         }
         if (defense < d)
 			health -= (d-defense);
