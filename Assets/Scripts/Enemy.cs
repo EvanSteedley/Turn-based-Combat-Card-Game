@@ -139,7 +139,7 @@ public class Enemy : MonoBehaviour
         }
         if (num == (int)states.LowerPlayerDefense)
         {
-            p.gameObject.AddComponent<Defense>();
+            p.gameObject.AddComponent<DefenseDown>();
         }
 
 

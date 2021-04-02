@@ -20,7 +20,7 @@ class EnemyDefense: EnemyCard
 
     public override void Action()
     {
-        p.gameObject.AddComponent<Defense>();
+        p.gameObject.AddComponent<DefenseDown>();
 
 
     }

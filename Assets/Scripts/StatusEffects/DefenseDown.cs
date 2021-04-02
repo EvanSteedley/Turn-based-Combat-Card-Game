@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 
 
-class Defense : StatusEffects
+class DefenseDown : StatusEffects
 {
 
     Turns t;
