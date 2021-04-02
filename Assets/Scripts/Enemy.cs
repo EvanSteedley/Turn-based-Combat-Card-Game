@@ -89,8 +89,20 @@ public class Enemy : MonoBehaviour
 
     public void BuffHealth(int v)
     {
-    
-      //leave this BuffHealth method empty for now for the Enemy - come back to this later
+
+        health += v;
+        HealthValue.text = health.ToString();
+
+        //leave this BuffHealth method empty for now for the Enemy - come back to this later
+    }
+
+    public void Heal(int v)
+    {
+
+        health += v;
+        HealthValue.text = health.ToString();
+
+        //leave this BuffHealth method empty for now for the Enemy - come back to this later
     }
 
     virtual public void Attack()
@@ -117,7 +129,7 @@ public class Enemy : MonoBehaviour
 
         if (num == (int)states.Buff)
         {
-           Buff();
+           Buff(2);
         }
 
         if(num == (int)states.Poison)
@@ -140,10 +152,10 @@ public class Enemy : MonoBehaviour
         
     }
 
-    virtual public void Buff()
+    virtual public void Buff(int value)
     {
         
-            damage += 20;
+            damage += value;
         EnemyAttackValue.text = damage.ToString();
     }
 
