@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turns : MonoBehaviour
 {
@@ -25,6 +26,13 @@ public class Turns : MonoBehaviour
     //EventHandler to notify when the Player and Enemy's Turns have both ended
     public event EventHandler TurnEnded;
 
+    int totalGoldValue = 0;
+
+    //GUI Elements
+    public GameObject WinUI;
+    public Text goldEarned;
+    public GameObject LoseUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +49,7 @@ public class Turns : MonoBehaviour
         //{
         //    enemies.Add(e);
         //}
-        SpawnEnemies(5);
+        SpawnEnemies(3);
         StartCoroutine(p.StartTurn());
 
         //Loop();
@@ -62,15 +70,17 @@ public class Turns : MonoBehaviour
         int currentIteration = 0;
         for (int i = 0; i < n; i++)
         {
-            Enemy EnemyInstance = Instantiate(AllEnemies[UnityEngine.Random.Range(0, AllEnemies.Count)], this.transform);
-            enemies.Add(EnemyInstance);
+            enemies.Add(Instantiate(AllEnemies[UnityEngine.Random.Range(0, AllEnemies.Count)], this.transform));
             //EnemyInstance.transform.position += new Vector3(((i % 2) == 0) && i != 0 ? ((i - 1) * -3) : (i * 3), 0f, 0f);
 
             // ? operator is neat!
             // using ? after a conditional (if i % 2 == 0) checks the condition; if it passes, the value before the : is used,
             //otherwise, it uses the value after the : .  It can be done in-line, like so!
-            EnemyInstance.transform.position += new Vector3((i % 2 == 0 ? currentIteration * offsetBetweenEnemies : ++currentIteration * -offsetBetweenEnemies), 0, 0);
-            EnemyInstance.transform.LookAt(p.transform);
+            enemies[i].transform.position += new Vector3((i % 2 == 0 ? currentIteration * offsetBetweenEnemies : ++currentIteration * -offsetBetweenEnemies), 0, 0);
+            enemies[i].transform.LookAt(p.transform);
+            Debug.Log("Enemy name: " + enemies[i].name);
+            Debug.Log("Gold value: " + enemies[i].goldValue);
+            totalGoldValue += enemies[i].goldValue;
         }
     }
 
@@ -95,7 +105,6 @@ public class Turns : MonoBehaviour
                 //StartCoroutine(EnemyDelay());
                 Vector3 original = new Vector3(e.transform.position.x, e.transform.position.y, e.transform.position.z);
                 //e.transform.Translate(e.gameObject.transform.forward * -1);
-                Debug.Log(e.gameObject.name);
                 StartCoroutine(LerpToPlayer(e.gameObject, p.transform.position, .15f));
                 e.anim.SetTrigger("EnemyAttack");
                 //e.transform.position.Set(e.transform.position.x + 1f, e.transform.position.y, e.transform.position.z);
@@ -106,6 +115,10 @@ public class Turns : MonoBehaviour
                 e.anim.SetTrigger("EnemyAttack");
                 //e.transform.Translate(e.gameObject.transform.forward);
                 //e.transform.position.Set(e.transform.position.x - 1f, e.transform.position.y, e.transform.position.z);
+            }
+            else
+            {
+
             }
         }
 
@@ -124,13 +137,29 @@ public class Turns : MonoBehaviour
             PlayerTurn = true;
             StartCoroutine(p.StartTurn());
         }
-
-        else 
+        Debug.Log(count);
+        if(count <= 0 && !p.dead)
         {
-            
+            Debug.Log("CombatWon called");
+            CombatWon();
+        }
+        else if (p.dead && count > 0)
+        {
+            CombatLost();
         }
 
         yield return null;
+    }
+
+    public void CombatLost()
+    {
+        LoseUI.SetActive(true);
+    }
+
+    public void CombatWon()
+    {
+        goldEarned.text = totalGoldValue.ToString();
+        WinUI.SetActive(true);
     }
 
     public IEnumerator LerpToPlayer(GameObject toMove, Vector3 playerP, float timeToMove)

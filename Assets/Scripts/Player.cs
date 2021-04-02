@@ -75,6 +75,11 @@ public class Player : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         Instance = this;
+        //Limits the framerate so my computer doesn't explode
+        #if UNITY_EDITOR
+            QualitySettings.vSyncCount = 0;  // VSync must be disabled
+            Application.targetFrameRate = 60;
+        #endif
     }
 
     // Start is called before the first frame update
@@ -273,7 +278,10 @@ public class Player : MonoBehaviour
 
             //If all enemies are dead, Zoom the camera out.
             if (enemiesAlive == 0)
+            {
                 t.CamZoomOut();
+                t.CombatWon();
+            }
         }
         //This is an empty return for an IEnumerator method.  It does not wait for anything.
         yield return null;
