@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
+ 
     public void PlayGame()
     {
         StartCoroutine(GetMyRoutine());
@@ -16,10 +16,10 @@ public class MainMenu : MonoBehaviour
     private IEnumerator GetMyRoutine()
     {
         yield return new WaitForSeconds(.05f);
-        SceneManager.LoadScene("Sample Combat");
+        SceneManager.LoadScene("PlayerSelection");
     }
 
-    // Update is called once per frame
+    //Quits game 
     public void QuitGame()
     {
         Application.Quit();
