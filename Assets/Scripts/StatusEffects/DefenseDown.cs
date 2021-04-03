@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 
 
-class DefenseDown : StatusEffects
+class Defense : StatusEffects
 {
 
     Turns t;
@@ -32,7 +32,7 @@ class DefenseDown : StatusEffects
         {
             if (p != null)
             {
-                if (p.defense - 5 >= 0)
+                if (p.defense - 5 > 0)
                     p.BuffDefense(-5);
                 else
                 {
@@ -43,7 +43,7 @@ class DefenseDown : StatusEffects
 
             else if (e2 != null)
             {
-                if (e2.defense - 5 >= 0)
+                if (p.defense - 5 > 0)
                     e2.BuffDefense(-5);
                 else
                     e2.BuffDefense(e2.defense * -1);

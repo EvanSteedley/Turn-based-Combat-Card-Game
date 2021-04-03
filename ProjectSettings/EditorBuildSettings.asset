@@ -6,20 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Sample Combat.unity
+    guid: 36bbda2735279884cb78fb4bd290d233
+  - enabled: 1
     path: Assets/Scenes/GameMenu .unity
     guid: 4dd711c1beb0247d39df897b75b90fab
   - enabled: 1
-    path: Assets/Scenes/PlayerSelection.unity
-    guid: 086fe9e70de8848cba0e9052ab600e04
-  - enabled: 1
-    path: Assets/Scenes/TileMovement.unity
-    guid: 2e0bdd2bee42ed849a252b889bfbfd54
-  - enabled: 1
-    path: Assets/Scenes/Sample Combat.unity
-    guid: 36bbda2735279884cb78fb4bd290d233
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    path: Assets/Scenes/Selecting Objects & GUI.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
     path: Assets/Scenes/AITesting.unity
     guid: 6a587a9085d44dd42a570bf27dcb90f6
@@ -41,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combat.unity
     guid: 1adaf7823ad788f44b65cbcc5609664c
+  - enabled: 1
+    path: Assets/Scenes/TileMovement.unity
+    guid: 2e0bdd2bee42ed849a252b889bfbfd54
   m_configObjects: {}

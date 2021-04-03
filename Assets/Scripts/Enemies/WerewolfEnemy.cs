@@ -7,7 +7,10 @@ public class WerewolfEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = 150;
+        damage = 35;
+        defense = 0;
+        goldValue = 200;
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
         //SliderHealth.value = health;
@@ -15,14 +18,6 @@ public class WerewolfEnemy : Enemy
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
         EnemyAttackValue.text = damage.ToString();
-    }
-
-    private void Awake()
-    {
-        health = 150;
-        damage = 35;
-        defense = 0;
-        goldValue = 200;
     }
 
     // Update is called once per frame

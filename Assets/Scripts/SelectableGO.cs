@@ -15,7 +15,7 @@ public class SelectableGO : MonoBehaviour
     void Start()
     {
         SGO = FindObjectOfType<SelectionGO>();
-        ren = GetComponentInChildren<Renderer>();
+        ren = GetComponent<Renderer>();
         //Stores the default color before the object is highlighted/selected.
         defaultColor = ren.material.color;
         enabled = false;
@@ -89,9 +89,8 @@ public class SelectableGO : MonoBehaviour
             {
                     Deselect();
             }
-            UpdateSelectionColor();
         }
-
+        UpdateSelectionColor();
     }
 
     //Counts how many times the current object has been selected in the current Card's selections

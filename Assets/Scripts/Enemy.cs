@@ -66,9 +66,8 @@ public class Enemy : MonoBehaviour
             p.gold += goldValue;
             //Ragdoll effect!
             Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
-            rb.AddForce(new Vector3(0f, 400f, 500f));
+            rb.AddForce(new Vector3(500f, 400f, 0f));
             rb.AddTorque(new Vector3(5f, 50f, 35f));
-            Destroy(this.gameObject, 3f);
         }
         if (defense < d)
 			health -= (d-defense);
@@ -90,20 +89,8 @@ public class Enemy : MonoBehaviour
 
     public void BuffHealth(int v)
     {
-
-        health += v;
-        HealthValue.text = health.ToString();
-
-        //leave this BuffHealth method empty for now for the Enemy - come back to this later
-    }
-
-    public void Heal(int v)
-    {
-
-        health += v;
-        HealthValue.text = health.ToString();
-
-        //leave this BuffHealth method empty for now for the Enemy - come back to this later
+    
+      //leave this BuffHealth method empty for now for the Enemy - come back to this later
     }
 
     virtual public void Attack()
@@ -130,7 +117,7 @@ public class Enemy : MonoBehaviour
 
         if (num == (int)states.Buff)
         {
-           Buff(2);
+           Buff();
         }
 
         if(num == (int)states.Poison)
@@ -139,7 +126,7 @@ public class Enemy : MonoBehaviour
         }
         if (num == (int)states.LowerPlayerDefense)
         {
-            p.gameObject.AddComponent<DefenseDown>();
+            p.gameObject.AddComponent<Defense>();
         }
 
 
@@ -153,10 +140,10 @@ public class Enemy : MonoBehaviour
         
     }
 
-    virtual public void Buff(int value)
+    virtual public void Buff()
     {
         
-            damage += value;
+            damage += 20;
         EnemyAttackValue.text = damage.ToString();
     }
 

@@ -43,9 +43,6 @@ public class CardSelectable : MonoBehaviour
         //centered.transform.localRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
         centeredP = new Vector3(7f, 2f, 0f);
         centeredR = new Vector3(-64f, 0f, -90f);
-        //New values after moving camera/player
-        centeredP = new Vector3(6f, 1f, 0.25f);
-        centeredR = new Vector3(-30f, 0f, -90f);
         //The x-value of this Euler Angle was determined by manually moving the card in-scene
         //It was also the only angle that needed changing; the others are the same as the original.
         //centered.transform.eulerAngles = new Vector3(-64f, original.transform.eulerAngles.y, original.transform.eulerAngles.z);
