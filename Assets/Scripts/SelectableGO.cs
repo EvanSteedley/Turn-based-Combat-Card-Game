@@ -89,8 +89,9 @@ public class SelectableGO : MonoBehaviour
             {
                     Deselect();
             }
+            UpdateSelectionColor();
         }
-        UpdateSelectionColor();
+
     }
 
     //Counts how many times the current object has been selected in the current Card's selections
