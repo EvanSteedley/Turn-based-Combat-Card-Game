@@ -78,8 +78,8 @@ public class Turns : MonoBehaviour
             //otherwise, it uses the value after the : .  It can be done in-line, like so!
             enemies[i].transform.position += new Vector3((i % 2 == 0 ? currentIteration * offsetBetweenEnemies : ++currentIteration * -offsetBetweenEnemies), 0, 0);
             enemies[i].transform.LookAt(p.transform);
-            Debug.Log("Enemy name: " + enemies[i].name);
-            Debug.Log("Gold value: " + enemies[i].goldValue);
+            //Debug.Log("Enemy name: " + enemies[i].name);
+            //Debug.Log("Gold value: " + enemies[i].goldValue);
             totalGoldValue += enemies[i].goldValue;
         }
     }
