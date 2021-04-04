@@ -90,4 +90,9 @@ public class SceneElementController : MonoBehaviour
     {
         Debug.Log("TurnEnded triggered in SEC");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -61,7 +62,9 @@ public class Player : MonoBehaviour
 
     Animator anim;
     public bool dead = false;
-    
+
+    public event EventHandler<EventBayesian> CardPlayed;  //event handler variable 
+
 
     //Creates global instance of the Player; easy way to carry over values into loaded scenes (?)
     //Could try to do a Singleton instead.
@@ -75,6 +78,11 @@ public class Player : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         Instance = this;
+        //Limits the framerate so my computer doesn't explode
+        #if UNITY_EDITOR
+            QualitySettings.vSyncCount = 0;  // VSync must be disabled
+            Application.targetFrameRate = 60;
+        #endif
     }
 
     // Start is called before the first frame update
@@ -273,10 +281,15 @@ public class Player : MonoBehaviour
 
             //If all enemies are dead, Zoom the camera out.
             if (enemiesAlive == 0)
+            {
                 t.CamZoomOut();
+                t.CombatWon();
+            }
         }
         //This is an empty return for an IEnumerator method.  It does not wait for anything.
         yield return null;
+
+        OnCardPlayed(new EventBayesian(cardUsed));
 
     }
 
@@ -284,7 +297,7 @@ public class Player : MonoBehaviour
     //{
 
     //   // CurrentHand.draw(FindObjectOfType<CardSelection>());
-        
+
     //}
 
     ////Called at the beginning of each turn
@@ -344,4 +357,23 @@ public class Player : MonoBehaviour
     {
         SceneManager.LoadScene("Shop");
     }
+
+
+
+    protected virtual void OnCardPlayed(EventBayesian e)
+    {
+        // Make a temporary copy of the event to avoid possibility of
+        // a race condition if the last subscriber unsubscribes
+        // immediately after the null check and before the event is raised.
+        EventHandler<EventBayesian> raiseEvent = CardPlayed;
+
+        // Event will be null if there are no subscribers
+        if (raiseEvent != null)
+        {
+           
+            // Call to raise the event.
+            raiseEvent(this, e);
+        }
+    }
+
 }
