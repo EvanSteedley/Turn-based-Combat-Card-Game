@@ -45,6 +45,8 @@ public class Enemy : MonoBehaviour
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
         EnemyAttackValue.text = damage.ToString();
+        p.CardPlayed += HandleCardPlayed;  //subscribing the handle card played to the publisher
+        //HandleCardPlayed is a delegate
     }
 
     // Update is called once per frame
@@ -160,7 +162,21 @@ public class Enemy : MonoBehaviour
         EnemyAttackValue.text = damage.ToString();
     }
 
-    
+
+    //make a method in this class that takes cards 
+    void HandleCardPlayed(object sender, EventBayesian e)
+    {
+        //Call Bayesian table with card played
+
+        //this method should call whatever method from BayesianCardTable 
+        //Enemy class has the list of all possible enemy cards - which it then sends to the BayesianCardTable (list # 1)
+        //based on the probabilities, the BayesianCardTable sends a list of whatever possible cards the enemy can play
+        //in response to the player (list # 2)
+        //random number generator chooses what final card the enemy will play, from this list
+        //if none of the cards are available/chosen for whatever reason, choose one at random from list # 1
+        //if none of the options work, return null
+    }
+
 }
 
 
