@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardGreaterHealing : Card
+public class EnergyBurstCard : Card
 {
     public List<Player> Targets;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        id = 6;
-        value = 35;
-        mana = 3;
-        name = "Greater Healing";
-        description = "Heals for 35 Health.";
+        id = 4;
+        mana = 4;
+        value = 2; //will icrease max mana by 2
+        name = "Energy Burst";
+        description = "Increases Max Mana by 2.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
@@ -31,7 +30,7 @@ public class CardGreaterHealing : Card
     override public void Action()
     {
         Player p = FindObjectsOfType<Player>()[0];
-        p.Heal(value);
+        p.BuffMana(value);
         Destroy(this.gameObject);
     }
 

@@ -2,30 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardHeavyHand : Card
+public class MultiAttackCard : Card
 {
     public List<Enemy> Targets;
-
-
+    
+    
     // Start is called before the first frame update
     void Start()
     {
-        id = 6;
-        value = 50;
-        mana = 2;
-        name = "Heavy Hand";
-        description = "Deal 50 damage to 1 target.";
-        numberOfTargets = 1;
+        id = 2;
+        value = 20;
+        mana = 3;
+        name = "Multi Attack";
+        description = "Deal 20 damage to 3 targets.";
+        numberOfTargets = 3;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
-        Targeter.exclusive = true;
+        Targeter.exclusive = false;
         SetInfo();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     override public void Action()

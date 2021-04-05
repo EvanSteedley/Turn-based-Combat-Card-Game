@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardFireball : Card
+public class DoubleStrikeCard : Card
 {
     public List<Enemy> Targets;
-    public GameObject FireballPrefab;
-    public float timeToReach = 1f;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        id = 6;
-        value = 50;
-        mana = 2;
-        name = "Fireball";
-        description = "Shoot a 50 damage Fireball at one target.";
-        numberOfTargets = 1;
+        id = 10;
+        value = 30;
+        mana = 3;
+        name = "Double Strike";
+        description = "Deal 30 damage to 2 targets.";
+        numberOfTargets = 2;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
@@ -34,11 +32,6 @@ public class CardFireball : Card
     {
         foreach (GameObject GO in Targeter.Selections)
         {
-            GameObject Fireball = Instantiate(FireballPrefab);
-            Fireball.transform.position = FindObjectOfType<Player>().transform.position + Vector3.up;
-            LerpTowardsTargets LTT = Fireball.GetComponent<LerpTowardsTargets>();
-            LTT.Target = GO;
-            LTT.timeToMove = timeToReach;
             Enemy e = GO.GetComponent<Enemy>();
             if (e != null)
                 e.TakeDamage(value);
@@ -46,7 +39,6 @@ public class CardFireball : Card
         RemoveHighlightTargets();
         ClearSelections();
         Destroy(this.gameObject);
-
     }
 
     override public void HighlightTargets()

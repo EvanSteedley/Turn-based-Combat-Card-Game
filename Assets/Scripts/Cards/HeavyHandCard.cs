@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardCrushingBlow : Card
+public class HeavyHandCard : Card
 {
     public List<Enemy> Targets;
 
@@ -10,11 +10,11 @@ public class CardCrushingBlow : Card
     // Start is called before the first frame update
     void Start()
     {
-        id = 9;
-        value = 55;
-        mana = 4;
-        name = "Crushing Blow";
-        description = "Deal 55 damage to one target.";
+        id = 6;
+        value = 50;
+        mana = 2;
+        name = "Heavy Hand";
+        description = "Deal 50 damage to 1 target.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;

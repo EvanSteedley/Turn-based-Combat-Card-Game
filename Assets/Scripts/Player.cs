@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     //Reference to the object with the Turns class, which controls when turns are ready.
     [SerializeField]
     public Turns t;
+    public Boolean tempEffect = false;
+    public int tempCounter = 0;
     [SerializeField]
     CardSelection card;
     //GameObject HandResetPrefab;
@@ -171,6 +173,16 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Defense += " + v);
         defense += v;
+        Debug.Log("Total defense: " + defense);
+        PlayerDefenseValue.text = defense.ToString();
+    }
+
+    public void TempBuffDefense(int v, int c)
+    {
+        tempEffect = true;
+        Debug.Log("Defense += " + v);
+        defense += v;
+        tempCounter = c;
         Debug.Log("Total defense: " + defense);
         PlayerDefenseValue.text = defense.ToString();
     }

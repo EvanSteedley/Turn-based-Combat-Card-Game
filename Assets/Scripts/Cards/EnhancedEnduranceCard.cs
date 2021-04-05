@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardWindsOfRestoration : Card
+public class EnhancedEnduranceCard : Card
 {
     public List<Player> Targets;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        id = 8;
-        value = 55;
+        id = 7;
         mana = 4;
-        name = "Winds of Restoration";
-        description = "Heals for 55 Health.";
+        value = 25; //will icrease max hp 25
+        name = "Enhanced Endurance";
+        description = "Increases Max Health by 25.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
@@ -31,7 +30,7 @@ public class CardWindsOfRestoration : Card
     override public void Action()
     {
         Player p = FindObjectsOfType<Player>()[0];
-        p.Heal(value);
+        p.BuffHealth(value);
         Destroy(this.gameObject);
     }
 
