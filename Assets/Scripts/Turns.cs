@@ -25,6 +25,7 @@ public class Turns : MonoBehaviour
 
     //EventHandler to notify when the Player and Enemy's Turns have both ended
     public event EventHandler TurnEnded;
+    public event EventHandler CombatStarted;
 
     int totalGoldValue = 0;
 
@@ -51,6 +52,13 @@ public class Turns : MonoBehaviour
         //}
         SpawnEnemies(3);
         StartCoroutine(p.StartTurn());
+        //Raise CombatStarted Event
+        //If at least 1 subscriber
+        if (CombatStarted != null)
+        {
+            //EventArguments by default need a Sender (this) and an EventArgs object
+            CombatStarted(this, new EventArgs());
+        }
 
         //Loop();
     }
@@ -78,8 +86,8 @@ public class Turns : MonoBehaviour
             //otherwise, it uses the value after the : .  It can be done in-line, like so!
             enemies[i].transform.position += new Vector3((i % 2 == 0 ? currentIteration * offsetBetweenEnemies : ++currentIteration * -offsetBetweenEnemies), 0, 0);
             enemies[i].transform.LookAt(p.transform);
-            Debug.Log("Enemy name: " + enemies[i].name);
-            Debug.Log("Gold value: " + enemies[i].goldValue);
+            //Debug.Log("Enemy name: " + enemies[i].name);
+            //Debug.Log("Gold value: " + enemies[i].goldValue);
             totalGoldValue += enemies[i].goldValue;
         }
     }
