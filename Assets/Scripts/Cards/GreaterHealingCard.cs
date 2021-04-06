@@ -6,7 +6,6 @@ public class GreaterHealingCard : Card
 {
     public List<Player> Targets;
 
-
     // Start is called before the first frame update
     void Start()
     {

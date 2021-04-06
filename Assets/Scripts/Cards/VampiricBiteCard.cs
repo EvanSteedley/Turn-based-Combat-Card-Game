@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballCard : Card
+public class VampiricBiteCard : Card
 {
     public List<Enemy> Targets;
-    public GameObject FireballPrefab;
-    public float timeToReach = 1f;
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        id = 6;
-        value = 50;
-        mana = 2;
-        name = "Fireball";
-        description = "Shoot a 50 damage Fireball at one target.";
+        id = 12;
+        value = 30;
+        mana = 5;
+        name = "Vampiric Bite";
+        description = "Damage an enemy and heal yourself for 30 points.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
@@ -26,26 +24,22 @@ public class FireballCard : Card
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     override public void Action()
     {
         foreach (GameObject GO in Targeter.Selections)
         {
-            GameObject Fireball = Instantiate(FireballPrefab);
-            Fireball.transform.position = FindObjectOfType<Player>().transform.position + Vector3.up;
-            LerpTowardsTargets LTT = Fireball.GetComponent<LerpTowardsTargets>();
-            LTT.Target = GO;
-            LTT.timeToMove = timeToReach;
             Enemy e = GO.GetComponent<Enemy>();
             if (e != null)
                 e.TakeDamage(value);
         }
+        Player p = FindObjectsOfType<Player>()[0];
+        p.Heal(value);
         RemoveHighlightTargets();
         ClearSelections();
         Destroy(this.gameObject);
-
     }
 
     override public void HighlightTargets()
@@ -80,6 +74,7 @@ public class FireballCard : Card
             }
         }
     }
+
     override public void ClearSelections()
     {
         Targeter.Selections = new List<GameObject>();
