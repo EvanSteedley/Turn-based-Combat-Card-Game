@@ -97,15 +97,15 @@ public class Hand : MonoBehaviour
     public void UpdateCardPositions()
     {
         CardCount = CurrentHand.Count;
-        cardShift = 10f/(2.5f*CurrentHand.Count);
+        cardShift = 10f/(2.5f*CardCount);
 
-        for (int i = 0; i < CurrentHand.Count; i++)
+        for (int i = 0; i < CardCount; i++)
         {
             currentP = centeredP;
             //currentR = centeredR;
             //Debug.Log("Moving card " + i);
             //Displaces the X position by 2 for each card
-            InstantiatedCards[i].gameObject.transform.localPosition = new Vector3(2 + i * 2f, 0, 0);
+            InstantiatedCards[i].gameObject.transform.localPosition = new Vector3(2 +cardShift + i * 2f, 0, 0);
            /*if (i%2 == 0 ) {
                 currentP.x -=(i*cardShift*0.5f);
                 //currentR.z -= (10f);
@@ -122,7 +122,7 @@ public class Hand : MonoBehaviour
             }*/
             CardSelectable CS = InstantiatedCards[i].GetComponent<CardSelectable>();
             if(CS.originalP != null)
-                CS.originalP = new Vector3(2 + cardShift + i * 2f, 0, 0);
+                CS.originalP = new Vector3(2 + i * 2f, 0, 0);
         }
     }
 
