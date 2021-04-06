@@ -25,6 +25,7 @@ public class Turns : MonoBehaviour
 
     //EventHandler to notify when the Player and Enemy's Turns have both ended
     public event EventHandler TurnEnded;
+    public event EventHandler CombatStarted;
 
     int totalGoldValue = 0;
 
@@ -51,6 +52,13 @@ public class Turns : MonoBehaviour
         //}
         SpawnEnemies(3);
         StartCoroutine(p.StartTurn());
+        //Raise CombatStarted Event
+        //If at least 1 subscriber
+        if (CombatStarted != null)
+        {
+            //EventArguments by default need a Sender (this) and an EventArgs object
+            CombatStarted(this, new EventArgs());
+        }
 
         //Loop();
     }
