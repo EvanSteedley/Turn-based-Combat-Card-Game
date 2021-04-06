@@ -251,7 +251,7 @@ public class Player : MonoBehaviour
             ManaValue.text = mana.ToString();
 
             //Triggers the Attack animation to play; this is the transition from both states
-            anim.SetTrigger("PlayerAttack");
+            anim.SetTrigger("Attack");
             //this.transform.Translate(new Vector3(1f, 0f, 0f));
 
             //Uses the Card's actual action
@@ -265,7 +265,7 @@ public class Player : MonoBehaviour
             //this.transform.Translate(new Vector3(-1f, 0f, 0f));
 
             //Triggers the Attack animation again; this is the transition from both states
-            anim.SetTrigger("PlayerAttack");
+            anim.SetTrigger("Attack");
             Hand.CardPlayed(cardUsed);
 
             //If there are still enemies alive and it's still the Player's Turn, then turn the buttons back on.
