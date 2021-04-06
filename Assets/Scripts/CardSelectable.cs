@@ -87,6 +87,8 @@ public class CardSelectable : MonoBehaviour
                 CardSelectable otherObject = s.Selected.GetComponentInChildren<CardSelectable>();
                 otherObject.Deselect();
 
+                originalP = this.transform.localPosition;
+                originalR = this.transform.eulerAngles;
                 //Select this card
                 Select();
             }
@@ -98,6 +100,8 @@ public class CardSelectable : MonoBehaviour
             //If NO selection at all:
             else
             {
+                originalP = this.transform.localPosition;
+                originalR = this.transform.eulerAngles;
                 Select();
             }
         }

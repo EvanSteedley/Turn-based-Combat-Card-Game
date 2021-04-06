@@ -97,7 +97,7 @@ public class Hand : MonoBehaviour
     public void UpdateCardPositions()
     {
         CardCount = CurrentHand.Count;
-        cardShift = 10f/2.5f;
+        cardShift = 10f/(2.5f*CurrentHand.Count);
 
         for (int i = 0; i < CurrentHand.Count; i++)
         {
@@ -122,7 +122,7 @@ public class Hand : MonoBehaviour
             }*/
             CardSelectable CS = InstantiatedCards[i].GetComponent<CardSelectable>();
             if(CS.originalP != null)
-                CS.originalP = new Vector3(2 + i * 2f, 0, 0);
+                CS.originalP = new Vector3(2 + cardShift + i * 2f, 0, 0);
         }
     }
 
