@@ -1,13 +1,17 @@
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class WerewolfEnemy : Enemy
+
+public class Dragon : Enemy
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
         //SliderHealth.value = health;
@@ -17,7 +21,7 @@ public class WerewolfEnemy : Enemy
         EnemyAttackValue.text = damage.ToString();
         carTypes = new List<string>()
 {
-  "Attack", "BuffAttack", "BuffDefense", "StrongAttack"
+  "StrongAttack", "DefenseDown", "BuffAttack"
 };
     }
 
@@ -32,6 +36,7 @@ public class WerewolfEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
+

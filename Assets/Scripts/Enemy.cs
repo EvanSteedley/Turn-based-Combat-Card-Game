@@ -25,11 +25,16 @@ public class Enemy : MonoBehaviour
     public int defense = 0;
     //Amount of gold to drop when killed
     public int goldValue = 100;
+
+    public List <String> carTypes = new List<string>() { };
+
     enum states { 
     
         Fight, Defend, Buff, Poison, LowerPlayerDefense
     
     }
+
+    
 
 
     [SerializeField]
@@ -182,7 +187,6 @@ public class Enemy : MonoBehaviour
         //if none of the cards are available/chosen for whatever reason, choose one at random from list # 1
         //if none of the options work, return null
     }
-
 }
 
 
