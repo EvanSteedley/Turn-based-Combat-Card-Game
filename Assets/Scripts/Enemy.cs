@@ -66,6 +66,12 @@ public class Enemy : MonoBehaviour
         {
             dead = true;
             p.gold += goldValue;
+            StatusEffects[] se = GetComponentsInChildren<StatusEffects>();
+            //Unsubscribes all status effects
+            foreach (StatusEffects s in se)
+            {
+                t.TurnEnded -= s.Action;
+            }
             //Ragdoll effect!
             Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
             rb.AddForce(new Vector3(0f, 400f, 500f));
