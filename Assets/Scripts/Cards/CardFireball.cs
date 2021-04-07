@@ -5,7 +5,6 @@ using UnityEngine;
 public class CardFireball : AttackCard
 {
 
-
     // Start is called before the first frame update
     void Start()
     {
