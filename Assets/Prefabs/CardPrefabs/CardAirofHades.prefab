@@ -140,7 +140,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 2
 --- !u!1 &1814375205078295902
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,16 +166,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814375205078295902}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalRotation: {x: -0.0043368037, y: 0.052483104, z: -0.06080305, w: 0.99675965}
+  m_LocalPosition: {x: 0, y: 0, z: -0.10000066}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 6896353142305643227}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.13, y: 6.036, z: -6.988}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.159, y: 1.106}
+  m_AnchoredPosition: {x: 0.1589972, y: 1.1059991}
   m_SizeDelta: {x: 142.69, y: 49.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7650946226709088768
@@ -207,7 +207,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: be4e4a2e88f034520ade9335cfb4fd52, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -219,7 +219,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Name
+  m_Text: 'Air of Hades '
 --- !u!1 &3754885931529321841
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,9 +234,9 @@ GameObject:
   - component: {fileID: 2806433447494657952}
   - component: {fileID: 4394951713488484698}
   - component: {fileID: 3831911207419146710}
-  - component: {fileID: 2607624892758218646}
+  - component: {fileID: 4122364000849142480}
   m_Layer: 0
-  m_Name: BaseDefense
+  m_Name: CardAirofHades
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3754885931529321841}
   m_LocalRotation: {x: -0.15968366, y: -0.15968366, z: -0.68884045, w: 0.68884045}
-  m_LocalPosition: {x: 0, y: 0.99987227, z: 0}
+  m_LocalPosition: {x: 0, y: 0.99987227, z: 3.0000625}
   m_LocalScale: {x: 10, y: 100, z: 150}
   m_Children:
   - {fileID: 6896353142305643227}
@@ -360,7 +360,7 @@ MonoBehaviour:
   exclusive: 1
   player: {fileID: 0}
   Selecting: 1
---- !u!114 &2607624892758218646
+--- !u!114 &4122364000849142480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3754885931529321841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b6c22e33e19cd348aa28bebc8099dd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 24666813d289b4c8c9bd9cdfaf7d6cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: 
@@ -377,12 +377,15 @@ MonoBehaviour:
   mana: 0
   value: 0
   description: 
-  Name: {fileID: 8843404618746347344}
-  Description: {fileID: 7924538970952438294}
-  ManaCost: {fileID: 3937050198402538304}
+  Name: {fileID: 0}
+  Description: {fileID: 0}
+  ManaCost: {fileID: 0}
   numberOfTargets: 1
   Targeter: {fileID: 0}
   targetType: {fileID: 0}
+  Targets: []
+  WhiteSmoke: {fileID: 0}
+  timeToReach: 1
 --- !u!1 &4249229379072060279
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5c895fe71758048e6a996be87ff913c0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -614,6 +617,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Description
-
-    Also, don''t forget to add the actual card script!'
+  m_Text: Reduces enemy health by 40.
