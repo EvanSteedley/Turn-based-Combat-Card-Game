@@ -6,6 +6,8 @@ public class AttackCard : Card
 {
     public GameObject ProjectilePrefab;
     public float timeToReach;
+    public AudioClip SoundToPlay;
+
 
 
     // Start is called before the first frame update
@@ -37,6 +39,17 @@ public class AttackCard : Card
             if (e != null)
             {
                 LaunchProjectile(e.gameObject);
+
+                if(SoundToPlay != null)
+                {
+                    AudioSource source = FindObjectOfType<Player>().gameObject.AddComponent<AudioSource>();
+                    source.clip = SoundToPlay;
+                    source.volume = 0.1f;
+                    source.Play();
+                    Destroy(source, 10f);
+
+                }
+
                 e.TakeDamage(value);
             }
         }
