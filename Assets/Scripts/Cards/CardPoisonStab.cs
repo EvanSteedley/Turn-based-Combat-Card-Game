@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonStabCard : DebuffCard
+public class CardPoisonStab : DebuffCard
 {
 
 

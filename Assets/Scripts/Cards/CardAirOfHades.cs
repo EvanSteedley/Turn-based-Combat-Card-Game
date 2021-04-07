@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirOfHades : AttackCard
+public class CardAirOfHades : AttackCard
 {
     //TODO:  Assign the WhiteSmoke particle effect to the ProjectilePrefab.
 

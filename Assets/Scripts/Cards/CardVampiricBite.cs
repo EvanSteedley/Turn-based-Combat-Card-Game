@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VampiricBiteCard : Card
+public class CardVampiricBite : Card
 {
     public List<Enemy> Targets;
     
