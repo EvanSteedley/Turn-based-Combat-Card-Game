@@ -372,20 +372,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24666813d289b4c8c9bd9cdfaf7d6cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: 
+  cardName: Air Of Hades
   id: 0
-  mana: 0
+  mana: 2
   value: 0
   description: 
-  Name: {fileID: 0}
-  Description: {fileID: 0}
-  ManaCost: {fileID: 0}
+  Name: {fileID: 8843404618746347344}
+  Description: {fileID: 7924538970952438294}
+  ManaCost: {fileID: 3937050198402538304}
   numberOfTargets: 1
   Targeter: {fileID: 0}
   targetType: {fileID: 0}
-  Targets: []
-  WhiteSmoke: {fileID: 0}
-  timeToReach: 1
+  ProjectilePrefab: {fileID: 450368963451844268, guid: aaa65a6cc992849d58afee3ca727920f,
+    type: 3}
+  timeToReach: 0.5
 --- !u!1 &4249229379072060279
 GameObject:
   m_ObjectHideFlags: 0

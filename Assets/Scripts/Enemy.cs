@@ -25,10 +25,11 @@ public class Enemy : MonoBehaviour
     public int defense = 0;
     //Amount of gold to drop when killed
     public int goldValue = 100;
-    enum states { 
-    
+    enum states
+    {
+
         Fight, Defend, Buff, Poison, LowerPlayerDefense
-    
+
     }
 
 
@@ -52,17 +53,17 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     //This is inefficient!  Calling the Attack through a Coroutine or by any other method is much better.
-     //"Once per frame" is VERY OFTEN; around 60 times per second, usually.
+        //This is inefficient!  Calling the Attack through a Coroutine or by any other method is much better.
+        //"Once per frame" is VERY OFTEN; around 60 times per second, usually.
         //if (!t.PlayerTurn && !dead)
         //    Attack();
-        
+
     }
 
     virtual public void TakeDamage(int d)
     {
-        if (d - defense >= health && !dead)     
-             
+        if (d - defense >= health && !dead)
+
         {
             dead = true;
             p.gold += goldValue;
@@ -79,13 +80,13 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject, 3f);
         }
         if (defense < d)
-			health -= (d-defense);
+            health -= (d - defense);
         defense = 0;
         EnemyDefenseValue.text = defense.ToString();
-        if (health<0) 
-		{ 
-			health = 0; 
-		}
+        if (health < 0)
+        {
+            health = 0;
+        }
         //SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }
@@ -118,17 +119,19 @@ public class Enemy : MonoBehaviour
     {
         p.TakeDamage(damage);
         //This is controlled by the Turns class now.
-            //t.PlayerTurn = true;
+        //t.PlayerTurn = true;
     }
 
-  
-    virtual public void EnemyBehaviour() {
+
+    virtual public void EnemyBehaviour()
+    {
 
 
         System.Random random = new System.Random();
         int num = random.Next(System.Enum.GetNames(typeof(states)).Length);
-        if (num == (int)states.Fight) {
-           Attack();
+        if (num == (int)states.Fight)
+        {
+            Attack();
         }
 
         if (num == (int)states.Defend)
@@ -138,10 +141,10 @@ public class Enemy : MonoBehaviour
 
         if (num == (int)states.Buff)
         {
-           Buff(2);
+            Buff(2);
         }
 
-        if(num == (int)states.Poison)
+        if (num == (int)states.Poison)
         {
             p.gameObject.AddComponent<Poison>();
         }
@@ -158,13 +161,13 @@ public class Enemy : MonoBehaviour
     {
         defense += 20;
         EnemyDefenseValue.text = defense.ToString();
-        
+
     }
 
     virtual public void Buff(int value)
     {
-        
-            damage += value;
+
+        damage += value;
         EnemyAttackValue.text = damage.ToString();
     }
 
@@ -181,46 +184,9 @@ public class Enemy : MonoBehaviour
         //random number generator chooses what final card the enemy will play, from this list
         //if none of the cards are available/chosen for whatever reason, choose one at random from list # 1
         //if none of the options work, return null
-
-        int NumberOfPlayerCards = 14;
-        int NumberOfEnemyCards = 10;
-
-        int IndexOfPlayerCard = ;   // retrieved from Player class
-        int IndexOfEnemyCard;
-
-        listUniqueOptions;  // read listA from EnemyTable.cs
-
-        // listB to store cumulative probabilities from listA
-        // e.g. listA = {0.1, 0.05, 0.2, 0.4, 0.15, 0.1}
-        // then listB = {0.1, 0.15, 0.35, 0.75, 0.9, 1.0}
-        List<string> ResultfromTable = new List<string>();
-
-        // listC to store enemy cards chosen
-        List<string> EnemyCards = new List<string>();
-
-        ResultfromTable[0] = listUniqueOptions[0];
-        for (int i = 1; i < length of listUniqueOptions; i++)
-        {
-            ResultfromTable.Add(ResultfromTable [i-1]+listUniqueOptions[i]);
-        }
-
-        float r = Random number in range(0, 1); // choose a random number between 0 and 1 to select enemy card
-
-        // compare r with listB elements and choose an enemy card
-        for (int j = 0; j < length of ResultfromTable; j++)
-        {
-            if (r <= ResultfromTable[j])
-            {
-                IndexOfEnemyCard = j;
-                EnemyCards.Add(j)
-                break;
-            }
-        }
-
     }
 
 }
-
 
 
 
