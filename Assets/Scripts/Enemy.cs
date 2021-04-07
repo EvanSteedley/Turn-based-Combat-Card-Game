@@ -181,42 +181,6 @@ public class Enemy : MonoBehaviour
         //random number generator chooses what final card the enemy will play, from this list
         //if none of the cards are available/chosen for whatever reason, choose one at random from list # 1
         //if none of the options work, return null
-
-        int NumberOfPlayerCards = 14;
-        int NumberOfEnemyCards = 10;
-
-        int IndexOfPlayerCard = ;   // retrieved from Player class
-        int IndexOfEnemyCard;
-
-        listUniqueOptions;  // read listA from EnemyTable.cs
-
-        // listB to store cumulative probabilities from listA
-        // e.g. listA = {0.1, 0.05, 0.2, 0.4, 0.15, 0.1}
-        // then listB = {0.1, 0.15, 0.35, 0.75, 0.9, 1.0}
-        List<string> ResultfromTable = new List<string>();
-
-        // listC to store enemy cards chosen
-        List<string> EnemyCards = new List<string>();
-
-        ResultfromTable[0] = listUniqueOptions[0];
-        for (int i = 1; i < length of listUniqueOptions; i++)
-        {
-            ResultfromTable.Add(ResultfromTable [i-1]+listUniqueOptions[i]);
-        }
-
-        float r = Random number in range(0, 1); // choose a random number between 0 and 1 to select enemy card
-
-        // compare r with listB elements and choose an enemy card
-        for (int j = 0; j < length of ResultfromTable; j++)
-        {
-            if (r <= ResultfromTable[j])
-            {
-                IndexOfEnemyCard = j;
-                EnemyCards.Add(j)
-                break;
-            }
-        }
-
     }
 
 }
