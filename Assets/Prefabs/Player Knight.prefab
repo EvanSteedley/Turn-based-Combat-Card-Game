@@ -915,6 +915,7 @@ GameObject:
   - component: {fileID: 409253638767599967}
   - component: {fileID: 8019044311654091627}
   - component: {fileID: 8296748603010229434}
+  - component: {fileID: 8609436381334132875}
   m_Layer: 0
   m_Name: Player Knight
   m_TagString: Untagged
@@ -1081,6 +1082,20 @@ MonoBehaviour:
   selected: {fileID: 0}
   somethingSelected: 0
   MoveButton: {fileID: 6605131744684160923}
+--- !u!114 &8609436381334132875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725337103726492837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5ba8d99834b314e81da711a647e4ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerItems: []
+  player: {fileID: 4587989864640080991}
 --- !u!1 &736504763952224049
 GameObject:
   m_ObjectHideFlags: 0
