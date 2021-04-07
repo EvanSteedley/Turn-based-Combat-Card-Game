@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardArmorUp : DefenseBuffCard
+public class DefenseBuffCard : Card
 {
     //Here is an example of SerializeField potentially causing errors:  
     //You would think TestValue is whatever this number is, however since it was stored in the editor and isn't changed elsewhere,
@@ -16,6 +16,9 @@ public class CardArmorUp : DefenseBuffCard
 
     //}
 
+    public List<Player> Targets;
+    public Player p;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +26,44 @@ public class CardArmorUp : DefenseBuffCard
         //This is already an "instance" of Card1 in Unity; there will be a copy of the Card1 script on each Card1.
 
         //"Instance" variables of the base class (Card) can still be accessed like so:
-        id = 1;
+        id = 10000;
         mana = 2;
-        value = 5;
-        name = "Armor Up";
-        description = "Increases your defense by 5.";
+        value = 0;
+        name = "";
+        description = "";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
         p = FindObjectOfType<Player>();
         SetInfo();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    override public void Action()
+    {
+        p.BuffDefense(value);
+        Destroy(this.gameObject);
+    }
+
+    override public void HighlightTargets()
+    {
+
+    }
+
+    override public void RemoveHighlightTargets()
+    {
+
+    }
+
+
+    override public void ClearSelections()
+    {
+        Targeter.Selections = new List<GameObject>();
     }
 }
