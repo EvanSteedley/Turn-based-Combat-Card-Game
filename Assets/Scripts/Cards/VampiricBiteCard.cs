@@ -14,7 +14,7 @@ public class VampiricBiteCard : Card
         mana = 5;
         name = "Vampiric Bite";
         description = "Damage an enemy and heal yourself for 30 points.";
-        numberOfTargets = 1;
+        numberOfTargets = 2;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
         Targeter.exclusive = true;
