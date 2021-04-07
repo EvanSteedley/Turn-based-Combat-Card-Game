@@ -775,6 +775,7 @@ Transform:
   - {fileID: 594647274}
   - {fileID: 1377868037}
   - {fileID: 47958429}
+  - {fileID: 1578543380}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1720,6 +1721,7 @@ MonoBehaviour:
   - {fileID: 5839190269852283045, guid: 2916b68f5b43dc541b34c63054fcd62b, type: 3}
   - {fileID: 9176990259035879946, guid: d4d424aec5fce9f40ab8646287fa8a1a, type: 3}
   - {fileID: 6605630856356029661, guid: 9d27e078dfe4805478457d6a7aa963f8, type: 3}
+  - {fileID: 6658772038809657860, guid: 8251ab50c57d91f46b807864415e71fd, type: 3}
 --- !u!4 &696104109
 Transform:
   m_ObjectHideFlags: 0
@@ -4298,6 +4300,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &1578543379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1578543380}
+  - component: {fileID: 1578543381}
+  m_Layer: 0
+  m_Name: TreasureList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1578543380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578543379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 311332977}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1578543381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578543379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eb66d820173d64ea4e74268c56182e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllItems:
+  - {fileID: 4080306677445221555, guid: 8bf702b5e5fafa144adf140a13e47e67, type: 3}
 --- !u!1 &1590703095
 GameObject:
   m_ObjectHideFlags: 0
