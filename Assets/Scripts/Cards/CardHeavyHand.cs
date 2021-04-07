@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavyHandCard : Card
+public class CardHeavyHand : Card
 {
     public List<Enemy> Targets;
 

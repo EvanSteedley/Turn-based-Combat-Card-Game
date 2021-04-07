@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrushingBlowCard : Card
+public class CardCrushingBlow : Card
 {
     public List<Enemy> Targets;
 

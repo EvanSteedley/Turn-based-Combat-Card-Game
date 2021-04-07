@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmorUpCard : Card
+public class CardArmorUp : Card
 {
     //Here is an example of SerializeField potentially causing errors:  
     //You would think TestValue is whatever this number is, however since it was stored in the editor and isn't changed elsewhere,

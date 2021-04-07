@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballCard : Card
+public class CardFireball : Card
 {
     public List<Enemy> Targets;
     public GameObject FireballPrefab;

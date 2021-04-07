@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreaterHealingCard : Card
+public class CardGreaterHealing : Card
 {
     public List<Player> Targets;
 

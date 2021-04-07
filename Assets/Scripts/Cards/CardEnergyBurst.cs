@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyBurstCard : Card
+public class CardEnergyBurst : Card
 {
     public List<Player> Targets;
 
