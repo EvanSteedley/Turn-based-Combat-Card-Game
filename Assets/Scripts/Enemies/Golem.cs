@@ -1,13 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WerewolfEnemy : Enemy
+public class Golem : Enemy
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
         //SliderHealth.value = health;
@@ -28,11 +28,11 @@ public class WerewolfEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     var carTypes = new List<string>()
     {
-      "Attack", "BuffAttack", "BuffDefense"
+      "Attack", "Stun", "BuffHealth"
     }
 }
