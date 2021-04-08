@@ -11,30 +11,71 @@ using UnityEngine.UI;
 
 class EnemyTable : MonoBehaviour
 {
-    public static void Main()
+    void Start()
     {
 
-        string filePath = @"C:\Users\Farhana\Documents\GitHub\CS-4900---Team-6";
-        StreamReader reader = new StreamReader(filePath);
-        List<string> listA = new List<string>();
+        string filePath = Application.dataPath + "/Scripts/Cards/Enemy Cards/BayesianCardTable.csv";
+        //@"C:\Users\Farhana\Documents\GitHub\CS-4900---Team-6\Assets\Scripts\EnemyCards\BayesianCardTable.csv";
+        //StreamReader sr = new StreamReader(filePath);
+        //string[][] data = File.ReadLines(filePath).Where(line => line != "").Select(x => x.Split(',')).ToArray();
 
+        //var lines = File.ReadLines(filePath).Select(x => x.Split(',')).ToArray();
 
-        //    string line;
-        while ((reader.ReadLine()) != null)
+        //StreamReader sr = new StreamReader(filePath);
+        //var lines = new List<string[]>();
+        //int Row = 0;
+        //while (!sr.EndOfStream)
+        //{
+        //    string[] Line = sr.ReadLine().Split(',');
+        //    lines.Add(Line);
+        //    Row++;
+        //}
+
+        int Row = 0;
+        int Column = 0;
+        string[][] data = File.ReadLines(filePath).Where(line => line != "").Select(x => x.Split(',')).ToArray();
+        foreach (string[] s in data)
         {
-            var line = reader.ReadLine();
-            var values = line.Split(',');
-            Console.WriteLine(line);
-            foreach (var item in values)
+
+            foreach (string t in s)
             {
-                listA.Add(item);
+                Debug.Log("this is t" + t);
+                Column++;
+
             }
-            foreach (var column1 in listA)
-            {
-                Console.WriteLine(column1);
-            }
+            Row++;
+
         }
+
+
+        //var data = lines.ToArray();
+        Debug.Log("data = " + data);
+
+
+
+
+
+        //int Row = 0;
+        //int Column = 0;
+        //float[,] probs = new float[6,10];
+        //foreach (string[] s in data)
+        //{ 
+        //    foreach (string t in s)
+        //    {
+
+        //       probs[Row, Column] = float.Parse("t");
+        //       Debug.Log("this is t" + probs[Row, Column]);
+        //        Column++;
+
+        //    }
+        //    Row++;
+        //}
+
     }
+
+
+
+
 }
        
 
