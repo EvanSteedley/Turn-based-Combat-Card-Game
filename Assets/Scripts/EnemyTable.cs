@@ -28,21 +28,7 @@ class EnemyTable : MonoBehaviour
         Probabilities.Add(HealingProbabilities);
         Probabilities.Add(DefenseBuffProbabilities);
         string filePath = Application.dataPath + "/Scripts/Cards/Enemy Cards/BayesianCardTable.csv";
-        //@"C:\Users\Farhana\Documents\GitHub\CS-4900---Team-6\Assets\Scripts\EnemyCards\BayesianCardTable.csv";
-        //StreamReader sr = new StreamReader(filePath);
-        //string[][] data = File.ReadLines(filePath).Where(line => line != "").Select(x => x.Split(',')).ToArray();
-
-        //var lines = File.ReadLines(filePath).Select(x => x.Split(',')).ToArray();
-
-        //StreamReader sr = new StreamReader(filePath);
-        //var lines = new List<string[]>();
-        //int Row = 0;
-        //while (!sr.EndOfStream)
-        //{
-        //    string[] Line = sr.ReadLine().Split(',');
-        //    lines.Add(Line);
-        //    Row++;
-        //}
+       
 
         int Row = 0;
         int Column = 0;
@@ -61,33 +47,7 @@ class EnemyTable : MonoBehaviour
 
         }
 
-
-
-        //var data = lines.ToArray();
-
-
-
-
-
-        //int Row = 0;
-        //int Column = 0;
-        //float[,] probs = new float[6,10];
-        //foreach (string[] s in data)
-        //{ 
-        //    foreach (string t in s)
-        //    {
-
-        //       probs[Row, Column] = float.Parse("t");
-        //       Debug.Log("this is t" + probs[Row, Column]);
-        //        Column++;
-
-        //    }
-        //    Row++;
-        //}
-
     }
-
-
 
 
 }
