@@ -22,9 +22,6 @@ public class Player : MonoBehaviour
     int handSize = 0;
     //Player's gold
     public int gold = 0;
-    public Card tempCard;
-    public int tempTurns;
-    public Boolean tempEffect;
     //Reference to the object with the Turns class, which controls when turns are ready.
     [SerializeField]
     public Turns t;
