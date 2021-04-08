@@ -3566,6 +3566,7 @@ GameObject:
   - component: {fileID: 7129471671877473407}
   - component: {fileID: 8182371498325666949}
   - component: {fileID: 4924519363728267451}
+  - component: {fileID: -2207476281449156754}
   m_Layer: 0
   m_Name: Player Priest
   m_TagString: Untagged
@@ -3716,6 +3717,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab57f4f15a37074fba15a595d5a1b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2207476281449156754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9108761446606782562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d0259c974df9542af3fbab02bbc7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 0}
+  somethingSelected: 0
+  MoveButton: {fileID: 8700851324441761389}
 --- !u!1001 &6452987459452689540
 PrefabInstance:
   m_ObjectHideFlags: 0
