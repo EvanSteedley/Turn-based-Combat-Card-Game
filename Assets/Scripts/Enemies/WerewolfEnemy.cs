@@ -29,14 +29,6 @@ public class WerewolfEnemy : Enemy
         goldValue = 200;
     }
 
-    private void Awake()
-    {
-        health = 150;
-        damage = 35;
-        defense = 0;
-        goldValue = 200;
-    }
-
     // Update is called once per frame
     void Update()
     {
