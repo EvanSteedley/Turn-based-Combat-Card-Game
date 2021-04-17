@@ -63,6 +63,14 @@ public class SceneElementController : MonoBehaviour
             player.GetComponent<PlayerClickToMove>().enabled = false;
             player.GetComponent<Movement>().enabled = false;
         }
+        else if (scene.name.Equals("Treasure"))
+        {
+            player.CombatUI.SetActive(false);
+            player.TileMoveUI.SetActive(false);
+            player.StatsUI.SetActive(false);
+            player.GetComponent<PlayerClickToMove>().enabled = false;
+            player.GetComponent<Movement>().enabled = false;
+        }
     }
 
     public void LoadTileMovementScene()

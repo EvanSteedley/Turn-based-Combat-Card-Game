@@ -15,6 +15,18 @@ public class WerewolfEnemy : Enemy
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
         EnemyAttackValue.text = damage.ToString();
+        carTypes = new List<string>()
+{
+  "Attack", "BuffAttack", "BuffDefense", "StrongAttack"
+};
+    }
+
+    private void Awake()
+    {
+        health = 150;
+        damage = 35;
+        defense = 0;
+        goldValue = 200;
     }
 
     private void Awake()
