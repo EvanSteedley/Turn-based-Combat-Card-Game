@@ -25,11 +25,16 @@ public class Enemy : MonoBehaviour
     public int defense = 0;
     //Amount of gold to drop when killed
     public int goldValue = 100;
+
+    public List <String> carTypes = new List<string>() { };
+
     enum states { 
     
         Fight, Defend, Buff, Poison, LowerPlayerDefense
     
     }
+
+    
 
 
     [SerializeField]
@@ -45,6 +50,8 @@ public class Enemy : MonoBehaviour
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
         EnemyAttackValue.text = damage.ToString();
+        p.CardPlayed += HandleCardPlayed;  //subscribing the handle card played to the publisher
+        //HandleCardPlayed is a delegate
     }
 
     // Update is called once per frame
@@ -64,6 +71,12 @@ public class Enemy : MonoBehaviour
         {
             dead = true;
             p.gold += goldValue;
+            StatusEffects[] se = GetComponentsInChildren<StatusEffects>();
+            //Unsubscribes all status effects
+            foreach (StatusEffects s in se)
+            {
+                t.TurnEnded -= s.Action;
+            }
             //Ragdoll effect!
             Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
             rb.AddForce(new Vector3(0f, 400f, 500f));
@@ -160,7 +173,20 @@ public class Enemy : MonoBehaviour
         EnemyAttackValue.text = damage.ToString();
     }
 
-    
+
+    //make a method in this class that takes cards 
+    void HandleCardPlayed(object sender, EventBayesian e)
+    {
+        //Call Bayesian table with card played
+
+        //this method should call whatever method from BayesianCardTable 
+        //Enemy class has the list of all possible enemy cards - which it then sends to the BayesianCardTable (list # 1)
+        //based on the probabilities, the BayesianCardTable sends a list of whatever possible cards the enemy can play
+        //in response to the player (list # 2)
+        //random number generator chooses what final card the enemy will play, from this list
+        //if none of the cards are available/chosen for whatever reason, choose one at random from list # 1
+        //if none of the options work, return null
+    }
 }
 
 

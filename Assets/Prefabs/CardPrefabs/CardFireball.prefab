@@ -533,10 +533,10 @@ MonoBehaviour:
   numberOfTargets: 1
   Targeter: {fileID: 0}
   targetType: {fileID: 0}
-  Targets: []
-  FireballPrefab: {fileID: 7328915365185419138, guid: c5b61cab4ab7ce84cbd16d7713b1849e,
+  ProjectilePrefab: {fileID: 7328915365185419138, guid: c5b61cab4ab7ce84cbd16d7713b1849e,
     type: 3}
-  timeToReach: 1
+  timeToReach: 0.5
+  SoundToPlay: {fileID: 8300000, guid: 384a5e2f4f8a93842ae2c407db1d2dc3, type: 3}
 --- !u!1 &9176990259015299206
 GameObject:
   m_ObjectHideFlags: 0

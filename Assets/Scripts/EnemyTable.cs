@@ -11,30 +11,45 @@ using UnityEngine.UI;
 
 class EnemyTable : MonoBehaviour
 {
-    public static void Main()
+    public List<float> DebuffProbabilities = new List<float>();
+    public List<float> AttackProbabilities = new List<float>();
+    public List<float> ManaBuffProbabilities = new List<float>();
+    public List<float> HealthBuffProbabilities = new List<float>();
+    public List<float> HealingProbabilities = new List<float>();
+    public List<float> DefenseBuffProbabilities = new List<float>();
+
+    public List<List<float>> Probabilities = new List<List<float>>();
+    void Start()
     {
+        Probabilities.Add(DebuffProbabilities);
+        Probabilities.Add(AttackProbabilities);
+        Probabilities.Add(ManaBuffProbabilities);
+        Probabilities.Add(HealthBuffProbabilities);
+        Probabilities.Add(HealingProbabilities);
+        Probabilities.Add(DefenseBuffProbabilities);
+        string filePath = Application.dataPath + "/Scripts/Cards/Enemy Cards/BayesianCardTable.csv";
+       
 
-        string filePath = @"C:\Users\Farhana\Documents\GitHub\CS-4900---Team-6";
-        StreamReader reader = new StreamReader(filePath);
-        List<string> listA = new List<string>();
-
-
-        //    string line;
-        while ((reader.ReadLine()) != null)
+        int Row = 0;
+        int Column = 0;
+        string[][] data = File.ReadLines(filePath).Where(line => line != "").Select(x => x.Split(',')).ToArray();
+        foreach (string[] s in data)
         {
-            var line = reader.ReadLine();
-            var values = line.Split(',');
-            Console.WriteLine(line);
-            foreach (var item in values)
+
+            foreach (string t in s)
             {
-                listA.Add(item);
+                Probabilities[Row].Add(float.Parse(t));
+                Debug.Log("row: " + Row + " col: " + Column + " Value: " + Probabilities[Row][Column]);
+                Column++;
             }
-            foreach (var column1 in listA)
-            {
-                Console.WriteLine(column1);
-            }
+            Column = 0;
+            Row++;
+
         }
+
     }
+
+
 }
        
 
