@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
         HealthValue.text = health.ToString();
     }
 
-    public void BuffDefense(int v)
+    public virtual void BuffDefense(int v)
     {
         defense += v;
         EnemyDefenseValue.text = defense.ToString();
