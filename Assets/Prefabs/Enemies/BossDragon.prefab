@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: -6474976624327042619}
   - component: {fileID: 5560046241480359222}
   - component: {fileID: 8849436526156263210}
-  - component: {fileID: 8363392395127678634}
+  - component: {fileID: 6194169891061650923}
   m_Layer: 0
   m_Name: BossDragon
   m_TagString: Untagged
@@ -454,12 +454,13 @@ MonoBehaviour:
   dead: 0
   defense: 0
   goldValue: 3000
+  carTypes: []
   HealthValue: {fileID: 493413547618019175}
   Targets: []
   FireballPrefab: {fileID: 8271084406001113819, guid: 33e2e484d4a1ce240a5e59344bd1443c,
     type: 3}
   timeToReach: 1
---- !u!114 &8363392395127678634
+--- !u!114 &6194169891061650923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -468,14 +469,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5681626566086980977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3682aca10f20c6f4998d95f2928fa0c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f10b4498829ce340970d69a38446fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ren: {fileID: 0}
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  SGO: {fileID: 0}
-  selected: 0
-  timesSelected: 0
+  currentTile: {fileID: 0}
+  destinationTile: {fileID: 0}
+  currentPos: {x: 0, y: 0, z: 0}
+  destinationPos: {x: 0, y: 0, z: 0}
+  timeToMove: 0.15
 --- !u!1 &6206326911558975425
 GameObject:
   m_ObjectHideFlags: 0

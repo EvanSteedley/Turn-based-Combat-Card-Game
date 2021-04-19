@@ -693,6 +693,7 @@ GameObject:
   - component: {fileID: 1680979794234787127}
   - component: {fileID: 4301668744804831655}
   - component: {fileID: -1231889903894477171}
+  - component: {fileID: -370899031304235788}
   m_Layer: 0
   m_Name: BossGolem
   m_TagString: Untagged
@@ -820,7 +821,25 @@ MonoBehaviour:
   dead: 0
   defense: 0
   goldValue: 1500
+  carTypes: []
   HealthValue: {fileID: 2351129837161578510}
+--- !u!114 &-370899031304235788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421746312435751584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f10b4498829ce340970d69a38446fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTile: {fileID: 0}
+  destinationTile: {fileID: 0}
+  currentPos: {x: 0, y: 0, z: 0}
+  destinationPos: {x: 0, y: 0, z: 0}
+  timeToMove: 0.15
 --- !u!1001 &3557783887490943923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -910,6 +929,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6c6a1308c5b55004b9a10467993637f9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44107c607c9928447b3c95f6d12c556a, type: 3}
+--- !u!4 &5360873137012948166 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8879528566716807029, guid: 44107c607c9928447b3c95f6d12c556a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3557783887490943923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &6932548568980993570 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 44107c607c9928447b3c95f6d12c556a,
@@ -925,12 +950,6 @@ Transform:
 --- !u!1 &4440162519730665186 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 44107c607c9928447b3c95f6d12c556a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3557783887490943923}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5360873137012948166 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8879528566716807029, guid: 44107c607c9928447b3c95f6d12c556a,
     type: 3}
   m_PrefabInstance: {fileID: 3557783887490943923}
   m_PrefabAsset: {fileID: 0}
