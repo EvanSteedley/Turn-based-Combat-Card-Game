@@ -694,6 +694,7 @@ GameObject:
   - component: {fileID: 4301668744804831655}
   - component: {fileID: -1231889903894477171}
   - component: {fileID: -370899031304235788}
+  - component: {fileID: 1761052421465426301}
   m_Layer: 0
   m_Name: BossGolem
   m_TagString: Untagged
@@ -840,6 +841,22 @@ MonoBehaviour:
   currentPos: {x: 0, y: 0, z: 0}
   destinationPos: {x: 0, y: 0, z: 0}
   timeToMove: 0.15
+--- !u!114 &1761052421465426301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421746312435751584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb98e5ea815df64d8d4af95f95b3776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  t: {fileID: 0}
+  movesLeft: 0
+  movesDefault: 0
 --- !u!1001 &3557783887490943923
 PrefabInstance:
   m_ObjectHideFlags: 0
