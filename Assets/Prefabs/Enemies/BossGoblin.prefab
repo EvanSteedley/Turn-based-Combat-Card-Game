@@ -457,6 +457,7 @@ GameObject:
   - component: {fileID: 3179502957661196811}
   - component: {fileID: 6615668621472262409}
   - component: {fileID: 6888641438528287749}
+  - component: {fileID: -1704491403705899490}
   m_Layer: 0
   m_Name: BossGoblin
   m_TagString: Untagged
@@ -603,11 +604,29 @@ MonoBehaviour:
   dead: 0
   defense: 0
   goldValue: 100
+  carTypes: []
   HealthValue: {fileID: 6738913249259841326}
   Targets: []
   FireballPrefab: {fileID: 7328915365185419138, guid: c5b61cab4ab7ce84cbd16d7713b1849e,
     type: 3}
   timeToReach: 1
+--- !u!114 &-1704491403705899490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494953580830140811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f10b4498829ce340970d69a38446fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTile: {fileID: 0}
+  destinationTile: {fileID: 0}
+  currentPos: {x: 0, y: 0, z: 0}
+  destinationPos: {x: 0, y: 0, z: 0}
+  timeToMove: 0.15
 --- !u!95 &4398107722547585103
 Animator:
   serializedVersion: 3
