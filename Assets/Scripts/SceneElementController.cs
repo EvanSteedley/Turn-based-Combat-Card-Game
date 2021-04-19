@@ -32,7 +32,7 @@ public class SceneElementController : MonoBehaviour
 
     public void SceneLogic(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name.Equals("Sample Combat") || scene.name.Equals("Combat"))
+        if (scene.name.Equals("Sample Combat") || scene.name.Equals("Combat") || scene.name.Substring(0, scene.name.Length-1).Equals("Boss"))
         {
             player.CombatUI.SetActive(true);
             player.TileMoveUI.SetActive(false);

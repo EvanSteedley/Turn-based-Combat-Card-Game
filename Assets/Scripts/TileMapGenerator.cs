@@ -71,7 +71,7 @@ public class TileMapGenerator : MonoBehaviour
         {
             Tile middleTop = Tiles[tileWidth / 2, tileLength - 1];
             middleTop.occupied = true;
-            middleTop.SceneToLoad = "Boss" + SEC.tileScenesVisited % 3;
+            middleTop.SceneToLoad = "Boss" + SEC.tileScenesVisited / 3;
             Debug.Log(middleTop.SceneToLoad);
             middleTop.GetComponent<TileSelectable>().defaultColor = Color.red;
         }

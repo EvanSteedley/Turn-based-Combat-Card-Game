@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Turns : MonoBehaviour
 {
@@ -50,7 +51,15 @@ public class Turns : MonoBehaviour
         //{
         //    enemies.Add(e);
         //}
-        SpawnEnemies(3);
+        Scene s = SceneManager.GetActiveScene();
+        if (s.name.Substring(0, s.name.Length - 1).Equals("Boss"))
+        { 
+
+        }
+        else
+        {
+            SpawnEnemies(3);
+        }
         StartCoroutine(p.StartTurn());
         //Raise CombatStarted Event
         //If at least 1 subscriber
