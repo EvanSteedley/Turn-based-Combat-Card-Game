@@ -522,7 +522,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969337888451861510}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.017780501, y: 0.7370433, z: 0.019405244, w: 0.67533284}
   m_LocalPosition: {x: 0, y: 0.119, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
@@ -766,6 +766,7 @@ MonoBehaviour:
   dead: 0
   defense: 0
   goldValue: 100
+  carTypes: []
   HealthValue: {fileID: 6845212376518785901}
 --- !u!1 &974333063303033790
 GameObject:
