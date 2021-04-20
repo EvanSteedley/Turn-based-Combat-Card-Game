@@ -7,14 +7,16 @@ public class TreasureChest : MonoBehaviour
 {
     public PassiveItem itemWithin;
     public Button OpenChestButton;
-
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         itemWithin = FindObjectOfType<Treasure>().PullRandom();
-        if(itemWithin != null)
+        anim = GetComponent<Animator>();
+        if (itemWithin != null)
         {
             OpenChestButton.gameObject.SetActive(true);
+            anim.SetTrigger("Open");
         }
     }
 
@@ -28,5 +30,6 @@ public class TreasureChest : MonoBehaviour
     {
         FindObjectOfType<Inventory>().AddItem(itemWithin);
         OpenChestButton.gameObject.SetActive(false);
+        anim.SetTrigger("Close");
     }
 }
