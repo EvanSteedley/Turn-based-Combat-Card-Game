@@ -9,6 +9,7 @@ public class SceneElementController : MonoBehaviour
 
     //Variables
     Player player;
+    public int tileScenesVisited = 0;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class SceneElementController : MonoBehaviour
         }
         else if (scene.name.Equals("TileMovement"))
         {
+            tileScenesVisited++;
             player.CombatUI.SetActive(false);
             player.TileMoveUI.SetActive(true);
             player.StatsUI.SetActive(true);

@@ -14,6 +14,7 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField] GameObject ShopTileFloater;
     [SerializeField] GameObject TreasureTileFloater;
     [SerializeField] GameObject CombatTileFloater;
+    [SerializeField] GameObject BossTileFloater;
 
     [SerializeField] Light PointLight;
     [SerializeField] Camera MainCam;
@@ -28,6 +29,7 @@ public class TileMapGenerator : MonoBehaviour
     public Tile[,] Tiles;
     public List<Tile> Obstacles;
     public int numberOfObstacles;
+    public SceneElementController SEC;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,6 +39,7 @@ public class TileMapGenerator : MonoBehaviour
         Obstacles = new List<Tile>();
 
         player = FindObjectOfType<Player>();
+        SEC = FindObjectOfType<SceneElementController>();
 
         CreateTileGrid();
 
@@ -63,22 +66,33 @@ public class TileMapGenerator : MonoBehaviour
         enemy.transform.position = new Vector3(centerPos.position.x, enemy.transform.localScale.y / 2, centerPos.transform.position.z);
         enemy.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth / 2, tileLength / 2];
         enemy.GetComponentInParent<Movement>().currentTile.occupied = true;
-
-        Tile middleLeft = Tiles[0, tileLength / 2];
-        Tile middleTop = Tiles[tileWidth / 2, tileLength - 1];
-        Tile middleRight = Tiles[tileWidth - 1, tileLength / 2];
-        middleLeft.occupied = true;
-        middleRight.occupied = true;
-        middleTop.occupied = true;
-        middleLeft.SceneToLoad = "Combat";
-        middleLeft.GetComponent<TileSelectable>().defaultColor = Color.red;
-        Instantiate(CombatTileFloater, middleLeft.transform);
-        middleTop.SceneToLoad = "Shop";
-        middleTop.GetComponent<TileSelectable>().defaultColor = Color.green;
-        Instantiate(ShopTileFloater, middleTop.transform);
-        middleRight.SceneToLoad = "Treasure";
-        middleRight.GetComponent<TileSelectable>().defaultColor = Color.yellow;
-        Instantiate(TreasureTileFloater, middleRight.transform);
+        Debug.Log("SEC.tileScenesVisited % 3 == 0;  " + (SEC.tileScenesVisited % 3 == 0));
+        if(SEC.tileScenesVisited % 3 == 0 && SEC.tileScenesVisited > 0)
+        {
+            Tile middleTop = Tiles[tileWidth / 2, tileLength - 1];
+            middleTop.occupied = true;
+            middleTop.SceneToLoad = "Boss" + SEC.tileScenesVisited % 3;
+            Debug.Log(middleTop.SceneToLoad);
+            middleTop.GetComponent<TileSelectable>().defaultColor = Color.red;
+        }
+        else 
+        {
+            Tile middleLeft = Tiles[0, tileLength / 2];
+            Tile middleTop = Tiles[tileWidth / 2, tileLength - 1];
+            Tile middleRight = Tiles[tileWidth - 1, tileLength / 2];
+            middleLeft.occupied = true;
+            middleRight.occupied = true;
+            middleTop.occupied = true;
+            middleLeft.SceneToLoad = "Combat";
+            middleLeft.GetComponent<TileSelectable>().defaultColor = Color.red;
+            Instantiate(CombatTileFloater, middleLeft.transform);
+            middleTop.SceneToLoad = "Shop";
+            middleTop.GetComponent<TileSelectable>().defaultColor = Color.green;
+            Instantiate(ShopTileFloater, middleTop.transform);
+            middleRight.SceneToLoad = "Treasure";
+            middleRight.GetComponent<TileSelectable>().defaultColor = Color.yellow;
+            Instantiate(TreasureTileFloater, middleRight.transform);
+        }
 
         Light TLCorner = Instantiate(PointLight);
         TLCorner.transform.position = Tiles[0, tileLength - 1].transform.position + new Vector3(0, 0, 3);
