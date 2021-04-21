@@ -49,6 +49,7 @@ public class Movement : MonoBehaviour
         //transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
         //transform.localEulerAngles = currentDirection;
         isMoving = true;
+        this.gameObject.transform.LookAt(new Vector3(direction.x, this.gameObject.transform.position.y, direction.z));
 
         float elapsedTime = 0f;
         currentPos = transform.position;

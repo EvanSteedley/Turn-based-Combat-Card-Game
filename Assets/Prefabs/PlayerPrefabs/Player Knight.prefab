@@ -933,7 +933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725337103726492837}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.291, y: 0.97, z: 0.21}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 3831046498805251450}
@@ -1069,6 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab57f4f15a37074fba15a595d5a1b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileScenesVisited: 0
 --- !u!114 &8296748603010229434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,6 +1208,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0f6bfc645a2c24cb307ac71ec19943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebuffProbabilities: []
+  AttackProbabilities: []
+  ManaBuffProbabilities: []
+  HealthBuffProbabilities: []
+  HealingProbabilities: []
+  DefenseBuffProbabilities: []
 --- !u!1 &736504763952224049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,7 +4610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6157043227765320168}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -3.1824203, y: 1.8420508, z: -1.5773851}
+  m_LocalPosition: {x: -2.78, y: 1.84, z: -1.01}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 5477535766278670833}
