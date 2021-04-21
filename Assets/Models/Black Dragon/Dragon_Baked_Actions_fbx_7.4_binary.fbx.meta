@@ -1180,7 +1180,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -1201,7 +1201,7 @@ ModelImporter:
       name: Armature|Idel_New
       takeName: Armature|Idel_New
       internalID: 0
-      firstFrame: 0
+      firstFrame: 285
       lastFrame: 545
       wrapMode: 0
       orientationOffsetY: 0
@@ -1209,7 +1209,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

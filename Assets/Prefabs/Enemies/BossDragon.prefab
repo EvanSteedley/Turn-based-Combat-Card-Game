@@ -449,7 +449,7 @@ MonoBehaviour:
   t: {fileID: 0}
   EnemyAttackValue: {fileID: 8016141639919320310}
   EnemyDefenseValue: {fileID: 1987818520010801481}
-  anim: {fileID: 0}
+  anim: {fileID: 1653324035173332482}
   health: 500
   damage: 45
   dead: 0
@@ -840,6 +840,12 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 2c411e258f4c3af4bb04a75544a7850c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e35bd5abf60a234798b95ef300f64e2, type: 3}
+--- !u!95 &1653324035173332482 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 7e35bd5abf60a234798b95ef300f64e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1653324035180708706}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1653324035180320876 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400142, guid: 7e35bd5abf60a234798b95ef300f64e2,
