@@ -224,6 +224,7 @@ public class TileMapGenerator : MonoBehaviour
                 Tiles[x, y].occupied = true;
                 Enemy e = Instantiate(enemiesToAdd[i], transform);
                 enemies.Add(e);
+                e.GetComponent<Movement>().currentTile = Tiles[x, y];
                 e.GetComponent<Collider>().enabled = false;
                 //Here, the y-value is just y instead of y/2.  For some reason, Cylinder's center (0, 0, 0) is calculated differently.
                 e.transform.position = Tiles[x, y].transform.position;// + new Vector3(0f, e.transform.localScale.y, 0f);

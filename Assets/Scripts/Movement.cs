@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
         //destination = transform.position;
         //originalPos = originalTile.transform.position;
         //destinationPos = destinationTile.transform.position;
-        offset = new Vector3(0, this.transform.localScale.y, 0);
+        offset = new Vector3(0, 0, 0);
         //Debug.Log(offset);
         
     }
