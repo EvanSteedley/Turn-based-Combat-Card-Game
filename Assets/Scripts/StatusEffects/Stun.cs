@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 class Stun : StatusEffects
 {
 
-    Turns t;
+    //Turns t;
     void Start()
     {
         t = FindObjectOfType<Turns>();

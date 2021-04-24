@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ManaBuffCard : Card
 {
-
+    public int turnsToLast = 3; //Lasts for 3 turns (not including current turn)
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,9 @@ public class ManaBuffCard : Card
     override public void Action()
     {
         Player p = FindObjectOfType<Player>();
-        p.BuffMana(value);
+        ManaBuff mb = p.gameObject.AddComponent<ManaBuff>();
+        mb.UpdateValues(value, turnsToLast);
+        mb.ApplyEffect();
         Destroy(this.gameObject);
     }
 

@@ -18,6 +18,7 @@ public class DefenseBuffCard : Card
 
     public List<Player> Targets;
     public Player p;
+    public int turnsToLast = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -39,15 +40,12 @@ public class DefenseBuffCard : Card
         SetInfo();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     override public void Action()
     {
-        p.BuffDefense(value);
+        Player p = FindObjectOfType<Player>();
+        DefenseBuff db = p.gameObject.AddComponent<DefenseBuff>();
+        db.UpdateValues(value, turnsToLast);
+        db.ApplyEffect();
         Destroy(this.gameObject);
     }
 

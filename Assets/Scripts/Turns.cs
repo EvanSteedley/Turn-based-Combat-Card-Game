@@ -170,6 +170,12 @@ public class Turns : MonoBehaviour
     {
         goldEarned.text = totalGoldValue.ToString();
         WinUI.SetActive(true);
+        StatusEffects[] se = p.GetComponents<StatusEffects>();
+        foreach (StatusEffects s in se) //Remove and Revert all Status Effects applied in this combat.
+        {
+            TurnEnded -= s.Action;
+            s.Revert();
+        }
     }
 
     public IEnumerator LerpToPlayer(GameObject toMove, Vector3 playerP, float timeToMove)
