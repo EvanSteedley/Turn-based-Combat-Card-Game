@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Turns : MonoBehaviour
 {
@@ -11,8 +12,6 @@ public class Turns : MonoBehaviour
     [SerializeField]
     Player p;
     //List of enemies in the current fight.
-    [SerializeField]
-    public List<Enemy> AllEnemies = new List<Enemy>();
     [SerializeField]
     public List<Enemy> enemies = new List<Enemy>();
     //This controls how long the "animations" will last.
@@ -38,19 +37,45 @@ public class Turns : MonoBehaviour
     void Start()
     {
         p = FindObjectOfType<Player>();
-        p.transform.position = new Vector3(-8.45f, 2.01f, -0.13f);
-        p.transform.rotation = Quaternion.Euler(0, -90, 0);
+        //p.transform.position = new Vector3(-8.45f, 2.01f, -0.13f);
+        //p.transform.rotation = Quaternion.Euler(0, -90, 0);
         //New values after moving camera/player
         p.transform.position = new Vector3(-0.25f, 2.01f, -3.13f);
         p.transform.rotation = Quaternion.Euler(0, 180, 0);
         cam = FindObjectOfType<Camera>();
         //All enemies in the scene are added to the list of active enemies.
-        //Enemy[] enemiesList = FindObjectsOfType<Enemy>();
-        //foreach (Enemy e in enemiesList)
-        //{
-        //    enemies.Add(e);
-        //}
-        SpawnEnemies(3);
+        Enemy[] enemiesList = FindObjectsOfType<Enemy>();
+        foreach (Enemy e in enemiesList)
+        {
+            enemies.Add(e);
+            totalGoldValue += e.goldValue;
+        }
+        Scene s = SceneManager.GetActiveScene();
+        if (s.name.Substring(0, s.name.Length - 1).Equals("Boss"))
+        { 
+
+        }
+        else
+        {
+            List<Enemy> enemiesToAdd = FindObjectOfType<EnemySpawner>().SpawnEnemies(UnityEngine.Random.Range(1, 3));
+            int currentIteration = 0;
+            for (int i = 0; i < enemiesToAdd.Count; i++)
+            {
+                Enemy added = Instantiate(enemiesToAdd[i], this.transform);
+                enemies.Add(added);
+                //EnemyInstance.transform.position += new Vector3(((i % 2) == 0) && i != 0 ? ((i - 1) * -3) : (i * 3), 0f, 0f);
+
+                // ? operator is neat!
+                // using ? after a conditional (if i % 2 == 0) checks the condition; if it passes, the value before the : is used,
+                //otherwise, it uses the value after the : .  It can be done in-line, like so!
+                enemies[i].transform.position += new Vector3((i % 2 == 0 ? currentIteration * offsetBetweenEnemies : ++currentIteration * -offsetBetweenEnemies), 0, 0);
+                enemies[i].transform.LookAt(p.transform);
+                //Debug.Log("Enemy name: " + enemies[i].name);
+                //Debug.Log("Gold value: " + enemies[i].goldValue);
+                totalGoldValue += enemies[i].goldValue;
+            }
+            
+        }
         StartCoroutine(p.StartTurn());
         //Raise CombatStarted Event
         //If at least 1 subscriber
@@ -67,29 +92,6 @@ public class Turns : MonoBehaviour
     void Update()
     {
 
-    }
-
-    /// <summary>
-    /// Spawns new Enemies randomly
-    /// </summary>
-    /// <param name="n">Number of enemies to spawn</param>
-    public void SpawnEnemies(int n)
-    {
-        int currentIteration = 0;
-        for (int i = 0; i < n; i++)
-        {
-            enemies.Add(Instantiate(AllEnemies[UnityEngine.Random.Range(0, AllEnemies.Count)], this.transform));
-            //EnemyInstance.transform.position += new Vector3(((i % 2) == 0) && i != 0 ? ((i - 1) * -3) : (i * 3), 0f, 0f);
-
-            // ? operator is neat!
-            // using ? after a conditional (if i % 2 == 0) checks the condition; if it passes, the value before the : is used,
-            //otherwise, it uses the value after the : .  It can be done in-line, like so!
-            enemies[i].transform.position += new Vector3((i % 2 == 0 ? currentIteration * offsetBetweenEnemies : ++currentIteration * -offsetBetweenEnemies), 0, 0);
-            enemies[i].transform.LookAt(p.transform);
-            //Debug.Log("Enemy name: " + enemies[i].name);
-            //Debug.Log("Gold value: " + enemies[i].goldValue);
-            totalGoldValue += enemies[i].goldValue;
-        }
     }
 
     public IEnumerator EndPlayerTurn()
@@ -168,6 +170,12 @@ public class Turns : MonoBehaviour
     {
         goldEarned.text = totalGoldValue.ToString();
         WinUI.SetActive(true);
+        StatusEffects[] se = p.GetComponents<StatusEffects>();
+        foreach (StatusEffects s in se) //Remove and Revert all Status Effects applied in this combat.
+        {
+            TurnEnded -= s.Action;
+            s.Revert();
+        }
     }
 
     public IEnumerator LerpToPlayer(GameObject toMove, Vector3 playerP, float timeToMove)

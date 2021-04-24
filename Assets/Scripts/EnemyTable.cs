@@ -39,7 +39,7 @@ class EnemyTable : MonoBehaviour
             foreach (string t in s)
             {
                 Probabilities[Row].Add(float.Parse(t));
-                Debug.Log("row: " + Row + " col: " + Column + " Value: " + Probabilities[Row][Column]);
+                //Debug.Log("row: " + Row + " col: " + Column + " Value: " + Probabilities[Row][Column]);
                 Column++;
             }
             Column = 0;

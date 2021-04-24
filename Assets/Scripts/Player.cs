@@ -8,8 +8,8 @@ using System;
 public class Player : MonoBehaviour
 {
     //The player's health; if 0, the player is dead and loses the fight.
-    int health = 100;
-    int maxHealth = 100;
+    public int health = 100;
+    public int maxHealth = 100;
     //The Player's "actual" mana stat; determines how much mana is restored at the beginning of each turn
     public int maxMana = 5;
     //The Player's mana, for casting cards on the current turn.
@@ -145,6 +145,11 @@ public class Player : MonoBehaviour
         {
             t.CamZoomOut();
             dead = true;
+            StatusEffects[] statuses = gameObject.GetComponents<StatusEffects>();
+            foreach (StatusEffects s in statuses)
+            {
+                t.TurnEnded -= s.Action;
+            }
             //This is how the Player "Ragdolls" when they die.
             Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
             rb.AddForce(new Vector3(-500f, 400f, 0f));
@@ -169,9 +174,10 @@ public class Player : MonoBehaviour
 
     public void BuffDefense(int v)
     {
-        Debug.Log("Defense += " + v);
-        defense += v;
-        Debug.Log("Total defense: " + defense);
+        if ((defense + v) >= 0)
+            defense += v;
+        else
+            defense = 0;
         PlayerDefenseValue.text = defense.ToString();
     }
 
@@ -179,6 +185,17 @@ public class Player : MonoBehaviour
     {
         maxHealth += v;
         health += v;
+        SliderHealth.maxValue = maxHealth;
+        SliderHealth.value = health;
+        HealthValue.text = health.ToString();
+    }
+
+    public void DebuffHealth(int v)
+    {
+        maxHealth -= v;
+        SliderHealth.maxValue = maxHealth;
+        if (health > maxHealth)
+            health = maxHealth;
         SliderHealth.value = health;
         HealthValue.text = health.ToString();
     }

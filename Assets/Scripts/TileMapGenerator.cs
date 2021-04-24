@@ -23,12 +23,13 @@ public class TileMapGenerator : MonoBehaviour
 
     [SerializeField] public int tileWidth = 10;
     [SerializeField] public int tileLength = 10;
-    [SerializeField] public float tileOffset = 1.1f;
+    [SerializeField] public float tileOffset = 2.1f;
 
     //Added from the tutorial; makes it easier to manage tile-based movement.
     public Tile[,] Tiles;
     public List<Tile> Obstacles;
     public int numberOfObstacles;
+    public List<Enemy> enemies = new List<Enemy>();
     public SceneElementController SEC;
 
     // Start is called before the first frame update
@@ -40,6 +41,7 @@ public class TileMapGenerator : MonoBehaviour
 
         player = FindObjectOfType<Player>();
         SEC = FindObjectOfType<SceneElementController>();
+        List<Enemy> enemiesToAdd = FindObjectOfType<EnemySpawner>().SpawnEnemies(UnityEngine.Random.Range(1, 3));
 
         CreateTileGrid();
 
@@ -50,28 +52,28 @@ public class TileMapGenerator : MonoBehaviour
 
         //Adjust camera's position to the center of the tiles, but also adjust its height relative to the amount of tiles
         //Square grids give the best result
-        MainCam.transform.position = new Vector3(tileWidth / 2, (tileLength + tileWidth) / 2 + 2f, tileLength / 2);
+        MainCam.transform.position = new Vector3(tileWidth / 2 * tileOffset, (tileLength + tileWidth) + 5f, tileLength * tileOffset / 2);
 
         //Finds the position of the tile in the middle of the bottom row
         Transform middlepos = Tiles[tileWidth / 2, 0].transform;
         //Moves the Player on top of that tile
-        player.transform.position = new Vector3(middlepos.position.x, player.transform.localScale.y, middlepos.transform.position.z);
+        player.transform.position = new Vector3(middlepos.position.x, 1, middlepos.transform.position.z);
         //Sets the Player's currentTile to that tile & sets occupied to true
         player.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth / 2, 0];
         player.GetComponentInParent<Movement>().currentTile.occupied = true;
         player.transform.rotation = Quaternion.Euler(0, 180, 0);
 
-        //Sets the Enemy's currentTile to the Center of the Tile grid, similar to the Player above
+        ////Sets the Enemy's currentTile to the Center of the Tile grid, similar to the Player above
         Transform centerPos = Tiles[tileWidth / 2, tileLength / 2].transform;
-        enemy.transform.position = new Vector3(centerPos.position.x, enemy.transform.localScale.y / 2, centerPos.transform.position.z);
-        enemy.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth / 2, tileLength / 2];
-        enemy.GetComponentInParent<Movement>().currentTile.occupied = true;
+        //enemy.transform.position = new Vector3(centerPos.position.x, enemy.transform.localScale.y / 2, centerPos.transform.position.z);
+        //enemy.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth / 2, tileLength / 2];
+        //enemy.GetComponentInParent<Movement>().currentTile.occupied = true;
         Debug.Log("SEC.tileScenesVisited % 3 == 0;  " + (SEC.tileScenesVisited % 3 == 0));
         if(SEC.tileScenesVisited % 3 == 0 && SEC.tileScenesVisited > 0)
         {
             Tile middleTop = Tiles[tileWidth / 2, tileLength - 1];
             middleTop.occupied = true;
-            middleTop.SceneToLoad = "Boss" + SEC.tileScenesVisited % 3;
+            middleTop.SceneToLoad = "Boss" + SEC.tileScenesVisited / 3;
             Debug.Log(middleTop.SceneToLoad);
             middleTop.GetComponent<TileSelectable>().defaultColor = Color.red;
         }
@@ -95,22 +97,23 @@ public class TileMapGenerator : MonoBehaviour
         }
 
         Light TLCorner = Instantiate(PointLight);
-        TLCorner.transform.position = Tiles[0, tileLength - 1].transform.position + new Vector3(0, 0, 3);
+        TLCorner.transform.position = Tiles[0, tileLength - 1].transform.position + new Vector3(0, 1, 0);
         TLCorner.intensity = 0.3f;
         Light TRCorner = Instantiate(PointLight);
-        TRCorner.transform.position = Tiles[tileWidth - 1, tileLength - 1].transform.position + new Vector3(0, 0, 3);
+        TRCorner.transform.position = Tiles[tileWidth - 1, tileLength - 1].transform.position + new Vector3(0, 1, 0);
         TRCorner.intensity = 0.3f;
         Light BLCorner = Instantiate(PointLight);
-        BLCorner.transform.position = Tiles[0, 0].transform.position + new Vector3(0, 0, 3);
+        BLCorner.transform.position = Tiles[0, 0].transform.position + new Vector3(0, 1, 0);
         BLCorner.intensity = 0.3f;
         Light BRCorner = Instantiate(PointLight);
-        BRCorner.transform.position = Tiles[tileWidth - 1, 0].transform.position + new Vector3(0, 0, 3);
+        BRCorner.transform.position = Tiles[tileWidth - 1, 0].transform.position + new Vector3(0, 1, 0);
         BRCorner.intensity = 0.3f;
 
 
         //Adjust number of obstacles based on amount of tiles
         numberOfObstacles = ((tileWidth + tileLength) / 3) + 1;
         PlaceObstacles(numberOfObstacles);
+        PlaceEnemies(enemiesToAdd);
         player.GetComponent<PlayerClickToMove>().UnpaintTiles();
     }
 
@@ -199,6 +202,31 @@ public class TileMapGenerator : MonoBehaviour
                 obs.transform.position = Tiles[x, y].transform.position + new Vector3(0f, obs.transform.localScale.y, 0f);
                 //Adds the Obstacle to the List of Obstacles.
                 Obstacles.Add(Tiles[x, y]);
+            }
+            //If that Tile was already occupied; reset i to the previous value to try again.
+            else
+                i--;
+        }
+    }
+
+    //Places Enemies randomly inside the grid of tiles
+    public void PlaceEnemies(List<Enemy> enemiesToAdd)
+    {
+        for (int i = 0; i < enemiesToAdd.Count; i++)
+        {
+            //Randomly generate x & y coords within the grid
+            int x = Random.Range(0, tileWidth);
+            int y = Random.Range(0, tileLength);
+            //If the Tile isn't already occupied by the Player, another obstacle, etc...
+            if (!Tiles[x, y].occupied)
+            {
+                //Occupies that tile, instantiates the Enemy prefab, and places it on top of the tile.
+                Tiles[x, y].occupied = true;
+                Enemy e = Instantiate(enemiesToAdd[i], transform);
+                enemies.Add(e);
+                e.GetComponent<Movement>().currentTile = Tiles[x, y];
+                e.GetComponent<Collider>().enabled = false;
+                e.transform.position = Tiles[x, y].transform.position;// + new Vector3(0f, e.transform.localScale.y, 0f);
             }
             //If that Tile was already occupied; reset i to the previous value to try again.
             else

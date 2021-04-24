@@ -11,11 +11,13 @@ using UnityEngine.SceneManagement;
 class DefenseDown : StatusEffects
 {
 
-    Turns t;
+    //Turns t;
     void Start()
     {
         t = FindObjectOfType<Turns>();
         t.TurnEnded += Action;
+        turnsLeft = 1;
+        valueToChangeBy = 5;
     }
 
     // Update is called once per frame
@@ -32,22 +34,13 @@ class DefenseDown : StatusEffects
         {
             if (p != null)
             {
-                if (p.defense - 5 >= 0)
-                    p.BuffDefense(-5);
-                else
-                {
-                    p.BuffDefense(p.defense * -1);
-                }
+                p.BuffDefense(-valueToChangeBy);
                 turnsLeft--;
             }
 
             else if (e2 != null)
             {
-                if (e2.defense - 5 >= 0)
-                    e2.BuffDefense(-5);
-                else
-                    e2.BuffDefense(e2.defense * -1);
-                
+                e2.BuffDefense(-valueToChangeBy);
                 turnsLeft--;
             }
         }

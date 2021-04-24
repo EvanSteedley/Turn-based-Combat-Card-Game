@@ -22,11 +22,12 @@ public class TurnsTile : MonoBehaviour
     {
         cam = this.gameObject;
         //All enemies in the scene are added to the list of active enemies.
-        Enemy[] enemiesList = FindObjectsOfType<Enemy>();
-        foreach (Enemy e in enemiesList)
-        {
-            enemies.Add(e);
-        }
+        //Enemy[] enemiesList = FindObjectsOfType<Enemy>();
+        //foreach (Enemy e in enemiesList)
+        //{
+        //    enemies.Add(e);
+        //}
+        enemies = FindObjectOfType<TileMapGenerator>().enemies;
         p = FindObjectOfType<PlayerClickToMove>();
     }
 

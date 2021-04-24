@@ -258,27 +258,63 @@ public class EnemyAI : MonoBehaviour
             //Debug.Log("Pathy, y2:  " + pathy + ", " + y2);
             if ((pathx - x2) == 1 && movesLeft > 0)
             {
-                EnemyMovement.MoveDown();
-                movesLeft--;
-                yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                if (path[i] == PlayerMovement.currentTile)
+                {
+                    player.TakeDamage(GetComponentInParent<Enemy>().damage);
+                    movesLeft--;
+                    yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                }
+                else
+                {
+                    EnemyMovement.MoveDown();
+                    movesLeft--;
+                    yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                }
             }
             else if ((pathx - x2) == -1 && movesLeft > 0)
             {
-                movesLeft--;
-                EnemyMovement.MoveUp();
-                yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                if (path[i] == PlayerMovement.currentTile)
+                {
+                    player.TakeDamage(GetComponentInParent<Enemy>().damage);
+                    movesLeft--;
+                    yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                }
+                else
+                {
+                    movesLeft--;
+                    EnemyMovement.MoveUp();
+                    yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                }
             }
             else if (((pathy - y2) == 1) && movesLeft > 0)
             {
-                movesLeft--;
-                EnemyMovement.MoveRight();
-                yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                if (path[i] == PlayerMovement.currentTile)
+                {
+                    player.TakeDamage(GetComponentInParent<Enemy>().damage);
+                    movesLeft--;
+                    yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                }
+                else
+                {
+                    movesLeft--;
+                    EnemyMovement.MoveRight();
+                    yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                }
             }
             else if ((pathy - y2) == -1 && movesLeft > 0)
             {
-                movesLeft--;
-                EnemyMovement.MoveLeft();
-                yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                if (path[i] == PlayerMovement.currentTile)
+                {
+                    player.TakeDamage(GetComponentInParent<Enemy>().damage);
+                    movesLeft--;
+                    yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                }
+                else
+                {
+                    movesLeft--;
+                    EnemyMovement.MoveLeft();
+                    yield return new WaitForSeconds(EnemyMovement.timeToMove + .05f);
+                }
             }
             x2 = EnemyMovement.currentTile.x; //since we already have the component assigned
             y2 = EnemyMovement.currentTile.y;
