@@ -32,7 +32,7 @@ class Stun : StatusEffects
         {
             if (p != null)
             {
-                p.mana -= 3;
+                p.mana = 0;
                 turnsLeft--;
             }
 
