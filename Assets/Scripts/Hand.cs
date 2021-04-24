@@ -94,7 +94,7 @@ public class Hand : MonoBehaviour
 
         for (int i = 0; i < CardCount; i++)
         {
-            InstantiatedCards[i].gameObject.transform.localPosition = new Vector3(2 +cardShift + i * 2f, 0, 0);
+            InstantiatedCards[i].gameObject.transform.localPosition = new Vector3(2 + cardShift + i * 2f, 0, 0);
            
             CardSelectable CS = InstantiatedCards[i].GetComponent<CardSelectable>();
             if(CS.originalP != null)
