@@ -16,7 +16,11 @@ public class TreasureChest : MonoBehaviour
         if (itemWithin != null)
         {
             OpenChestButton.gameObject.SetActive(true);
-            anim.SetTrigger("Open");
+            anim.SetBool("Open", false);
+        }
+        else 
+        {
+            anim.SetBool("Open", true);
         }
     }
 
@@ -30,6 +34,7 @@ public class TreasureChest : MonoBehaviour
     {
         FindObjectOfType<Inventory>().AddItem(itemWithin);
         OpenChestButton.gameObject.SetActive(false);
-        anim.SetTrigger("Close");
+        anim.SetBool("Open", true);
+
     }
 }
