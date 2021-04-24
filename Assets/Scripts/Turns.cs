@@ -37,8 +37,8 @@ public class Turns : MonoBehaviour
     void Start()
     {
         p = FindObjectOfType<Player>();
-        p.transform.position = new Vector3(-8.45f, 2.01f, -0.13f);
-        p.transform.rotation = Quaternion.Euler(0, -90, 0);
+        //p.transform.position = new Vector3(-8.45f, 2.01f, -0.13f);
+        //p.transform.rotation = Quaternion.Euler(0, -90, 0);
         //New values after moving camera/player
         p.transform.position = new Vector3(-0.25f, 2.01f, -3.13f);
         p.transform.rotation = Quaternion.Euler(0, 180, 0);

@@ -932,8 +932,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725337103726492837}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.291, y: 0.97, z: 0.21}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 3831046498805251450}
@@ -941,7 +941,7 @@ Transform:
   - {fileID: 4541870102897603113}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6321670934500129893
 Animator:
   serializedVersion: 3
@@ -987,6 +987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18278351ce13b2d44a7228b68808b49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
   maxMana: 5
   mana: 0
   defense: 0
@@ -1437,13 +1439,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963172312021480336}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.38330746, y: 2.0013082, z: -0.4905016}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.38330746, y: 2.04, z: -0.4905016}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 97736602754180639}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8215122203724088426
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -4610,7 +4612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6157043227765320168}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.78, y: 1.84, z: -1.01}
+  m_LocalPosition: {x: -2.79, y: 3.84, z: -1.02}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 5477535766278670833}

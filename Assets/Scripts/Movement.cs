@@ -32,9 +32,10 @@ public class Movement : MonoBehaviour
         //destination = transform.position;
         //originalPos = originalTile.transform.position;
         //destinationPos = destinationTile.transform.position;
-        offset = new Vector3(0, 0, 0);
+        if(GetComponent<Player>() != null)
+            offset = new Vector3(0, 1, 0);
         //Debug.Log(offset);
-        
+
     }
 
     // Update is called once per frame
@@ -50,6 +51,9 @@ public class Movement : MonoBehaviour
         //transform.localEulerAngles = currentDirection;
         isMoving = true;
         this.gameObject.transform.LookAt(new Vector3(direction.x, this.gameObject.transform.position.y, direction.z));
+        if (direction.y == 1)
+            gameObject.transform.Rotate(Vector3.up, 180);
+
 
         float elapsedTime = 0f;
         currentPos = transform.position;

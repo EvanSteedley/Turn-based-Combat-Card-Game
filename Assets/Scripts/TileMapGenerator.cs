@@ -57,7 +57,7 @@ public class TileMapGenerator : MonoBehaviour
         //Finds the position of the tile in the middle of the bottom row
         Transform middlepos = Tiles[tileWidth / 2, 0].transform;
         //Moves the Player on top of that tile
-        player.transform.position = new Vector3(middlepos.position.x, player.transform.localScale.y, middlepos.transform.position.z);
+        player.transform.position = new Vector3(middlepos.position.x, 1, middlepos.transform.position.z);
         //Sets the Player's currentTile to that tile & sets occupied to true
         player.GetComponentInParent<Movement>().currentTile = Tiles[tileWidth / 2, 0];
         player.GetComponentInParent<Movement>().currentTile.occupied = true;
@@ -226,7 +226,6 @@ public class TileMapGenerator : MonoBehaviour
                 enemies.Add(e);
                 e.GetComponent<Movement>().currentTile = Tiles[x, y];
                 e.GetComponent<Collider>().enabled = false;
-                //Here, the y-value is just y instead of y/2.  For some reason, Cylinder's center (0, 0, 0) is calculated differently.
                 e.transform.position = Tiles[x, y].transform.position;// + new Vector3(0f, e.transform.localScale.y, 0f);
             }
             //If that Tile was already occupied; reset i to the previous value to try again.
