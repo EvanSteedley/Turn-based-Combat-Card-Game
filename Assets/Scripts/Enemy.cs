@@ -25,12 +25,13 @@ public class Enemy : MonoBehaviour
     public int defense = 0;
     //Amount of gold to drop when killed
     public int goldValue = 100;
+    public bool isStunned = false;
 
     public List <String> carTypes = new List<string>() { };
 
     enum states { 
     
-        Fight, Defend, Buff, Poison, LowerPlayerDefense
+        Fight, Defend, Buff, Poison, LowerPlayerDefense, Stun
     
     }
 
