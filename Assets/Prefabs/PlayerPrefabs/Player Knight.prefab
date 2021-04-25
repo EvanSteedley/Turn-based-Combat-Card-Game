@@ -282,6 +282,66 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!1 &155701004648677082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7875976240915863712}
+  - component: {fileID: 4679450077689606480}
+  m_Layer: 5
+  m_Name: InventoryUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7875976240915863712
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155701004648677082}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4541870102897603113}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4679450077689606480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155701004648677082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &219071444038085541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab57f4f15a37074fba15a595d5a1b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileScenesVisited: 0
 --- !u!114 &8296748603010229434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,6 +1268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0f6bfc645a2c24cb307ac71ec19943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebuffProbabilities: []
+  AttackProbabilities: []
+  ManaBuffProbabilities: []
+  HealthBuffProbabilities: []
+  HealingProbabilities: []
+  DefenseBuffProbabilities: []
 --- !u!1 &736504763952224049
 GameObject:
   m_ObjectHideFlags: 0
@@ -5615,6 +5682,7 @@ RectTransform:
   - {fileID: 425145632940677661}
   - {fileID: 7773483652153405132}
   - {fileID: 2070442337713199546}
+  - {fileID: 7875976240915863712}
   m_Father: {fileID: 97736602754180639}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
