@@ -34,4 +34,5 @@ public class WerewolfEnemy : Enemy
     {
         
     }
+
 }
