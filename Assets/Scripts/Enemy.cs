@@ -178,6 +178,8 @@ public class Enemy : MonoBehaviour
     //make a method in this class that takes cards 
     void HandleCardPlayed(object sender, EventBayesian e)
     {
+
+    }  
         //Call Bayesian table with card played
 
         //this method should call whatever method from BayesianCardTable 
@@ -187,7 +189,7 @@ public class Enemy : MonoBehaviour
         //random number generator chooses what final card the enemy will play, from this list
         //if none of the cards are available/chosen for whatever reason, choose one at random from list # 1
         //if none of the options work, return null
-    }
+    
 }
 
 
