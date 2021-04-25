@@ -35,8 +35,4 @@ public class WerewolfEnemy : Enemy
         
     }
 
-    var carTypes = new List<string>()
-    {
-      "Attack", "BuffAttack", "BuffDefense"
-    }
 }
