@@ -178,7 +178,7 @@ public class Enemy : MonoBehaviour
     //make a method in this class that takes cards 
     void HandleCardPlayed(object sender, EventBayesian e)
     {
-
+         
     }  
         //Call Bayesian table with card played
 
