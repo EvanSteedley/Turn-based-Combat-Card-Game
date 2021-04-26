@@ -88,7 +88,7 @@ RectTransform:
   m_GameObject: {fileID: 1167252085191425190}
   m_LocalRotation: {x: -0.000000089406946, y: 0.000000029802315, z: 0.000000029802315,
     w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 41.519093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3941688871892311720}
@@ -96,7 +96,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.0000037194422, y: -19.963463}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6178071750700835739
@@ -167,7 +167,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814375205078295902}
   m_LocalRotation: {x: -0.0043368037, y: 0.052483104, z: -0.06080305, w: 0.99675965}
-  m_LocalPosition: {x: 0, y: 0, z: -0.10000066}
+  m_LocalPosition: {x: 0, y: 0, z: -0.10000064}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 6896353142305643227}
@@ -175,7 +175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.13, y: 6.036, z: -6.988}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.1589972, y: 1.1059991}
+  m_AnchoredPosition: {x: 0.00000014901161, y: 1.1059991}
   m_SizeDelta: {x: 142.69, y: 49.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7650946226709088768
@@ -211,7 +211,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -383,9 +383,16 @@ MonoBehaviour:
   numberOfTargets: 1
   Targeter: {fileID: 0}
   targetType: {fileID: 0}
+<<<<<<< Updated upstream
   ProjectilePrefab: {fileID: 450368963451844268, guid: aaa65a6cc992849d58afee3ca727920f,
     type: 3}
   timeToReach: 0.5
+=======
+  Targets: []
+  WhiteSmoke: {fileID: 450368963451844268, guid: aaa65a6cc992849d58afee3ca727920f,
+    type: 3}
+  timeToReach: 1
+>>>>>>> Stashed changes
 --- !u!1 &4249229379072060279
 GameObject:
   m_ObjectHideFlags: 0
