@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthBuffCard : Card
 {
     public List<Player> Targets;
+    public int turnsToLast = 3; //for 3 turns (not including current turn)
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,9 @@ public class HealthBuffCard : Card
     override public void Action()
     {
         Player p = FindObjectOfType<Player>();
-        p.BuffHealth(value);
+        HealthBuff hb = p.gameObject.AddComponent<HealthBuff>();
+        hb.UpdateValues(value, turnsToLast);
+        hb.ApplyEffect();
         Destroy(this.gameObject);
     }
 

@@ -6,13 +6,14 @@ public class DebuffCard : Card
 {
     public GameObject ProjectilePrefab;
     public float timeToReach;
-
+    public int turnsToLast = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         id = 10000;
         value = 20;
+        turnsToLast = 1;
         mana = 2;
         name = "";
         description = "";
@@ -33,7 +34,9 @@ public class DebuffCard : Card
             {
                 LaunchProjectile(e.gameObject);
                 //Replace <StatusEffects> with the actual name of the Status Effect to apply.
-                e.gameObject.AddComponent<StatusEffects>();
+                StatusEffects s = e.gameObject.AddComponent<StatusEffects>();
+                s.UpdateValues(value, turnsToLast);
+                s.ApplyEffect();
             }
         }
         RemoveHighlightTargets();

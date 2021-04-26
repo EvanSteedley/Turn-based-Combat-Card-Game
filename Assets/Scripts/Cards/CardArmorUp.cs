@@ -26,8 +26,9 @@ public class CardArmorUp : DefenseBuffCard
         id = 1;
         mana = 2;
         value = 5;
+        turnsToLast = 2;
         name = "Armor Up";
-        description = "Increases your defense by 5.";
+        description = "Increases your defense by 5 for the next 2 turns.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;

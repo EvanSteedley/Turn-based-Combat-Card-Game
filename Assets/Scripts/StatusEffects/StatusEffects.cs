@@ -10,9 +10,13 @@ using UnityEngine.SceneManagement;
     {
 
     [SerializeField]
-    Turns t;
+    public Turns t;
+    [SerializeField]
+    public int statChangedBy;
+    public int valueToChangeBy;
+    public int turnsLeft = 2;
 
-    
+
 
     void Start()
     {
@@ -20,30 +24,41 @@ using UnityEngine.SceneManagement;
         t.TurnEnded += Action;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-    public int turnsLeft = 2;
     virtual public void Action (object sender, EventArgs e)
 
     {
 
         if (turnsLeft > 0)
         {
-            //Do the Action
             turnsLeft--;
         }
         else
         {
             //Revert and remove this StatusEffect
+            Revert();
         }
     }
 
+    public virtual void Revert()
+    {
+        //ValueChanged -= statChange;
     }
+
+    public virtual void UpdateValues(int value, int turns)
+    {
+        valueToChangeBy = value;
+        turnsLeft = turns;
+    }
+
+    public virtual void ApplyEffect()
+    {
+        //Do the Action
+        //int startValue = ValueChanged;
+        //ValueChanged += valueToChangeBy;
+        //statChangedBy = ValueChanged - startValue;
+    }
+
+}
 
 
 

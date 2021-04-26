@@ -9,12 +9,13 @@ using UnityEngine.SceneManagement;
 
 class Poison : StatusEffects
 {
-    Turns t;
-    int damagePerTurn = 10;
+    //Turns t;
+    //int damagePerTurn = 10;
     void Start()
     {
         t = FindObjectOfType<Turns>();
         t.TurnEnded += Action;
+        valueToChangeBy = 10;
     }
 
     // Update is called once per frame
@@ -31,13 +32,13 @@ class Poison : StatusEffects
         {
             if (p != null)
             {
-                p.TakeDamage(damagePerTurn);
+                p.TakeDamage(valueToChangeBy);
                 turnsLeft--;
             }
 
             else if (e2 != null)
             {
-                e2.TakeDamage(damagePerTurn);
+                e2.TakeDamage(valueToChangeBy);
                 turnsLeft--;
             }
         }

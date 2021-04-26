@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 class Stun : StatusEffects
 {
 
-    Turns t;
+    //Turns t;
     void Start()
     {
         t = FindObjectOfType<Turns>();
@@ -32,7 +32,7 @@ class Stun : StatusEffects
         {
             if (p != null)
             {
-                p.mana -= 3;
+                p.mana = 0;
                 turnsLeft--;
             }
 
