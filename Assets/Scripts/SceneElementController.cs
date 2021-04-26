@@ -37,6 +37,7 @@ public class SceneElementController : MonoBehaviour
             player.CombatUI.SetActive(true);
             player.TileMoveUI.SetActive(false);
             player.StatsUI.SetActive(true);
+            player.InventoryUI.SetActive(false);
             player.GetComponent<PlayerClickToMove>().enabled = false;
             player.GetComponent<Movement>().enabled = false;
             player.t = FindObjectOfType<Turns>();
@@ -49,6 +50,7 @@ public class SceneElementController : MonoBehaviour
             player.CombatUI.SetActive(false);
             player.TileMoveUI.SetActive(true);
             player.StatsUI.SetActive(true);
+            player.InventoryUI.SetActive(false);
             PlayerClickToMove PCTM = player.GetComponent<PlayerClickToMove>();
             PCTM.enabled = true;
             player.GetComponent<Movement>().enabled = true;
@@ -62,6 +64,7 @@ public class SceneElementController : MonoBehaviour
             player.CombatUI.SetActive(false);
             player.TileMoveUI.SetActive(false);
             player.StatsUI.SetActive(false);
+            player.InventoryUI.SetActive(false);
             player.GetComponent<PlayerClickToMove>().enabled = false;
             player.GetComponent<Movement>().enabled = false;
         }
@@ -69,7 +72,8 @@ public class SceneElementController : MonoBehaviour
         {
             player.CombatUI.SetActive(false);
             player.TileMoveUI.SetActive(false);
-            player.StatsUI.SetActive(false);
+            player.StatsUI.SetActive(true);
+            player.InventoryUI.SetActive(true);
             player.GetComponent<PlayerClickToMove>().enabled = false;
             player.GetComponent<Movement>().enabled = false;
         }

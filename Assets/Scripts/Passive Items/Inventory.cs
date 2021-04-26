@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public List<PassiveItem> playerItems = new List<PassiveItem>();
+    public List<GameObject> playerItems = new List<GameObject>();
     public Player player;
 
     // Start is called before the first frame update
@@ -19,10 +19,11 @@ public class Inventory : MonoBehaviour
         
     }
 
-    public void AddItem(PassiveItem item)
+    public void AddItem(GameObject item)
     {
-        playerItems.Add(item);
-        Instantiate(item, this.gameObject.transform);
+        GameObject instance = Instantiate(item);
+        playerItems.Add(instance);
+        instance.GetComponentInChildren<PassiveItem>().transform.SetParent(transform);
         UpdateUI();
     }
 

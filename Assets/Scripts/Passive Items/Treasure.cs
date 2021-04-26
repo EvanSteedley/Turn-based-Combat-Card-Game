@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Treasure : MonoBehaviour
 {
-    public List<PassiveItem> AllItems = new List<PassiveItem>();
+    public List<GameObject> AllItems = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +18,9 @@ public class Treasure : MonoBehaviour
         
     }
 
-    public PassiveItem PullRandom()
+    public GameObject PullRandom()
     {
-        PassiveItem itemToAdd = null;
+        GameObject itemToAdd = null;
         if (AllItems.Count > 0)
         {
             int index = Random.Range(0, AllItems.Count);

@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     public GameObject CombatUI;
     public GameObject TileMoveUI;
     public GameObject StatsUI;
+    public GameObject InventoryUI;
 
 
 
