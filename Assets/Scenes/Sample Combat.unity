@@ -2510,6 +2510,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909079754}
   m_CullTransparentMesh: 1
+--- !u!1 &931867611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 155701004648677082, guid: a896d06dcb63bb1419524c0f3ddb552a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1645540489}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &951557111
 GameObject:
   m_ObjectHideFlags: 0
@@ -4303,7 +4309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllItems:
-  - {fileID: 4080306677445221555, guid: 8bf702b5e5fafa144adf140a13e47e67, type: 3}
+  - {fileID: 2444441056970613149, guid: 31168b9ca2c32c24f8ee8281fdc6ad43, type: 3}
 --- !u!1 &1590703095
 GameObject:
   m_ObjectHideFlags: 0
@@ -4756,6 +4762,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 155701004648677082, guid: a896d06dcb63bb1419524c0f3ddb552a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 725337103726492837, guid: a896d06dcb63bb1419524c0f3ddb552a,
         type: 3}
       propertyPath: m_Name
@@ -4771,6 +4782,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4587989864640080991, guid: a896d06dcb63bb1419524c0f3ddb552a,
+        type: 3}
+      propertyPath: InventoryUI
+      value: 
+      objectReference: {fileID: 931867611}
     - target: {fileID: 6747632959100961721, guid: a896d06dcb63bb1419524c0f3ddb552a,
         type: 3}
       propertyPath: m_AnchorMax.x

@@ -1249,6 +1249,7 @@ MonoBehaviour:
   CombatUI: {fileID: 2745973408098509398}
   TileMoveUI: {fileID: 315954923017291866}
   StatsUI: {fileID: 82138324946225388}
+  InventoryUI: {fileID: 155701004648677082}
   dead: 0
 --- !u!114 &7928514003565684778
 MonoBehaviour:

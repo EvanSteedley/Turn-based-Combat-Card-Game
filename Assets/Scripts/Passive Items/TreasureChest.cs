@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TreasureChest : MonoBehaviour
 {
-    public PassiveItem itemWithin;
+    public GameObject itemWithin;
     public Button OpenChestButton;
     public Animator anim;
     // Start is called before the first frame update
@@ -32,7 +32,9 @@ public class TreasureChest : MonoBehaviour
 
     public void AwardItem()
     {
-        FindObjectOfType<Inventory>().AddItem(itemWithin);
+        Inventory inv = FindObjectOfType<Inventory>();
+        inv.AddItem(itemWithin);
+        inv.gameObject.SetActive(false);
         OpenChestButton.gameObject.SetActive(false);
         anim.SetBool("Open", true);
 
