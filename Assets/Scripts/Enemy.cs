@@ -26,8 +26,13 @@ public class Enemy : MonoBehaviour
     //Amount of gold to drop when killed
     public int goldValue = 100;
     public bool isStunned = false;
+    
 
-    public List <String> carTypes = new List<string>() { };
+    public List <String> carTypes = new List<string>() { };  //possible card types 
+    public List<String> cardstoPlay = new List<string>() { }; //cards that could be played on the next turn
+
+    public EnemyTable ET;
+
 
     enum states { 
     
@@ -53,6 +58,8 @@ public class Enemy : MonoBehaviour
         EnemyAttackValue.text = damage.ToString();
         p.CardPlayed += HandleCardPlayed;  //subscribing the handle card played to the publisher
         //HandleCardPlayed is a delegate
+        ET = FindObjectOfType<EnemyTable>();
+
     }
 
     // Update is called once per frame
@@ -127,45 +134,97 @@ public class Enemy : MonoBehaviour
             //t.PlayerTurn = true;
     }
 
-  
-    virtual public void EnemyBehaviour() {
+
+    //virtual public void EnemyBehaviour() {
 
 
-        System.Random random = new System.Random();
-        int num = random.Next(System.Enum.GetNames(typeof(states)).Length);
-        if (num == (int)states.Fight) {
-           Attack();
-        }
+    //    System.Random random = new System.Random();
+    //    int num = random.Next(System.Enum.GetNames(typeof(states)).Length);
+    //    if (num == (int)states.Fight) {
+    //       Attack();
+    //    }
 
-        if (num == (int)states.Defend)
-        {
-            Defend(1);
-        }
+    //    if (num == (int)states.Defend)
+    //    {
+    //        Defend(1);
+    //    }
 
-        if (num == (int)states.Buff)
-        {
-           Buff(2);
-        }
+    //    if (num == (int)states.Buff)
+    //    {
+    //       Buff(2);
+    //    }
 
-        if(num == (int)states.Poison)
-        {
-            p.gameObject.AddComponent<Poison>();
-        }
-        if (num == (int)states.LowerPlayerDefense)
-        {
-            p.gameObject.AddComponent<DefenseDown>();
-        }
+    //    if(num == (int)states.Poison)
+    //    {
+    //        p.gameObject.AddComponent<Poison>();
+    //    }
+    //    if (num == (int)states.LowerPlayerDefense)
+    //    {
+    //        p.gameObject.AddComponent<DefenseDown>();
+    //    }
 
 
 
-    }
+    //}
 
     virtual public void Defend(int d)
     {
         defense += 20;
         EnemyDefenseValue.text = defense.ToString();
-        
+
     }
+
+    virtual public void EnemyBehaviour()
+    {
+
+        ET = FindObjectOfType<EnemyTable>();
+        String cardString = cardstoPlay[UnityEngine.Random.Range(0, cardstoPlay.Count)];
+        if (cardString == "")
+        { 
+            //figure out which card to play from this list of strings and then play it 
+            //within the EnemyBehahviour method
+            //find a way to convert to actual Card instead of the string
+            //helper method/separate class which has access to all the Enemy Cards - List of Enemy Cards
+            //foreach loop to go through all the list of cards, then find which cards match
+            //send the match to the Enemy class then the Card will be played by the Enemy
+            //each card has a CardName variable and see if they match
+            //for the Enemy attack, within the Start method - cardName = "Attack"
+            //do it for all the 9 cards
+            //Defense/DefenseDown do the same thing - so delete from everywhere
+        }
+
+
+        //System.Random random = new System.Random();
+        //int num = random.Next(System.Enum.GetNames(typeof(states)).Length);
+        //if (num == (int)states.Fight)
+        //{
+        //    Attack();
+        //}
+
+        //if (num == (int)states.Defend)
+        //{
+        //    Defend(1);
+        //}
+
+        //if (num == (int)states.Buff)
+        //{
+        //    Buff(2);
+        //}
+
+        //if (num == (int)states.Poison)
+        //{
+        //    p.gameObject.AddComponent<Poison>();
+        //}
+        //if (num == (int)states.LowerPlayerDefense)
+        //{
+        //    p.gameObject.AddComponent<DefenseDown>();
+        //}
+
+
+
+    }
+
+
 
     virtual public void Buff(int value)
     {
@@ -178,7 +237,8 @@ public class Enemy : MonoBehaviour
     //make a method in this class that takes cards 
     void HandleCardPlayed(object sender, EventBayesian e)
     {
-         
+        cardstoPlay.Add(ET.GetResponseCard(carTypes, e.Message));
+
     }  
         //Call Bayesian table with card played
 
