@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
 
     public List <String> carTypes = new List<string>() { };  //possible card types 
     public List<String> cardstoPlay = new List<string>() { }; //cards that could be played on the next turn
+    public List<EnemyCard> instanceCards = new List<EnemyCard>();
 
     public EnemyTable ET;
 
@@ -79,6 +80,7 @@ public class Enemy : MonoBehaviour
         {
             dead = true;
             p.gold += goldValue;
+            p.CardPlayed -= HandleCardPlayed;
             StatusEffects[] se = GetComponentsInChildren<StatusEffects>();
             //Unsubscribes all status effects
             foreach (StatusEffects s in se)
@@ -178,9 +180,18 @@ public class Enemy : MonoBehaviour
     {
 
         ET = FindObjectOfType<EnemyTable>();
-        String cardString = cardstoPlay[UnityEngine.Random.Range(0, cardstoPlay.Count)];
+        String cardString = "";
+        if (cardstoPlay.Count > 0)
+            cardString = cardstoPlay[UnityEngine.Random.Range(0, cardstoPlay.Count)];
         if (cardString == "")
-        { 
+        {
+            foreach (EnemyCard ec in instanceCards)
+            {
+                Debug.Log("Card: " + ec.cardName);
+            }
+            int rand = UnityEngine.Random.Range(0, instanceCards.Count);
+            Debug.Log("Card played: " + instanceCards[rand].cardName);
+            instanceCards[rand].Action();
             //figure out which card to play from this list of strings and then play it 
             //within the EnemyBehahviour method
             //find a way to convert to actual Card instead of the string
@@ -191,6 +202,27 @@ public class Enemy : MonoBehaviour
             //for the Enemy attack, within the Start method - cardName = "Attack"
             //do it for all the 9 cards
             //Defense/DefenseDown do the same thing - so delete from everywhere
+        }
+        else
+        {
+            bool cardPlayed = false;
+            foreach(EnemyCard ec in instanceCards)
+            {
+                if(ec.cardName == cardString)
+                {
+                    Debug.Log("Card played from Table: " + ec.cardName);
+                    cardPlayed = true;
+                    ec.Action();
+                    break;
+                }
+            }
+            //In case the chosen card somehow doesn't match any of the instance Cards
+            if(!cardPlayed)
+            {
+                int rand = UnityEngine.Random.Range(0, instanceCards.Count);
+                Debug.Log("Card played: " + instanceCards[rand].cardName);
+                instanceCards[rand].Action();
+            }
         }
 
 
@@ -235,9 +267,14 @@ public class Enemy : MonoBehaviour
 
 
     //make a method in this class that takes cards 
-    void HandleCardPlayed(object sender, EventBayesian e)
+    public void HandleCardPlayed(object sender, EventBayesian e)
     {
-        cardstoPlay.Add(ET.GetResponseCard(carTypes, e.Message));
+        Debug.Log(e.Message.name);
+        Debug.Log(carTypes);
+        Debug.Log(ET);
+        String response = ET.GetResponseCard(carTypes, e.Message);
+        if(response != null && response != "")
+            cardstoPlay.Add(response);
 
     }  
         //Call Bayesian table with card played

@@ -16,21 +16,27 @@ public class Slime : Enemy
         t = FindObjectOfType<Turns>();
         //SliderHealth.value = health;
         anim = GetComponent<Animator>();
+        ET = FindObjectOfType<EnemyTable>();
+        p.CardPlayed += HandleCardPlayed;
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
         EnemyAttackValue.text = damage.ToString();
         carTypes = new List<string>()
-{
-  "Poison", "Attack", "DefenseDown", "BuffAttack"
-};
+        {
+            "Poison", "Attack", "DefenseDown", "BuffAttack"
+        };
+        instanceCards.Add(gameObject.AddComponent<EnemyAttack>());
+        instanceCards.Add(gameObject.AddComponent<EnemyPoison>());
+        instanceCards.Add(gameObject.AddComponent<EnemyDefenseDown>());
+        instanceCards.Add(gameObject.AddComponent<EnemyBuffAttack>());
     }
 
     private void Awake()
     {
-        health = 150;
-        damage = 35;
+        health = 100;
+        damage = 10;
         defense = 0;
-        goldValue = 200;
+        goldValue = 100;
     }
 
     // Update is called once per frame
