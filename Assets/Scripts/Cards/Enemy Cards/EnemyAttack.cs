@@ -13,14 +13,14 @@ class EnemyAttack : EnemyCard
     void Start()
     {
         p = FindObjectOfType<Player>();
-        value = 20;
+        value = gameObject.GetComponent<Enemy>().damage;
         cardName = "Attack";
     }
 
 
     public override void Action()
     {
-        p.TakeDamage(value);
+        GetComponent<Enemy>().Attack();
     }
 
 

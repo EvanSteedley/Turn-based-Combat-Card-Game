@@ -20,8 +20,8 @@ using UnityEngine.UI;
 
     public override void Action()
     {
-        p.gameObject.AddComponent<Poison>();
-
+        Poison pois = p.gameObject.AddComponent<Poison>();
+        pois.UpdateValues(value, turns);
 
     }
 

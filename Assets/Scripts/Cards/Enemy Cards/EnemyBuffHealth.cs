@@ -10,7 +10,7 @@ class EnemyBuffHealth: EnemyCard
     {
     void Start()
     {
-        value = 15;
+        value = 25;
         p = FindObjectOfType<Player>();
         cardName = "BuffHealth";
     }

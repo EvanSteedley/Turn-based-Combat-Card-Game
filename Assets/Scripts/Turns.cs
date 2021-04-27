@@ -116,13 +116,13 @@ public class Turns : MonoBehaviour
                 Vector3 original = new Vector3(e.transform.position.x, e.transform.position.y, e.transform.position.z);
                 //e.transform.Translate(e.gameObject.transform.forward * -1);
                 StartCoroutine(LerpToPlayer(e.gameObject, p.transform.position, .15f));
-                e.anim.SetTrigger("EnemyAttack");
+                //e.anim.SetTrigger("EnemyAttack");
                 //e.transform.position.Set(e.transform.position.x + 1f, e.transform.position.y, e.transform.position.z);
                 e.EnemyBehaviour();
                 yield return StartCoroutine(EnemyDelay());
                 //Invoke("e.Attack", delayBetweenTurns);
                 //System.Threading.Thread.Sleep((int)(delayBetweenTurns * 1000));
-                e.anim.SetTrigger("EnemyAttack");
+                //e.anim.SetTrigger("EnemyAttack");
                 //e.transform.Translate(e.gameObject.transform.forward);
                 //e.transform.position.Set(e.transform.position.x - 1f, e.transform.position.y, e.transform.position.z);
             }

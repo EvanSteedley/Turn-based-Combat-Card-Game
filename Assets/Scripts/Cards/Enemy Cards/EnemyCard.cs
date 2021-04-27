@@ -9,6 +9,7 @@ public class EnemyCard : MonoBehaviour
     public string cardName = "";
     public int value = 0;
     protected Player p;
+    public int turns = 0;
     
     
     public string description;
@@ -35,6 +36,12 @@ public class EnemyCard : MonoBehaviour
     {
         p.TakeDamage(value); 
        
+    }
+
+    public virtual void UpdateValues(int v, int turnsToLast)
+    {
+        value = v;
+        turns = turnsToLast;
     }
 
     
