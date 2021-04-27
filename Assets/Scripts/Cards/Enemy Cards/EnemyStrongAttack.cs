@@ -14,7 +14,7 @@ class EnemyStrongAttack: EnemyCard
     {
         value = 30;
         p = FindObjectOfType<Player>();
-
+        cardName = "StrongAttack";
     }
 
 

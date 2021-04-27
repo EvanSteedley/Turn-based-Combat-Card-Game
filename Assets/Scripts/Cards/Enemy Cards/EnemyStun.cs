@@ -13,7 +13,7 @@ class EnemyStun : EnemyCard
     {
         value = 10;
         p = FindObjectOfType<Player>();
-
+        cardName = "Stun";
     }
 
 

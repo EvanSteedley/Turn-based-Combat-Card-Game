@@ -10,8 +10,10 @@ public class WerewolfEnemy : Enemy
         
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
+        p.CardPlayed += HandleCardPlayed;
         //SliderHealth.value = health;
         anim = GetComponent<Animator>();
+        ET = FindObjectOfType<EnemyTable>();
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
         EnemyAttackValue.text = damage.ToString();
@@ -19,6 +21,10 @@ public class WerewolfEnemy : Enemy
 {
   "Attack", "BuffAttack", "BuffDefense", "StrongAttack"
 };
+        instanceCards.Add(gameObject.AddComponent<EnemyAttack>());
+        instanceCards.Add(gameObject.AddComponent<EnemyBuffAttack>());
+        instanceCards.Add(gameObject.AddComponent<EnemyBuffDefense>());
+        instanceCards.Add(gameObject.AddComponent<EnemyStrongAttack>());
     }
 
     private void Awake()

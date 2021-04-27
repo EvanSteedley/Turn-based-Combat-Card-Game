@@ -55,7 +55,8 @@ public class AttackCard : Card
         }
         RemoveHighlightTargets();
         ClearSelections();
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject, 5f);
 
     }
 

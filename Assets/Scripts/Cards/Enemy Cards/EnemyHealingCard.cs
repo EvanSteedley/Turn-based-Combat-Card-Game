@@ -14,7 +14,7 @@ class EnemyHealingCard: EnemyCard
     {
         value = 25;
         p = FindObjectOfType<Player>();
-
+        cardName = "Healing";
     }
 
 

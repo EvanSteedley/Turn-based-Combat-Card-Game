@@ -147,7 +147,6 @@ public class Turns : MonoBehaviour
             PlayerTurn = true;
             StartCoroutine(p.StartTurn());
         }
-        Debug.Log(count);
         if(count <= 0 && !p.dead)
         {
             Debug.Log("CombatWon called");

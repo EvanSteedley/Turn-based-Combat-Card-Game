@@ -1156,6 +1156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 551102572}
   - component: {fileID: 551102573}
+  - component: {fileID: 551102574}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -1190,8 +1191,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllEnemies:
-  - {fileID: 4090509614468249516, guid: 31ac8f9a23f3bc94aaf1b1861e264d69, type: 3}
+  - {fileID: 4105293545553574509, guid: 31ac8f9a23f3bc94aaf1b1861e264d69, type: 3}
   - {fileID: 8381488419972508024, guid: 63c1e169844c2a94281f6a7135e1b4be, type: 3}
+--- !u!114 &551102574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551102571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad0f6bfc645a2c24cb307ac71ec19943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebuffProbabilities: []
+  AttackProbabilities: []
+  ManaBuffProbabilities: []
+  HealthBuffProbabilities: []
+  HealingProbabilities: []
+  DefenseBuffProbabilities: []
 --- !u!1 &590963602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,12 +2529,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909079754}
   m_CullTransparentMesh: 1
---- !u!1 &931867611 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 155701004648677082, guid: a896d06dcb63bb1419524c0f3ddb552a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1645540489}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &951557111
 GameObject:
   m_ObjectHideFlags: 0
@@ -4762,11 +4775,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 155701004648677082, guid: a896d06dcb63bb1419524c0f3ddb552a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 725337103726492837, guid: a896d06dcb63bb1419524c0f3ddb552a,
         type: 3}
       propertyPath: m_Name
@@ -4782,11 +4790,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4587989864640080991, guid: a896d06dcb63bb1419524c0f3ddb552a,
-        type: 3}
-      propertyPath: InventoryUI
-      value: 
-      objectReference: {fileID: 931867611}
     - target: {fileID: 6747632959100961721, guid: a896d06dcb63bb1419524c0f3ddb552a,
         type: 3}
       propertyPath: m_AnchorMax.x

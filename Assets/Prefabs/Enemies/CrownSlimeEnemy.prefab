@@ -249,9 +249,9 @@ GameObject:
   - component: {fileID: 4090509614468249517}
   - component: {fileID: 4090509614468249553}
   - component: {fileID: 4090509614468249515}
-  - component: {fileID: 4090509614468249516}
   - component: {fileID: 5831073410249446228}
   - component: {fileID: 2105122543469946211}
+  - component: {fileID: 4105293545553574509}
   m_Layer: 0
   m_Name: CrownSlimeEnemy
   m_TagString: Untagged
@@ -286,7 +286,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.013344075
-  m_Center: {x: 0, y: 0.000097669385, z: 0.001466234}
+  m_Center: {x: 0, y: 0.01, z: 0.001466234}
 --- !u!95 &4090509614468249553
 Animator:
   serializedVersion: 3
@@ -323,31 +323,6 @@ MonoBehaviour:
   SGO: {fileID: 0}
   selected: 0
   timesSelected: 0
---- !u!114 &4090509614468249516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3748403380590349909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fcc6018fd2325c44bad03d48245ed32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  p: {fileID: 0}
-  t: {fileID: 0}
-  EnemyAttackValue: {fileID: 3405494267527387501}
-  EnemyDefenseValue: {fileID: 5007815947946763698}
-  anim: {fileID: 0}
-  health: 100
-  damage: 10
-  dead: 0
-  defense: 0
-  goldValue: 100
-  isStunned: 0
-  carTypes: []
-  HealthValue: {fileID: 8928551381277451195}
 --- !u!114 &5831073410249446228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +356,34 @@ MonoBehaviour:
   currentPos: {x: 0, y: 0, z: 0}
   destinationPos: {x: 0, y: 0, z: 0}
   timeToMove: 0.15
+--- !u!114 &4105293545553574509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748403380590349909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ca1cace4e45e74b9c52d02c4bbfa77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: {fileID: 0}
+  t: {fileID: 0}
+  EnemyAttackValue: {fileID: 3405494267527387501}
+  EnemyDefenseValue: {fileID: 5007815947946763698}
+  anim: {fileID: 0}
+  health: 100
+  damage: 10
+  dead: 0
+  defense: 0
+  goldValue: 100
+  isStunned: 0
+  carTypes: []
+  cardstoPlay: []
+  instanceCards: []
+  ET: {fileID: 0}
+  HealthValue: {fileID: 8928551381277451195}
 --- !u!1 &5439478023721834151
 GameObject:
   m_ObjectHideFlags: 0

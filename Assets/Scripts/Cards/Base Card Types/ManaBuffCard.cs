@@ -26,7 +26,8 @@ public class ManaBuffCard : Card
         ManaBuff mb = p.gameObject.AddComponent<ManaBuff>();
         mb.UpdateValues(value, turnsToLast);
         mb.ApplyEffect();
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject, 5f);
     }
 
     override public void HighlightTargets()

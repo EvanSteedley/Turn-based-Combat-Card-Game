@@ -270,7 +270,7 @@ public class Player : MonoBehaviour
             mana -= manaCost;
             //Updates the UI mana value
             ManaValue.text = mana.ToString();
-
+            OnCardPlayed(new EventBayesian(cardUsed));
             //Triggers the Attack animation to play; this is the transition from both states
             anim.SetTrigger("Attack");
             //this.transform.Translate(new Vector3(1f, 0f, 0f));
@@ -306,8 +306,6 @@ public class Player : MonoBehaviour
         }
         //This is an empty return for an IEnumerator method.  It does not wait for anything.
         yield return null;
-
-        OnCardPlayed(new EventBayesian(cardUsed));
 
     }
 
