@@ -12,11 +12,8 @@ GameObject:
   - component: {fileID: 3165019162399198490}
   - component: {fileID: 867118167901288912}
   - component: {fileID: 2435015781190382587}
-  - component: {fileID: 8550673910071290516}
-  - component: {fileID: 3726240638674562028}
-  - component: {fileID: 6297127599084028081}
   m_Layer: 0
-  m_Name: BaseAttack
+  m_Name: BasicAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,69 +97,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 4a634ddc65c9a8349b58d5074992d4c2, type: 3}
---- !u!114 &8550673910071290516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659685387865724933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0aebc9f9dfb7ac46a7df1d644eae768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Selections: []
-  somethingSelected: 0
-  numberOfSelections: 1
-  exclusive: 1
-  player: {fileID: 0}
-  Selecting: 1
---- !u!114 &3726240638674562028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659685387865724933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfaf2cc9b1039594883baab6a19b589f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ren: {fileID: 0}
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  s: {fileID: 0}
-  selected: 0
-  card: {fileID: 0}
-  player: {fileID: 0}
-  originalP: {x: 0, y: 0, z: 0}
-  originalR: {x: 0, y: 0, z: 0}
-  centeredP: {x: 0, y: 0, z: 0}
-  centeredR: {x: 0, y: 0, z: 0}
---- !u!114 &6297127599084028081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659685387865724933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b6c22e33e19cd348aa28bebc8099dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: 
-  id: 0
-  mana: 0
-  value: 0
-  description: 
-  Name: {fileID: 3477271323132609969}
-  Description: {fileID: 6846951936275992453}
-  ManaCost: {fileID: 3922765723898061546}
-  numberOfTargets: 1
-  Targeter: {fileID: 0}
-  targetType: {fileID: 0}
 --- !u!1 &2188347838268304416
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +239,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: be4e4a2e88f034520ade9335cfb4fd52, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -317,7 +251,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Name
+  m_Text: Attack Card
 --- !u!1 &7963769648920956152
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +379,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: be4e4a2e88f034520ade9335cfb4fd52, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -457,9 +391,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Description
-
-    Also, don''t forget to add the actual card script!'
+  m_Text: Don't forget to put description
 --- !u!1 &8376350224001671284
 GameObject:
   m_ObjectHideFlags: 0
