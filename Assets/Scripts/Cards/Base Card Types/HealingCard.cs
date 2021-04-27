@@ -25,7 +25,8 @@ public class HealingCard : Card
     {
         Player p = FindObjectOfType<Player>();
         p.Heal(value);
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject, 5f);
     }
 
     override public void HighlightTargets()

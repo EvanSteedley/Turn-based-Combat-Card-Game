@@ -46,7 +46,8 @@ public class DefenseBuffCard : Card
         DefenseBuff db = p.gameObject.AddComponent<DefenseBuff>();
         db.UpdateValues(value, turnsToLast);
         db.ApplyEffect();
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject, 5f);
     }
 
     override public void HighlightTargets()

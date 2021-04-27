@@ -28,7 +28,8 @@ public class HealthBuffCard : Card
         HealthBuff hb = p.gameObject.AddComponent<HealthBuff>();
         hb.UpdateValues(value, turnsToLast);
         hb.ApplyEffect();
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject, 5f);
     }
 
     override public void HighlightTargets()

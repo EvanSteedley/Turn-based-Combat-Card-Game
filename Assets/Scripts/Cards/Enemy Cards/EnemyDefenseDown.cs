@@ -13,7 +13,7 @@ class EnemyDefenseDown: EnemyCard
     {
         value = 10;
         p = FindObjectOfType<Player>();
-
+        cardName = "DefenseDown";
     }
 
 

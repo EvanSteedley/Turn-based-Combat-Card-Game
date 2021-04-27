@@ -14,7 +14,7 @@ using UnityEngine.UI;
     {
         value = 10;
         p = FindObjectOfType<Player>();
-
+        cardName = "Poison";
     }
 
 

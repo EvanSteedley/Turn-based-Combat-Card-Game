@@ -12,7 +12,7 @@ using System.Threading.Tasks;
         {
             value = 10;
             p = FindObjectOfType<Player>();
-
+        cardName = "BuffDefense";
         }
 
 
