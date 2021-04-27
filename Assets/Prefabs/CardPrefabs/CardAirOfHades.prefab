@@ -88,10 +88,6 @@ GameObject:
   - component: {fileID: 3962585923756425353}
   - component: {fileID: 1232044211455915075}
   - component: {fileID: 4385220966993526376}
-  - component: {fileID: 7762972456864917255}
-  - component: {fileID: 3361869852523275903}
-  - component: {fileID: 5364458957733268770}
-  - component: {fileID: 7554563213112112310}
   m_Layer: 0
   m_Name: CardAirOfHades
   m_TagString: Untagged
@@ -177,95 +173,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 4a634ddc65c9a8349b58d5074992d4c2, type: 3}
---- !u!114 &7762972456864917255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 727865560566093206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0aebc9f9dfb7ac46a7df1d644eae768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Selections: []
-  somethingSelected: 0
-  numberOfSelections: 1
-  exclusive: 1
-  player: {fileID: 0}
-  Selecting: 1
---- !u!114 &3361869852523275903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 727865560566093206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfaf2cc9b1039594883baab6a19b589f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ren: {fileID: 0}
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  s: {fileID: 0}
-  selected: 0
-  card: {fileID: 0}
-  player: {fileID: 0}
-  originalP: {x: 0, y: 0, z: 0}
-  originalR: {x: 0, y: 0, z: 0}
-  centeredP: {x: 0, y: 0, z: 0}
-  centeredR: {x: 0, y: 0, z: 0}
---- !u!114 &5364458957733268770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 727865560566093206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b6c22e33e19cd348aa28bebc8099dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: 
-  id: 0
-  mana: 0
-  value: 0
-  description: 
-  Name: {fileID: 3265172503904127010}
-  Description: {fileID: 4761646543319826966}
-  ManaCost: {fileID: 3126043961096499065}
-  numberOfTargets: 1
-  Targeter: {fileID: 0}
-  targetType: {fileID: 0}
---- !u!114 &7554563213112112310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 727865560566093206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24666813d289b4c8c9bd9cdfaf7d6cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: 
-  id: 0
-  mana: 0
-  value: 0
-  description: 
-  Name: {fileID: 0}
-  Description: {fileID: 0}
-  ManaCost: {fileID: 0}
-  numberOfTargets: 1
-  Targeter: {fileID: 0}
-  targetType: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
-  timeToReach: 0
-  SoundToPlay: {fileID: 0}
 --- !u!1 &5612675577337725744
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +239,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: be4e4a2e88f034520ade9335cfb4fd52, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -344,7 +251,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Name
+  m_Text: Air of Hades
 --- !u!1 &7002950971771349301
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +331,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 2
 --- !u!1 &7579348071462399463
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5c895fe71758048e6a996be87ff913c0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -566,7 +473,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: be4e4a2e88f034520ade9335cfb4fd52, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -578,9 +485,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Description
-
-    Also, don''t forget to add the actual card script!'
+  m_Text: Deals 40 Damage to Enemy
 --- !u!1 &8328695588578410859
 GameObject:
   m_ObjectHideFlags: 0
