@@ -10,10 +10,12 @@ public class Shop : MonoBehaviour
     public List<Card> CardsToBuy;
     public List<Card> InstantiatedCards;
     public List<Button> BuyButtons = new List<Button>();
+    public Button BuyHealButton;
     public int shopSize = 6;
     public Vector3[] positions;
     public int cardCost = 250;
     public int destroyCost = 100;
+    public int healCost = 200;
     public Player player;
     public Text playerGold;
     // Start is called before the first frame update
@@ -41,6 +43,14 @@ public class Shop : MonoBehaviour
             {
                 b.interactable = false;
             }
+        }
+        if(player.gold >= healCost)
+        {
+            BuyHealButton.interactable = true;
+        }
+        else
+        {
+            BuyHealButton.interactable = false;
         }
     }
 
@@ -86,6 +96,34 @@ public class Shop : MonoBehaviour
                     b.interactable = false;
                 }
             }
+            if (player.gold >= healCost)
+            {
+                BuyHealButton.interactable = true;
+            }
+            else
+            {
+                BuyHealButton.interactable = false;
+            }
+        }
+    }
+
+    public void BuyHeal()
+    {
+        if(player.gold >= healCost)
+        {
+            player.Heal(player.maxHealth - player.health);
+
+            foreach (Button b in BuyButtons)
+            {
+                if (player.gold >= cardCost)
+                {
+                    b.interactable = true;
+                }
+                else
+                {
+                    b.interactable = false;
+                }
+            }
         }
     }
 
@@ -114,6 +152,14 @@ public class Shop : MonoBehaviour
                 {
                     b.interactable = false;
                 }
+            }
+            if (player.gold >= healCost)
+            {
+                BuyHealButton.interactable = true;
+            }
+            else
+            {
+                BuyHealButton.interactable = false;
             }
         }
     }

@@ -91,8 +91,6 @@ public class Player : MonoBehaviour
     {
         //Finds the Select/Deselect buttons, stores a reference to them, and then sets them inactive;
         //They will be enabled if a Card that is non-exclusive is selected.
-        SelectButton = GameObject.Find("Select").GetComponent<Button>();
-        DeselectButton = GameObject.Find("Deselect").GetComponent<Button>();
         SelectButton.gameObject.SetActive(false);
         DeselectButton.gameObject.SetActive(false);
         t = FindObjectOfType<Turns>();
