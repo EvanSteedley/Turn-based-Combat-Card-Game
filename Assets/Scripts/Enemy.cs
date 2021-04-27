@@ -190,7 +190,12 @@ public class Enemy : MonoBehaviour
             //each card has a CardName variable and see if they match
             //for the Enemy attack, within the Start method - cardName = "Attack"
             //do it for all the 9 cards
+
             //Defense/DefenseDown do the same thing - so delete from everywhere
+
+            //alternatively we can create local list for all possible cards (that match the card types list)
+            //within the Enemy class itself
+            //instantiate those cards and call the Action methods 
         }
 
 
