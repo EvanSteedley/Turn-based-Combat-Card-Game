@@ -221,6 +221,7 @@ public class Enemy : MonoBehaviour
                     break;
                 }
             }
+
             //In case the chosen card somehow doesn't match any of the instance Cards
             if(!cardPlayed)
             {
@@ -228,6 +229,9 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Card played: " + instanceCards[rand].cardName);
                 instanceCards[rand].Action();
             }
+
+            cardstoPlay = new List<String>(); //refresh the cardstoPlay list after the enemy takes its turn 
+            //because we want the enemy to respond to what is played by the Player only on current turn
         }
 
 
