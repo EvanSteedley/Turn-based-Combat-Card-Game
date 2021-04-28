@@ -201,7 +201,12 @@ public class Enemy : MonoBehaviour
             //each card has a CardName variable and see if they match
             //for the Enemy attack, within the Start method - cardName = "Attack"
             //do it for all the 9 cards
+
             //Defense/DefenseDown do the same thing - so delete from everywhere
+
+            //alternatively we can create local list for all possible cards (that match the card types list)
+            //within the Enemy class itself
+            //instantiate those cards and call the Action methods 
         }
         else
         {
@@ -216,6 +221,7 @@ public class Enemy : MonoBehaviour
                     break;
                 }
             }
+
             //In case the chosen card somehow doesn't match any of the instance Cards
             if(!cardPlayed)
             {
@@ -223,6 +229,9 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Card played: " + instanceCards[rand].cardName);
                 instanceCards[rand].Action();
             }
+
+            cardstoPlay = new List<String>(); //refresh the cardstoPlay list after the enemy takes its turn 
+            //because we want the enemy to respond to what is played by the Player only on current turn
         }
 
 
