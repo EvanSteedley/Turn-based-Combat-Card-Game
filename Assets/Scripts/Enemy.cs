@@ -178,60 +178,61 @@ public class Enemy : MonoBehaviour
 
     virtual public void EnemyBehaviour()
     {
+      if (!isStunned) { 
 
         ET = FindObjectOfType<EnemyTable>();
         String cardString = "";
         if (cardstoPlay.Count > 0)
             cardString = cardstoPlay[UnityEngine.Random.Range(0, cardstoPlay.Count)];
-        if (cardString == "")
-        {
-            foreach (EnemyCard ec in instanceCards)
+            if (cardString == "")
             {
-                Debug.Log("Card: " + ec.cardName);
-            }
-            int rand = UnityEngine.Random.Range(0, instanceCards.Count);
-            Debug.Log("Card played: " + instanceCards[rand].cardName);
-            instanceCards[rand].Action();
-            //figure out which card to play from this list of strings and then play it 
-            //within the EnemyBehahviour method
-            //find a way to convert to actual Card instead of the string
-            //helper method/separate class which has access to all the Enemy Cards - List of Enemy Cards
-            //foreach loop to go through all the list of cards, then find which cards match
-            //send the match to the Enemy class then the Card will be played by the Enemy
-            //each card has a CardName variable and see if they match
-            //for the Enemy attack, within the Start method - cardName = "Attack"
-            //do it for all the 9 cards
-
-            //Defense/DefenseDown do the same thing - so delete from everywhere
-
-            //alternatively we can create local list for all possible cards (that match the card types list)
-            //within the Enemy class itself
-            //instantiate those cards and call the Action methods 
-        }
-        else
-        {
-            bool cardPlayed = false;
-            foreach(EnemyCard ec in instanceCards)
-            {
-                if(ec.cardName == cardString)
+                foreach (EnemyCard ec in instanceCards)
                 {
-                    Debug.Log("Card played from Table: " + ec.cardName);
-                    cardPlayed = true;
-                    ec.Action();
-                    break;
+                    Debug.Log("Card: " + ec.cardName);
                 }
-            }
-
-            //In case the chosen card somehow doesn't match any of the instance Cards
-            if(!cardPlayed)
-            {
                 int rand = UnityEngine.Random.Range(0, instanceCards.Count);
                 Debug.Log("Card played: " + instanceCards[rand].cardName);
                 instanceCards[rand].Action();
-            }
+                //figure out which card to play from this list of strings and then play it 
+                //within the EnemyBehahviour method
+                //find a way to convert to actual Card instead of the string
+                //helper method/separate class which has access to all the Enemy Cards - List of Enemy Cards
+                //foreach loop to go through all the list of cards, then find which cards match
+                //send the match to the Enemy class then the Card will be played by the Enemy
+                //each card has a CardName variable and see if they match
+                //for the Enemy attack, within the Start method - cardName = "Attack"
+                //do it for all the 9 cards
 
-            cardstoPlay = new List<String>(); //refresh the cardstoPlay list after the enemy takes its turn 
-            //because we want the enemy to respond to what is played by the Player only on current turn
+                //Defense/DefenseDown do the same thing - so delete from everywhere
+
+                //alternatively we can create local list for all possible cards (that match the card types list)
+                //within the Enemy class itself
+                //instantiate those cards and call the Action methods 
+            }
+            else
+            {
+                bool cardPlayed = false;
+                foreach (EnemyCard ec in instanceCards)
+                {
+                    if (ec.cardName == cardString)
+                    {
+                        Debug.Log("Card played from Table: " + ec.cardName);
+                        cardPlayed = true;
+                        ec.Action();
+                        break;
+                    }
+                }
+
+                //In case the chosen card somehow doesn't match any of the instance Cards
+                if (!cardPlayed)
+                {
+                    int rand = UnityEngine.Random.Range(0, instanceCards.Count);
+                    Debug.Log("Card played: " + instanceCards[rand].cardName);
+                    instanceCards[rand].Action();
+                }
+
+                cardstoPlay = new List<String>(); //refresh the cardstoPlay list after the enemy takes its turn 
+            }    //because we want the enemy to respond to what is played by the Player only on current turn
         }
 
 

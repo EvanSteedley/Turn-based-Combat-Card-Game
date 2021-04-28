@@ -36,15 +36,26 @@ class Stun : StatusEffects
                 turnsLeft--;
             }
 
-            else
+            if (e2!= null)
             {
-                t.TurnEnded -= Action;
-                Destroy(this);
+                e2.isStunned = true; //adding stun effects for the enemy, had it for the player before
+                turnsLeft--;
+
             }
+        }
+        else
+        {
+            t.TurnEnded -= Action;
+            if (e2 != null)
+            {
+                e2.isStunned = false;
+            }
+            Destroy(this);
+        }
 
         }
     }
-}
+
 
 
 

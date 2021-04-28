@@ -26,12 +26,6 @@ public class Inventory : MonoBehaviour
         instance.GetComponentInChildren<PassiveItem>().Activate();
         instance.GetComponentInChildren<PassiveItem>().transform.SetParent(transform);
         Destroy(instance.gameObject);
-
-        UpdateUI();
     }
 
-    public void UpdateUI()
-    {
-
-    }
 }
