@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: eb2ffa4afb49a428a9f7495687526301
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Name: {instanceID: 0}
+  - Description: {instanceID: 0}
+  - ManaCost: {instanceID: 0}
+  - Targeter: {instanceID: 0}
+  - targetType: {instanceID: 0}
+  - ProjectilePrefab: {fileID: 6522743566428477744, guid: 6454c3181683e4864876d47d281ca189,
+      type: 3}
+  - SoundToPlay: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

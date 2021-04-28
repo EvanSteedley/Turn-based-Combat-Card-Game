@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardAirOfHades : AttackCard
+public class CardMothersWrath : AttackCard
 {
-    //WhiteSmoke Prefab used whenever this is selected. 
+
+
+    // Start is called before the first frame update
     void Start()
     {
-        id = 17;
-        value = 40;
-        mana = 2;
-        name = "Air of Hades";
-        description = "Deals 40 damage to one enemy.";
+        id = 23;
+        value = 20;
+        mana = 1;
+        name = "Mother's Wrath";
+        description = "Mother is using her glock to deal 25 damage to anyone who crosses her.";
         numberOfTargets = 1;
         Targeter = this.gameObject.GetComponent<SelectionGO>();
         Targeter.numberOfSelections = numberOfTargets;
@@ -19,5 +21,4 @@ public class CardAirOfHades : AttackCard
         SetInfo();
     }
 }
-
 
