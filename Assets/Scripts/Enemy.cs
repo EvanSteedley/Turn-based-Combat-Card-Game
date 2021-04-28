@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
         //SliderHealth.value = health;
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
         EnemyAttackValue.text = damage.ToString();

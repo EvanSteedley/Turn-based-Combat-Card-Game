@@ -23,7 +23,10 @@ public class Inventory : MonoBehaviour
     {
         GameObject instance = Instantiate(item);
         playerItems.Add(instance);
+        instance.GetComponentInChildren<PassiveItem>().Activate();
         instance.GetComponentInChildren<PassiveItem>().transform.SetParent(transform);
+        Destroy(instance.gameObject);
+
         UpdateUI();
     }
 

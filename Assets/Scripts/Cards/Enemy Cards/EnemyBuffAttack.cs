@@ -12,7 +12,7 @@ class EnemyBuffAttack: EnemyCard
 
     void Start()
     {
-        value = 10;
+        value = 4;
         p = FindObjectOfType<Player>();
         cardName = "BuffAttack";
     }

@@ -13,11 +13,17 @@ public class BossGoblinEnemy : Enemy
         
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
+        p.CardPlayed += HandleCardPlayed;
+        ET = FindObjectOfType<EnemyTable>();
         //SliderHealth.value = health;
         anim = GetComponent<Animator>();
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
         EnemyAttackValue.text = damage.ToString();
+        carTypes = new List<string>() { "Attack", "Poison", "BuffDefense" };
+        instanceCards.Add(gameObject.AddComponent<EnemyAttack>());
+        instanceCards.Add(gameObject.AddComponent<EnemyStrongAttack>());
+        instanceCards.Add(gameObject.AddComponent<EnemyBuffDefense>());
     }
 
     private void Awake()
@@ -41,54 +47,21 @@ public class BossGoblinEnemy : Enemy
     }
     public override void TakeDamage(int d)
     {
-        if (d - defense >= health && !dead)
-
-        {
-            dead = true;
-            p.gold += goldValue;
-            //Ragdoll effect!
-            Rigidbody rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
-            rb.AddForce(new Vector3(0f, 400f, 500f));
-            rb.AddTorque(new Vector3(5f, 50f, 35f));
-            Destroy(this.gameObject, 3f);
-        }
-        if (defense < d)
+        base.TakeDamage(d);
+        if (defense > d)
             anim.SetTrigger("Block");
-            health -= (d - defense);
-            defense = 0;
-            EnemyDefenseValue.text = defense.ToString();
-        if (health < 0)
-        {
-            health = 0;
-        }
-        //SliderHealth.value = health;
-        HealthValue.text = health.ToString();
     }
 
     public override void BuffDefense(int v)
     {
+        base.BuffDefense(v);
         anim.SetTrigger("Power Up");
-        defense += v;
-        EnemyDefenseValue.text = defense.ToString();
-    }
-    public override void Defend(int d)
-    {
-        defense += 20;
-        EnemyDefenseValue.text = defense.ToString();
-
     }
 
     public override void Buff(int value)
     {
+        base.Buff(value);
         anim.SetTrigger("Power Up");
-        damage += value;
-        EnemyAttackValue.text = damage.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 }
