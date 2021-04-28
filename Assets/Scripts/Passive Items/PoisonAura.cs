@@ -11,7 +11,7 @@ public class PoisonAura : PassiveItem
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.sceneLoaded += sceneChange;
+
     }
 
     // Update is called once per frame
@@ -39,5 +39,10 @@ public class PoisonAura : PassiveItem
         {
             enemy.gameObject.AddComponent<Poison>();
         }
+    }
+
+    public override void Activate()
+    {
+         SceneManager.sceneLoaded += sceneChange;
     }
 }

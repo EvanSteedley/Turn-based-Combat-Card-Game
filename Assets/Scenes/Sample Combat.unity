@@ -4323,6 +4323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllItems:
   - {fileID: 2444441056970613149, guid: 31168b9ca2c32c24f8ee8281fdc6ad43, type: 3}
+  - {fileID: 4387033640133932707, guid: 3fa990a0674453347aaefd445621c0c0, type: 3}
 --- !u!1 &1590703095
 GameObject:
   m_ObjectHideFlags: 0

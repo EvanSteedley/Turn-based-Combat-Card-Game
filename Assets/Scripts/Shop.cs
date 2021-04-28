@@ -16,6 +16,14 @@ public class Shop : MonoBehaviour
     public int cardCost = 250;
     public int destroyCost = 100;
     public int healCost = 200;
+    public int itemCost = 250;
+    public Button BuyItem1;
+    public GameObject Item1;
+    public GameObject Item1Instance;
+    public Button BuyItem2;
+    public GameObject Item2;
+    public GameObject Item2Instance;
+    public GameObject ItemHolder;
     public Player player;
     public Text playerGold;
     // Start is called before the first frame update
@@ -24,6 +32,29 @@ public class Shop : MonoBehaviour
         ListOfAllCards = FindObjectOfType<ListOfAllCards>();
         Deck = FindObjectOfType<Deck>();
         player = FindObjectOfType<Player>();
+        Treasure treasures = FindObjectOfType<Treasure>();
+        Item1 = treasures.PullRandom();
+        Item2 = treasures.PullRandom();
+        if(Item1 == null)
+        {
+            BuyItem1.gameObject.SetActive(false);
+        }
+        else
+        {
+            GameObject instance = Instantiate(Item1);
+            Item1Instance = instance.GetComponentInChildren<PassiveItem>().gameObject;
+            Item1Instance.transform.SetParent(ItemHolder.transform);
+        }
+        if(Item2 == null)
+        {
+            BuyItem2.gameObject.SetActive(false);
+        }
+        else
+        {
+            GameObject instance = Instantiate(Item2);
+            Item2Instance = instance.GetComponentInChildren<PassiveItem>().gameObject;
+            Item2Instance.transform.SetParent(ItemHolder.transform);
+        }
         positions = new Vector3[shopSize];
         positions[0] = new Vector3(-36f, 5.5f, 7.2f);
         positions[1] = new Vector3(-33.25f, 5.5f, 7.2f);
@@ -51,6 +82,16 @@ public class Shop : MonoBehaviour
         else
         {
             BuyHealButton.interactable = false;
+        }
+        if(player.gold >= itemCost)
+        {
+            BuyItem1.interactable = true;
+            BuyItem2.interactable = true;
+        }
+        else
+        {
+            BuyItem1.interactable = false;
+            BuyItem2.interactable = false;
         }
     }
 
@@ -104,6 +145,16 @@ public class Shop : MonoBehaviour
             {
                 BuyHealButton.interactable = false;
             }
+            if (player.gold >= itemCost)
+            {
+                BuyItem1.interactable = true;
+                BuyItem2.interactable = true;
+            }
+            else
+            {
+                BuyItem1.interactable = false;
+                BuyItem2.interactable = false;
+            }
         }
     }
 
@@ -123,6 +174,89 @@ public class Shop : MonoBehaviour
                 {
                     b.interactable = false;
                 }
+            }
+            if (player.gold >= itemCost)
+            {
+                BuyItem1.interactable = true;
+                BuyItem2.interactable = true;
+            }
+            else
+            {
+                BuyItem1.interactable = false;
+                BuyItem2.interactable = false;
+            }
+        }
+    }
+    public void BuyItemOne()
+    {
+        if (player.gold >= itemCost)
+        {
+            player.InventoryUI.GetComponentInChildren<Inventory>().AddItem(Item1);
+            Destroy(Item1Instance);
+
+            foreach (Button b in BuyButtons)
+            {
+                if (player.gold >= cardCost)
+                {
+                    b.interactable = true;
+                }
+                else
+                {
+                    b.interactable = false;
+                }
+            }
+            if (player.gold >= itemCost)
+            {
+                BuyItem2.interactable = true;
+            }
+            else
+            {
+                BuyItem2.interactable = false;
+            }
+            if (player.gold >= healCost)
+            {
+                BuyHealButton.interactable = true;
+            }
+            else
+            {
+                BuyHealButton.interactable = false;
+            }
+        }
+    }
+
+    public void BuyItemTwo()
+    {
+        if (player.gold >= itemCost)
+        {
+            player.InventoryUI.GetComponentInChildren<Inventory>().AddItem(Item2);
+            Destroy(Item2Instance);
+
+            foreach (Button b in BuyButtons)
+            {
+                if (player.gold >= cardCost)
+                {
+                    b.interactable = true;
+                }
+                else
+                {
+                    b.interactable = false;
+                }
+            }
+            if (player.gold >= itemCost)
+            {
+                BuyItem1.interactable = true;
+            }
+            else
+            {
+                BuyItem1.interactable = false;
+            }
+            if (player.gold >= healCost)
+            {
+                BuyHealButton.interactable = true;
+            }
+            else
+            {
+                BuyHealButton.interactable = false;
             }
         }
     }
@@ -160,6 +294,16 @@ public class Shop : MonoBehaviour
             else
             {
                 BuyHealButton.interactable = false;
+            }
+            if (player.gold >= itemCost)
+            {
+                BuyItem1.interactable = true;
+                BuyItem2.interactable = true;
+            }
+            else
+            {
+                BuyItem1.interactable = false;
+                BuyItem2.interactable = false;
             }
         }
     }
