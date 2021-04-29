@@ -11,7 +11,6 @@ public class StunAura : PassiveItem
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -22,7 +21,7 @@ public class StunAura : PassiveItem
 
     private void sceneChange(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name.Equals("Combat") || scene.name.Equals("Sample Combat"))
+        if (scene.name.Equals("Combat") || scene.name.Equals("Sample Combat") || scene.name.Substring(0, 4).Equals("Boss"))
         {
             t = FindObjectOfType<Turns>();
             t.CombatStarted += Effect;
@@ -37,7 +36,8 @@ public class StunAura : PassiveItem
     {
         foreach (Enemy enemy in t.enemies)
         {
-            enemy.gameObject.AddComponent<Stun>();
+            Stun s = enemy.gameObject.AddComponent<Stun>();
+            s.UpdateValues(1, 1);
         }
     }
 
