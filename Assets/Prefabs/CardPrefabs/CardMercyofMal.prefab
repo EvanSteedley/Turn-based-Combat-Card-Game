@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2435015781190382587}
   - component: {fileID: 8550673910071290516}
   - component: {fileID: 3726240638674562028}
+  - component: {fileID: 8537766882602944937}
   m_Layer: 0
   m_Name: CardMercyofMal
   m_TagString: Untagged
@@ -139,6 +140,33 @@ MonoBehaviour:
   originalR: {x: 0, y: 0, z: 0}
   centeredP: {x: 0, y: 0, z: 0}
   centeredR: {x: 0, y: 0, z: 0}
+--- !u!114 &8537766882602944937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659685387865724933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d4d67cfe59fb4ce6ad41ba3c98f6f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 
+  id: 0
+  mana: 0
+  value: 0
+  description: 
+  Name: {fileID: 3477271323132609969}
+  Description: {fileID: 6846951936275992453}
+  ManaCost: {fileID: 3922765723898061546}
+  numberOfTargets: 1
+  Targeter: {fileID: 0}
+  targetType: {fileID: 0}
+  ProjectilePrefab: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
+    type: 3}
+  timeToReach: 0
+  SoundToPlay: {fileID: 8300000, guid: 38cbffdabc0e54d17a40bcdc6ca5b6c6, type: 3}
 --- !u!1 &2188347838268304416
 GameObject:
   m_ObjectHideFlags: 0
