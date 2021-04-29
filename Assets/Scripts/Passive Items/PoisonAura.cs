@@ -22,7 +22,7 @@ public class PoisonAura : PassiveItem
 
     private void sceneChange(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name.Equals("Combat") || scene.name.Equals("Sample Combat"))
+        if(scene.name.Equals("Combat") || scene.name.Equals("Sample Combat") || scene.name.Substring(0, 4).Equals("Boss"))
         {
             t = FindObjectOfType<Turns>();
             t.CombatStarted += Effect;

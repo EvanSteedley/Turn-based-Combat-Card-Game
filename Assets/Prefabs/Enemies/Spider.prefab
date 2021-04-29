@@ -257,14 +257,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2395660379934495985}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.009999999, y: 0.01, z: 0.009999999}
   m_Children:
   - {fileID: 7933921315347810510}
   m_Father: {fileID: 2400123576374550036}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.119}
@@ -664,7 +664,11 @@ MonoBehaviour:
   dead: 0
   defense: 0
   goldValue: 100
+  isStunned: 0
   carTypes: []
+  cardstoPlay: []
+  instanceCards: []
+  ET: {fileID: 0}
   HealthValue: {fileID: 2638223763819923463}
 --- !u!114 &6004793208590690355
 MonoBehaviour:

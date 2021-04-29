@@ -16,6 +16,21 @@ class Stun : StatusEffects
     {
         t = FindObjectOfType<Turns>();
         t.TurnEnded += Action;
+
+        //Done here to start the stun on the turn applied, rather than the next turn
+        Enemy e2 = this.transform.GetComponent<Enemy>();
+        Player p = this.transform.GetComponent<Player>();
+            if (p != null)
+            {
+                p.mana = 0;
+                turnsLeft--;
+            }
+
+            if (e2 != null)
+            {
+                e2.isStunned = true; //adding stun effects for the enemy, had it for the player before
+                turnsLeft--;
+            }
     }
 
     // Update is called once per frame
