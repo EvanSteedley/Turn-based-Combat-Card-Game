@@ -1245,6 +1245,8 @@ MonoBehaviour:
   PlayCardButton: {fileID: 8368533151009115779}
   SelectButton: {fileID: 4265908976055398719}
   DeselectButton: {fileID: 5454301811343618390}
+  DamageNumber: {fileID: 6732046904459040631, guid: a1e2212bfda762042a8b871083adc56c,
+    type: 3}
   CombatUI: {fileID: 2745973408098509398}
   TileMoveUI: {fileID: 315954923017291866}
   StatsUI: {fileID: 82138324946225388}

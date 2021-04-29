@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
     public Button SelectButton;
     public Button DeselectButton;
 
+    public GameObject DamageNumber;
+
     //UI Groups
     public GameObject CombatUI;
     public GameObject TileMoveUI;
@@ -139,6 +141,9 @@ public class Player : MonoBehaviour
     //Called whenever the Player takes damage from any source
     public void TakeDamage(int d)
     {
+        GameObject instance = Instantiate(DamageNumber);
+        instance.transform.position = transform.position + Vector3.up;
+        instance.GetComponentInChildren<Text>().text = "-" + d.ToString();
         //If damage is greater than Player's health + defense, then they're dead.  RIP.
         if (d >= health + defense && !dead)
         {
