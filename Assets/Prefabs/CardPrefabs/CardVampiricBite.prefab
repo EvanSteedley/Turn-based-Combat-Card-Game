@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3521769334844902742}
   - component: {fileID: 3974981244324678034}
   m_Layer: 0
-  m_Name: VampiricBitePrefab
+  m_Name: CardVampiricBite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,12 +156,12 @@ MonoBehaviour:
   id: 0
   mana: 0
   value: 0
-  description: 
-  Name: {fileID: 0}
-  Description: {fileID: 0}
-  ManaCost: {fileID: 0}
+  description: Damages an enemy and heals yourself by 30 points.
+  Name: {fileID: 3686246095507284747}
+  Description: {fileID: 6659926721019406655}
+  ManaCost: {fileID: 3826340283866186832}
   numberOfTargets: 1
-  Targeter: {fileID: 0}
+  Targeter: {fileID: 8485777912952704046}
   targetType: {fileID: 0}
   Targets: []
 --- !u!1 &2105151698700913306
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 6999337206756387971}
   - component: {fileID: 3686246095507284747}
   m_Layer: 5
-  m_Name: Name
+  m_Name: 'Vampiric Bite '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,9 +458,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Description
-
-    Also, don''t forget to add the actual card script!'
+  m_Text: 'Damage an enemy and heal yourself for 30 points. '
 --- !u!1 &8599435151337522894
 GameObject:
   m_ObjectHideFlags: 0
