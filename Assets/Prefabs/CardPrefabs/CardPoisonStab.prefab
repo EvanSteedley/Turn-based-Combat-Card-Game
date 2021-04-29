@@ -384,6 +384,7 @@ MonoBehaviour:
   targetType: {fileID: 0}
   ProjectilePrefab: {fileID: 0}
   timeToReach: 0
+  turnsToLast: 1
 --- !u!1 &5870828418555549270
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: fd8523cf01458fc4e976fd9d3d32ae4c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
