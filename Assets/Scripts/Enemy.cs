@@ -191,10 +191,6 @@ public class Enemy : MonoBehaviour
             cardString = cardstoPlay[UnityEngine.Random.Range(0, cardstoPlay.Count)];
             if (cardString == "")
             {
-                foreach (EnemyCard ec in instanceCards)
-                {
-                    Debug.Log("Card: " + ec.cardName);
-                }
                 int rand = UnityEngine.Random.Range(0, instanceCards.Count);
                 Debug.Log("Card played: " + instanceCards[rand].cardName);
                 instanceCards[rand].Action();
@@ -284,12 +280,13 @@ public class Enemy : MonoBehaviour
     //make a method in this class that takes cards 
     public void HandleCardPlayed(object sender, EventBayesian e)
     {
-        Debug.Log(e.Message.name);
-        Debug.Log(carTypes);
-        Debug.Log(ET);
+        Debug.Log("Card played by Player: " + e.Message.name);
         String response = ET.GetResponseCard(carTypes, e.Message);
-        if(response != null && response != "")
+        if (response != null && response != "")
+        {
+            Debug.Log("Card received as Response: " + response);
             cardstoPlay.Add(response);
+        }
 
     }  
         //Call Bayesian table with card played

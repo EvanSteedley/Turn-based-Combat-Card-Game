@@ -129,7 +129,6 @@ public class EnemyTable : MonoBehaviour
             Row = 5;
         }
 
-        Debug.Log("Row = " + Row);
 
         //Determine valid columns
         foreach (String s in PossibleCards)
@@ -275,13 +274,11 @@ public class EnemyTable : MonoBehaviour
         float probabilitySum = 0;
         for (int i = 0; i < 9; i++)
         {
-            Debug.Log("# is: " + rand + ", Column " + i + " is " + (validColumns[i] ? "Valid" : "Invalid") + ", and the probability is: " + (probabilitySum + LocalProbabilities[i]));
             if (validColumns[i])
             {
                 probabilitySum += LocalProbabilities[i];
                 if (rand <= probabilitySum)
                 {
-                    Debug.Log("Card Chosen: " + responseCards[i]);
                     return responseCards[i];
                 }
             }
