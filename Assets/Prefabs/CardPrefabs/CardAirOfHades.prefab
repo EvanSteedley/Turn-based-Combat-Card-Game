@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 4385220966993526376}
   - component: {fileID: 7762972456864917255}
   - component: {fileID: 3361869852523275903}
-  - component: {fileID: 5364458957733268770}
   - component: {fileID: 7554563213112112310}
   m_Layer: 0
   m_Name: CardAirOfHades
@@ -217,29 +216,6 @@ MonoBehaviour:
   originalR: {x: 0, y: 0, z: 0}
   centeredP: {x: 0, y: 0, z: 0}
   centeredR: {x: 0, y: 0, z: 0}
---- !u!114 &5364458957733268770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 727865560566093206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b6c22e33e19cd348aa28bebc8099dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: 
-  id: 0
-  mana: 0
-  value: 0
-  description: 
-  Name: {fileID: 3265172503904127010}
-  Description: {fileID: 4761646543319826966}
-  ManaCost: {fileID: 3126043961096499065}
-  numberOfTargets: 1
-  Targeter: {fileID: 0}
-  targetType: {fileID: 0}
 --- !u!114 &7554563213112112310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,15 +233,15 @@ MonoBehaviour:
   mana: 0
   value: 0
   description: 
-  Name: {fileID: 0}
-  Description: {fileID: 0}
-  ManaCost: {fileID: 0}
+  Name: {fileID: 3265172503904127010}
+  Description: {fileID: 4761646543319826966}
+  ManaCost: {fileID: 3126043961096499065}
   numberOfTargets: 1
-  Targeter: {fileID: 0}
+  Targeter: {fileID: 7762972456864917255}
   targetType: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
+  Targets: []
+  WhiteSmoke: {fileID: 0}
   timeToReach: 0
-  SoundToPlay: {fileID: 0}
 --- !u!1 &5612675577337725744
 GameObject:
   m_ObjectHideFlags: 0
