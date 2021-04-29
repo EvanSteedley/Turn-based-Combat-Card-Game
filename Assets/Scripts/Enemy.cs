@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     //Amount of gold to drop when killed
     public int goldValue = 100;
     public bool isStunned = false;
+
+    public GameObject DamageNumber;
     
 
     public List <String> carTypes = new List<string>() { };  //possible card types 
@@ -75,6 +77,9 @@ public class Enemy : MonoBehaviour
 
     virtual public void TakeDamage(int d)
     {
+        GameObject instance = Instantiate(DamageNumber);
+        instance.transform.position = transform.position + Vector3.up;
+        instance.GetComponentInChildren<Text>().text = "-" + d.ToString();
         if (d - defense >= health && !dead)     
              
         {

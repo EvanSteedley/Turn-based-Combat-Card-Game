@@ -57,7 +57,7 @@ public class Turns : MonoBehaviour
         }
         else
         {
-            List<Enemy> enemiesToAdd = FindObjectOfType<EnemySpawner>().SpawnEnemies(UnityEngine.Random.Range(1, 3));
+            List<Enemy> enemiesToAdd = FindObjectOfType<EnemySpawner>().SpawnEnemies(UnityEngine.Random.Range(1, 4));
             int currentIteration = 0;
             for (int i = 0; i < enemiesToAdd.Count; i++)
             {

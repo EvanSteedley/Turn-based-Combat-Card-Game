@@ -769,7 +769,12 @@ MonoBehaviour:
   defense: 0
   goldValue: 100
   isStunned: 0
+  DamageNumber: {fileID: 6732046904459040631, guid: a1e2212bfda762042a8b871083adc56c,
+    type: 3}
   carTypes: []
+  cardstoPlay: []
+  instanceCards: []
+  ET: {fileID: 0}
   HealthValue: {fileID: 6845212376518785901}
 --- !u!114 &6329032970609495007
 MonoBehaviour:
