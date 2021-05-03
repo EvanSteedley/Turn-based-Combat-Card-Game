@@ -15,14 +15,17 @@ public class Skeleton : Enemy
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
         //SliderHealth.value = health;
-        anim = GetComponent<Animator>();
-        EnemyDefenseValue.text = defense.ToString();
-        HealthValue.text = health.ToString();
+        anim = GetComponentInChildren<Animator>();
+        ET = FindObjectOfType<EnemyTable>();
+        p.CardPlayed += HandleCardPlayed;
         EnemyAttackValue.text = damage.ToString();
         carTypes = new List<string>()
 {
   "Attack", "DefenseDown", "BuffAttack"
 };
+        instanceCards.Add(gameObject.AddComponent<EnemyAttack>());
+        instanceCards.Add(gameObject.AddComponent<EnemyDefenseDown>());
+        instanceCards.Add(gameObject.AddComponent<EnemyBuffAttack>());
     }
 
     private void Awake()

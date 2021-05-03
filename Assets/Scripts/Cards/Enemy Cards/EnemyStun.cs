@@ -13,6 +13,7 @@ class EnemyStun : EnemyCard
     {
         value = 10;
         p = FindObjectOfType<Player>();
+        e = GetComponent<Enemy>();
         cardName = "Stun";
     }
 
@@ -20,7 +21,8 @@ class EnemyStun : EnemyCard
     public override void Action()
     {
         p.gameObject.AddComponent<Stun>();
-
+        e.anim.SetTrigger("Attack");
+        e.anim.SetTrigger("Attack 2");
 
     }
 

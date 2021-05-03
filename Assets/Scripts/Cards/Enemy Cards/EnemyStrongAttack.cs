@@ -14,6 +14,7 @@ class EnemyStrongAttack: EnemyCard
     {
         value = (int)(gameObject.GetComponent<Enemy>().damage * 1.25f);
         p = FindObjectOfType<Player>();
+        e = GetComponent<Enemy>();
         cardName = "StrongAttack";
     }
 
@@ -21,7 +22,8 @@ class EnemyStrongAttack: EnemyCard
     public override void Action()
     {
         value = (int)(gameObject.GetComponent<Enemy>().damage * 1.25f);
-        GetComponent<Enemy>().anim.SetTrigger("Attack 2");
+        e.anim.SetTrigger("Attack");
+        e.anim.SetTrigger("Attack 2");
         p.TakeDamage(value);
     }
 

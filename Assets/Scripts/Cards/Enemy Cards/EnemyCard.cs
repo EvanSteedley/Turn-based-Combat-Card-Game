@@ -10,7 +10,7 @@ public class EnemyCard : MonoBehaviour
     public int value = 0;
     protected Player p;
     public int turns = 0;
-    
+    public Enemy e;
     
     public string description;
  
@@ -20,7 +20,7 @@ public class EnemyCard : MonoBehaviour
     void Start()
     {
         p = FindObjectOfType<Player>();
-
+        e = GetComponent<Enemy>();
     }
 
  

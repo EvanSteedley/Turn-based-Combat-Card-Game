@@ -115,7 +115,7 @@ public class Turns : MonoBehaviour
                 //StartCoroutine(EnemyDelay());
                 Vector3 original = new Vector3(e.transform.position.x, e.transform.position.y, e.transform.position.z);
                 //e.transform.Translate(e.gameObject.transform.forward * -1);
-                StartCoroutine(LerpToPlayer(e.gameObject, p.transform.position, .15f));
+                //StartCoroutine(LerpToPlayer(e.gameObject, p.transform.position, .15f));
                 //e.anim.SetTrigger("EnemyAttack");
                 //e.transform.position.Set(e.transform.position.x + 1f, e.transform.position.y, e.transform.position.z);
                 e.EnemyBehaviour();

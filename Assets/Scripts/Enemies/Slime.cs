@@ -15,7 +15,7 @@ public class Slime : Enemy
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
         //SliderHealth.value = health;
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         ET = FindObjectOfType<EnemyTable>();
         p.CardPlayed += HandleCardPlayed;
         EnemyDefenseValue.text = defense.ToString();

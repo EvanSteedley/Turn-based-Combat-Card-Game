@@ -27,26 +27,9 @@ public class BossGolemEnemy : Enemy
     private void Awake()
     {
         health = 300;
-        damage = 35;
+        damage = 50;
         defense = 35;
         goldValue = 1500;
-    }
-    public override void Attack()
-    {
-        base.Attack();
-        anim.SetTrigger("Attack");
-    }
-
-    public override void BuffDefense(int v)
-    {
-        base.BuffDefense(v);
-        anim.SetTrigger("Power Up");
-    }
-
-    public override void Buff(int value)
-    {
-        base.Buff(value);
-        anim.SetTrigger("Power Up");
     }
 
 }

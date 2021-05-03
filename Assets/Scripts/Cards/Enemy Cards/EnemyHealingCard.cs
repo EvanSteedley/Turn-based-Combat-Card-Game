@@ -14,13 +14,15 @@ class EnemyHealingCard: EnemyCard
     {
         value = 25;
         p = FindObjectOfType<Player>();
+        e = GetComponent<Enemy>();
         cardName = "Healing";
     }
 
 
     public override void Action()
     {
-        this.GetComponentInParent<Enemy>().Heal(value);
+        e.Heal(value);
+        e.anim.SetTrigger("Power Up");
 
     }
 }

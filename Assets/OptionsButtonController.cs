@@ -21,7 +21,7 @@ public class OptionsButtonController : MonoBehaviour
     private IEnumerator SelectPlayer()
     {
         yield return new WaitForSeconds(.05f);
-        SceneManager.LoadScene("TileMovement");
+        SceneManager.LoadScene("Sample Combat");
     }
 
     

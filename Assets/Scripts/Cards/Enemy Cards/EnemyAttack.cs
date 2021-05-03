@@ -13,6 +13,7 @@ class EnemyAttack : EnemyCard
     void Start()
     {
         p = FindObjectOfType<Player>();
+        e = GetComponent<Enemy>();
         value = gameObject.GetComponent<Enemy>().damage;
         cardName = "Attack";
     }
@@ -20,7 +21,8 @@ class EnemyAttack : EnemyCard
 
     public override void Action()
     {
-        GetComponent<Enemy>().Attack();
+        e.Attack();
+        e.anim.SetTrigger("Attack");
     }
 
 
