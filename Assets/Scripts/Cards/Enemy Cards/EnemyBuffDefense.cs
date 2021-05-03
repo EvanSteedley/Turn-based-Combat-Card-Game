@@ -12,13 +12,15 @@ using System.Threading.Tasks;
         {
             value = 10;
             p = FindObjectOfType<Player>();
+        e = GetComponent<Enemy>();
         cardName = "BuffDefense";
         }
 
 
         public override void Action()
         {
-            this.GetComponentInParent<Enemy>().BuffDefense(value);
+            e.BuffDefense(value);
+        e.anim.SetTrigger("Power Up");
         }
     }
 

@@ -14,6 +14,7 @@ using UnityEngine.UI;
     {
         value = 10;
         p = FindObjectOfType<Player>();
+        e = GetComponent<Enemy>();
         cardName = "Poison";
     }
 
@@ -22,6 +23,8 @@ using UnityEngine.UI;
     {
         Poison pois = p.gameObject.AddComponent<Poison>();
         pois.UpdateValues(value, turns);
+        e.anim.SetTrigger("Attack");
+        e.anim.SetTrigger("Attack 2");
 
     }
 

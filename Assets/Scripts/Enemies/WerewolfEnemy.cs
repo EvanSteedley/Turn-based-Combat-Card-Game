@@ -12,7 +12,7 @@ public class WerewolfEnemy : Enemy
         t = FindObjectOfType<Turns>();
         p.CardPlayed += HandleCardPlayed;
         //SliderHealth.value = health;
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         ET = FindObjectOfType<EnemyTable>();
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
@@ -30,7 +30,7 @@ public class WerewolfEnemy : Enemy
     private void Awake()
     {
         health = 150;
-        damage = 35;
+        damage = 20;
         defense = 0;
         goldValue = 200;
     }

@@ -29,7 +29,7 @@ public class BossDragonEnemy : Enemy
     private void Awake()
     {
         health = 500;
-        damage = 45;
+        damage = 50;
         defense = 30;
         goldValue = 3000;
     }

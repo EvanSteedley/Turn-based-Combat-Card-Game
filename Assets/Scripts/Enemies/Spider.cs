@@ -14,8 +14,10 @@ public class Spider : Enemy
 
         p = FindObjectOfType<Player>();
         t = FindObjectOfType<Turns>();
+        ET = FindObjectOfType<EnemyTable>();
+        p.CardPlayed += HandleCardPlayed;
         //SliderHealth.value = health;
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         EnemyDefenseValue.text = defense.ToString();
         HealthValue.text = health.ToString();
         EnemyAttackValue.text = damage.ToString();
@@ -23,12 +25,16 @@ public class Spider : Enemy
 {
   "Poison", "Attack", "DefenseDown", "BuffAttack"
 };
+        instanceCards.Add(gameObject.AddComponent<EnemyAttack>());
+        instanceCards.Add(gameObject.AddComponent<EnemyPoison>());
+        instanceCards.Add(gameObject.AddComponent<EnemyDefenseDown>());
+        instanceCards.Add(gameObject.AddComponent<EnemyBuffAttack>());
     }
 
     private void Awake()
     {
-        health = 150;
-        damage = 35;
+        health = 100;
+        damage = 15;
         defense = 0;
         goldValue = 200;
     }

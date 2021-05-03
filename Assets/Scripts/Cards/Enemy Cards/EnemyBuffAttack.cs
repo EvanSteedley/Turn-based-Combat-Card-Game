@@ -14,13 +14,15 @@ class EnemyBuffAttack: EnemyCard
     {
         value = 4;
         p = FindObjectOfType<Player>();
+        e = GetComponent<Enemy>();
         cardName = "BuffAttack";
     }
 
 
     public override void Action()
     {
-        this.GetComponentInParent<Enemy>().Buff(value);
+        e.Buff(value);
+        e.anim.SetTrigger("Power Up");
     }
 
 

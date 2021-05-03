@@ -12,13 +12,15 @@ class EnemyBuffHealth: EnemyCard
     {
         value = 25;
         p = FindObjectOfType<Player>();
+        e = GetComponent<Enemy>();
         cardName = "BuffHealth";
     }
 
 
     public override void Action()
     {
-        this.GetComponentInParent<Enemy>().BuffHealth(value);
+        e.BuffHealth(value);
+        e.anim.SetTrigger("Power Up");
     }
 
 

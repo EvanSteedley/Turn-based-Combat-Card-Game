@@ -1193,6 +1193,8 @@ MonoBehaviour:
   AllEnemies:
   - {fileID: 4105293545553574509, guid: 31ac8f9a23f3bc94aaf1b1861e264d69, type: 3}
   - {fileID: 8381488419972508024, guid: 63c1e169844c2a94281f6a7135e1b4be, type: 3}
+  - {fileID: 5625359798364327962, guid: da7cac02f7d2b1b45b93dd5967e696c8, type: 3}
+  - {fileID: 3375347860192444145, guid: 62fefef24bff89746b92ff0a6fda5561, type: 3}
 --- !u!114 &551102574
 MonoBehaviour:
   m_ObjectHideFlags: 0
