@@ -191,6 +191,8 @@ public class Shop : MonoBehaviour
     {
         if (player.gold >= itemCost)
         {
+            player.gold -= itemCost;
+            playerGold.text = player.gold.ToString();
             player.InventoryUI.GetComponentInChildren<Inventory>().AddItem(Item1);
             Destroy(Item1Instance);
 
@@ -228,6 +230,8 @@ public class Shop : MonoBehaviour
     {
         if (player.gold >= itemCost)
         {
+            player.gold -= itemCost;
+            playerGold.text = player.gold.ToString();
             player.InventoryUI.GetComponentInChildren<Inventory>().AddItem(Item2);
             Destroy(Item2Instance);
 
